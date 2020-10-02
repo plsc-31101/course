@@ -50,12 +50,4 @@ Icon*
 # drafts, etc
 # */_*.Rmd
 
-# bookdown
-*.yml
-before-chapter.R
-book.bib
-index.Rmd
-packages.bib
-preamble.tex
-*.log
 
