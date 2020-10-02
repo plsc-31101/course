@@ -31,3 +31,10 @@ Some of these materials have been adapted from other sources, and we thank them 
 * [R Studio](https://support.rstudio.com/hc/en-us/articles/200484448).
 * [Software Carpentry](http://swcarpentry.github.io/r-novice-gapminder/).
 * [Stat545](https://stat545.com/).
+
+#### License 
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
