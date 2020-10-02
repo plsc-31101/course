@@ -90,7 +90,7 @@ dems <- (55 + 70) * 1.3
 reps <- (20 - 1) / 2
 ```
 
-Instead of running expression by expression, you can also execute the complete script in one step: `Cmd/Ctrl + Shift + S`. Doing this regularly is a great way to check that you have captured all the important parts of your code in the script.
+Instead of running expression by expression, you can also execute the complete script in one step: `Cmd/Ctrl + Shift + Enter`. Doing this regularly is a great way to check that you have captured all the important parts of your code in the script.
 
 ### Comments
 
