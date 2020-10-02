@@ -11,7 +11,7 @@ output: html_document
 
 * TA: Pete Cuppernull, pcuppernull@uchicago.edu
 
-* Time: Mondays and Wednesdays, 1:50 pm – 3:30 pm
+* Time: Mondays and Wednesdays, 1:50 pm – 3:10 pm
 
 * Lab: Wednesdays, 04:10 pm - 05:30 pm
 
