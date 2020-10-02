@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Plotting | PLSC 31101: Computational Tools for Social Science</title>
+  <meta name="description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Plotting | PLSC 31101: Computational Tools for Social Science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://plsc-31101.github.io/course/" />
+  
+  <meta property="og:description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="github-repo" content="plsc-31101/course" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Plotting | PLSC 31101: Computational Tools for Social Science" />
+  
+  <meta name="twitter:description" content="This book contains course notes and other materials for PLSC 31101." />
+  
+
+<meta name="author" content="Rochelle Terman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="relational-data.html"/>
+<link rel="next" href="statistical-inferences.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PLSC 31101</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Before Class</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i><b>2</b> Syllabus</a><ul>
+<li class="chapter" data-level="2.1" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i><b>2.1</b> Course Description</a></li>
+<li class="chapter" data-level="2.2" data-path="syllabus.html"><a href="syllabus.html#who-should-take-this-course"><i class="fa fa-check"></i><b>2.2</b> Who Should Take This Course</a></li>
+<li class="chapter" data-level="2.3" data-path="syllabus.html"><a href="syllabus.html#requirements-and-evaluation"><i class="fa fa-check"></i><b>2.3</b> Requirements and Evaluation</a></li>
+<li class="chapter" data-level="2.4" data-path="syllabus.html"><a href="syllabus.html#activities-and-materials"><i class="fa fa-check"></i><b>2.4</b> Activities and Materials</a></li>
+<li class="chapter" data-level="2.5" data-path="syllabus.html"><a href="syllabus.html#curriculum-outlineschedule"><i class="fa fa-check"></i><b>2.5</b> Curriculum Outline/Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>3</b> Installation</a><ul>
+<li class="chapter" data-level="3.1" data-path="installation.html"><a href="installation.html#r"><i class="fa fa-check"></i><b>3.1</b> R</a></li>
+<li class="chapter" data-level="3.2" data-path="installation.html"><a href="installation.html#rstudio"><i class="fa fa-check"></i><b>3.2</b> RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="installation.html"><a href="installation.html#r-packages"><i class="fa fa-check"></i><b>3.3</b> R Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="installation.html"><a href="installation.html#latex"><i class="fa fa-check"></i><b>3.4</b> LaTeX</a></li>
+<li class="chapter" data-level="3.5" data-path="installation.html"><a href="installation.html#git"><i class="fa fa-check"></i><b>3.5</b> Git</a></li>
+<li class="chapter" data-level="3.6" data-path="installation.html"><a href="installation.html#google-chrome"><i class="fa fa-check"></i><b>3.6</b> Google Chrome</a></li>
+<li class="chapter" data-level="3.7" data-path="installation.html"><a href="installation.html#selector-gadget"><i class="fa fa-check"></i><b>3.7</b> Selector Gadget</a></li>
+<li class="chapter" data-level="3.8" data-path="installation.html"><a href="installation.html#other-helpful-tools"><i class="fa fa-check"></i><b>3.8</b> Other Helpful Tools</a></li>
+<li class="chapter" data-level="3.9" data-path="installation.html"><a href="installation.html#troubleshooting"><i class="fa fa-check"></i><b>3.9</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="homework-rubric.html"><a href="homework-rubric.html"><i class="fa fa-check"></i><b>4</b> Homework Rubric</a></li>
+<li class="part"><span><b>II Course Notes</b></span></li>
+<li class="chapter" data-level="5" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>5</b> Introduction</a><ul>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#the-motivation"><i class="fa fa-check"></i><b>5.1</b> The Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction.html"><a href="introduction.html#about-this-class"><i class="fa fa-check"></i><b>5.2</b> About This Class</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction.html"><a href="introduction.html#learning-how-to-program"><i class="fa fa-check"></i><b>5.3</b> Learning How to Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>6</b> R Basics</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-basics.html"><a href="r-basics.html#what-is-r"><i class="fa fa-check"></i><b>6.1</b> What is R?</a></li>
+<li class="chapter" data-level="6.2" data-path="r-basics.html"><a href="r-basics.html#rstudio-1"><i class="fa fa-check"></i><b>6.2</b> RStudio</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="r-basics.html"><a href="r-basics.html#console"><i class="fa fa-check"></i><b>6.2.1</b> Console</a></li>
+<li class="chapter" data-level="6.2.2" data-path="r-basics.html"><a href="r-basics.html#scripts"><i class="fa fa-check"></i><b>6.2.2</b> Scripts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="r-basics.html"><a href="r-basics.html#running-code"><i class="fa fa-check"></i><b>6.2.3</b> Running Code</a></li>
+<li class="chapter" data-level="6.2.4" data-path="r-basics.html"><a href="r-basics.html#comments"><i class="fa fa-check"></i><b>6.2.4</b> Comments</a></li>
+<li class="chapter" data-level="6.2.5" data-path="r-basics.html"><a href="r-basics.html#diagnostics-and-errors"><i class="fa fa-check"></i><b>6.2.5</b> Diagnostics and errors</a></li>
+<li class="chapter" data-level="6.2.6" data-path="r-basics.html"><a href="r-basics.html#errors-messages-and-warnings"><i class="fa fa-check"></i><b>6.2.6</b> Errors, Messages, and Warnings</a></li>
+<li class="chapter" data-level="6.2.7" data-path="r-basics.html"><a href="r-basics.html#r-environment"><i class="fa fa-check"></i><b>6.2.7</b> R Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-basics.html"><a href="r-basics.html#r-packages-1"><i class="fa fa-check"></i><b>6.3</b> R Packages</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="r-basics.html"><a href="r-basics.html#installing-packages"><i class="fa fa-check"></i><b>6.3.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.3.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>6.3.2</b> Loading Packages</a></li>
+<li class="chapter" data-level="6.3.3" data-path="r-basics.html"><a href="r-basics.html#challenge"><i class="fa fa-check"></i><b>6.3.3</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="r-basics.html"><a href="r-basics.html#r-markdown"><i class="fa fa-check"></i><b>6.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="r-basics.html"><a href="r-basics.html#yaml-header"><i class="fa fa-check"></i><b>6.4.1</b> YAML Header</a></li>
+<li class="chapter" data-level="6.4.2" data-path="r-basics.html"><a href="r-basics.html#markdown"><i class="fa fa-check"></i><b>6.4.2</b> Markdown</a></li>
+<li class="chapter" data-level="6.4.3" data-path="r-basics.html"><a href="r-basics.html#code-chunks"><i class="fa fa-check"></i><b>6.4.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="6.4.4" data-path="r-basics.html"><a href="r-basics.html#knitting"><i class="fa fa-check"></i><b>6.4.4</b> Knitting</a></li>
+<li class="chapter" data-level="6.4.5" data-path="r-basics.html"><a href="r-basics.html#r-chunk-options-for-knitting"><i class="fa fa-check"></i><b>6.4.5</b> R Chunk Options for Knitting</a></li>
+<li class="chapter" data-level="6.4.6" data-path="r-basics.html"><a href="r-basics.html#cheatsheets-and-other-resources"><i class="fa fa-check"></i><b>6.4.6</b> Cheatsheets and Other Resources</a></li>
+<li class="chapter" data-level="6.4.7" data-path="r-basics.html"><a href="r-basics.html#challenges"><i class="fa fa-check"></i><b>6.4.7</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-syntax.html"><a href="r-syntax.html"><i class="fa fa-check"></i><b>7</b> R Syntax</a><ul>
+<li class="chapter" data-level="7.1" data-path="r-syntax.html"><a href="r-syntax.html#variables"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="r-syntax.html"><a href="r-syntax.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-syntax.html"><a href="r-syntax.html#assigning-variables"><i class="fa fa-check"></i><b>7.1.2</b> Assigning Variables</a></li>
+<li class="chapter" data-level="7.1.3" data-path="r-syntax.html"><a href="r-syntax.html#variable-names"><i class="fa fa-check"></i><b>7.1.3</b> Variable Names</a></li>
+<li class="chapter" data-level="7.1.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-1"><i class="fa fa-check"></i><b>7.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-syntax.html"><a href="r-syntax.html#functions"><i class="fa fa-check"></i><b>7.2</b> Functions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="r-syntax.html"><a href="r-syntax.html#arguments"><i class="fa fa-check"></i><b>7.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-syntax.html"><a href="r-syntax.html#store-function-output"><i class="fa fa-check"></i><b>7.2.2</b> Store Function Output</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-syntax.html"><a href="r-syntax.html#argument-restrictions-and-defaults"><i class="fa fa-check"></i><b>7.2.3</b> Argument Restrictions and Defaults</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-syntax.html"><a href="r-syntax.html#documentation-and-help-files"><i class="fa fa-check"></i><b>7.2.4</b> Documentation and Help Files</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-2"><i class="fa fa-check"></i><b>7.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-syntax.html"><a href="r-syntax.html#data-types"><i class="fa fa-check"></i><b>7.3</b> Data Types</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="r-syntax.html"><a href="r-syntax.html#what-is-that-type"><i class="fa fa-check"></i><b>7.3.1</b> What Is that Type?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-syntax.html"><a href="r-syntax.html#coercion"><i class="fa fa-check"></i><b>7.3.2</b> Coercion</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-syntax.html"><a href="r-syntax.html#other-objects"><i class="fa fa-check"></i><b>7.3.3</b> Other Objects</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-3"><i class="fa fa-check"></i><b>7.3.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-expressions"><i class="fa fa-check"></i><b>7.4</b> Boolean Expressions</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="r-syntax.html"><a href="r-syntax.html#boolean-operators"><i class="fa fa-check"></i><b>7.4.1</b> Boolean Operators</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-syntax.html"><a href="r-syntax.html#logical-operators"><i class="fa fa-check"></i><b>7.4.2</b> Logical Operators</a></li>
+<li class="chapter" data-level="7.4.3" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors"><i class="fa fa-check"></i><b>7.4.3</b> Boolean Vectors</a></li>
+<li class="chapter" data-level="7.4.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors-in-action"><i class="fa fa-check"></i><b>7.4.4</b> Boolean Vectors in Action</a></li>
+<li class="chapter" data-level="7.4.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-4"><i class="fa fa-check"></i><b>7.4.5</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>8</b> Working with Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="working-with-data.html"><a href="working-with-data.html#project-workflow"><i class="fa fa-check"></i><b>8.1</b> Project Workflow</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-data.html"><a href="working-with-data.html#store-analyses-in-scripts-not-workspaces"><i class="fa fa-check"></i><b>8.1.1</b> Store Analyses in Scripts, Not Workspaces</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-data.html"><a href="working-with-data.html#working-directories-and-paths"><i class="fa fa-check"></i><b>8.1.2</b> Working Directories and Paths</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-data.html"><a href="working-with-data.html#r-projects"><i class="fa fa-check"></i><b>8.1.3</b> R Projects</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-data.html"><a href="working-with-data.html#file-organization"><i class="fa fa-check"></i><b>8.1.4</b> File Organization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-data.html"><a href="working-with-data.html#importing-and-exporting"><i class="fa fa-check"></i><b>8.2</b> Importing and Exporting</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-data.html"><a href="working-with-data.html#where-is-my-data"><i class="fa fa-check"></i><b>8.2.1</b> Where Is My Data?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-data.html"><a href="working-with-data.html#data-storage"><i class="fa fa-check"></i><b>8.2.2</b> Data Storage</a></li>
+<li class="chapter" data-level="8.2.3" data-path="working-with-data.html"><a href="working-with-data.html#importing-data"><i class="fa fa-check"></i><b>8.2.3</b> Importing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="working-with-data.html"><a href="working-with-data.html#exporting-data"><i class="fa fa-check"></i><b>8.2.4</b> Exporting Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>9</b> Data Transformation</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-transformation.html"><a href="data-transformation.html#the-gapminder-dataset"><i class="fa fa-check"></i><b>9.1.1</b> The Gapminder Dataset</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-transformation.html"><a href="data-transformation.html#structure-and-dimensions"><i class="fa fa-check"></i><b>9.1.2</b> Structure and Dimensions</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-transformation.html"><a href="data-transformation.html#variables-1"><i class="fa fa-check"></i><b>9.1.3</b> Variables</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-transformation.html"><a href="data-transformation.html#challenges-5"><i class="fa fa-check"></i><b>9.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-dplyr"><i class="fa fa-check"></i><b>9.2</b> Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-transformation.html"><a href="data-transformation.html#tidyverse"><i class="fa fa-check"></i><b>9.2.1</b> <code>tidyverse</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-transformation.html"><a href="data-transformation.html#why-dplyr"><i class="fa fa-check"></i><b>9.2.2</b> Why <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>9.2.3</b> Select Columns with <code>select</code></a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-transformation.html"><a href="data-transformation.html#the-pipe"><i class="fa fa-check"></i><b>9.2.4</b> The Pipe</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>9.2.5</b> Filter Rows with <code>filter</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-transformation.html"><a href="data-transformation.html#more-dplyr-functions"><i class="fa fa-check"></i><b>9.3</b> More <code>dplyr</code> functions</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="data-transformation.html"><a href="data-transformation.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>9.3.1</b> Use <code>mutate()</code> to Add New Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="data-transformation.html"><a href="data-transformation.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>9.3.2</b> Use <code>arrange()</code> to Row-order Data in a Principled Way</a></li>
+<li class="chapter" data-level="9.3.3" data-path="data-transformation.html"><a href="data-transformation.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>9.3.3</b> Use <code>rename()</code> to Rename Variables</a></li>
+<li class="chapter" data-level="9.3.4" data-path="data-transformation.html"><a href="data-transformation.html#use-select-to-rename-and-reposition-variables"><i class="fa fa-check"></i><b>9.3.4</b> Use <code>select()</code> to Rename and Reposition Variables</a></li>
+<li class="chapter" data-level="9.3.5" data-path="data-transformation.html"><a href="data-transformation.html#use-count-to-count-variable-quantities"><i class="fa fa-check"></i><b>9.3.5</b> Use <code>count()</code> to Count Variable Quantities</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="data-transformation.html"><a href="data-transformation.html#calculating-across-groups"><i class="fa fa-check"></i><b>9.4</b> Calculating across Groups</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="data-transformation.html"><a href="data-transformation.html#use-group_by-to-create-a-grouped-data"><i class="fa fa-check"></i><b>9.4.1</b> Use <code>group_by</code> to Create a Grouped Data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="data-transformation.html"><a href="data-transformation.html#summarize-across-groups-with-summarize"><i class="fa fa-check"></i><b>9.4.2</b> Summarize Across Groups with <code>summarize</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>9.4.3</b> Add New Variables with <code>mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
+<li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
+<li class="chapter" data-level="10.3.2" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>10.3.2</b> <code>separate</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>10.3.3</b> <code>spread</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="tidying-data.html"><a href="tidying-data.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>10.4</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="tidying-data.html"><a href="tidying-data.html#na_if"><i class="fa fa-check"></i><b>10.4.1</b> <code>na_if</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="tidying-data.html"><a href="tidying-data.html#replace-na-values-with-replace_na"><i class="fa fa-check"></i><b>10.4.2</b> Replace <code>NA</code> values with <code>replace_na</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="tidying-data.html"><a href="tidying-data.html#more-tidyverse"><i class="fa fa-check"></i><b>10.5</b> More <code>tidyverse</code></a></li>
+<li class="chapter" data-level="10.6" data-path="tidying-data.html"><a href="tidying-data.html#challenges-7"><i class="fa fa-check"></i><b>10.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#why-relational-data"><i class="fa fa-check"></i><b>11.1</b> Why Relational Data</a></li>
+<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#keys"><i class="fa fa-check"></i><b>11.2</b> Keys</a></li>
+<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#joins"><i class="fa fa-check"></i><b>11.3</b> Joins</a></li>
+<li class="chapter" data-level="11.4" data-path="relational-data.html"><a href="relational-data.html#defining-keys"><i class="fa fa-check"></i><b>11.4</b> Defining Keys</a></li>
+<li class="chapter" data-level="11.5" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.5</b> Duplicate Keys</a></li>
+<li class="chapter" data-level="11.6" data-path="relational-data.html"><a href="relational-data.html#challenges-8"><i class="fa fa-check"></i><b>11.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>12</b> Plotting</a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting.html"><a href="plotting.html#the-dataset"><i class="fa fa-check"></i><b>12.1</b> The Dataset</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting.html"><a href="plotting.html#r-base-graphics"><i class="fa fa-check"></i><b>12.2</b> R Base Graphics</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="plotting.html"><a href="plotting.html#scatter-and-line-plots"><i class="fa fa-check"></i><b>12.2.1</b> Scatter and Line Plots</a></li>
+<li class="chapter" data-level="12.2.2" data-path="plotting.html"><a href="plotting.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>12.2.2</b> Histograms and Density Plots</a></li>
+<li class="chapter" data-level="12.2.3" data-path="plotting.html"><a href="plotting.html#labels"><i class="fa fa-check"></i><b>12.2.3</b> Labels</a></li>
+<li class="chapter" data-level="12.2.4" data-path="plotting.html"><a href="plotting.html#axis-and-size-scaling"><i class="fa fa-check"></i><b>12.2.4</b> Axis and Size Scaling</a></li>
+<li class="chapter" data-level="12.2.5" data-path="plotting.html"><a href="plotting.html#graphical-parameters"><i class="fa fa-check"></i><b>12.2.5</b> Graphical Parameters</a></li>
+<li class="chapter" data-level="12.2.6" data-path="plotting.html"><a href="plotting.html#annotations-reference-lines-and-legends"><i class="fa fa-check"></i><b>12.2.6</b> Annotations, Reference Lines, and Legends</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="plotting.html"><a href="plotting.html#ggplot2"><i class="fa fa-check"></i><b>12.3</b> ggplot2</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="plotting.html"><a href="plotting.html#grammar"><i class="fa fa-check"></i><b>12.3.1</b> Grammar</a></li>
+<li class="chapter" data-level="12.3.2" data-path="plotting.html"><a href="plotting.html#anatomy-of-aes"><i class="fa fa-check"></i><b>12.3.2</b> Anatomy of <code>aes</code></a></li>
+<li class="chapter" data-level="12.3.3" data-path="plotting.html"><a href="plotting.html#layers"><i class="fa fa-check"></i><b>12.3.3</b> Layers</a></li>
+<li class="chapter" data-level="12.3.4" data-path="plotting.html"><a href="plotting.html#labels-1"><i class="fa fa-check"></i><b>12.3.4</b> Labels</a></li>
+<li class="chapter" data-level="12.3.5" data-path="plotting.html"><a href="plotting.html#transformations-and-stats"><i class="fa fa-check"></i><b>12.3.5</b> Transformations and Stats</a></li>
+<li class="chapter" data-level="12.3.6" data-path="plotting.html"><a href="plotting.html#facets"><i class="fa fa-check"></i><b>12.3.6</b> Facets</a></li>
+<li class="chapter" data-level="12.3.7" data-path="plotting.html"><a href="plotting.html#legend-and-scale-manipulations"><i class="fa fa-check"></i><b>12.3.7</b> Legend and Scale Manipulations</a></li>
+<li class="chapter" data-level="12.3.8" data-path="plotting.html"><a href="plotting.html#putting-everything-together"><i class="fa fa-check"></i><b>12.3.8</b> Putting Everything Together</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="plotting.html"><a href="plotting.html#saving-plots"><i class="fa fa-check"></i><b>12.4</b> Saving Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="statistical-inferences.html"><a href="statistical-inferences.html"><i class="fa fa-check"></i><b>13</b> Statistical Inferences</a><ul>
+<li class="chapter" data-level="13.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-distributions"><i class="fa fa-check"></i><b>13.1</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#sampling-and-simulation"><i class="fa fa-check"></i><b>13.1.1</b> Sampling and Simulation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#random-seeds"><i class="fa fa-check"></i><b>13.1.2</b> Random Seeds</a></li>
+<li class="chapter" data-level="13.1.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-9"><i class="fa fa-check"></i><b>13.1.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#inferences-and-regressions"><i class="fa fa-check"></i><b>13.2</b> Inferences and Regressions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>13.2.1</b> Statistical Tests</a></li>
+<li class="chapter" data-level="13.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>13.2.2</b> Regressions and Linear Models</a></li>
+<li class="chapter" data-level="13.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>13.2.3</b> Regression Output</a></li>
+<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>13.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="13.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>13.2.5</b> Formatting Regression Tables</a></li>
+<li class="chapter" data-level="13.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-10"><i class="fa fa-check"></i><b>13.2.6</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html"><i class="fa fa-check"></i><b>14</b> Data Classes and Structures</a><ul>
+<li class="chapter" data-level="14.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors"><i class="fa fa-check"></i><b>14.1</b> Vectors</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-vectors"><i class="fa fa-check"></i><b>14.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="14.1.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors-are-everywhere"><i class="fa fa-check"></i><b>14.1.2</b> Vectors Are Everywhere</a></li>
+<li class="chapter" data-level="14.1.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#recycling"><i class="fa fa-check"></i><b>14.1.3</b> Recycling</a></li>
+<li class="chapter" data-level="14.1.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>14.1.4</b> Types of Vectors</a></li>
+<li class="chapter" data-level="14.1.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercion-1"><i class="fa fa-check"></i><b>14.1.5</b> Coercion</a></li>
+<li class="chapter" data-level="14.1.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-a-vector"><i class="fa fa-check"></i><b>14.1.6</b> Naming a Vector</a></li>
+<li class="chapter" data-level="14.1.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-11"><i class="fa fa-check"></i><b>14.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-vectors"><i class="fa fa-check"></i><b>14.2</b> Subsetting Vectors</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-types"><i class="fa fa-check"></i><b>14.2.1</b> Subsetting Types</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-lists"><i class="fa fa-check"></i><b>14.3.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="14.3.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-lists"><i class="fa fa-check"></i><b>14.3.2</b> Naming Lists</a></li>
+<li class="chapter" data-level="14.3.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#list-structure"><i class="fa fa-check"></i><b>14.3.3</b> List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-lists"><i class="fa fa-check"></i><b>14.4</b> Subsetting Lists</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with"><i class="fa fa-check"></i><b>14.4.1</b> With <code>[</code></a></li>
+<li class="chapter" data-level="14.4.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-1"><i class="fa fa-check"></i><b>14.4.2</b> With <code>[[</code></a></li>
+<li class="chapter" data-level="14.4.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-2"><i class="fa fa-check"></i><b>14.4.3</b> with <code>$</code></a></li>
+<li class="chapter" data-level="14.4.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-12"><i class="fa fa-check"></i><b>14.4.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrices"><i class="fa fa-check"></i><b>14.5</b> Matrices</a></li>
+<li class="chapter" data-level="14.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-a-matrix"><i class="fa fa-check"></i><b>14.6</b> Indexing a Matrix</a></li>
+<li class="chapter" data-level="14.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#dataframes"><i class="fa fa-check"></i><b>14.7</b> Dataframes</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-dataframes"><i class="fa fa-check"></i><b>14.7.1</b> Creating Dataframes</a></li>
+<li class="chapter" data-level="14.7.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#the-structure-of-dataframes"><i class="fa fa-check"></i><b>14.7.2</b> The Structure of Dataframes</a></li>
+<li class="chapter" data-level="14.7.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-dataframes"><i class="fa fa-check"></i><b>14.7.3</b> Naming Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-dataframes"><i class="fa fa-check"></i><b>14.8</b> Indexing Dataframes</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-13"><i class="fa fa-check"></i><b>14.8.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html"><i class="fa fa-check"></i><b>15</b> Strings and Regular Expressions</a><ul>
+<li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
+<li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
+<li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-14"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i><b>15.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#basic-matches"><i class="fa fa-check"></i><b>15.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="15.2.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-characters"><i class="fa fa-check"></i><b>15.2.2</b> Escape Characters</a></li>
+<li class="chapter" data-level="15.2.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#anchors"><i class="fa fa-check"></i><b>15.2.3</b> Anchors</a></li>
+<li class="chapter" data-level="15.2.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>15.2.4</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="15.2.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#repetition"><i class="fa fa-check"></i><b>15.2.5</b> Repetition</a></li>
+<li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
+<li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>16</b> Programming in R</a><ul>
+<li class="chapter" data-level="16.1" data-path="programming-in-r.html"><a href="programming-in-r.html#conditional-flow"><i class="fa fa-check"></i><b>16.1</b> Conditional Flow</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
+<li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
+<li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
+<li class="chapter" data-level="16.2.2" data-path="programming-in-r.html"><a href="programming-in-r.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>16.2.2</b> Anatomy of a Function</a></li>
+<li class="chapter" data-level="16.2.3" data-path="programming-in-r.html"><a href="programming-in-r.html#writing-a-function"><i class="fa fa-check"></i><b>16.2.3</b> Writing a Function</a></li>
+<li class="chapter" data-level="16.2.4" data-path="programming-in-r.html"><a href="programming-in-r.html#using-a-function"><i class="fa fa-check"></i><b>16.2.4</b> Using a Function</a></li>
+<li class="chapter" data-level="16.2.5" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-16"><i class="fa fa-check"></i><b>16.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="programming-in-r.html"><a href="programming-in-r.html#iteration"><i class="fa fa-check"></i><b>16.3</b> Iteration</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="programming-in-r.html"><a href="programming-in-r.html#vectorized-functions"><i class="fa fa-check"></i><b>16.3.1</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="16.3.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functional-programming-and-map"><i class="fa fa-check"></i><b>16.3.2</b> Functional Programming and <code>map</code></a></li>
+<li class="chapter" data-level="16.3.3" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-17"><i class="fa fa-check"></i><b>16.3.3</b> Challenges</a></li>
+<li class="chapter" data-level="16.3.4" data-path="programming-in-r.html"><a href="programming-in-r.html#scoped-verbs"><i class="fa fa-check"></i><b>16.3.4</b> Scoped Verbs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html"><i class="fa fa-check"></i><b>17</b> Collecting Data from the Web</a><ul>
+<li class="chapter" data-level="17.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#introduction-1"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#web-apis"><i class="fa fa-check"></i><b>17.2</b> Web APIs</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#some-basic-terminology"><i class="fa fa-check"></i><b>17.2.1</b> Some Basic Terminology</a></li>
+<li class="chapter" data-level="17.2.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#how-do-get-requests-work"><i class="fa fa-check"></i><b>17.2.2</b> How Do GET Requests Work?</a></li>
+<li class="chapter" data-level="17.2.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-apis"><i class="fa fa-check"></i><b>17.2.3</b> Finding APIs</a></li>
+<li class="chapter" data-level="17.2.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#getting-api-access"><i class="fa fa-check"></i><b>17.2.4</b> Getting API Access</a></li>
+<li class="chapter" data-level="17.2.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-apis-in-r"><i class="fa fa-check"></i><b>17.2.5</b> Using APIs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#writing-api-queries"><i class="fa fa-check"></i><b>17.3</b> Writing API Queries</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#constructing-the-api-get-request"><i class="fa fa-check"></i><b>17.3.1</b> Constructing the API GET Request</a></li>
+<li class="chapter" data-level="17.3.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#parsing-the-response"><i class="fa fa-check"></i><b>17.3.2</b> Parsing the Response</a></li>
+<li class="chapter" data-level="17.3.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#iteration-through-results-pager"><i class="fa fa-check"></i><b>17.3.3</b> Iteration through Results Pager</a></li>
+<li class="chapter" data-level="17.3.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#visualizing-results"><i class="fa fa-check"></i><b>17.3.4</b> Visualizing Results</a></li>
+<li class="chapter" data-level="17.3.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#more-resources"><i class="fa fa-check"></i><b>17.3.5</b> More Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#webscraping"><i class="fa fa-check"></i><b>17.4</b> Webscraping</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#what-is-a-website"><i class="fa fa-check"></i><b>17.4.1</b> What Is a Website?</a></li>
+<li class="chapter" data-level="17.4.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#websites-return-html"><i class="fa fa-check"></i><b>17.4.2</b> Websites Return HTML</a></li>
+<li class="chapter" data-level="17.4.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#html-elements"><i class="fa fa-check"></i><b>17.4.3</b> HTML Elements</a></li>
+<li class="chapter" data-level="17.4.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#css"><i class="fa fa-check"></i><b>17.4.4</b> CSS</a></li>
+<li class="chapter" data-level="17.4.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-elements-with-selector-gadget"><i class="fa fa-check"></i><b>17.4.5</b> Finding Elements with Selector Gadget</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#scraping-presidential-statements"><i class="fa fa-check"></i><b>17.5</b> Scraping Presidential Statements</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
+<li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
+<li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
+<li class="chapter" data-level="18.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing"><i class="fa fa-check"></i><b>18.1</b> Preprocessing</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="text-analysis.html"><a href="text-analysis.html#from-words-to-numbers"><i class="fa fa-check"></i><b>18.1.1</b> From Words to Numbers</a></li>
+<li class="chapter" data-level="18.1.2" data-path="text-analysis.html"><a href="text-analysis.html#exploring-the-dtm"><i class="fa fa-check"></i><b>18.1.2</b> Exploring the DTM</a></li>
+<li class="chapter" data-level="18.1.3" data-path="text-analysis.html"><a href="text-analysis.html#exporting-the-dtm"><i class="fa fa-check"></i><b>18.1.3</b> Exporting the DTM</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="text-analysis.html"><a href="text-analysis.html#sentiment-analysis-and-dictionary-methods"><i class="fa fa-check"></i><b>18.2</b> Sentiment Analysis and Dictionary Methods</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-and-setup"><i class="fa fa-check"></i><b>18.2.1</b> Preprocessing and Setup</a></li>
+<li class="chapter" data-level="18.2.2" data-path="text-analysis.html"><a href="text-analysis.html#scoring-the-songs"><i class="fa fa-check"></i><b>18.2.2</b> Scoring the Songs</a></li>
+<li class="chapter" data-level="18.2.3" data-path="text-analysis.html"><a href="text-analysis.html#challenges-18"><i class="fa fa-check"></i><b>18.2.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="text-analysis.html"><a href="text-analysis.html#distinctive-words"><i class="fa fa-check"></i><b>18.3</b> Distinctive Words</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="text-analysis.html"><a href="text-analysis.html#unique-usage"><i class="fa fa-check"></i><b>18.3.1</b> Unique Usage</a></li>
+<li class="chapter" data-level="18.3.2" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-frequencies"><i class="fa fa-check"></i><b>18.3.2</b> Differences in Frequencies</a></li>
+<li class="chapter" data-level="18.3.3" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages"><i class="fa fa-check"></i><b>18.3.3</b> Differences in Averages</a></li>
+<li class="chapter" data-level="18.3.4" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages-adjustment"><i class="fa fa-check"></i><b>18.3.4</b> Differences in Averages, Adjustment</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="text-analysis.html"><a href="text-analysis.html#structural-topic-models"><i class="fa fa-check"></i><b>18.4</b> Structural Topic Models</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-1"><i class="fa fa-check"></i><b>18.4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="18.4.2" data-path="text-analysis.html"><a href="text-analysis.html#estimate-model"><i class="fa fa-check"></i><b>18.4.2</b> Estimate Model</a></li>
+<li class="chapter" data-level="18.4.3" data-path="text-analysis.html"><a href="text-analysis.html#interpret-model"><i class="fa fa-check"></i><b>18.4.3</b> Interpret Model</a></li>
+<li class="chapter" data-level="18.4.4" data-path="text-analysis.html"><a href="text-analysis.html#analyze-topics"><i class="fa fa-check"></i><b>18.4.4</b> Analyze Topics</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PLSC 31101: Computational Tools for Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plotting" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Plotting</h1>
+<blockquote>
+<p>&quot;Make it informative, then make it pretty&quot;</p>
+</blockquote>
+<p>There are two major sets of tools for creating plots in R:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li><a href="#1-r-base-graphics">Base</a>, which comes with all R installations.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li><a href="#2-ggplot2"><code>ggplot2</code></a>, a stand-alone package.</li>
+</ol></li>
+</ul>
+<p>Note that other plotting facilities do exist (notably <code>lattice</code>), but base and <code>ggplot2</code> are by far the most popular.</p>
+<div id="the-dataset" class="section level2">
+<h2><span class="header-section-number">12.1</span> The Dataset</h2>
+<p>For the following examples, we will be using the <code>gapminder</code> dataset we have used previously. Gapminder is a country-year dataset with information on life expectancy, among other things.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
+</div>
+<div id="r-base-graphics" class="section level2">
+<h2><span class="header-section-number">12.2</span> R Base Graphics</h2>
+<p>The <strong>basic</strong> call takes the following form:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>)</code></pre></div>
+<p>We will also introduce a base R command to help us with creating these plots. To reference a specific column in a dataset, we use a <code>$</code> with the following syntax: <code>dataset$column</code>. See this in action below, where we plot <code>gdpPercap</code> against <code>lifeExp</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-176-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="scatter-and-line-plots" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Scatter and Line Plots</h3>
+<p>The <code>type</code> argument accepts the following character indicators:</p>
+<ul>
+<li><code>&quot;p&quot;</code>: Point/scatter plots (default plotting behavior).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-177-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<ul>
+<li><code>&quot;l&quot;</code>: Line graphs.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that &quot;line&quot; does not create a smooth line, just connected points</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>) </code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-178-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<ul>
+<li><code>&quot;b&quot;</code>: Both line and point plots.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>) </code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-179-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+</div>
+<div id="histograms-and-density-plots" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Histograms and Density Plots</h3>
+<p>Histograms display the frequency of different values of a variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-180-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Histograms require a <code>breaks</code> argument, which determines the number of bins in the plot. Let's play around with different <code>breaks</code> values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">5</span>)
+<span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">10</span>)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-181-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-181-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Density plots are similar; they visualize the distribution of data over a continuous interval.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a density object (</span><span class="al">NOTE</span><span class="co">: Be sure to remove missing values)</span>
+age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">na.rm=</span>T)
+
+<span class="co"># Plot the density object</span>
+<span class="kw">plot</span>(<span class="dt">x=</span>age.density)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-182-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<p>Density passes a <code>bw</code> parameter, which determines the plot's &quot;bandwidth.&quot;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the density object, bandwidth of 0.5</span>
+<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span>.<span class="dv">5</span>))
+<span class="co"># Plot the density object, bandwidth of 2</span>
+<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">2</span>))
+<span class="co"># Plot the density object, bandwidth of 6</span>
+<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">6</span>)) </code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-183-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-183-2.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-183-3.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels" class="section level3">
+<h3><span class="header-section-number">12.2.3</span> Labels</h3>
+<p>Here is the basic call with popular labeling arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;&quot;</span>) </code></pre></div>
+<p>From the previous example...</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;GDP per cap&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Life Expectancy ~ GDP&quot;</span>) <span class="co"># Add labels for axes and overall plot</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-185-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+</div>
+<div id="axis-and-size-scaling" class="section level3">
+<h3><span class="header-section-number">12.2.4</span> Axis and Size Scaling</h3>
+<p>Currently it is hard to see the relationship between the points due to some strong outliers in GDP per capita. We can change the scale of units on the x-axis using scaling arguments.</p>
+<p>Here is the basic call with popular scaling arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlim=</span>, <span class="dt">ylim=</span>, <span class="dt">cex=</span>)</code></pre></div>
+<p>From the previous example...</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a basic plot</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
+<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>)) 
+<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, increase point size to 2</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="dv">2</span>) 
+<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, decrease point size to 0.5</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="fl">0.5</span>)  </code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-187-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-4.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+</div>
+<div id="graphical-parameters" class="section level3">
+<h3><span class="header-section-number">12.2.5</span> Graphical Parameters</h3>
+<p>We can change the points with a number of graphical options:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;&quot;</span>, <span class="dt">pch=</span>, <span class="dt">lty=</span>, <span class="dt">lwd=</span>)</code></pre></div>
+<ul>
+<li>Colors</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">colors</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>)<span class="co"># View first 20 elements of the color vector</span>
+<span class="co">#&gt;  [1] &quot;white&quot;         &quot;aliceblue&quot;     &quot;antiquewhite&quot;  &quot;antiquewhite1&quot;</span>
+<span class="co">#&gt;  [5] &quot;antiquewhite2&quot; &quot;antiquewhite3&quot; &quot;antiquewhite4&quot; &quot;aquamarine&quot;   </span>
+<span class="co">#&gt;  [9] &quot;aquamarine1&quot;   &quot;aquamarine2&quot;   &quot;aquamarine3&quot;   &quot;aquamarine4&quot;  </span>
+<span class="co">#&gt; [13] &quot;azure&quot;         &quot;azure1&quot;        &quot;azure2&quot;        &quot;azure3&quot;       </span>
+<span class="co">#&gt; [17] &quot;azure4&quot;        &quot;beige&quot;         &quot;bisque&quot;        &quot;bisque1&quot;</span></code></pre></div>
+<p>Another option: <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorsChart1.jpg">R Color Infographic</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span><span class="st">&quot;aquamarine1&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-190-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<ul>
+<li>Point Styles and Widths</li>
+</ul>
+<p><a href="http://www.endmemo.com/program/R/pic/pchsymbols.png">A Good Reference</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Change point style to crosses</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">3</span>) 
+<span class="co"># Change point style to filled squares</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>) 
+<span class="co"># Change point style to filled squares and increase point size to 3</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>, <span class="dt">cex=</span><span class="dv">3</span>) 
+<span class="co"># Change point style to &quot;w&quot;</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;w&quot;</span>)
+<span class="co"># Change point style to &quot;$&quot; and increase point size to 2</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;$&quot;</span>, <span class="dt">cex=</span><span class="dv">2</span>) </code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-191-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-4.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-5.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<ul>
+<li>Line Styles and Widths</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Line plot with solid line</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)
+<span class="co"># Line plot with medium dashed line</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)
+<span class="co"># Line plot with short dashed line</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>)
+<span class="co"># Change line width to 2</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="co"># Change line width to 5</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lwd=</span><span class="dv">5</span>)
+<span class="co"># Change line width to 10 and use dash-dot</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lty=</span><span class="dv">4</span>, <span class="dt">lwd=</span><span class="dv">10</span>)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-192-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-4.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-5.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-6.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+</div>
+<div id="annotations-reference-lines-and-legends" class="section level3">
+<h3><span class="header-section-number">12.2.6</span> Annotations, Reference Lines, and Legends</h3>
+<ul>
+<li>Text</li>
+</ul>
+<p>We can add text to an arbitrary point on the graph like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the line first</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
+<span class="co"># Now add the label</span>
+<span class="kw">text</span>(<span class="dt">x=</span><span class="dv">40000</span>, <span class="dt">y=</span><span class="dv">50</span>, <span class="dt">labels=</span><span class="st">&quot;Evens Out&quot;</span>, <span class="dt">cex =</span> .<span class="dv">75</span>)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-193-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<p>We can also add labels for every point by passing in a vector of text:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First randomly select rows for a smaller gapaset</span>
+small &lt;-<span class="st"> </span>gap <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">100</span>)
+
+<span class="co"># Plot the line first</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
+<span class="co"># Now add the label</span>
+<span class="kw">text</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">labels =</span> small<span class="op">$</span>country)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-194-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+<ul>
+<li>Reference Lines</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the line</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
+<span class="co"># Now the guides</span>
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">40000</span>, <span class="dt">h=</span><span class="dv">75</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plsc31101_files/figure-html/unnamed-chunk-195-1.png" alt=" " width="70%" />
+<p class="caption">
+</p>
+</div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(gapminder)
+
+gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
+</div>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">12.3</span> ggplot2</h2>
+<div id="why-ggplot" class="section level4 unnumbered">
+<h4>Why <code>ggplot</code>?</h4>
+<ul>
+<li>More elegant and compact code than R base graphics.</li>
+<li>More aesthetically pleasing defaults than <code>lattice</code>.</li>
+<li>Very powerful for exploratory data analysis.</li>
+<li>Follows a grammar, just like any language.</li>
+<li>It defines basic components that make up a sentence. In this case, the grammar defines components in a plot.</li>
+<li><em>G</em>rammar of <em>g</em>raphics originally coined by Lee Wilkinson.</li>
+</ul>
+</div>
+<div id="grammar" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> Grammar</h3>
+<p>The general call for <code>ggplot2</code> looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>), <span class="dt">color=</span>, <span class="dt">size=</span>,) <span class="op">+</span><span class="st"> </span><span class="kw">geom_xxxx</span>()<span class="op">+</span><span class="kw">geom_yyyy</span>()</code></pre></div>
+<p>The <em>grammar</em> involves some basic components:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong>: A dataframe.</li>
+<li><strong>Aes</strong>thetics: How your data are represented visually, i.e., its &quot;mapping.&quot; Which variables are shown on the x- and y-axes, as well as color, size, shape, etc.</li>
+<li><strong>Geom</strong>etry: The geometric objects in a plot -- points, lines, polygons, etc.</li>
+</ol>
+<p>The key to understanding <code>ggplot2</code> is thinking about a figure in layers, just like you might do in an image editing program like Photoshop, Illustrator, or Inkscape.</p>
+<p>Let's look at an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-199-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>So the first thing we do is call the <code>ggplot</code> function. This function lets R know that we are creating a new plot, and any of the arguments we give the <code>ggplot</code> function are the global options for the plot: They apply to all layers on the plot.</p>
+<p>We have passed in two arguments to <code>ggplot</code>. First, we told <code>ggplot</code> what <strong><code>data</code></strong> we wanted to show on our figure -- in this example, the <code>gapminder</code> data we read in earlier.</p>
+<p>For the second argument, we passed in the <strong><code>aes</code></strong> function, which tells <code>ggplot</code> how variables in the data map to aesthetic properties of the figure -- in this case, the x and y locations. Here we told <code>ggplot</code> we wanted to plot the <code>lifeExp</code> column of the <code>gapminder</code> dataframe on the x-axis, and the <code>gdpPercap</code> column on the y-axis.</p>
+<p>Notice that we did not need to explicitly pass <code>aes</code> these columns (e.g., <code>x = gapminder$lifeExp</code>). This is because <code>ggplot</code> is smart enough to know to look in the data for that column!</p>
+<p>By itself, the call to <code>ggplot</code> is not enough to draw a figure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp))</code></pre></div>
+<p>We need to tell <code>ggplot</code> how we want to visually represent the data, which we do by adding a new <strong><code>geom</code></strong> layer. In our example, we used <code>geom_point</code>, which tells <code>ggplot</code> we want to visually represent the relationship between x and y as a scatterplot of points:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()
+
+<span class="co"># Same as</span>
+<span class="co"># my_plot &lt;- ggplot(data = gap, aes(x = gdpPercap, y = lifeExp))</span>
+<span class="co"># my_plot + geom_point()</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-201-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="challenge-1.-6" class="section level4 unnumbered">
+<h4>Challenge 1.</h4>
+<p>Modify the example so that the figure visualizes how life expectancy has changed over time.</p>
+<p>Hint: The <code>gapminder</code> dataset has a column called <code>year</code>, which should appear on the x-axis.</p>
+</div>
+</div>
+<div id="anatomy-of-aes" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> Anatomy of <code>aes</code></h3>
+<p>In the previous examples and challenge, we have used the <code>aes</code> function to tell the scatterplot <code>geom</code> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another aesthetic property we can modify is the point <strong>color</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-202-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Normally, specifying options like <code>color=&quot;red&quot;</code> or <code>size=10</code> for a given layer results in its contents being red and quite large. Inside the <code>aes()</code> function, however, these arguments are given entire variables whose values will then be displayed using different realizations of that aesthetic.</p>
+<p><strong>Color</strong> is not the only aesthetic argument we can set to display variation in the data. We can also vary by shape, size, etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">by =</span>, <span class="dt">color=</span>, <span class="dt">linetype=</span>, <span class="dt">shape=</span>, <span class="dt">size=</span>))</code></pre></div>
+</div>
+<div id="layers" class="section level3">
+<h3><span class="header-section-number">12.3.3</span> Layers</h3>
+<p>In the previous challenge, you plotted <code>lifExp</code> over time. Using a scatterplot probably is not the best for visualizing change over time. Instead, let’s tell <code>ggplot</code> to visualize the data as a line plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-204-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Instead of adding a <code>geom_point</code> layer, we have added a <code>geom_line</code> layer. We have also added the <code>**by**</code> aesthetic, which tells <code>ggplot</code> to draw a line for each country.</p>
+<p>But what if we want to visualize both lines and points on the plot? We can simply add another layer to the plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-205-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>It is important to note that each layer is drawn on top of the previous layer. In this example, the points have been drawn on top of the lines. Here is a demonstration:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-206-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>In this example, the aesthetic mapping of <strong>color</strong> has been moved from the global plot options in <code>ggplot</code> to the <code>geom_line</code> layer, so it no longer applies to the points. Now we can clearly see that the points are drawn on top of the lines.</p>
+<div id="challenge-2.-5" class="section level4 unnumbered">
+<h4>Challenge 2.</h4>
+<p>Switch the order of the point and line layers from the previous example. What happened?</p>
+</div>
+</div>
+<div id="labels-1" class="section level3">
+<h3><span class="header-section-number">12.3.4</span> Labels</h3>
+<p>Labels are considered to be their own layers in <code>ggplot</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add x- and y-axis labels</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-207-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>So are scales:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Limit x-axis from 1,000 to 20,000</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="dv">1000</span>, <span class="dv">20000</span>)
+<span class="co">#&gt; Warning: Removed 515 rows containing missing values (geom_point).</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-208-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="transformations-and-stats" class="section level3">
+<h3><span class="header-section-number">12.3.5</span> Transformations and Stats</h3>
+<p><code>ggplot</code> also makes it easy to overlay statistical models over the data. To demonstrate, we will go back to an earlier example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-209-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>We can change the scale of units on the x-axis using the <code>scale</code> functions, which control the mapping between the data values and visual values of an aesthetic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-210-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>The <code>log10</code> function applied a transformation to the values of the <code>gdpPercap</code> column before rendering them on the plot, so that each multiple of 10 now only corresponds to an increase in 1 on the transformed scale, e.g., a GDP per capita of 1,000 is now 3 on the y-axis, a value of 10,000 corresponds to 4 on the x-axis, and so on. This makes it easier to visualize the spread of data on the x-axis.</p>
+<p>We can fit a simple relationship to the data by adding another layer, <code>geom_smooth</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)
+<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-211-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Note that we have 5 lines, one for each region, because of the <strong><code>color</code></strong> option in the global <code>aes</code> function. But if we move it, we get different results:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)
+<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-212-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>So, there are two ways an aesthetic can be specified. Here, we set the <strong><code>color</code></strong> aesthetic by passing it as an argument to <code>geom_point</code>. Previously in the lesson, we used the <code>aes</code> function to define a <em>mapping</em> between data variables and their visual representation.</p>
+<p>We can make the line thicker by setting the <strong><code>size</code></strong> aesthetic in the <code>geom_smooth</code> layer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>)
+<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-213-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="challenge-3.-3" class="section level4 unnumbered">
+<h4>Challenge 3.</h4>
+<p>Modify the color and size of the points on the point layer in the previous example so that they are fixed (i.e., not reflective of continent).</p>
+<p>Hint: Do not use the <code>aes</code> function.</p>
+</div>
+</div>
+<div id="facets" class="section level3">
+<h3><span class="header-section-number">12.3.6</span> Facets</h3>
+<p>Earlier, we visualized the change in life expectancy over time across all countries in one plot. Alternatively, we can split this out over multiple panels by adding a layer of <strong>facet</strong> panels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>continent)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-214-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="legend-and-scale-manipulations" class="section level3">
+<h3><span class="header-section-number">12.3.7</span> Legend and Scale Manipulations</h3>
+<p>When creating plots with <code>ggplot</code>, you will notice that legends are sometimes automatically produced. Additionally, you will often need to transform the axis scales, similar to the modifcations we made with the base plots.</p>
+<p>We can easily set axis limits with <code>xlim</code> and <code>ylim</code> layers, or with the <code>limits</code> argument withing <code>scale_x_log10</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100000</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)
+<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-215-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>There are many other axis features we can change. For example, we can change the angle of an axis text with <code>theme</code> or reverse the direction of an axis with <code>scale_x_reverse</code> or <code>scale_y_reverse</code>. Stack Overflow is a great resource for a variety of axis transformations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scales)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: &#39;scales&#39;</span>
+<span class="co">#&gt; The following object is masked from &#39;package:purrr&#39;:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     discard</span>
+<span class="co">#&gt; The following object is masked from &#39;package:readr&#39;:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     col_factor</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">45</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_reverse</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-216-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Legend manipulations can be a little trickier. Let's consider a plot where we group our observations by continent:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(gdpPercap), <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>()
+
+legend_plot</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-217-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>First, let's change the legend position:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)
+
+legend_plot <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-218-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-218-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>We can also remove the title of the legend for self-explanatory groupings:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-219-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>We can reverse the order of the groups with the <code>guides</code> layer. Here, we specify that we want to reverse <code>color</code>, because that was the original aesthetic that we specified to create the groupings and the legend:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-220-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Finally, we can also change the legend title by modifying the label for <code>color</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;My New Title&quot;</span>)</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-221-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>And we can change the legend labels and colors. Again, we are using <code>scale_color_manual</code> because we originally specified the groups with the <code>**color**</code> aesthetic:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Af&quot;</span>, <span class="st">&quot;Am&quot;</span>, <span class="st">&quot;As&quot;</span>, <span class="st">&quot;Eu&quot;</span>, <span class="st">&quot;Oc&quot;</span>), 
+                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;seagreen&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;#5ab4ac&quot;</span>))</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-222-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-everything-together" class="section level3">
+<h3><span class="header-section-number">12.3.8</span> Putting Everything Together</h3>
+<p>Here are some other common <code>geom</code> layers:</p>
+<p><strong>Bar Plots</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Count of lifeExp bins</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+
+<span class="co"># With color representing regions</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">fill =</span> continent)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-223-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-223-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><strong>Box Plots</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="plsc31101_files/figure-html/unnamed-chunk-224-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>This is just a taste of what you can do with <code>ggplot2</code>.</p>
+<p>RStudio provides a really useful <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">cheat sheet</a> of the different layers available, and more extensive documentation is available on the <a href="http://docs.ggplot2.org/current/"><code>ggplot2</code> website</a>.</p>
+<p>Finally, if you have no idea how to change something, a quick Google search will usually send you to a relevant question and answer on Stack Overflow with reusable code to modify!</p>
+<div id="challenge-4.-1" class="section level4 unnumbered">
+<h4>Challenge 4.</h4>
+<p>Create a density plot of GDP per capita, filled by continent.</p>
+<p>Advanced:</p>
+<ul>
+<li>Transform the x-axis to better visualize the data spread.</li>
+<li>Add a facet layer to panel the density plots by year.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="saving-plots" class="section level2">
+<h2><span class="header-section-number">12.4</span> Saving Plots</h2>
+<p>There are two basic image types:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Raster/Bitmap</strong> (.png, .jpeg)</li>
+</ol>
+<p>Every pixel of a plot contains its own separate coding; not so great if you want to resize the image.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">jpeg</span>(<span class="dt">filename=</span><span class="st">&quot;example.png&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)
+<span class="kw">plot</span>(x,y)
+<span class="kw">dev.off</span>()</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Vector</strong> (.pdf, .ps)</li>
+</ol>
+<p>Every element of a plot is encoded with a function that gives its coding conditional on several factors; this is great for resizing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)
+<span class="kw">plot</span>(x,y)
+<span class="kw">dev.off</span>()</code></pre></div>
+<p><strong>Exporting with <code>ggplot</code></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Assume we saved our plot as an object called example.plot</span>
+<span class="kw">ggsave</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">plot=</span>example.plot, <span class="dt">scale=</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="relational-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-inferences.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/plsc-31101/course/edit/master/08-Plots/08_1-Base.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/plsc-31101/course/raw/master/08-Plots/08_1-Base.Rmd"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

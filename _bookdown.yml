@@ -1,0 +1,8 @@
+book_filename: "plsc31101"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+before_chapter_script: "before-chapter.R"
+rmd_subdir: true
+output_dir: "docs"

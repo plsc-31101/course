@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Introduction | PLSC 31101: Computational Tools for Social Science</title>
+  <meta name="description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Introduction | PLSC 31101: Computational Tools for Social Science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://plsc-31101.github.io/course/" />
+  
+  <meta property="og:description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="github-repo" content="plsc-31101/course" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Introduction | PLSC 31101: Computational Tools for Social Science" />
+  
+  <meta name="twitter:description" content="This book contains course notes and other materials for PLSC 31101." />
+  
+
+<meta name="author" content="Rochelle Terman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="homework-rubric.html"/>
+<link rel="next" href="r-basics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PLSC 31101</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Before Class</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i><b>2</b> Syllabus</a><ul>
+<li class="chapter" data-level="2.1" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i><b>2.1</b> Course Description</a></li>
+<li class="chapter" data-level="2.2" data-path="syllabus.html"><a href="syllabus.html#who-should-take-this-course"><i class="fa fa-check"></i><b>2.2</b> Who Should Take This Course</a></li>
+<li class="chapter" data-level="2.3" data-path="syllabus.html"><a href="syllabus.html#requirements-and-evaluation"><i class="fa fa-check"></i><b>2.3</b> Requirements and Evaluation</a></li>
+<li class="chapter" data-level="2.4" data-path="syllabus.html"><a href="syllabus.html#activities-and-materials"><i class="fa fa-check"></i><b>2.4</b> Activities and Materials</a></li>
+<li class="chapter" data-level="2.5" data-path="syllabus.html"><a href="syllabus.html#curriculum-outlineschedule"><i class="fa fa-check"></i><b>2.5</b> Curriculum Outline/Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>3</b> Installation</a><ul>
+<li class="chapter" data-level="3.1" data-path="installation.html"><a href="installation.html#r"><i class="fa fa-check"></i><b>3.1</b> R</a></li>
+<li class="chapter" data-level="3.2" data-path="installation.html"><a href="installation.html#rstudio"><i class="fa fa-check"></i><b>3.2</b> RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="installation.html"><a href="installation.html#r-packages"><i class="fa fa-check"></i><b>3.3</b> R Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="installation.html"><a href="installation.html#latex"><i class="fa fa-check"></i><b>3.4</b> LaTeX</a></li>
+<li class="chapter" data-level="3.5" data-path="installation.html"><a href="installation.html#git"><i class="fa fa-check"></i><b>3.5</b> Git</a></li>
+<li class="chapter" data-level="3.6" data-path="installation.html"><a href="installation.html#google-chrome"><i class="fa fa-check"></i><b>3.6</b> Google Chrome</a></li>
+<li class="chapter" data-level="3.7" data-path="installation.html"><a href="installation.html#selector-gadget"><i class="fa fa-check"></i><b>3.7</b> Selector Gadget</a></li>
+<li class="chapter" data-level="3.8" data-path="installation.html"><a href="installation.html#other-helpful-tools"><i class="fa fa-check"></i><b>3.8</b> Other Helpful Tools</a></li>
+<li class="chapter" data-level="3.9" data-path="installation.html"><a href="installation.html#troubleshooting"><i class="fa fa-check"></i><b>3.9</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="homework-rubric.html"><a href="homework-rubric.html"><i class="fa fa-check"></i><b>4</b> Homework Rubric</a></li>
+<li class="part"><span><b>II Course Notes</b></span></li>
+<li class="chapter" data-level="5" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>5</b> Introduction</a><ul>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#the-motivation"><i class="fa fa-check"></i><b>5.1</b> The Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction.html"><a href="introduction.html#about-this-class"><i class="fa fa-check"></i><b>5.2</b> About This Class</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction.html"><a href="introduction.html#learning-how-to-program"><i class="fa fa-check"></i><b>5.3</b> Learning How to Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>6</b> R Basics</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-basics.html"><a href="r-basics.html#what-is-r"><i class="fa fa-check"></i><b>6.1</b> What is R?</a></li>
+<li class="chapter" data-level="6.2" data-path="r-basics.html"><a href="r-basics.html#rstudio-1"><i class="fa fa-check"></i><b>6.2</b> RStudio</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="r-basics.html"><a href="r-basics.html#console"><i class="fa fa-check"></i><b>6.2.1</b> Console</a></li>
+<li class="chapter" data-level="6.2.2" data-path="r-basics.html"><a href="r-basics.html#scripts"><i class="fa fa-check"></i><b>6.2.2</b> Scripts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="r-basics.html"><a href="r-basics.html#running-code"><i class="fa fa-check"></i><b>6.2.3</b> Running Code</a></li>
+<li class="chapter" data-level="6.2.4" data-path="r-basics.html"><a href="r-basics.html#comments"><i class="fa fa-check"></i><b>6.2.4</b> Comments</a></li>
+<li class="chapter" data-level="6.2.5" data-path="r-basics.html"><a href="r-basics.html#diagnostics-and-errors"><i class="fa fa-check"></i><b>6.2.5</b> Diagnostics and errors</a></li>
+<li class="chapter" data-level="6.2.6" data-path="r-basics.html"><a href="r-basics.html#errors-messages-and-warnings"><i class="fa fa-check"></i><b>6.2.6</b> Errors, Messages, and Warnings</a></li>
+<li class="chapter" data-level="6.2.7" data-path="r-basics.html"><a href="r-basics.html#r-environment"><i class="fa fa-check"></i><b>6.2.7</b> R Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-basics.html"><a href="r-basics.html#r-packages-1"><i class="fa fa-check"></i><b>6.3</b> R Packages</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="r-basics.html"><a href="r-basics.html#installing-packages"><i class="fa fa-check"></i><b>6.3.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.3.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>6.3.2</b> Loading Packages</a></li>
+<li class="chapter" data-level="6.3.3" data-path="r-basics.html"><a href="r-basics.html#challenge"><i class="fa fa-check"></i><b>6.3.3</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="r-basics.html"><a href="r-basics.html#r-markdown"><i class="fa fa-check"></i><b>6.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="r-basics.html"><a href="r-basics.html#yaml-header"><i class="fa fa-check"></i><b>6.4.1</b> YAML Header</a></li>
+<li class="chapter" data-level="6.4.2" data-path="r-basics.html"><a href="r-basics.html#markdown"><i class="fa fa-check"></i><b>6.4.2</b> Markdown</a></li>
+<li class="chapter" data-level="6.4.3" data-path="r-basics.html"><a href="r-basics.html#code-chunks"><i class="fa fa-check"></i><b>6.4.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="6.4.4" data-path="r-basics.html"><a href="r-basics.html#knitting"><i class="fa fa-check"></i><b>6.4.4</b> Knitting</a></li>
+<li class="chapter" data-level="6.4.5" data-path="r-basics.html"><a href="r-basics.html#r-chunk-options-for-knitting"><i class="fa fa-check"></i><b>6.4.5</b> R Chunk Options for Knitting</a></li>
+<li class="chapter" data-level="6.4.6" data-path="r-basics.html"><a href="r-basics.html#cheatsheets-and-other-resources"><i class="fa fa-check"></i><b>6.4.6</b> Cheatsheets and Other Resources</a></li>
+<li class="chapter" data-level="6.4.7" data-path="r-basics.html"><a href="r-basics.html#challenges"><i class="fa fa-check"></i><b>6.4.7</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-syntax.html"><a href="r-syntax.html"><i class="fa fa-check"></i><b>7</b> R Syntax</a><ul>
+<li class="chapter" data-level="7.1" data-path="r-syntax.html"><a href="r-syntax.html#variables"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="r-syntax.html"><a href="r-syntax.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-syntax.html"><a href="r-syntax.html#assigning-variables"><i class="fa fa-check"></i><b>7.1.2</b> Assigning Variables</a></li>
+<li class="chapter" data-level="7.1.3" data-path="r-syntax.html"><a href="r-syntax.html#variable-names"><i class="fa fa-check"></i><b>7.1.3</b> Variable Names</a></li>
+<li class="chapter" data-level="7.1.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-1"><i class="fa fa-check"></i><b>7.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-syntax.html"><a href="r-syntax.html#functions"><i class="fa fa-check"></i><b>7.2</b> Functions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="r-syntax.html"><a href="r-syntax.html#arguments"><i class="fa fa-check"></i><b>7.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-syntax.html"><a href="r-syntax.html#store-function-output"><i class="fa fa-check"></i><b>7.2.2</b> Store Function Output</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-syntax.html"><a href="r-syntax.html#argument-restrictions-and-defaults"><i class="fa fa-check"></i><b>7.2.3</b> Argument Restrictions and Defaults</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-syntax.html"><a href="r-syntax.html#documentation-and-help-files"><i class="fa fa-check"></i><b>7.2.4</b> Documentation and Help Files</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-2"><i class="fa fa-check"></i><b>7.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-syntax.html"><a href="r-syntax.html#data-types"><i class="fa fa-check"></i><b>7.3</b> Data Types</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="r-syntax.html"><a href="r-syntax.html#what-is-that-type"><i class="fa fa-check"></i><b>7.3.1</b> What Is that Type?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-syntax.html"><a href="r-syntax.html#coercion"><i class="fa fa-check"></i><b>7.3.2</b> Coercion</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-syntax.html"><a href="r-syntax.html#other-objects"><i class="fa fa-check"></i><b>7.3.3</b> Other Objects</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-3"><i class="fa fa-check"></i><b>7.3.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-expressions"><i class="fa fa-check"></i><b>7.4</b> Boolean Expressions</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="r-syntax.html"><a href="r-syntax.html#boolean-operators"><i class="fa fa-check"></i><b>7.4.1</b> Boolean Operators</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-syntax.html"><a href="r-syntax.html#logical-operators"><i class="fa fa-check"></i><b>7.4.2</b> Logical Operators</a></li>
+<li class="chapter" data-level="7.4.3" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors"><i class="fa fa-check"></i><b>7.4.3</b> Boolean Vectors</a></li>
+<li class="chapter" data-level="7.4.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors-in-action"><i class="fa fa-check"></i><b>7.4.4</b> Boolean Vectors in Action</a></li>
+<li class="chapter" data-level="7.4.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-4"><i class="fa fa-check"></i><b>7.4.5</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>8</b> Working with Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="working-with-data.html"><a href="working-with-data.html#project-workflow"><i class="fa fa-check"></i><b>8.1</b> Project Workflow</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-data.html"><a href="working-with-data.html#store-analyses-in-scripts-not-workspaces"><i class="fa fa-check"></i><b>8.1.1</b> Store Analyses in Scripts, Not Workspaces</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-data.html"><a href="working-with-data.html#working-directories-and-paths"><i class="fa fa-check"></i><b>8.1.2</b> Working Directories and Paths</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-data.html"><a href="working-with-data.html#r-projects"><i class="fa fa-check"></i><b>8.1.3</b> R Projects</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-data.html"><a href="working-with-data.html#file-organization"><i class="fa fa-check"></i><b>8.1.4</b> File Organization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-data.html"><a href="working-with-data.html#importing-and-exporting"><i class="fa fa-check"></i><b>8.2</b> Importing and Exporting</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-data.html"><a href="working-with-data.html#where-is-my-data"><i class="fa fa-check"></i><b>8.2.1</b> Where Is My Data?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-data.html"><a href="working-with-data.html#data-storage"><i class="fa fa-check"></i><b>8.2.2</b> Data Storage</a></li>
+<li class="chapter" data-level="8.2.3" data-path="working-with-data.html"><a href="working-with-data.html#importing-data"><i class="fa fa-check"></i><b>8.2.3</b> Importing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="working-with-data.html"><a href="working-with-data.html#exporting-data"><i class="fa fa-check"></i><b>8.2.4</b> Exporting Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>9</b> Data Transformation</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-transformation.html"><a href="data-transformation.html#the-gapminder-dataset"><i class="fa fa-check"></i><b>9.1.1</b> The Gapminder Dataset</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-transformation.html"><a href="data-transformation.html#structure-and-dimensions"><i class="fa fa-check"></i><b>9.1.2</b> Structure and Dimensions</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-transformation.html"><a href="data-transformation.html#variables-1"><i class="fa fa-check"></i><b>9.1.3</b> Variables</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-transformation.html"><a href="data-transformation.html#challenges-5"><i class="fa fa-check"></i><b>9.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-dplyr"><i class="fa fa-check"></i><b>9.2</b> Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-transformation.html"><a href="data-transformation.html#tidyverse"><i class="fa fa-check"></i><b>9.2.1</b> <code>tidyverse</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-transformation.html"><a href="data-transformation.html#why-dplyr"><i class="fa fa-check"></i><b>9.2.2</b> Why <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>9.2.3</b> Select Columns with <code>select</code></a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-transformation.html"><a href="data-transformation.html#the-pipe"><i class="fa fa-check"></i><b>9.2.4</b> The Pipe</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>9.2.5</b> Filter Rows with <code>filter</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-transformation.html"><a href="data-transformation.html#more-dplyr-functions"><i class="fa fa-check"></i><b>9.3</b> More <code>dplyr</code> functions</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="data-transformation.html"><a href="data-transformation.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>9.3.1</b> Use <code>mutate()</code> to Add New Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="data-transformation.html"><a href="data-transformation.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>9.3.2</b> Use <code>arrange()</code> to Row-order Data in a Principled Way</a></li>
+<li class="chapter" data-level="9.3.3" data-path="data-transformation.html"><a href="data-transformation.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>9.3.3</b> Use <code>rename()</code> to Rename Variables</a></li>
+<li class="chapter" data-level="9.3.4" data-path="data-transformation.html"><a href="data-transformation.html#use-select-to-rename-and-reposition-variables"><i class="fa fa-check"></i><b>9.3.4</b> Use <code>select()</code> to Rename and Reposition Variables</a></li>
+<li class="chapter" data-level="9.3.5" data-path="data-transformation.html"><a href="data-transformation.html#use-count-to-count-variable-quantities"><i class="fa fa-check"></i><b>9.3.5</b> Use <code>count()</code> to Count Variable Quantities</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="data-transformation.html"><a href="data-transformation.html#calculating-across-groups"><i class="fa fa-check"></i><b>9.4</b> Calculating across Groups</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="data-transformation.html"><a href="data-transformation.html#use-group_by-to-create-a-grouped-data"><i class="fa fa-check"></i><b>9.4.1</b> Use <code>group_by</code> to Create a Grouped Data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="data-transformation.html"><a href="data-transformation.html#summarize-across-groups-with-summarize"><i class="fa fa-check"></i><b>9.4.2</b> Summarize Across Groups with <code>summarize</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>9.4.3</b> Add New Variables with <code>mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
+<li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
+<li class="chapter" data-level="10.3.2" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>10.3.2</b> <code>separate</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>10.3.3</b> <code>spread</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="tidying-data.html"><a href="tidying-data.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>10.4</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="tidying-data.html"><a href="tidying-data.html#na_if"><i class="fa fa-check"></i><b>10.4.1</b> <code>na_if</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="tidying-data.html"><a href="tidying-data.html#replace-na-values-with-replace_na"><i class="fa fa-check"></i><b>10.4.2</b> Replace <code>NA</code> values with <code>replace_na</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="tidying-data.html"><a href="tidying-data.html#more-tidyverse"><i class="fa fa-check"></i><b>10.5</b> More <code>tidyverse</code></a></li>
+<li class="chapter" data-level="10.6" data-path="tidying-data.html"><a href="tidying-data.html#challenges-7"><i class="fa fa-check"></i><b>10.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#why-relational-data"><i class="fa fa-check"></i><b>11.1</b> Why Relational Data</a></li>
+<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#keys"><i class="fa fa-check"></i><b>11.2</b> Keys</a></li>
+<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#joins"><i class="fa fa-check"></i><b>11.3</b> Joins</a></li>
+<li class="chapter" data-level="11.4" data-path="relational-data.html"><a href="relational-data.html#defining-keys"><i class="fa fa-check"></i><b>11.4</b> Defining Keys</a></li>
+<li class="chapter" data-level="11.5" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.5</b> Duplicate Keys</a></li>
+<li class="chapter" data-level="11.6" data-path="relational-data.html"><a href="relational-data.html#challenges-8"><i class="fa fa-check"></i><b>11.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>12</b> Plotting</a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting.html"><a href="plotting.html#the-dataset"><i class="fa fa-check"></i><b>12.1</b> The Dataset</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting.html"><a href="plotting.html#r-base-graphics"><i class="fa fa-check"></i><b>12.2</b> R Base Graphics</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="plotting.html"><a href="plotting.html#scatter-and-line-plots"><i class="fa fa-check"></i><b>12.2.1</b> Scatter and Line Plots</a></li>
+<li class="chapter" data-level="12.2.2" data-path="plotting.html"><a href="plotting.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>12.2.2</b> Histograms and Density Plots</a></li>
+<li class="chapter" data-level="12.2.3" data-path="plotting.html"><a href="plotting.html#labels"><i class="fa fa-check"></i><b>12.2.3</b> Labels</a></li>
+<li class="chapter" data-level="12.2.4" data-path="plotting.html"><a href="plotting.html#axis-and-size-scaling"><i class="fa fa-check"></i><b>12.2.4</b> Axis and Size Scaling</a></li>
+<li class="chapter" data-level="12.2.5" data-path="plotting.html"><a href="plotting.html#graphical-parameters"><i class="fa fa-check"></i><b>12.2.5</b> Graphical Parameters</a></li>
+<li class="chapter" data-level="12.2.6" data-path="plotting.html"><a href="plotting.html#annotations-reference-lines-and-legends"><i class="fa fa-check"></i><b>12.2.6</b> Annotations, Reference Lines, and Legends</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="plotting.html"><a href="plotting.html#ggplot2"><i class="fa fa-check"></i><b>12.3</b> ggplot2</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="plotting.html"><a href="plotting.html#grammar"><i class="fa fa-check"></i><b>12.3.1</b> Grammar</a></li>
+<li class="chapter" data-level="12.3.2" data-path="plotting.html"><a href="plotting.html#anatomy-of-aes"><i class="fa fa-check"></i><b>12.3.2</b> Anatomy of <code>aes</code></a></li>
+<li class="chapter" data-level="12.3.3" data-path="plotting.html"><a href="plotting.html#layers"><i class="fa fa-check"></i><b>12.3.3</b> Layers</a></li>
+<li class="chapter" data-level="12.3.4" data-path="plotting.html"><a href="plotting.html#labels-1"><i class="fa fa-check"></i><b>12.3.4</b> Labels</a></li>
+<li class="chapter" data-level="12.3.5" data-path="plotting.html"><a href="plotting.html#transformations-and-stats"><i class="fa fa-check"></i><b>12.3.5</b> Transformations and Stats</a></li>
+<li class="chapter" data-level="12.3.6" data-path="plotting.html"><a href="plotting.html#facets"><i class="fa fa-check"></i><b>12.3.6</b> Facets</a></li>
+<li class="chapter" data-level="12.3.7" data-path="plotting.html"><a href="plotting.html#legend-and-scale-manipulations"><i class="fa fa-check"></i><b>12.3.7</b> Legend and Scale Manipulations</a></li>
+<li class="chapter" data-level="12.3.8" data-path="plotting.html"><a href="plotting.html#putting-everything-together"><i class="fa fa-check"></i><b>12.3.8</b> Putting Everything Together</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="plotting.html"><a href="plotting.html#saving-plots"><i class="fa fa-check"></i><b>12.4</b> Saving Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="statistical-inferences.html"><a href="statistical-inferences.html"><i class="fa fa-check"></i><b>13</b> Statistical Inferences</a><ul>
+<li class="chapter" data-level="13.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-distributions"><i class="fa fa-check"></i><b>13.1</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#sampling-and-simulation"><i class="fa fa-check"></i><b>13.1.1</b> Sampling and Simulation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#random-seeds"><i class="fa fa-check"></i><b>13.1.2</b> Random Seeds</a></li>
+<li class="chapter" data-level="13.1.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-9"><i class="fa fa-check"></i><b>13.1.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#inferences-and-regressions"><i class="fa fa-check"></i><b>13.2</b> Inferences and Regressions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>13.2.1</b> Statistical Tests</a></li>
+<li class="chapter" data-level="13.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>13.2.2</b> Regressions and Linear Models</a></li>
+<li class="chapter" data-level="13.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>13.2.3</b> Regression Output</a></li>
+<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>13.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="13.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>13.2.5</b> Formatting Regression Tables</a></li>
+<li class="chapter" data-level="13.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-10"><i class="fa fa-check"></i><b>13.2.6</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html"><i class="fa fa-check"></i><b>14</b> Data Classes and Structures</a><ul>
+<li class="chapter" data-level="14.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors"><i class="fa fa-check"></i><b>14.1</b> Vectors</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-vectors"><i class="fa fa-check"></i><b>14.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="14.1.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors-are-everywhere"><i class="fa fa-check"></i><b>14.1.2</b> Vectors Are Everywhere</a></li>
+<li class="chapter" data-level="14.1.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#recycling"><i class="fa fa-check"></i><b>14.1.3</b> Recycling</a></li>
+<li class="chapter" data-level="14.1.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>14.1.4</b> Types of Vectors</a></li>
+<li class="chapter" data-level="14.1.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercion-1"><i class="fa fa-check"></i><b>14.1.5</b> Coercion</a></li>
+<li class="chapter" data-level="14.1.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-a-vector"><i class="fa fa-check"></i><b>14.1.6</b> Naming a Vector</a></li>
+<li class="chapter" data-level="14.1.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-11"><i class="fa fa-check"></i><b>14.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-vectors"><i class="fa fa-check"></i><b>14.2</b> Subsetting Vectors</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-types"><i class="fa fa-check"></i><b>14.2.1</b> Subsetting Types</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-lists"><i class="fa fa-check"></i><b>14.3.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="14.3.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-lists"><i class="fa fa-check"></i><b>14.3.2</b> Naming Lists</a></li>
+<li class="chapter" data-level="14.3.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#list-structure"><i class="fa fa-check"></i><b>14.3.3</b> List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-lists"><i class="fa fa-check"></i><b>14.4</b> Subsetting Lists</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with"><i class="fa fa-check"></i><b>14.4.1</b> With <code>[</code></a></li>
+<li class="chapter" data-level="14.4.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-1"><i class="fa fa-check"></i><b>14.4.2</b> With <code>[[</code></a></li>
+<li class="chapter" data-level="14.4.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-2"><i class="fa fa-check"></i><b>14.4.3</b> with <code>$</code></a></li>
+<li class="chapter" data-level="14.4.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-12"><i class="fa fa-check"></i><b>14.4.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrices"><i class="fa fa-check"></i><b>14.5</b> Matrices</a></li>
+<li class="chapter" data-level="14.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-a-matrix"><i class="fa fa-check"></i><b>14.6</b> Indexing a Matrix</a></li>
+<li class="chapter" data-level="14.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#dataframes"><i class="fa fa-check"></i><b>14.7</b> Dataframes</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-dataframes"><i class="fa fa-check"></i><b>14.7.1</b> Creating Dataframes</a></li>
+<li class="chapter" data-level="14.7.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#the-structure-of-dataframes"><i class="fa fa-check"></i><b>14.7.2</b> The Structure of Dataframes</a></li>
+<li class="chapter" data-level="14.7.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-dataframes"><i class="fa fa-check"></i><b>14.7.3</b> Naming Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-dataframes"><i class="fa fa-check"></i><b>14.8</b> Indexing Dataframes</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-13"><i class="fa fa-check"></i><b>14.8.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html"><i class="fa fa-check"></i><b>15</b> Strings and Regular Expressions</a><ul>
+<li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
+<li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
+<li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-14"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i><b>15.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#basic-matches"><i class="fa fa-check"></i><b>15.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="15.2.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-characters"><i class="fa fa-check"></i><b>15.2.2</b> Escape Characters</a></li>
+<li class="chapter" data-level="15.2.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#anchors"><i class="fa fa-check"></i><b>15.2.3</b> Anchors</a></li>
+<li class="chapter" data-level="15.2.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>15.2.4</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="15.2.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#repetition"><i class="fa fa-check"></i><b>15.2.5</b> Repetition</a></li>
+<li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
+<li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>16</b> Programming in R</a><ul>
+<li class="chapter" data-level="16.1" data-path="programming-in-r.html"><a href="programming-in-r.html#conditional-flow"><i class="fa fa-check"></i><b>16.1</b> Conditional Flow</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
+<li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
+<li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
+<li class="chapter" data-level="16.2.2" data-path="programming-in-r.html"><a href="programming-in-r.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>16.2.2</b> Anatomy of a Function</a></li>
+<li class="chapter" data-level="16.2.3" data-path="programming-in-r.html"><a href="programming-in-r.html#writing-a-function"><i class="fa fa-check"></i><b>16.2.3</b> Writing a Function</a></li>
+<li class="chapter" data-level="16.2.4" data-path="programming-in-r.html"><a href="programming-in-r.html#using-a-function"><i class="fa fa-check"></i><b>16.2.4</b> Using a Function</a></li>
+<li class="chapter" data-level="16.2.5" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-16"><i class="fa fa-check"></i><b>16.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="programming-in-r.html"><a href="programming-in-r.html#iteration"><i class="fa fa-check"></i><b>16.3</b> Iteration</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="programming-in-r.html"><a href="programming-in-r.html#vectorized-functions"><i class="fa fa-check"></i><b>16.3.1</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="16.3.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functional-programming-and-map"><i class="fa fa-check"></i><b>16.3.2</b> Functional Programming and <code>map</code></a></li>
+<li class="chapter" data-level="16.3.3" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-17"><i class="fa fa-check"></i><b>16.3.3</b> Challenges</a></li>
+<li class="chapter" data-level="16.3.4" data-path="programming-in-r.html"><a href="programming-in-r.html#scoped-verbs"><i class="fa fa-check"></i><b>16.3.4</b> Scoped Verbs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html"><i class="fa fa-check"></i><b>17</b> Collecting Data from the Web</a><ul>
+<li class="chapter" data-level="17.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#introduction-1"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#web-apis"><i class="fa fa-check"></i><b>17.2</b> Web APIs</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#some-basic-terminology"><i class="fa fa-check"></i><b>17.2.1</b> Some Basic Terminology</a></li>
+<li class="chapter" data-level="17.2.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#how-do-get-requests-work"><i class="fa fa-check"></i><b>17.2.2</b> How Do GET Requests Work?</a></li>
+<li class="chapter" data-level="17.2.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-apis"><i class="fa fa-check"></i><b>17.2.3</b> Finding APIs</a></li>
+<li class="chapter" data-level="17.2.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#getting-api-access"><i class="fa fa-check"></i><b>17.2.4</b> Getting API Access</a></li>
+<li class="chapter" data-level="17.2.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-apis-in-r"><i class="fa fa-check"></i><b>17.2.5</b> Using APIs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#writing-api-queries"><i class="fa fa-check"></i><b>17.3</b> Writing API Queries</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#constructing-the-api-get-request"><i class="fa fa-check"></i><b>17.3.1</b> Constructing the API GET Request</a></li>
+<li class="chapter" data-level="17.3.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#parsing-the-response"><i class="fa fa-check"></i><b>17.3.2</b> Parsing the Response</a></li>
+<li class="chapter" data-level="17.3.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#iteration-through-results-pager"><i class="fa fa-check"></i><b>17.3.3</b> Iteration through Results Pager</a></li>
+<li class="chapter" data-level="17.3.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#visualizing-results"><i class="fa fa-check"></i><b>17.3.4</b> Visualizing Results</a></li>
+<li class="chapter" data-level="17.3.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#more-resources"><i class="fa fa-check"></i><b>17.3.5</b> More Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#webscraping"><i class="fa fa-check"></i><b>17.4</b> Webscraping</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#what-is-a-website"><i class="fa fa-check"></i><b>17.4.1</b> What Is a Website?</a></li>
+<li class="chapter" data-level="17.4.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#websites-return-html"><i class="fa fa-check"></i><b>17.4.2</b> Websites Return HTML</a></li>
+<li class="chapter" data-level="17.4.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#html-elements"><i class="fa fa-check"></i><b>17.4.3</b> HTML Elements</a></li>
+<li class="chapter" data-level="17.4.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#css"><i class="fa fa-check"></i><b>17.4.4</b> CSS</a></li>
+<li class="chapter" data-level="17.4.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-elements-with-selector-gadget"><i class="fa fa-check"></i><b>17.4.5</b> Finding Elements with Selector Gadget</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#scraping-presidential-statements"><i class="fa fa-check"></i><b>17.5</b> Scraping Presidential Statements</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
+<li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
+<li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
+<li class="chapter" data-level="18.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing"><i class="fa fa-check"></i><b>18.1</b> Preprocessing</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="text-analysis.html"><a href="text-analysis.html#from-words-to-numbers"><i class="fa fa-check"></i><b>18.1.1</b> From Words to Numbers</a></li>
+<li class="chapter" data-level="18.1.2" data-path="text-analysis.html"><a href="text-analysis.html#exploring-the-dtm"><i class="fa fa-check"></i><b>18.1.2</b> Exploring the DTM</a></li>
+<li class="chapter" data-level="18.1.3" data-path="text-analysis.html"><a href="text-analysis.html#exporting-the-dtm"><i class="fa fa-check"></i><b>18.1.3</b> Exporting the DTM</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="text-analysis.html"><a href="text-analysis.html#sentiment-analysis-and-dictionary-methods"><i class="fa fa-check"></i><b>18.2</b> Sentiment Analysis and Dictionary Methods</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-and-setup"><i class="fa fa-check"></i><b>18.2.1</b> Preprocessing and Setup</a></li>
+<li class="chapter" data-level="18.2.2" data-path="text-analysis.html"><a href="text-analysis.html#scoring-the-songs"><i class="fa fa-check"></i><b>18.2.2</b> Scoring the Songs</a></li>
+<li class="chapter" data-level="18.2.3" data-path="text-analysis.html"><a href="text-analysis.html#challenges-18"><i class="fa fa-check"></i><b>18.2.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="text-analysis.html"><a href="text-analysis.html#distinctive-words"><i class="fa fa-check"></i><b>18.3</b> Distinctive Words</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="text-analysis.html"><a href="text-analysis.html#unique-usage"><i class="fa fa-check"></i><b>18.3.1</b> Unique Usage</a></li>
+<li class="chapter" data-level="18.3.2" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-frequencies"><i class="fa fa-check"></i><b>18.3.2</b> Differences in Frequencies</a></li>
+<li class="chapter" data-level="18.3.3" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages"><i class="fa fa-check"></i><b>18.3.3</b> Differences in Averages</a></li>
+<li class="chapter" data-level="18.3.4" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages-adjustment"><i class="fa fa-check"></i><b>18.3.4</b> Differences in Averages, Adjustment</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="text-analysis.html"><a href="text-analysis.html#structural-topic-models"><i class="fa fa-check"></i><b>18.4</b> Structural Topic Models</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-1"><i class="fa fa-check"></i><b>18.4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="18.4.2" data-path="text-analysis.html"><a href="text-analysis.html#estimate-model"><i class="fa fa-check"></i><b>18.4.2</b> Estimate Model</a></li>
+<li class="chapter" data-level="18.4.3" data-path="text-analysis.html"><a href="text-analysis.html#interpret-model"><i class="fa fa-check"></i><b>18.4.3</b> Interpret Model</a></li>
+<li class="chapter" data-level="18.4.4" data-path="text-analysis.html"><a href="text-analysis.html#analyze-topics"><i class="fa fa-check"></i><b>18.4.4</b> Analyze Topics</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PLSC 31101: Computational Tools for Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Introduction</h1>
+<div id="the-motivation" class="section level2">
+<h2><span class="header-section-number">5.1</span> The Motivation</h2>
+<p><strong>Here is the dream:</strong></p>
+<p><img src="img/tony_stark.gif" width="70%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>Computers have revolutionized research, and that revolution is only beginning. Every day, social scientists and humanists all over the world use them to study things that are too big, too small, too fast, too slow, too expensive, too dangerous, or just too hard to study any other way.</p>
+</blockquote>
+<p><strong>Now here is the reality:</strong></p>
+<p><img src="img/mulder.gif" width="70%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>Every day, scholars all over the world waste time wrestling with computers. Tasks that should take a few moments take hours or days, and many things never work at all. When scholars try to get help, they are inundated with unhelpful information and give up.</p>
+</blockquote>
+<p>This sorry state of affairs persists for three reasons:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>No room, no time</strong>: Everybody's schedule is full — there is simply not space to add more about computing without dropping something else.</p></li>
+<li><p><strong>The blind leading the blind</strong>: The infrastructure does not exist to help scholars develop the skills they need. Senior researchers cannot teach the next generation how to do things that they do not know how to do themselves.</p></li>
+<li><p><strong>Autodidact chauvinism</strong>: Since there are no classrooms, scholars are pressured to teach themselves. But self-learning is time consuming and nearly impossible without a base level of knowledge.</p></li>
+</ol>
+<p>Despite these challenges, there are great reasons to learn how to program:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Practical efficiency</strong>: Even though it takes some time at first, once you get the hang of it, learning how to program can save you an enormous amount of time doing basic tasks that you would otherwise do by hand.</p></li>
+<li><p><strong>New tools</strong>: Some things are impossible or nearly impossible to do by hand. Computers open the door for new tools and methods, but many require programming skills.</p></li>
+<li><p><strong>New data</strong>: The Internet is a wealth of data waiting to be analyzed! Whether it is collecting Twitter data, working with the Congress API, or scraping websites, programming knowledge is a must.</p></li>
+<li><p><strong>Better scholarship</strong>: (Quality) programming can open the door to better transparency, reproducibility, and collaboration in the Social Sciences and the Humanities.</p></li>
+</ol>
+<div id="goal-of-the-class-learn-to-learn" class="section level4 unnumbered">
+<h4>Goal of the Class: Learn to Learn</h4>
+<blockquote>
+<p>The basic learning objective of this course is to leave here with the knowledge and skills required to learn on your own, whether that is through programming documentation, StackExchange and other online fora, courses, or D-Lab workshops.</p>
+</blockquote>
+<p>By the end of the course, students should be able to</p>
+<ul>
+<li>Understand basic programming terminologies, structures, and conventions.</li>
+<li>Write, execute, and debug R code.</li>
+<li>Produce reproducible analyses using R Markdown.</li>
+<li>Clean, transform, and wrangle data using the <code>tidyverse</code> packages.</li>
+<li>Scrape data from websites and APIs.</li>
+<li>Parse and analyze text documents.</li>
+<li>Be familiar with the concepts and tools of a variety of computational social science applications.</li>
+<li>Master basic Git and GitHub workflows.</li>
+<li><strong>Learn independently and train themselves in a variety of computational applications and tasks through online documentation.</strong></li>
+</ul>
+<p>This course will not</p>
+<ul>
+<li>Teach you to be a professional programmer or software developer.</li>
+<li>Teach you statistics, computer science, or specialized social science / digital humanities methods.</li>
+</ul>
+</div>
+<div id="why-not-just-take-a-computer-science-course" class="section level4 unnumbered">
+<h4>Why not just take a Computer Science course?</h4>
+<p>Computer Science courses do not anticipate the types of questions social scientists might ask, and therefore they</p>
+<ul>
+<li>Introduce many unnecessary concepts.</li>
+<li>Do a poor job of explaining how computer programming tools might be used by social scientists.</li>
+<li>Are too resource-intensive for the average social scientist.</li>
+</ul>
+<p>Programming is not useful just for computer scientists, methodologists, or people who work with &quot;big data.&quot;</p>
+</div>
+<div id="a-practical-example" class="section level4 unnumbered">
+<h4>A Practical Example</h4>
+<p>To illustrate, here is a practical example that comes out of my own research:</p>
+</div>
+<div id="task-1-by-hand" class="section level4 unnumbered">
+<h4>Task 1 (by hand)</h4>
+<p><strong>Topic</strong>: International Human Rights &quot;Naming and Shaming&quot;</p>
+<p><strong>Question</strong>: Who shames whom on what?</p>
+<p><strong>Data</strong>: UN Human Rights Committee's Universal Periodic Review</p>
+<p>From Antigua &amp; Barbuda 2011 review:</p>
+<p><img src="img/upr-text.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><strong>The Task</strong>: Parse a bunch of reports (PDFs) into a dataset (CSV). Add metadata for issue, action, and sentiment.</p>
+<p><img src="img/upr-table.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>How much time will it take?</p>
+<p><strong>By Hand</strong>: 40,000 recommendations x 3 min per recommendation x 8-hour days x 5-day weeks = <strong>12 months</strong></p>
+</div>
+<div id="task-2-by-hand" class="section level4 unnumbered">
+<h4>Task 2 (by hand)</h4>
+<p>What if we wanted to extend this research?</p>
+<p><strong>Question:</strong>: How does UPR shaming compare to actual human rights abuses?</p>
+<p><strong>Data</strong>: Amnesty International's Urgent Actions</p>
+<p><strong>Task</strong>: Collect all of Amnesty International's Urgent Actions and add metadata for issue and country.</p>
+<p><img src="img/amnesty.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>How much time will it take?</p>
+<p><strong>By hand</strong>: 25,000 recommendations x 3 min per recommendation x 8-hour days x 5-day weeks <strong>= 7.5 months</strong></p>
+</div>
+<div id="tasks-1-2-with-a-computer" class="section level4 unnumbered">
+<h4>Tasks 1 &amp; 2 (with a computer)</h4>
+<p>With a computer, we can write a program that</p>
+<ol style="list-style-type: decimal">
+<li>Parses recommendations into a CSV.</li>
+<li>Codes recommendations by issue, action, and sentiment using computational text analysis tools.</li>
+<li>Uses webscraping to collect all of Amnesty International's urgent actions.</li>
+<li>Runs simple regression models with R to correlate Amnesty reports with UPR shaming.</li>
+</ol>
+<p>Total time: 2 months</p>
+<p><strong>Time Saved: 1.5 years</strong></p>
+</div>
+</div>
+<div id="about-this-class" class="section level2">
+<h2><span class="header-section-number">5.2</span> About This Class</h2>
+<div id="about-me" class="section level4 unnumbered">
+<h4>About Me</h4>
+<p>My name is Rochelle Terman and I am a faculty member in Political Science.</p>
+<ul>
+<li>A few years ago, I did not know how to program. Now I program almost every day.</li>
+<li>I program mostly in Python and R. I have a special interest in text analysis and webscraping.</li>
+<li>My substantive research is on international norms and human rights.</li>
+<li>I will not be able to answer all your questions.</li>
+<li>No one will.</li>
+<li>But especially me.</li>
+</ul>
+</div>
+<div id="course-structure" class="section level4 unnumbered">
+<h4>Course Structure</h4>
+<p>The course is divided into two main sections:</p>
+<p><strong>1. Skills</strong></p>
+<p>Basic computer literacy, terminologies, and programming languages:</p>
+<ul>
+<li>Base R: objects and data structures.</li>
+<li><code>tidyverse</code> for data analysis.</li>
+<li>Modeling and visualization.</li>
+<li>Key programming concepts (iteration, functions, conditional flow, etc.).</li>
+</ul>
+<p>We are using R because it is the common programming language among Political Scientists. But if you understand the <em>concepts</em>, you should able to pick up Python and other languages pretty easily.</p>
+<p><strong>2. Applications</strong></p>
+<p>Use the skills learned in part 1 towards practical applications:</p>
+<ul>
+<li>Webscraping.</li>
+<li>APIs.</li>
+<li>Computational Text Analysis.</li>
+<li>Version control and communication.</li>
+</ul>
+<p>The goal is to <strong>introduce</strong> the students to a medley of common applications so that they can discover which avenue to pursue in their own research and what such training would entail.</p>
+</div>
+<div id="class-activities" class="section level4 unnumbered">
+<h4>Class Activities</h4>
+<p>Classes will follow a &quot;workshop&quot; style, combining lecture, demonstration, and coding exercises. We envision the class to be as interactive/hands-on as possible, with students programming every session.</p>
+<p>It is important that students <strong>complete the requisite reading</strong> before class. I anticipate spending 1/2 the class lecturing and 1/2 practicing with coding challenges.</p>
+</div>
+<div id="course-websites" class="section level4 unnumbered">
+<h4>Course Websites</h4>
+<p>Class notes and other materials are available here: <a href="https://github.com/plsc-31101/course/" class="uri">https://github.com/plsc-31101/course/</a></p>
+<p>We will use Canvas to distribute/accept assignments.</p>
+<p>We will use Piazza for communications and discussion. Please use Piazza liberally.</p>
+</div>
+<div id="evaluation" class="section level4 unnumbered">
+<h4>Evaluation</h4>
+<p>This is a graded class based on the following:</p>
+<ul>
+<li>Completion of assigned homework (50%).</li>
+<li>Participation (25%).</li>
+<li>Final project (25%).</li>
+</ul>
+<p>If you want to audit, please let me know ASAP.</p>
+<p><strong>Assignments</strong></p>
+<ul>
+<li>In general, assignments are assigned at the end of lecture and are due the following week.</li>
+<li>Exceptions will be noted.</li>
+<li>The first assignment is due next week before class on Wednesday, October 7. It is available on Canvas.</li>
+<li>Turn in assignments on Canvas.</li>
+<li>Work in groups, but submit your own assignment.</li>
+</ul>
+<p><strong>Participation</strong></p>
+<p>The class participation portion of the grade can be satisfied in one or more of the following ways:</p>
+<ul>
+<li>Attending the lectures.</li>
+<li>Asking and answering questions in class.</li>
+<li>Attending office hours.</li>
+<li>Contributing to class discussion through the Piazza site.</li>
+<li>Collaborating with the computing community.</li>
+</ul>
+<p><strong>Final Project</strong></p>
+<p>Students have two options for class projects:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Data project</strong>: Use the tools we learned in class on your own data of interest.</p></li>
+<li><p><strong>Tutorial project</strong>: Create a tutorial on a tool we did not cover in class.</p></li>
+</ol>
+<p>Both options require an R Markdown file narrating the project.</p>
+<p>Students are required to write a short proposal by <strong>November 6</strong> (no more than 2 paragraphs) in order to get approval/feedback from the instructors.</p>
+<p>Project materials (i.e., a GitHub repo) will be due by end of day on <strong>December 10</strong>. We will specify submission details in class.</p>
+<p>On <strong>December 11</strong>, we will have a <strong>lightning talk session</strong> where students can present their projects in a maximum 5-minute talk.</p>
+</div>
+<div id="software" class="section level4 unnumbered">
+<h4>Software</h4>
+<ul>
+<li>Installation instructions are on the website.</li>
+<li>Get started <strong>EARLY</strong>.</li>
+<li>Go to the Installfest (Wednesday, Sep 30, 9:30-11:30 on Zoom) to double check your installation.</li>
+<li>If you have computer troubles, post the problem on Piazza with as much detail as possible.</li>
+</ul>
+</div>
+</div>
+<div id="learning-how-to-program" class="section level2">
+<h2><span class="header-section-number">5.3</span> Learning How to Program</h2>
+<p>Before we talk about what it takes to learn how to program, let's first review what programming is.</p>
+<div id="what-is-programming" class="section level4 unnumbered">
+<h4>What is programming?</h4>
+<p>A <em>program</em> is a sequence of instructions that specifies how to perform a computation. Most programs are written in a human-readable <em>programming language</em> (or &quot;source code&quot;) and then executed with the help of a <em>compiler</em> or <em>interpreter</em>.</p>
+<p>A few basic instructions appear in just about every language:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Input</strong>: Get data from the keyboard, a file, the network, or some other device.</li>
+<li><strong>Output</strong>: Display data on the screen, save it in a file, send it over the network, etc.</li>
+<li><strong>Math</strong>: Perform basic mathematical operations like addition and multiplication.</li>
+<li><strong>Conditional execution</strong>: Only perform tasks if certain conditions are met.</li>
+<li><strong>Iteration</strong>: Do the same task over and over again on different inputs.</li>
+</ol>
+<p>That being said, programming languages differ from one another in the following ways:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Syntax</strong>: Whether to add a semicolon at the end of each line, etc.</li>
+<li><strong>Usage</strong>: JavaScript is for building websites, R is for statistics, Python is general purpose, etc.</li>
+<li><strong>Level</strong>: How close you are to the hardware. 'C' is often considered to be the lowest- (or one of the lowest-) level language.</li>
+<li><strong>Object-oriented</strong>: &quot;Objects&quot; are data + functions. Some programming languages are object-oriented (e.g., Python), and some are not (e.g., C).</li>
+<li><strong>Many more</strong>: Here is a <a href="https://en.wikipedia.org/wiki/List_of_programming_languages_by_type">list</a> of all the types of programming languages out there.</li>
+</ol>
+</div>
+<div id="what-language-should-you-learn" class="section level4 unnumbered">
+<h4>What language should you learn?</h4>
+<p>Most programmers can program in more than one language. That is because they know <em>how to program</em> generally, as opposed to &quot;knowing&quot; Python, R, Ruby, or whatever.</p>
+<p>So what should your first programming language be? That is, what programming language should you use to learn <em>how to program</em>? At the end of the day, the answer depends on what you want to get out of programming. Many people recommend Python because it is fun, easy, and multi-purpose. Here is an <a href="http://lifehacker.com/which-programming-language-should-i-learn-first-1477153665">article</a> that can offer more advice.</p>
+<p>In this class, we will be using R because it is the most popular language in our disciplinary community (of political scientists).</p>
+<p>Regardless of what you choose, you will probably grow comfortable in one language while learning the basic concepts and skills that allow you to 'hack' your way into other languages. That is because <strong>programming is an extendible skill</strong>.</p>
+<p>Thus, &quot;knowing how to program&quot; means learning how to <em>think</em> like a programmer, not necessarily knowing all the language-specific commands off the top of your head. <strong>Do not learn specific programming languages; learn how to program.</strong></p>
+</div>
+<div id="what-programming-is-really-like." class="section level4 unnumbered">
+<h4>What programming is really like.</h4>
+<p><img src="img/xkcd.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Here is the sad reality: When you are programming, 80% or more of your time will be spent debugging, looking stuff up (like program-specific syntax, documentation for packages, useful functions, etc.), or testing. This does not apply just to beginner or intermediate programmers, although you will grow more &quot;fluent&quot; over time.</p>
+<blockquote>
+<p>Google software engineers write an average of 10-20 lines of code per day.</p>
+</blockquote>
+<blockquote>
+<p><strong>The lesson</strong>: Programming is a slow activity, especially in the beginning.</p>
+</blockquote>
+<p>If you are a good programmer, you are a good detective!</p>
+</div>
+<div id="how-to-learn" class="section level4 unnumbered">
+<h4>How to Learn</h4>
+<p>Here are some tips on how to learn computer programming:</p>
+<ol style="list-style-type: decimal">
+<li>Learning to program is 5% intelligence, 95% endurance.</li>
+<li>Like learning to play an instrument or speak a foreign language, it takes practice, practice, practice.</li>
+<li>Program a little bit every day.</li>
+<li>Program with others. Do the problem sets in pairs or groups.</li>
+<li>It is better to type than to copy and paste.</li>
+<li>Most &quot;programming&quot; is actually researching, experimenting, and thinking.</li>
+<li>Stay organized.</li>
+</ol>
+</div>
+<div id="the-15-minute-rule" class="section level4 unnumbered">
+<h4>The 15-Minute Rule</h4>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+15 min rule: when stuck, you HAVE to try on your own for 15 min; after 15 min, you HAVE to ask for help.- Brain AMA <a href="https://t.co/MS7FnjXoGH">pic.twitter.com/MS7FnjXoGH</a>
+</p>
+— Rachel Thomas (<span class="citation">(<span class="citeproc-not-found" data-reference-id="math_rachel"><strong>???</strong></span>)</span>) <a href="https://twitter.com/math_rachel/status/764931533383749632?ref_src=twsrc%5Etfw">August 14, 2016</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>We will follow the <strong>15-minute rule</strong> in this class. If you encounter a problem in your assignments, spend 15 minutes troubleshooting the problem on your own. After 15 minutes, if you still cannot solve the problem, <strong>ask for help</strong>.</p>
+<p>(Hat tip to <a href="https://cfss.uchicago.edu/faq/asking-questions/">Computing for Social Sciences</a>.)</p>
+</div>
+<div id="debugging" class="section level4 unnumbered">
+<h4>Debugging</h4>
+<p>Those first 15 minutes should be spent trying to debug your code. Here are some tips:</p>
+<ul>
+<li>Read the errors!</li>
+<li>Read the documentation.</li>
+<li>Make it smaller.</li>
+<li>Figure out what changed.</li>
+<li>Check your syntax.</li>
+<li>Print statements are your friends.</li>
+</ul>
+</div>
+<div id="using-the-internet" class="section level4 unnumbered">
+<h4>Using the Internet</h4>
+<p>You should also make use of <a href="https://www.google.com">Google</a> and <a href="http://stackoverflow.com/">StackOverflow</a> to resolve the error. Here are some tips for how to google errors:</p>
+<ul>
+<li>Google: name-of-program + text in error message.</li>
+<li>Remove user- and data-specific information first!</li>
+<li>See if you can find examples that do and do not produce the error. Try other people's code, but do not fall into the copy-paste trap.</li>
+</ul>
+</div>
+<div id="asking-for-help" class="section level4 unnumbered">
+<h4>Asking for Help</h4>
+<p>We will use Piazza for class-related questions and discussion. You are highly encouraged to ask questions and answer one another's questions.</p>
+<ol style="list-style-type: decimal">
+<li>Include a brief, informative title.</li>
+<li>Explain what you are trying to do and how it failed.</li>
+<li>Include a reproducible example.</li>
+</ol>
+<p>Here are some helpful guidelines on how to properly ask programming questions:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.propublica.org/nerds/how-to-ask-programming-questions">&quot;How to Ask Programming Questions,&quot; ProPublica.</a></li>
+<li><a href="https://stackoverflow.com/help/how-to-ask">&quot;How do I ask a good question?&quot; StackOverflow.</a></li>
+<li><a href="https://cfss.uchicago.edu/faq/asking-questions/">&quot;How to properly ask for help,&quot; Computing for Social Science.</a></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="homework-rubric.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/plsc-31101/course/edit/master/01_Intro/01-Intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/plsc-31101/course/raw/master/01_Intro/01-Intro.Rmd"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

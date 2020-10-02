@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Tidying Data | PLSC 31101: Computational Tools for Social Science</title>
+  <meta name="description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Tidying Data | PLSC 31101: Computational Tools for Social Science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://plsc-31101.github.io/course/" />
+  
+  <meta property="og:description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="github-repo" content="plsc-31101/course" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Tidying Data | PLSC 31101: Computational Tools for Social Science" />
+  
+  <meta name="twitter:description" content="This book contains course notes and other materials for PLSC 31101." />
+  
+
+<meta name="author" content="Rochelle Terman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-transformation.html"/>
+<link rel="next" href="relational-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PLSC 31101</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Before Class</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i><b>2</b> Syllabus</a><ul>
+<li class="chapter" data-level="2.1" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i><b>2.1</b> Course Description</a></li>
+<li class="chapter" data-level="2.2" data-path="syllabus.html"><a href="syllabus.html#who-should-take-this-course"><i class="fa fa-check"></i><b>2.2</b> Who Should Take This Course</a></li>
+<li class="chapter" data-level="2.3" data-path="syllabus.html"><a href="syllabus.html#requirements-and-evaluation"><i class="fa fa-check"></i><b>2.3</b> Requirements and Evaluation</a></li>
+<li class="chapter" data-level="2.4" data-path="syllabus.html"><a href="syllabus.html#activities-and-materials"><i class="fa fa-check"></i><b>2.4</b> Activities and Materials</a></li>
+<li class="chapter" data-level="2.5" data-path="syllabus.html"><a href="syllabus.html#curriculum-outlineschedule"><i class="fa fa-check"></i><b>2.5</b> Curriculum Outline/Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>3</b> Installation</a><ul>
+<li class="chapter" data-level="3.1" data-path="installation.html"><a href="installation.html#r"><i class="fa fa-check"></i><b>3.1</b> R</a></li>
+<li class="chapter" data-level="3.2" data-path="installation.html"><a href="installation.html#rstudio"><i class="fa fa-check"></i><b>3.2</b> RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="installation.html"><a href="installation.html#r-packages"><i class="fa fa-check"></i><b>3.3</b> R Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="installation.html"><a href="installation.html#latex"><i class="fa fa-check"></i><b>3.4</b> LaTeX</a></li>
+<li class="chapter" data-level="3.5" data-path="installation.html"><a href="installation.html#git"><i class="fa fa-check"></i><b>3.5</b> Git</a></li>
+<li class="chapter" data-level="3.6" data-path="installation.html"><a href="installation.html#google-chrome"><i class="fa fa-check"></i><b>3.6</b> Google Chrome</a></li>
+<li class="chapter" data-level="3.7" data-path="installation.html"><a href="installation.html#selector-gadget"><i class="fa fa-check"></i><b>3.7</b> Selector Gadget</a></li>
+<li class="chapter" data-level="3.8" data-path="installation.html"><a href="installation.html#other-helpful-tools"><i class="fa fa-check"></i><b>3.8</b> Other Helpful Tools</a></li>
+<li class="chapter" data-level="3.9" data-path="installation.html"><a href="installation.html#troubleshooting"><i class="fa fa-check"></i><b>3.9</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="homework-rubric.html"><a href="homework-rubric.html"><i class="fa fa-check"></i><b>4</b> Homework Rubric</a></li>
+<li class="part"><span><b>II Course Notes</b></span></li>
+<li class="chapter" data-level="5" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>5</b> Introduction</a><ul>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#the-motivation"><i class="fa fa-check"></i><b>5.1</b> The Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction.html"><a href="introduction.html#about-this-class"><i class="fa fa-check"></i><b>5.2</b> About This Class</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction.html"><a href="introduction.html#learning-how-to-program"><i class="fa fa-check"></i><b>5.3</b> Learning How to Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>6</b> R Basics</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-basics.html"><a href="r-basics.html#what-is-r"><i class="fa fa-check"></i><b>6.1</b> What is R?</a></li>
+<li class="chapter" data-level="6.2" data-path="r-basics.html"><a href="r-basics.html#rstudio-1"><i class="fa fa-check"></i><b>6.2</b> RStudio</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="r-basics.html"><a href="r-basics.html#console"><i class="fa fa-check"></i><b>6.2.1</b> Console</a></li>
+<li class="chapter" data-level="6.2.2" data-path="r-basics.html"><a href="r-basics.html#scripts"><i class="fa fa-check"></i><b>6.2.2</b> Scripts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="r-basics.html"><a href="r-basics.html#running-code"><i class="fa fa-check"></i><b>6.2.3</b> Running Code</a></li>
+<li class="chapter" data-level="6.2.4" data-path="r-basics.html"><a href="r-basics.html#comments"><i class="fa fa-check"></i><b>6.2.4</b> Comments</a></li>
+<li class="chapter" data-level="6.2.5" data-path="r-basics.html"><a href="r-basics.html#diagnostics-and-errors"><i class="fa fa-check"></i><b>6.2.5</b> Diagnostics and errors</a></li>
+<li class="chapter" data-level="6.2.6" data-path="r-basics.html"><a href="r-basics.html#errors-messages-and-warnings"><i class="fa fa-check"></i><b>6.2.6</b> Errors, Messages, and Warnings</a></li>
+<li class="chapter" data-level="6.2.7" data-path="r-basics.html"><a href="r-basics.html#r-environment"><i class="fa fa-check"></i><b>6.2.7</b> R Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-basics.html"><a href="r-basics.html#r-packages-1"><i class="fa fa-check"></i><b>6.3</b> R Packages</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="r-basics.html"><a href="r-basics.html#installing-packages"><i class="fa fa-check"></i><b>6.3.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.3.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>6.3.2</b> Loading Packages</a></li>
+<li class="chapter" data-level="6.3.3" data-path="r-basics.html"><a href="r-basics.html#challenge"><i class="fa fa-check"></i><b>6.3.3</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="r-basics.html"><a href="r-basics.html#r-markdown"><i class="fa fa-check"></i><b>6.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="r-basics.html"><a href="r-basics.html#yaml-header"><i class="fa fa-check"></i><b>6.4.1</b> YAML Header</a></li>
+<li class="chapter" data-level="6.4.2" data-path="r-basics.html"><a href="r-basics.html#markdown"><i class="fa fa-check"></i><b>6.4.2</b> Markdown</a></li>
+<li class="chapter" data-level="6.4.3" data-path="r-basics.html"><a href="r-basics.html#code-chunks"><i class="fa fa-check"></i><b>6.4.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="6.4.4" data-path="r-basics.html"><a href="r-basics.html#knitting"><i class="fa fa-check"></i><b>6.4.4</b> Knitting</a></li>
+<li class="chapter" data-level="6.4.5" data-path="r-basics.html"><a href="r-basics.html#r-chunk-options-for-knitting"><i class="fa fa-check"></i><b>6.4.5</b> R Chunk Options for Knitting</a></li>
+<li class="chapter" data-level="6.4.6" data-path="r-basics.html"><a href="r-basics.html#cheatsheets-and-other-resources"><i class="fa fa-check"></i><b>6.4.6</b> Cheatsheets and Other Resources</a></li>
+<li class="chapter" data-level="6.4.7" data-path="r-basics.html"><a href="r-basics.html#challenges"><i class="fa fa-check"></i><b>6.4.7</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-syntax.html"><a href="r-syntax.html"><i class="fa fa-check"></i><b>7</b> R Syntax</a><ul>
+<li class="chapter" data-level="7.1" data-path="r-syntax.html"><a href="r-syntax.html#variables"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="r-syntax.html"><a href="r-syntax.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-syntax.html"><a href="r-syntax.html#assigning-variables"><i class="fa fa-check"></i><b>7.1.2</b> Assigning Variables</a></li>
+<li class="chapter" data-level="7.1.3" data-path="r-syntax.html"><a href="r-syntax.html#variable-names"><i class="fa fa-check"></i><b>7.1.3</b> Variable Names</a></li>
+<li class="chapter" data-level="7.1.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-1"><i class="fa fa-check"></i><b>7.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-syntax.html"><a href="r-syntax.html#functions"><i class="fa fa-check"></i><b>7.2</b> Functions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="r-syntax.html"><a href="r-syntax.html#arguments"><i class="fa fa-check"></i><b>7.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-syntax.html"><a href="r-syntax.html#store-function-output"><i class="fa fa-check"></i><b>7.2.2</b> Store Function Output</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-syntax.html"><a href="r-syntax.html#argument-restrictions-and-defaults"><i class="fa fa-check"></i><b>7.2.3</b> Argument Restrictions and Defaults</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-syntax.html"><a href="r-syntax.html#documentation-and-help-files"><i class="fa fa-check"></i><b>7.2.4</b> Documentation and Help Files</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-2"><i class="fa fa-check"></i><b>7.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-syntax.html"><a href="r-syntax.html#data-types"><i class="fa fa-check"></i><b>7.3</b> Data Types</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="r-syntax.html"><a href="r-syntax.html#what-is-that-type"><i class="fa fa-check"></i><b>7.3.1</b> What Is that Type?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-syntax.html"><a href="r-syntax.html#coercion"><i class="fa fa-check"></i><b>7.3.2</b> Coercion</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-syntax.html"><a href="r-syntax.html#other-objects"><i class="fa fa-check"></i><b>7.3.3</b> Other Objects</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-3"><i class="fa fa-check"></i><b>7.3.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-expressions"><i class="fa fa-check"></i><b>7.4</b> Boolean Expressions</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="r-syntax.html"><a href="r-syntax.html#boolean-operators"><i class="fa fa-check"></i><b>7.4.1</b> Boolean Operators</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-syntax.html"><a href="r-syntax.html#logical-operators"><i class="fa fa-check"></i><b>7.4.2</b> Logical Operators</a></li>
+<li class="chapter" data-level="7.4.3" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors"><i class="fa fa-check"></i><b>7.4.3</b> Boolean Vectors</a></li>
+<li class="chapter" data-level="7.4.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors-in-action"><i class="fa fa-check"></i><b>7.4.4</b> Boolean Vectors in Action</a></li>
+<li class="chapter" data-level="7.4.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-4"><i class="fa fa-check"></i><b>7.4.5</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>8</b> Working with Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="working-with-data.html"><a href="working-with-data.html#project-workflow"><i class="fa fa-check"></i><b>8.1</b> Project Workflow</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-data.html"><a href="working-with-data.html#store-analyses-in-scripts-not-workspaces"><i class="fa fa-check"></i><b>8.1.1</b> Store Analyses in Scripts, Not Workspaces</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-data.html"><a href="working-with-data.html#working-directories-and-paths"><i class="fa fa-check"></i><b>8.1.2</b> Working Directories and Paths</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-data.html"><a href="working-with-data.html#r-projects"><i class="fa fa-check"></i><b>8.1.3</b> R Projects</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-data.html"><a href="working-with-data.html#file-organization"><i class="fa fa-check"></i><b>8.1.4</b> File Organization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-data.html"><a href="working-with-data.html#importing-and-exporting"><i class="fa fa-check"></i><b>8.2</b> Importing and Exporting</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-data.html"><a href="working-with-data.html#where-is-my-data"><i class="fa fa-check"></i><b>8.2.1</b> Where Is My Data?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-data.html"><a href="working-with-data.html#data-storage"><i class="fa fa-check"></i><b>8.2.2</b> Data Storage</a></li>
+<li class="chapter" data-level="8.2.3" data-path="working-with-data.html"><a href="working-with-data.html#importing-data"><i class="fa fa-check"></i><b>8.2.3</b> Importing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="working-with-data.html"><a href="working-with-data.html#exporting-data"><i class="fa fa-check"></i><b>8.2.4</b> Exporting Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>9</b> Data Transformation</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-transformation.html"><a href="data-transformation.html#the-gapminder-dataset"><i class="fa fa-check"></i><b>9.1.1</b> The Gapminder Dataset</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-transformation.html"><a href="data-transformation.html#structure-and-dimensions"><i class="fa fa-check"></i><b>9.1.2</b> Structure and Dimensions</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-transformation.html"><a href="data-transformation.html#variables-1"><i class="fa fa-check"></i><b>9.1.3</b> Variables</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-transformation.html"><a href="data-transformation.html#challenges-5"><i class="fa fa-check"></i><b>9.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-dplyr"><i class="fa fa-check"></i><b>9.2</b> Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-transformation.html"><a href="data-transformation.html#tidyverse"><i class="fa fa-check"></i><b>9.2.1</b> <code>tidyverse</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-transformation.html"><a href="data-transformation.html#why-dplyr"><i class="fa fa-check"></i><b>9.2.2</b> Why <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>9.2.3</b> Select Columns with <code>select</code></a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-transformation.html"><a href="data-transformation.html#the-pipe"><i class="fa fa-check"></i><b>9.2.4</b> The Pipe</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>9.2.5</b> Filter Rows with <code>filter</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-transformation.html"><a href="data-transformation.html#more-dplyr-functions"><i class="fa fa-check"></i><b>9.3</b> More <code>dplyr</code> functions</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="data-transformation.html"><a href="data-transformation.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>9.3.1</b> Use <code>mutate()</code> to Add New Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="data-transformation.html"><a href="data-transformation.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>9.3.2</b> Use <code>arrange()</code> to Row-order Data in a Principled Way</a></li>
+<li class="chapter" data-level="9.3.3" data-path="data-transformation.html"><a href="data-transformation.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>9.3.3</b> Use <code>rename()</code> to Rename Variables</a></li>
+<li class="chapter" data-level="9.3.4" data-path="data-transformation.html"><a href="data-transformation.html#use-select-to-rename-and-reposition-variables"><i class="fa fa-check"></i><b>9.3.4</b> Use <code>select()</code> to Rename and Reposition Variables</a></li>
+<li class="chapter" data-level="9.3.5" data-path="data-transformation.html"><a href="data-transformation.html#use-count-to-count-variable-quantities"><i class="fa fa-check"></i><b>9.3.5</b> Use <code>count()</code> to Count Variable Quantities</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="data-transformation.html"><a href="data-transformation.html#calculating-across-groups"><i class="fa fa-check"></i><b>9.4</b> Calculating across Groups</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="data-transformation.html"><a href="data-transformation.html#use-group_by-to-create-a-grouped-data"><i class="fa fa-check"></i><b>9.4.1</b> Use <code>group_by</code> to Create a Grouped Data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="data-transformation.html"><a href="data-transformation.html#summarize-across-groups-with-summarize"><i class="fa fa-check"></i><b>9.4.2</b> Summarize Across Groups with <code>summarize</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>9.4.3</b> Add New Variables with <code>mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
+<li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
+<li class="chapter" data-level="10.3.2" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>10.3.2</b> <code>separate</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>10.3.3</b> <code>spread</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="tidying-data.html"><a href="tidying-data.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>10.4</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="tidying-data.html"><a href="tidying-data.html#na_if"><i class="fa fa-check"></i><b>10.4.1</b> <code>na_if</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="tidying-data.html"><a href="tidying-data.html#replace-na-values-with-replace_na"><i class="fa fa-check"></i><b>10.4.2</b> Replace <code>NA</code> values with <code>replace_na</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="tidying-data.html"><a href="tidying-data.html#more-tidyverse"><i class="fa fa-check"></i><b>10.5</b> More <code>tidyverse</code></a></li>
+<li class="chapter" data-level="10.6" data-path="tidying-data.html"><a href="tidying-data.html#challenges-7"><i class="fa fa-check"></i><b>10.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#why-relational-data"><i class="fa fa-check"></i><b>11.1</b> Why Relational Data</a></li>
+<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#keys"><i class="fa fa-check"></i><b>11.2</b> Keys</a></li>
+<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#joins"><i class="fa fa-check"></i><b>11.3</b> Joins</a></li>
+<li class="chapter" data-level="11.4" data-path="relational-data.html"><a href="relational-data.html#defining-keys"><i class="fa fa-check"></i><b>11.4</b> Defining Keys</a></li>
+<li class="chapter" data-level="11.5" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.5</b> Duplicate Keys</a></li>
+<li class="chapter" data-level="11.6" data-path="relational-data.html"><a href="relational-data.html#challenges-8"><i class="fa fa-check"></i><b>11.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>12</b> Plotting</a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting.html"><a href="plotting.html#the-dataset"><i class="fa fa-check"></i><b>12.1</b> The Dataset</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting.html"><a href="plotting.html#r-base-graphics"><i class="fa fa-check"></i><b>12.2</b> R Base Graphics</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="plotting.html"><a href="plotting.html#scatter-and-line-plots"><i class="fa fa-check"></i><b>12.2.1</b> Scatter and Line Plots</a></li>
+<li class="chapter" data-level="12.2.2" data-path="plotting.html"><a href="plotting.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>12.2.2</b> Histograms and Density Plots</a></li>
+<li class="chapter" data-level="12.2.3" data-path="plotting.html"><a href="plotting.html#labels"><i class="fa fa-check"></i><b>12.2.3</b> Labels</a></li>
+<li class="chapter" data-level="12.2.4" data-path="plotting.html"><a href="plotting.html#axis-and-size-scaling"><i class="fa fa-check"></i><b>12.2.4</b> Axis and Size Scaling</a></li>
+<li class="chapter" data-level="12.2.5" data-path="plotting.html"><a href="plotting.html#graphical-parameters"><i class="fa fa-check"></i><b>12.2.5</b> Graphical Parameters</a></li>
+<li class="chapter" data-level="12.2.6" data-path="plotting.html"><a href="plotting.html#annotations-reference-lines-and-legends"><i class="fa fa-check"></i><b>12.2.6</b> Annotations, Reference Lines, and Legends</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="plotting.html"><a href="plotting.html#ggplot2"><i class="fa fa-check"></i><b>12.3</b> ggplot2</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="plotting.html"><a href="plotting.html#grammar"><i class="fa fa-check"></i><b>12.3.1</b> Grammar</a></li>
+<li class="chapter" data-level="12.3.2" data-path="plotting.html"><a href="plotting.html#anatomy-of-aes"><i class="fa fa-check"></i><b>12.3.2</b> Anatomy of <code>aes</code></a></li>
+<li class="chapter" data-level="12.3.3" data-path="plotting.html"><a href="plotting.html#layers"><i class="fa fa-check"></i><b>12.3.3</b> Layers</a></li>
+<li class="chapter" data-level="12.3.4" data-path="plotting.html"><a href="plotting.html#labels-1"><i class="fa fa-check"></i><b>12.3.4</b> Labels</a></li>
+<li class="chapter" data-level="12.3.5" data-path="plotting.html"><a href="plotting.html#transformations-and-stats"><i class="fa fa-check"></i><b>12.3.5</b> Transformations and Stats</a></li>
+<li class="chapter" data-level="12.3.6" data-path="plotting.html"><a href="plotting.html#facets"><i class="fa fa-check"></i><b>12.3.6</b> Facets</a></li>
+<li class="chapter" data-level="12.3.7" data-path="plotting.html"><a href="plotting.html#legend-and-scale-manipulations"><i class="fa fa-check"></i><b>12.3.7</b> Legend and Scale Manipulations</a></li>
+<li class="chapter" data-level="12.3.8" data-path="plotting.html"><a href="plotting.html#putting-everything-together"><i class="fa fa-check"></i><b>12.3.8</b> Putting Everything Together</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="plotting.html"><a href="plotting.html#saving-plots"><i class="fa fa-check"></i><b>12.4</b> Saving Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="statistical-inferences.html"><a href="statistical-inferences.html"><i class="fa fa-check"></i><b>13</b> Statistical Inferences</a><ul>
+<li class="chapter" data-level="13.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-distributions"><i class="fa fa-check"></i><b>13.1</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#sampling-and-simulation"><i class="fa fa-check"></i><b>13.1.1</b> Sampling and Simulation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#random-seeds"><i class="fa fa-check"></i><b>13.1.2</b> Random Seeds</a></li>
+<li class="chapter" data-level="13.1.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-9"><i class="fa fa-check"></i><b>13.1.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#inferences-and-regressions"><i class="fa fa-check"></i><b>13.2</b> Inferences and Regressions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>13.2.1</b> Statistical Tests</a></li>
+<li class="chapter" data-level="13.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>13.2.2</b> Regressions and Linear Models</a></li>
+<li class="chapter" data-level="13.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>13.2.3</b> Regression Output</a></li>
+<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>13.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="13.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>13.2.5</b> Formatting Regression Tables</a></li>
+<li class="chapter" data-level="13.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-10"><i class="fa fa-check"></i><b>13.2.6</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html"><i class="fa fa-check"></i><b>14</b> Data Classes and Structures</a><ul>
+<li class="chapter" data-level="14.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors"><i class="fa fa-check"></i><b>14.1</b> Vectors</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-vectors"><i class="fa fa-check"></i><b>14.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="14.1.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors-are-everywhere"><i class="fa fa-check"></i><b>14.1.2</b> Vectors Are Everywhere</a></li>
+<li class="chapter" data-level="14.1.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#recycling"><i class="fa fa-check"></i><b>14.1.3</b> Recycling</a></li>
+<li class="chapter" data-level="14.1.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>14.1.4</b> Types of Vectors</a></li>
+<li class="chapter" data-level="14.1.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercion-1"><i class="fa fa-check"></i><b>14.1.5</b> Coercion</a></li>
+<li class="chapter" data-level="14.1.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-a-vector"><i class="fa fa-check"></i><b>14.1.6</b> Naming a Vector</a></li>
+<li class="chapter" data-level="14.1.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-11"><i class="fa fa-check"></i><b>14.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-vectors"><i class="fa fa-check"></i><b>14.2</b> Subsetting Vectors</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-types"><i class="fa fa-check"></i><b>14.2.1</b> Subsetting Types</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-lists"><i class="fa fa-check"></i><b>14.3.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="14.3.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-lists"><i class="fa fa-check"></i><b>14.3.2</b> Naming Lists</a></li>
+<li class="chapter" data-level="14.3.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#list-structure"><i class="fa fa-check"></i><b>14.3.3</b> List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-lists"><i class="fa fa-check"></i><b>14.4</b> Subsetting Lists</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with"><i class="fa fa-check"></i><b>14.4.1</b> With <code>[</code></a></li>
+<li class="chapter" data-level="14.4.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-1"><i class="fa fa-check"></i><b>14.4.2</b> With <code>[[</code></a></li>
+<li class="chapter" data-level="14.4.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-2"><i class="fa fa-check"></i><b>14.4.3</b> with <code>$</code></a></li>
+<li class="chapter" data-level="14.4.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-12"><i class="fa fa-check"></i><b>14.4.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrices"><i class="fa fa-check"></i><b>14.5</b> Matrices</a></li>
+<li class="chapter" data-level="14.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-a-matrix"><i class="fa fa-check"></i><b>14.6</b> Indexing a Matrix</a></li>
+<li class="chapter" data-level="14.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#dataframes"><i class="fa fa-check"></i><b>14.7</b> Dataframes</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-dataframes"><i class="fa fa-check"></i><b>14.7.1</b> Creating Dataframes</a></li>
+<li class="chapter" data-level="14.7.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#the-structure-of-dataframes"><i class="fa fa-check"></i><b>14.7.2</b> The Structure of Dataframes</a></li>
+<li class="chapter" data-level="14.7.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-dataframes"><i class="fa fa-check"></i><b>14.7.3</b> Naming Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-dataframes"><i class="fa fa-check"></i><b>14.8</b> Indexing Dataframes</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-13"><i class="fa fa-check"></i><b>14.8.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html"><i class="fa fa-check"></i><b>15</b> Strings and Regular Expressions</a><ul>
+<li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
+<li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
+<li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-14"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i><b>15.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#basic-matches"><i class="fa fa-check"></i><b>15.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="15.2.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-characters"><i class="fa fa-check"></i><b>15.2.2</b> Escape Characters</a></li>
+<li class="chapter" data-level="15.2.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#anchors"><i class="fa fa-check"></i><b>15.2.3</b> Anchors</a></li>
+<li class="chapter" data-level="15.2.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>15.2.4</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="15.2.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#repetition"><i class="fa fa-check"></i><b>15.2.5</b> Repetition</a></li>
+<li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
+<li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>16</b> Programming in R</a><ul>
+<li class="chapter" data-level="16.1" data-path="programming-in-r.html"><a href="programming-in-r.html#conditional-flow"><i class="fa fa-check"></i><b>16.1</b> Conditional Flow</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
+<li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
+<li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
+<li class="chapter" data-level="16.2.2" data-path="programming-in-r.html"><a href="programming-in-r.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>16.2.2</b> Anatomy of a Function</a></li>
+<li class="chapter" data-level="16.2.3" data-path="programming-in-r.html"><a href="programming-in-r.html#writing-a-function"><i class="fa fa-check"></i><b>16.2.3</b> Writing a Function</a></li>
+<li class="chapter" data-level="16.2.4" data-path="programming-in-r.html"><a href="programming-in-r.html#using-a-function"><i class="fa fa-check"></i><b>16.2.4</b> Using a Function</a></li>
+<li class="chapter" data-level="16.2.5" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-16"><i class="fa fa-check"></i><b>16.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="programming-in-r.html"><a href="programming-in-r.html#iteration"><i class="fa fa-check"></i><b>16.3</b> Iteration</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="programming-in-r.html"><a href="programming-in-r.html#vectorized-functions"><i class="fa fa-check"></i><b>16.3.1</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="16.3.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functional-programming-and-map"><i class="fa fa-check"></i><b>16.3.2</b> Functional Programming and <code>map</code></a></li>
+<li class="chapter" data-level="16.3.3" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-17"><i class="fa fa-check"></i><b>16.3.3</b> Challenges</a></li>
+<li class="chapter" data-level="16.3.4" data-path="programming-in-r.html"><a href="programming-in-r.html#scoped-verbs"><i class="fa fa-check"></i><b>16.3.4</b> Scoped Verbs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html"><i class="fa fa-check"></i><b>17</b> Collecting Data from the Web</a><ul>
+<li class="chapter" data-level="17.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#introduction-1"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#web-apis"><i class="fa fa-check"></i><b>17.2</b> Web APIs</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#some-basic-terminology"><i class="fa fa-check"></i><b>17.2.1</b> Some Basic Terminology</a></li>
+<li class="chapter" data-level="17.2.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#how-do-get-requests-work"><i class="fa fa-check"></i><b>17.2.2</b> How Do GET Requests Work?</a></li>
+<li class="chapter" data-level="17.2.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-apis"><i class="fa fa-check"></i><b>17.2.3</b> Finding APIs</a></li>
+<li class="chapter" data-level="17.2.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#getting-api-access"><i class="fa fa-check"></i><b>17.2.4</b> Getting API Access</a></li>
+<li class="chapter" data-level="17.2.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-apis-in-r"><i class="fa fa-check"></i><b>17.2.5</b> Using APIs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#writing-api-queries"><i class="fa fa-check"></i><b>17.3</b> Writing API Queries</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#constructing-the-api-get-request"><i class="fa fa-check"></i><b>17.3.1</b> Constructing the API GET Request</a></li>
+<li class="chapter" data-level="17.3.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#parsing-the-response"><i class="fa fa-check"></i><b>17.3.2</b> Parsing the Response</a></li>
+<li class="chapter" data-level="17.3.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#iteration-through-results-pager"><i class="fa fa-check"></i><b>17.3.3</b> Iteration through Results Pager</a></li>
+<li class="chapter" data-level="17.3.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#visualizing-results"><i class="fa fa-check"></i><b>17.3.4</b> Visualizing Results</a></li>
+<li class="chapter" data-level="17.3.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#more-resources"><i class="fa fa-check"></i><b>17.3.5</b> More Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#webscraping"><i class="fa fa-check"></i><b>17.4</b> Webscraping</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#what-is-a-website"><i class="fa fa-check"></i><b>17.4.1</b> What Is a Website?</a></li>
+<li class="chapter" data-level="17.4.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#websites-return-html"><i class="fa fa-check"></i><b>17.4.2</b> Websites Return HTML</a></li>
+<li class="chapter" data-level="17.4.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#html-elements"><i class="fa fa-check"></i><b>17.4.3</b> HTML Elements</a></li>
+<li class="chapter" data-level="17.4.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#css"><i class="fa fa-check"></i><b>17.4.4</b> CSS</a></li>
+<li class="chapter" data-level="17.4.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-elements-with-selector-gadget"><i class="fa fa-check"></i><b>17.4.5</b> Finding Elements with Selector Gadget</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#scraping-presidential-statements"><i class="fa fa-check"></i><b>17.5</b> Scraping Presidential Statements</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
+<li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
+<li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
+<li class="chapter" data-level="18.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing"><i class="fa fa-check"></i><b>18.1</b> Preprocessing</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="text-analysis.html"><a href="text-analysis.html#from-words-to-numbers"><i class="fa fa-check"></i><b>18.1.1</b> From Words to Numbers</a></li>
+<li class="chapter" data-level="18.1.2" data-path="text-analysis.html"><a href="text-analysis.html#exploring-the-dtm"><i class="fa fa-check"></i><b>18.1.2</b> Exploring the DTM</a></li>
+<li class="chapter" data-level="18.1.3" data-path="text-analysis.html"><a href="text-analysis.html#exporting-the-dtm"><i class="fa fa-check"></i><b>18.1.3</b> Exporting the DTM</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="text-analysis.html"><a href="text-analysis.html#sentiment-analysis-and-dictionary-methods"><i class="fa fa-check"></i><b>18.2</b> Sentiment Analysis and Dictionary Methods</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-and-setup"><i class="fa fa-check"></i><b>18.2.1</b> Preprocessing and Setup</a></li>
+<li class="chapter" data-level="18.2.2" data-path="text-analysis.html"><a href="text-analysis.html#scoring-the-songs"><i class="fa fa-check"></i><b>18.2.2</b> Scoring the Songs</a></li>
+<li class="chapter" data-level="18.2.3" data-path="text-analysis.html"><a href="text-analysis.html#challenges-18"><i class="fa fa-check"></i><b>18.2.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="text-analysis.html"><a href="text-analysis.html#distinctive-words"><i class="fa fa-check"></i><b>18.3</b> Distinctive Words</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="text-analysis.html"><a href="text-analysis.html#unique-usage"><i class="fa fa-check"></i><b>18.3.1</b> Unique Usage</a></li>
+<li class="chapter" data-level="18.3.2" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-frequencies"><i class="fa fa-check"></i><b>18.3.2</b> Differences in Frequencies</a></li>
+<li class="chapter" data-level="18.3.3" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages"><i class="fa fa-check"></i><b>18.3.3</b> Differences in Averages</a></li>
+<li class="chapter" data-level="18.3.4" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages-adjustment"><i class="fa fa-check"></i><b>18.3.4</b> Differences in Averages, Adjustment</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="text-analysis.html"><a href="text-analysis.html#structural-topic-models"><i class="fa fa-check"></i><b>18.4</b> Structural Topic Models</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-1"><i class="fa fa-check"></i><b>18.4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="18.4.2" data-path="text-analysis.html"><a href="text-analysis.html#estimate-model"><i class="fa fa-check"></i><b>18.4.2</b> Estimate Model</a></li>
+<li class="chapter" data-level="18.4.3" data-path="text-analysis.html"><a href="text-analysis.html#interpret-model"><i class="fa fa-check"></i><b>18.4.3</b> Interpret Model</a></li>
+<li class="chapter" data-level="18.4.4" data-path="text-analysis.html"><a href="text-analysis.html#analyze-topics"><i class="fa fa-check"></i><b>18.4.4</b> Analyze Topics</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PLSC 31101: Computational Tools for Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidying-data" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Tidying Data</h1>
+<p>Even before we conduct analyses or calculations, we need to put our data into the correct format. The goal here is to rearrange a messy dataset into one that is <strong>tidy</strong>.</p>
+<p>The two most important properties of tidy data are:</p>
+<ol style="list-style-type: decimal">
+<li>Each column is a variable.</li>
+<li>Each row is an observation.</li>
+</ol>
+<p>Tidy data is easier to work with because you have a consistent way of referring to variables (as column names) and observations (as row indices). The data then becomes easier to manipulate, visualize, and model.</p>
+<p>For more on the concept of tidy data, read Hadley Wickham's paper <a href="http://vita.had.co.nz/papers/tidy-data.html">here</a>.</p>
+<div id="wide-vs.-long-formats" class="section level2">
+<h2><span class="header-section-number">10.1</span> Wide vs. Long Formats</h2>
+<blockquote>
+<p>Tidy datasets are all alike, but every messy dataset is messy in its own way.</p>
+</blockquote>
+<blockquote>
+<p><strong>Hadley Wickham</strong></p>
+</blockquote>
+<p>Tabular datasets can be arranged in many ways. For instance, consider the data below. Each dataset displays information on heart rates observed in individuals across three different time periods, but the data are organized differently in each table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Wilbur&quot;</span>, <span class="st">&quot;Petunia&quot;</span>, <span class="st">&quot;Gregory&quot;</span>),
+  <span class="dt">time1 =</span> <span class="kw">c</span>(<span class="dv">67</span>, <span class="dv">80</span>, <span class="dv">64</span>),
+  <span class="dt">time2 =</span> <span class="kw">c</span>(<span class="dv">56</span>, <span class="dv">90</span>, <span class="dv">50</span>),
+  <span class="dt">time3 =</span> <span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">67</span>, <span class="dv">101</span>)
+)
+wide
+<span class="co">#&gt;      name time1 time2 time3</span>
+<span class="co">#&gt; 1  Wilbur    67    56    70</span>
+<span class="co">#&gt; 2 Petunia    80    90    67</span>
+<span class="co">#&gt; 3 Gregory    64    50   101</span>
+
+long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Wilbur&quot;</span>, <span class="st">&quot;Petunia&quot;</span>, <span class="st">&quot;Gregory&quot;</span>, <span class="st">&quot;Wilbur&quot;</span>, <span class="st">&quot;Petunia&quot;</span>, <span class="st">&quot;Gregory&quot;</span>, <span class="st">&quot;Wilbur&quot;</span>, <span class="st">&quot;Petunia&quot;</span>, <span class="st">&quot;Gregory&quot;</span>),
+  <span class="dt">time =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>),
+  <span class="dt">heartrate =</span> <span class="kw">c</span>(<span class="dv">67</span>, <span class="dv">80</span>, <span class="dv">64</span>, <span class="dv">56</span>, <span class="dv">90</span>, <span class="dv">50</span>, <span class="dv">70</span>, <span class="dv">67</span>, <span class="dv">10</span>)
+)
+long
+<span class="co">#&gt;      name time heartrate</span>
+<span class="co">#&gt; 1  Wilbur    1        67</span>
+<span class="co">#&gt; 2 Petunia    1        80</span>
+<span class="co">#&gt; 3 Gregory    1        64</span>
+<span class="co">#&gt; 4  Wilbur    2        56</span>
+<span class="co">#&gt; 5 Petunia    2        90</span>
+<span class="co">#&gt; 6 Gregory    2        50</span>
+<span class="co">#&gt; 7  Wilbur    3        70</span>
+<span class="co">#&gt; 8 Petunia    3        67</span>
+<span class="co">#&gt; 9 Gregory    3        10</span></code></pre></div>
+<p><strong>Question:</strong> Which one of these do you think is the <em>tidy</em> format?</p>
+<p><strong>Answer:</strong> The first dataframe (the &quot;wide&quot; one) would not be considered <em>tidy</em> because values (i.e., heart rate) are spread across multiple columns.</p>
+<p>We often refer to these different structures as &quot;long&quot; vs. &quot;wide&quot; formats:</p>
+<ul>
+<li><p>In the <strong>&quot;long&quot;</strong> format, you usually have one column for the observed variable, and the other columns are ID variables.</p></li>
+<li><p>In the <strong>&quot;wide&quot;</strong> format, each row is often a site/subject/patient, and you have multiple observation variables containing the same type of data. These can be either repeated observations over time or observations of multiple variables (or a mix of both). In the case above, we had the same kind of data (heart rate) entered across three different columns, corresponding to three different time periods.</p></li>
+</ul>
+<p><img src="img/tidyr-fig1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>You may find data input in the &quot;wide&quot; format to be simpler, and some other applications may prefer &quot;wide&quot;-format data. However, many of R’s functions have been designed assuming you have &quot;long&quot;-format data.</p>
+</div>
+<div id="tidying-the-gapminder-data" class="section level2">
+<h2><span class="header-section-number">10.2</span> Tidying the Gapminder Data</h2>
+<p>Let's look at the structure of our original <code>gapminder</code> dataframe:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+
+gap &lt;-<span class="st"> </span>gapminder
+<span class="kw">head</span>(gap)
+<span class="co">#&gt; # A tibble: 6 x 6</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></code></pre></div>
+<p><strong>Question:</strong> Is this dataframe <strong>wide</strong> or <strong>long</strong>?</p>
+<p><strong>Answer:</strong> This dataframe is somewhere in between the purely 'long' and 'wide' formats. We have three &quot;ID variables&quot; (<code>continent</code>, <code>country</code>, <code>year</code>) and three &quot;observation variables&quot; (<code>pop</code>, <code>lifeExp</code>, <code>gdpPercap</code>).</p>
+<p>Despite not having <em>all</em> observations in one column, this intermediate format makes sense given that all three observation variables have different units. As we have seen, many of the functions in R are often vector-based, and you usually do not want to do mathematical operations on values with different units.</p>
+<p>On the other hand, there are some instances in which a purely long or wide format is ideal (e.g., plotting). Likewise, sometimes you will get data on your desk that is poorly organized, and you will need to <strong>reshape</strong> it.</p>
+</div>
+<div id="tidyr-functions" class="section level2">
+<h2><span class="header-section-number">10.3</span> <code>tidyr</code> Functions</h2>
+<p>Thankfully, the <code>tidyr</code> package will help you efficiently transform your data regardless of their original format.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &quot;tidyverse&quot; package (necessary every new R session):</span>
+<span class="kw">require</span>(tidyverse)</code></pre></div>
+<div id="gather" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> <code>gather</code></h3>
+<p>Until now, we have been using the nicely formatted original gapminder dataset. This dataset is not quite wide and not quite long -- it is something in the middle -- but 'real' data (i.e., our own research data) will never be so well organized. Here let's start with the wide-format version of the gapminder dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_wide &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/gapminder_wide.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<span class="kw">head</span>(gap_wide)
+<span class="co">#&gt;   continent      country gdpPercap_1952 gdpPercap_1957 gdpPercap_1962</span>
+<span class="co">#&gt; 1    Africa      Algeria           2449           3014           2551</span>
+<span class="co">#&gt; 2    Africa       Angola           3521           3828           4269</span>
+<span class="co">#&gt; 3    Africa        Benin           1063            960            949</span>
+<span class="co">#&gt; 4    Africa     Botswana            851            918            984</span>
+<span class="co">#&gt; 5    Africa Burkina Faso            543            617            723</span>
+<span class="co">#&gt; 6    Africa      Burundi            339            380            355</span>
+<span class="co">#&gt;   gdpPercap_1967 gdpPercap_1972 gdpPercap_1977 gdpPercap_1982 gdpPercap_1987</span>
+<span class="co">#&gt; 1           3247           4183           4910           5745           5681</span>
+<span class="co">#&gt; 2           5523           5473           3009           2757           2430</span>
+<span class="co">#&gt; 3           1036           1086           1029           1278           1226</span>
+<span class="co">#&gt; 4           1215           2264           3215           4551           6206</span>
+<span class="co">#&gt; 5            795            855            743            807            912</span>
+<span class="co">#&gt; 6            413            464            556            560            622</span>
+<span class="co">#&gt;   gdpPercap_1992 gdpPercap_1997 gdpPercap_2002 gdpPercap_2007 lifeExp_1952</span>
+<span class="co">#&gt; 1           5023           4797           5288           6223         43.1</span>
+<span class="co">#&gt; 2           2628           2277           2773           4797         30.0</span>
+<span class="co">#&gt; 3           1191           1233           1373           1441         38.2</span>
+<span class="co">#&gt; 4           7954           8647          11004          12570         47.6</span>
+<span class="co">#&gt; 5            932            946           1038           1217         32.0</span>
+<span class="co">#&gt; 6            632            463            446            430         39.0</span>
+<span class="co">#&gt;   lifeExp_1957 lifeExp_1962 lifeExp_1967 lifeExp_1972 lifeExp_1977 lifeExp_1982</span>
+<span class="co">#&gt; 1         45.7         48.3         51.4         54.5         58.0         61.4</span>
+<span class="co">#&gt; 2         32.0         34.0         36.0         37.9         39.5         39.9</span>
+<span class="co">#&gt; 3         40.4         42.6         44.9         47.0         49.2         50.9</span>
+<span class="co">#&gt; 4         49.6         51.5         53.3         56.0         59.3         61.5</span>
+<span class="co">#&gt; 5         34.9         37.8         40.7         43.6         46.1         48.1</span>
+<span class="co">#&gt; 6         40.5         42.0         43.5         44.1         45.9         47.5</span>
+<span class="co">#&gt;   lifeExp_1987 lifeExp_1992 lifeExp_1997 lifeExp_2002 lifeExp_2007 pop_1952</span>
+<span class="co">#&gt; 1         65.8         67.7         69.2         71.0         72.3  9279525</span>
+<span class="co">#&gt; 2         39.9         40.6         41.0         41.0         42.7  4232095</span>
+<span class="co">#&gt; 3         52.3         53.9         54.8         54.4         56.7  1738315</span>
+<span class="co">#&gt; 4         63.6         62.7         52.6         46.6         50.7   442308</span>
+<span class="co">#&gt; 5         49.6         50.3         50.3         50.6         52.3  4469979</span>
+<span class="co">#&gt; 6         48.2         44.7         45.3         47.4         49.6  2445618</span>
+<span class="co">#&gt;   pop_1957 pop_1962 pop_1967 pop_1972 pop_1977 pop_1982 pop_1987 pop_1992</span>
+<span class="co">#&gt; 1 10270856 11000948 12760499 14760787 17152804 20033753 23254956 26298373</span>
+<span class="co">#&gt; 2  4561361  4826015  5247469  5894858  6162675  7016384  7874230  8735988</span>
+<span class="co">#&gt; 3  1925173  2151895  2427334  2761407  3168267  3641603  4243788  4981671</span>
+<span class="co">#&gt; 4   474639   512764   553541   619351   781472   970347  1151184  1342614</span>
+<span class="co">#&gt; 5  4713416  4919632  5127935  5433886  5889574  6634596  7586551  8878303</span>
+<span class="co">#&gt; 6  2667518  2961915  3330989  3529983  3834415  4580410  5126023  5809236</span>
+<span class="co">#&gt;   pop_1997 pop_2002 pop_2007</span>
+<span class="co">#&gt; 1 29072015 31287142 33333216</span>
+<span class="co">#&gt; 2  9875024 10866106 12420476</span>
+<span class="co">#&gt; 3  6066080  7026113  8078314</span>
+<span class="co">#&gt; 4  1536536  1630347  1639131</span>
+<span class="co">#&gt; 5 10352843 12251209 14326203</span>
+<span class="co">#&gt; 6  6121610  7021078  8390505</span></code></pre></div>
+<p>The first step towards getting our nice intermediate data format is to first convert from the wide to the long format.</p>
+<p>The function <code>gather()</code> will 'gather' the observation variables into a single variable. This is sometimes called &quot;melting&quot; your data, because it melts the table from wide to long. Those data will be melted into two variables: one for the variable names and the other for the variable values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_long &lt;-<span class="st"> </span>gap_wide <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">gather</span>(obstype_year, obs_values, <span class="dv">3</span><span class="op">:</span><span class="dv">38</span>)
+<span class="kw">head</span>(gap_long)
+<span class="co">#&gt;   continent      country   obstype_year obs_values</span>
+<span class="co">#&gt; 1    Africa      Algeria gdpPercap_1952       2449</span>
+<span class="co">#&gt; 2    Africa       Angola gdpPercap_1952       3521</span>
+<span class="co">#&gt; 3    Africa        Benin gdpPercap_1952       1063</span>
+<span class="co">#&gt; 4    Africa     Botswana gdpPercap_1952        851</span>
+<span class="co">#&gt; 5    Africa Burkina Faso gdpPercap_1952        543</span>
+<span class="co">#&gt; 6    Africa      Burundi gdpPercap_1952        339</span></code></pre></div>
+<p>Notice that we put three arguments into the <code>gather()</code> function:</p>
+<ol style="list-style-type: decimal">
+<li>The name for the new ID variable (<code>obstype_year</code>).</li>
+<li>The name for the new amalgamated observation variable (<code>obs_value</code>).</li>
+<li>The indices of the old observation variables (<code>3:38</code>, signalling columns 3 through 38) that we want to gather into one variable. Notice that we do not want to melt down columns 1 and 2, as these are considered ID variables.</li>
+</ol>
+<p>We can select observation variables using:</p>
+<ul>
+<li>Variable indices.</li>
+<li>Variable names (without quotes).</li>
+<li><code>x:z</code> to select all variables between x and z.</li>
+<li><code>-y</code> to <em>exclude</em> y.</li>
+<li><code>starts_with(x, ignore.case = TRUE)</code>: All names that start with <code>x</code>.</li>
+<li><code>ends_with(x, ignore.case = TRUE)</code>: All names that end with <code>x</code>.</li>
+<li><code>contains(x, ignore.case = TRUE)</code>: All names that contain <code>x</code>.</li>
+</ul>
+<p>See the <code>select()</code> function in <code>dplyr</code> for more options.</p>
+<p>For instance, here we do the same thing with (1) the <code>starts_with</code> function and (2) the <code>-</code> operator:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1. With the starts_with() function:</span>
+gap_long &lt;-<span class="st"> </span>gap_wide <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">gather</span>(obstype_year, obs_values, <span class="kw">starts_with</span>(<span class="st">&#39;pop&#39;</span>),
+           <span class="kw">starts_with</span>(<span class="st">&#39;lifeExp&#39;</span>), <span class="kw">starts_with</span>(<span class="st">&#39;gdpPercap&#39;</span>))
+<span class="kw">head</span>(gap_long)
+<span class="co">#&gt;   continent      country obstype_year obs_values</span>
+<span class="co">#&gt; 1    Africa      Algeria     pop_1952    9279525</span>
+<span class="co">#&gt; 2    Africa       Angola     pop_1952    4232095</span>
+<span class="co">#&gt; 3    Africa        Benin     pop_1952    1738315</span>
+<span class="co">#&gt; 4    Africa     Botswana     pop_1952     442308</span>
+<span class="co">#&gt; 5    Africa Burkina Faso     pop_1952    4469979</span>
+<span class="co">#&gt; 6    Africa      Burundi     pop_1952    2445618</span>
+
+<span class="co"># 2. With the - operator:</span>
+gap_long &lt;-<span class="st"> </span>gap_wide <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(obstype_year, obs_values, <span class="op">-</span>continent, <span class="op">-</span>country)
+<span class="kw">head</span>(gap_long)
+<span class="co">#&gt;   continent      country   obstype_year obs_values</span>
+<span class="co">#&gt; 1    Africa      Algeria gdpPercap_1952       2449</span>
+<span class="co">#&gt; 2    Africa       Angola gdpPercap_1952       3521</span>
+<span class="co">#&gt; 3    Africa        Benin gdpPercap_1952       1063</span>
+<span class="co">#&gt; 4    Africa     Botswana gdpPercap_1952        851</span>
+<span class="co">#&gt; 5    Africa Burkina Faso gdpPercap_1952        543</span>
+<span class="co">#&gt; 6    Africa      Burundi gdpPercap_1952        339</span></code></pre></div>
+<p>However you choose to do it, notice that the output collapses all of the measured variables into two columns: one containing the new ID variable, the other containing the observation value for that row.</p>
+</div>
+<div id="separate" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> <code>separate</code></h3>
+<p>You will notice that, in our long dataset, <code>obstype_year</code> actually contains two pieces of information, the observation type (<code>pop</code>, <code>lifeExp</code>, or <code>gdpPercap</code>) and the <code>year</code>.</p>
+<p>We can use the <code>separate()</code> function to split the character strings into multiple variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_long_sep &lt;-<span class="st"> </span>gap_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(obstype_year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&#39;obs_type&#39;</span>,<span class="st">&#39;year&#39;</span>), <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))
+<span class="kw">head</span>(gap_long_sep)
+<span class="co">#&gt;   continent      country  obs_type year obs_values</span>
+<span class="co">#&gt; 1    Africa      Algeria gdpPercap 1952       2449</span>
+<span class="co">#&gt; 2    Africa       Angola gdpPercap 1952       3521</span>
+<span class="co">#&gt; 3    Africa        Benin gdpPercap 1952       1063</span>
+<span class="co">#&gt; 4    Africa     Botswana gdpPercap 1952        851</span>
+<span class="co">#&gt; 5    Africa Burkina Faso gdpPercap 1952        543</span>
+<span class="co">#&gt; 6    Africa      Burundi gdpPercap 1952        339</span></code></pre></div>
+</div>
+<div id="spread" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> <code>spread</code></h3>
+<p>The opposite of <code>gather()</code> is <code>spread()</code>. It spreads our observation variables back out to make a wider table. We can use this function to spread our <code>gap_long()</code> to the original &quot;medium&quot; format.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_medium &lt;-<span class="st"> </span>gap_long_sep <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(obs_type, obs_values)
+<span class="kw">head</span>(gap_medium)
+<span class="co">#&gt;   continent country year gdpPercap lifeExp      pop</span>
+<span class="co">#&gt; 1    Africa Algeria 1952      2449    43.1  9279525</span>
+<span class="co">#&gt; 2    Africa Algeria 1957      3014    45.7 10270856</span>
+<span class="co">#&gt; 3    Africa Algeria 1962      2551    48.3 11000948</span>
+<span class="co">#&gt; 4    Africa Algeria 1967      3247    51.4 12760499</span>
+<span class="co">#&gt; 5    Africa Algeria 1972      4183    54.5 14760787</span>
+<span class="co">#&gt; 6    Africa Algeria 1977      4910    58.0 17152804</span></code></pre></div>
+<p>All we need is some quick fixes to make this dataset identical to the original <code>gapminder</code> dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap &lt;-<span class="st"> </span>gapminder
+<span class="kw">head</span>(gap)
+<span class="co">#&gt; # A tibble: 6 x 6</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co"># Rearrange columns:</span>
+gap_medium &lt;-<span class="st"> </span>gap_medium <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(country, continent, year, lifeExp, pop, gdpPercap)
+<span class="kw">head</span>(gap_medium)
+<span class="co">#&gt;   country continent year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt; 1 Algeria    Africa 1952    43.1  9279525      2449</span>
+<span class="co">#&gt; 2 Algeria    Africa 1957    45.7 10270856      3014</span>
+<span class="co">#&gt; 3 Algeria    Africa 1962    48.3 11000948      2551</span>
+<span class="co">#&gt; 4 Algeria    Africa 1967    51.4 12760499      3247</span>
+<span class="co">#&gt; 5 Algeria    Africa 1972    54.5 14760787      4183</span>
+<span class="co">#&gt; 6 Algeria    Africa 1977    58.0 17152804      4910</span>
+<span class="co"># Arrange by country, continent, and year:</span>
+gap_medium &lt;-<span class="st"> </span>gap_medium <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(country,continent,year)
+<span class="kw">head</span>(gap_medium)
+<span class="co">#&gt;       country continent year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt; 1 Afghanistan      Asia 1952    28.8  8425333       779</span>
+<span class="co">#&gt; 2 Afghanistan      Asia 1957    30.3  9240934       821</span>
+<span class="co">#&gt; 3 Afghanistan      Asia 1962    32.0 10267083       853</span>
+<span class="co">#&gt; 4 Afghanistan      Asia 1967    34.0 11537966       836</span>
+<span class="co">#&gt; 5 Afghanistan      Asia 1972    36.1 13079460       740</span>
+<span class="co">#&gt; 6 Afghanistan      Asia 1977    38.4 14880372       786</span></code></pre></div>
+<p><strong>What we just told you will become obsolete...</strong></p>
+<p><code>gather</code> and <code>spread</code> are being replaced by <code>pivot_longer</code> and <code>pivot_wider</code> in <code>tidyr 1.0.0</code>, which uses ideas from the <code>cdata</code> package to make reshaping easier to think about. In future classes, we will migrate to those functions.</p>
+</div>
+</div>
+<div id="dealing-with-missing-data" class="section level2">
+<h2><span class="header-section-number">10.4</span> Dealing with Missing Data</h2>
+<p>A common challenge in applying quantitative tools to social science problems is dealing with missing data. You'll see a variety of ways the creators of data sets designate that a piece of data is missing - for example, <code>NA</code>, <code>-99</code>, or <code>-77</code> are sometimes used to denote a missing piece of data. We recommend using <code>NA</code>, which has a variety of associated functions that are useful when transforming missing data.</p>
+<div id="na_if" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> <code>na_if</code></h3>
+<p>You can use <code>na_if</code> to replace certain pieces of data with <code>NA</code>. Consider the case where <code>lifeExp</code> values below 35 are missing and simply filled in with &quot;unknown&quot;:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_medium<span class="op">$</span>lifeExp[gap_medium<span class="op">$</span>lifeExp <span class="op">&lt;</span><span class="st"> </span><span class="dv">35</span>] &lt;-<span class="st"> &quot;unknown&quot;</span></code></pre></div>
+<p>This is problematic for many reasons, including that we cannot perform simple mathematical functions on columns with both number and character values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(gap_medium<span class="op">$</span>lifeExp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; Warning in mean.default(gap_medium$lifeExp, na.rm = TRUE): argument is not</span>
+<span class="co">#&gt; numeric or logical: returning NA</span>
+<span class="co">#&gt; [1] NA</span></code></pre></div>
+<p>However, <code>NA</code>s are different in the sense that they can exist in a numeric vector, and therefore you still can perform math functions (R will omit those observations with <code>NA</code>). Below, we replace the &quot;unknown&quot; values with <code>NA</code>, and we can then calculate the mean <code>lifeExp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_medium &lt;-<span class="st"> </span>gap_medium <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lifeExp =</span> <span class="kw">na_if</span>(lifeExp, <span class="st">&quot;unknown&quot;</span>),
+         <span class="dt">lifeExp =</span> <span class="kw">as.double</span>(lifeExp))
+
+<span class="kw">mean</span>(gap_medium<span class="op">$</span>lifeExp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 60</span></code></pre></div>
+</div>
+<div id="replace-na-values-with-replace_na" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> Replace <code>NA</code> values with <code>replace_na</code></h3>
+<p>Sometimes, you will want to replace all <code>NA</code> values in your data (for instance, maybe you know that the true value of anything coded as <code>NA</code> is actually 30). <code>replace_na</code> is a simple command that will replace all <code>NA</code>s with a new value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_na_replaced &lt;-<span class="st"> </span>gap_medium <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lifeExp =</span> <span class="kw">replace_na</span>(lifeExp, <span class="dv">30</span>))
+
+<span class="kw">head</span>(gap_na_replaced)
+<span class="co">#&gt;       country continent year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt; 1 Afghanistan      Asia 1952    30.0  8425333       779</span>
+<span class="co">#&gt; 2 Afghanistan      Asia 1957    30.0  9240934       821</span>
+<span class="co">#&gt; 3 Afghanistan      Asia 1962    30.0 10267083       853</span>
+<span class="co">#&gt; 4 Afghanistan      Asia 1967    30.0 11537966       836</span>
+<span class="co">#&gt; 5 Afghanistan      Asia 1972    36.1 13079460       740</span>
+<span class="co">#&gt; 6 Afghanistan      Asia 1977    38.4 14880372       786</span></code></pre></div>
+</div>
+</div>
+<div id="more-tidyverse" class="section level2">
+<h2><span class="header-section-number">10.5</span> More <code>tidyverse</code></h2>
+<p><code>dplyr</code> and <code>tidyr</code> have many more functions to help you wrangle and manipulate your data. See the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling Cheatsheet</a> for more.</p>
+<p>There are some other useful packages in the <a href="http://www.tidyverse.org">tidyverse</a>:</p>
+<ul>
+<li><code>ggplot2</code> for plotting (we will cover this in the Visualization module).</li>
+<li><code>readr</code> and <code>haven</code> for reading in data.</li>
+<li><code>purrr</code> for working iterations.</li>
+<li><code>stringr</code>, <code>lubridate</code>, and <code>forcats</code> for manipulating strings, dates, and factors, respectively.</li>
+<li>Many many more! Take a peak at the <a href="https://github.com/tidyverse">tidyverse GitHub page</a>...</li>
+</ul>
+</div>
+<div id="challenges-7" class="section level2">
+<h2><span class="header-section-number">10.6</span> Challenges</h2>
+<div id="challenge-1.-4" class="section level4 unnumbered">
+<h4>Challenge 1.</h4>
+<p>Subset the results from Challenge #3 (of the previous chapter) to select only the <code>country</code>, <code>year</code>, and <code>gdpPercap_diff</code> columns. Use <code>tidyr</code> to put it in wide format so that countries are rows and years are columns.</p>
+</div>
+<div id="challenge-2.-3" class="section level4 unnumbered">
+<h4>Challenge 2.</h4>
+<p>Now turn the dataframe above back into the long format with three columns: <code>country</code>, <code>year</code>, and <code>gdpPercap_diff</code>.</p>
+</div>
+<div id="acknowledgments-3" class="section level4 unnumbered">
+<h4>Acknowledgments</h4>
+<p>Some of the materials in this module were adapted from:</p>
+<ul>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/">Software Carpentry</a>.</li>
+<li><a href="https://github.com/berkeley-scf/r-bootcamp-fall-2019">R bootcamp at UC Berkeley</a>.</li>
+</ul>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(gapminder)</code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="relational-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/plsc-31101/course/edit/master/06-Tidying_Data/06_1-tidyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/plsc-31101/course/raw/master/06-Tidying_Data/06_1-tidyr.Rmd"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

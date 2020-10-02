@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 17 4. Subsetting | PLSC 31101: Introduction To Computational Tools And Techniques For Social Science</title>
+  <meta name="description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 17 4. Subsetting | PLSC 31101: Introduction To Computational Tools And Techniques For Social Science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://rochelleterman.github.io/plsc-31101/" />
+  
+  <meta property="og:description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="github-repo" content="rochelleterman/plsc-31101" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 4. Subsetting | PLSC 31101: Introduction To Computational Tools And Techniques For Social Science" />
+  
+  <meta name="twitter:description" content="This book contains course notes and other materials for PLSC 31101." />
+  
+
+<meta name="author" content="Rochelle Terman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="assignments-1.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PLSC 31101</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Before Class</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#who-should-take-this-course"><i class="fa fa-check"></i><b>1.2</b> Who should take this course</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#requirements-and-evaluation"><i class="fa fa-check"></i><b>1.3</b> Requirements and Evaluation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#activities-and-materials"><i class="fa fa-check"></i><b>1.4</b> Activities and Materials</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#curriculum-outline-schedule"><i class="fa fa-check"></i><b>1.5</b> Curriculum Outline / Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
+<li class="chapter" data-level="2.1" data-path="installation.html"><a href="installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
+<li class="chapter" data-level="2.2" data-path="installation.html"><a href="installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="installation.html"><a href="installation.html#r-packages"><i class="fa fa-check"></i><b>2.3</b> R Packages</a></li>
+<li class="chapter" data-level="2.4" data-path="installation.html"><a href="installation.html#the-bash-shell"><i class="fa fa-check"></i><b>2.4</b> The Bash Shell</a></li>
+<li class="chapter" data-level="2.5" data-path="installation.html"><a href="installation.html#git"><i class="fa fa-check"></i><b>2.5</b> Git</a></li>
+<li class="chapter" data-level="2.6" data-path="installation.html"><a href="installation.html#other-helpful-tools"><i class="fa fa-check"></i><b>2.6</b> Other helpful tools</a></li>
+<li class="chapter" data-level="2.7" data-path="installation.html"><a href="installation.html#testing-your-installation"><i class="fa fa-check"></i><b>2.7</b> Testing your installation</a></li>
+</ul></li>
+<li class="part"><span><b>II Course Notes</b></span></li>
+<li class="chapter" data-level="3" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-basics.html"><a href="r-basics.html#what-is-r"><i class="fa fa-check"></i><b>3.1</b> What is R?</a></li>
+<li class="chapter" data-level="3.2" data-path="r-basics.html"><a href="r-basics.html#r-studio-1"><i class="fa fa-check"></i><b>3.2</b> R Studio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-basics.html"><a href="r-basics.html#console"><i class="fa fa-check"></i><b>3.2.1</b> Console</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-basics.html"><a href="r-basics.html#scripts"><i class="fa fa-check"></i><b>3.2.2</b> Scripts</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-basics.html"><a href="r-basics.html#running-code"><i class="fa fa-check"></i><b>3.2.3</b> Running code</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-basics.html"><a href="r-basics.html#comments"><i class="fa fa-check"></i><b>3.2.4</b> Comments</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-basics.html"><a href="r-basics.html#diagnostics-and-errors"><i class="fa fa-check"></i><b>3.2.5</b> Diagnostics and errors</a></li>
+<li class="chapter" data-level="3.2.6" data-path="r-basics.html"><a href="r-basics.html#r-environment"><i class="fa fa-check"></i><b>3.2.6</b> R Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-basics.html"><a href="r-basics.html#r-markdown"><i class="fa fa-check"></i><b>3.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-basics.html"><a href="r-basics.html#yaml-header"><i class="fa fa-check"></i><b>3.3.1</b> YAML header</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-basics.html"><a href="r-basics.html#markdown"><i class="fa fa-check"></i><b>3.3.2</b> Markdown</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-basics.html"><a href="r-basics.html#code-chunks"><i class="fa fa-check"></i><b>3.3.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-basics.html"><a href="r-basics.html#knitting"><i class="fa fa-check"></i><b>3.3.4</b> Knitting</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-basics.html"><a href="r-basics.html#cheatsheets-and-other-resources"><i class="fa fa-check"></i><b>3.3.5</b> Cheatsheets and Other Resources</a></li>
+<li class="chapter" data-level="3.3.6" data-path="r-basics.html"><a href="r-basics.html#challenges"><i class="fa fa-check"></i><b>3.3.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-basics.html"><a href="r-basics.html#r-packages-1"><i class="fa fa-check"></i><b>3.4</b> R Packages</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-basics.html"><a href="r-basics.html#installing-packages"><i class="fa fa-check"></i><b>3.4.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>3.4.2</b> Loading Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-syntax.html"><a href="r-syntax.html"><i class="fa fa-check"></i><b>4</b> R Syntax</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-syntax.html"><a href="r-syntax.html#variables"><i class="fa fa-check"></i><b>4.1</b> Variables</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="r-syntax.html"><a href="r-syntax.html#arithmetic"><i class="fa fa-check"></i><b>4.1.1</b> Arithmetic</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-syntax.html"><a href="r-syntax.html#assigning-variables"><i class="fa fa-check"></i><b>4.1.2</b> Assigning Variables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-syntax.html"><a href="r-syntax.html#variable-names"><i class="fa fa-check"></i><b>4.1.3</b> Variable Names</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-2"><i class="fa fa-check"></i><b>4.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-syntax.html"><a href="r-syntax.html#functions"><i class="fa fa-check"></i><b>4.2</b> Functions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="r-syntax.html"><a href="r-syntax.html#arguments"><i class="fa fa-check"></i><b>4.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-syntax.html"><a href="r-syntax.html#store-function-output"><i class="fa fa-check"></i><b>4.2.2</b> Store Function Output</a></li>
+<li class="chapter" data-level="4.2.3" data-path="r-syntax.html"><a href="r-syntax.html#argument-restrictions-and-defaults"><i class="fa fa-check"></i><b>4.2.3</b> Argument Restrictions and Defaults</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-syntax.html"><a href="r-syntax.html#documentation-and-help-files"><i class="fa fa-check"></i><b>4.2.4</b> Documentation and Help Files</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-3"><i class="fa fa-check"></i><b>4.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-syntax.html"><a href="r-syntax.html#data-types"><i class="fa fa-check"></i><b>4.3</b> Data Types</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="r-syntax.html"><a href="r-syntax.html#whats-that-type"><i class="fa fa-check"></i><b>4.3.1</b> What’s that Type?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-syntax.html"><a href="r-syntax.html#coercion"><i class="fa fa-check"></i><b>4.3.2</b> Coercion</a></li>
+<li class="chapter" data-level="4.3.3" data-path="r-syntax.html"><a href="r-syntax.html#other-objects"><i class="fa fa-check"></i><b>4.3.3</b> Other Objects</a></li>
+<li class="chapter" data-level="4.3.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-4"><i class="fa fa-check"></i><b>4.3.4</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html"><i class="fa fa-check"></i><b>5</b> Data Classes and Structures</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors"><i class="fa fa-check"></i><b>5.1</b> Vectors</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-vectors"><i class="fa fa-check"></i><b>5.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-a-vector"><i class="fa fa-check"></i><b>5.1.2</b> Naming a Vector</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#calculations-on-vectors"><i class="fa fa-check"></i><b>5.1.3</b> Calculations on Vectors</a></li>
+<li class="chapter" data-level="5.1.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>5.1.4</b> Types of Vectors</a></li>
+<li class="chapter" data-level="5.1.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercion-1"><i class="fa fa-check"></i><b>5.1.5</b> Coercion</a></li>
+<li class="chapter" data-level="5.1.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-5"><i class="fa fa-check"></i><b>5.1.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#lists"><i class="fa fa-check"></i><b>5.2</b> Lists</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-lists"><i class="fa fa-check"></i><b>5.2.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-lists"><i class="fa fa-check"></i><b>5.2.2</b> Naming Lists</a></li>
+<li class="chapter" data-level="5.2.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#list-structure"><i class="fa fa-check"></i><b>5.2.3</b> List Structure</a></li>
+<li class="chapter" data-level="5.2.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-6"><i class="fa fa-check"></i><b>5.2.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#factors"><i class="fa fa-check"></i><b>5.3</b> Factors</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-factors"><i class="fa fa-check"></i><b>5.3.1</b> Creating Factors</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#summarizing-a-factor"><i class="fa fa-check"></i><b>5.3.2</b> Summarizing a Factor</a></li>
+<li class="chapter" data-level="5.3.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#changing-factor-levels"><i class="fa fa-check"></i><b>5.3.3</b> Changing Factor Levels</a></li>
+<li class="chapter" data-level="5.3.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#factors-are-integers"><i class="fa fa-check"></i><b>5.3.4</b> Factors are Integers</a></li>
+<li class="chapter" data-level="5.3.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-7"><i class="fa fa-check"></i><b>5.3.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrices"><i class="fa fa-check"></i><b>5.4</b> Matrices</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-matrices"><i class="fa fa-check"></i><b>5.4.1</b> Creating Matrices</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrix-dimensions"><i class="fa fa-check"></i><b>5.4.2</b> Matrix Dimensions</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrix-names"><i class="fa fa-check"></i><b>5.4.3</b> Matrix Names</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenge"><i class="fa fa-check"></i><b>5.4.4</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#dataframes"><i class="fa fa-check"></i><b>5.5</b> Dataframes</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-dataframes"><i class="fa fa-check"></i><b>5.5.1</b> Creating Dataframes</a></li>
+<li class="chapter" data-level="5.5.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#the-structure-of-dataframes"><i class="fa fa-check"></i><b>5.5.2</b> The Structure of Dataframes</a></li>
+<li class="chapter" data-level="5.5.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-dataframes"><i class="fa fa-check"></i><b>5.5.3</b> Naming Dataframes</a></li>
+<li class="chapter" data-level="5.5.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercing-dataframes"><i class="fa fa-check"></i><b>5.5.4</b> Coercing Dataframes</a></li>
+<li class="chapter" data-level="5.5.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-8"><i class="fa fa-check"></i><b>5.5.5</b> Challenges</a></li>
+<li class="chapter" data-level="5.5.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#quiz"><i class="fa fa-check"></i><b>5.5.6</b> Quiz</a></li>
+<li class="chapter" data-level="5.5.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#data-structure-answers"><i class="fa fa-check"></i><b>5.5.7</b> Answers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>6</b> Subsetting</a><ul>
+<li class="chapter" data-level="6.1" data-path="subsetting.html"><a href="subsetting.html#subsetting-vectors"><i class="fa fa-check"></i><b>6.1</b> Subsetting Vectors</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="subsetting.html"><a href="subsetting.html#subsetting-types"><i class="fa fa-check"></i><b>6.1.1</b> Subsetting Types</a></li>
+<li class="chapter" data-level="6.1.2" data-path="subsetting.html"><a href="subsetting.html#conditional-subsetting"><i class="fa fa-check"></i><b>6.1.2</b> Conditional Subsetting</a></li>
+<li class="chapter" data-level="6.1.3" data-path="subsetting.html"><a href="subsetting.html#challenge-1"><i class="fa fa-check"></i><b>6.1.3</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="subsetting.html"><a href="subsetting.html#subsetting-lists"><i class="fa fa-check"></i><b>6.2</b> Subsetting Lists</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="subsetting.html"><a href="subsetting.html#with"><i class="fa fa-check"></i><b>6.2.1</b> With <code>[</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="subsetting.html"><a href="subsetting.html#with-1"><i class="fa fa-check"></i><b>6.2.2</b> With <code>[[</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="subsetting.html"><a href="subsetting.html#with-2"><i class="fa fa-check"></i><b>6.2.3</b> with <code>$</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="subsetting.html"><a href="subsetting.html#challenge-2"><i class="fa fa-check"></i><b>6.2.4</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="subsetting.html"><a href="subsetting.html#subsetting-matrices"><i class="fa fa-check"></i><b>6.3</b> Subsetting Matrices</a></li>
+<li class="chapter" data-level="6.4" data-path="subsetting.html"><a href="subsetting.html#subsetting-dataframes"><i class="fa fa-check"></i><b>6.4</b> Subsetting Dataframes</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="subsetting.html"><a href="subsetting.html#subsetting-names-and"><i class="fa fa-check"></i><b>6.4.1</b> Subsetting Names and <code>$</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="subsetting.html"><a href="subsetting.html#conditional-subsetting-1"><i class="fa fa-check"></i><b>6.4.2</b> Conditional Subsetting</a></li>
+<li class="chapter" data-level="6.4.3" data-path="subsetting.html"><a href="subsetting.html#list-like-and-matrix-like-subsetting"><i class="fa fa-check"></i><b>6.4.3</b> List-Like and Matrix-Like Subsetting</a></li>
+<li class="chapter" data-level="6.4.4" data-path="subsetting.html"><a href="subsetting.html#challenges-9"><i class="fa fa-check"></i><b>6.4.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="subsetting.html"><a href="subsetting.html#sub-assignment"><i class="fa fa-check"></i><b>6.5</b> Sub-assignment</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="subsetting.html"><a href="subsetting.html#basics-of-sub-assignment"><i class="fa fa-check"></i><b>6.5.1</b> Basics of Sub-assignment</a></li>
+<li class="chapter" data-level="6.5.2" data-path="subsetting.html"><a href="subsetting.html#recycling"><i class="fa fa-check"></i><b>6.5.2</b> Recycling</a></li>
+<li class="chapter" data-level="6.5.3" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>6.5.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>7</b> Working with Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="working-with-data.html"><a href="working-with-data.html#project-workflow"><i class="fa fa-check"></i><b>7.1</b> Project Workflow</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="working-with-data.html"><a href="working-with-data.html#store-analyses-in-scripts-not-workspaces."><i class="fa fa-check"></i><b>7.1.1</b> Store Analyses in Scripts, Not Workspaces.</a></li>
+<li class="chapter" data-level="7.1.2" data-path="working-with-data.html"><a href="working-with-data.html#working-directories-and-paths"><i class="fa fa-check"></i><b>7.1.2</b> Working Directories and Paths</a></li>
+<li class="chapter" data-level="7.1.3" data-path="working-with-data.html"><a href="working-with-data.html#r-projects"><i class="fa fa-check"></i><b>7.1.3</b> R Projects</a></li>
+<li class="chapter" data-level="7.1.4" data-path="working-with-data.html"><a href="working-with-data.html#file-organization"><i class="fa fa-check"></i><b>7.1.4</b> File Organization</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="working-with-data.html"><a href="working-with-data.html#introduction-to-data"><i class="fa fa-check"></i><b>7.2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="working-with-data.html"><a href="working-with-data.html#wheres-my-data"><i class="fa fa-check"></i><b>7.2.1</b> Where’s my data?</a></li>
+<li class="chapter" data-level="7.2.2" data-path="working-with-data.html"><a href="working-with-data.html#data-storage"><i class="fa fa-check"></i><b>7.2.2</b> Data Storage</a></li>
+<li class="chapter" data-level="7.2.3" data-path="working-with-data.html"><a href="working-with-data.html#tidy-data"><i class="fa fa-check"></i><b>7.2.3</b> <code>tidy</code> Data</a></li>
+<li class="chapter" data-level="7.2.4" data-path="working-with-data.html"><a href="working-with-data.html#relational-data"><i class="fa fa-check"></i><b>7.2.4</b> Relational data</a></li>
+<li class="chapter" data-level="7.2.5" data-path="working-with-data.html"><a href="working-with-data.html#keys"><i class="fa fa-check"></i><b>7.2.5</b> Keys</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="working-with-data.html"><a href="working-with-data.html#importing-and-exporting"><i class="fa fa-check"></i><b>7.3</b> Importing and Exporting</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="working-with-data.html"><a href="working-with-data.html#importing-data"><i class="fa fa-check"></i><b>7.3.1</b> Importing Data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="working-with-data.html"><a href="working-with-data.html#exporting-data"><i class="fa fa-check"></i><b>7.3.2</b> Exporting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="working-with-data.html"><a href="working-with-data.html#exploring-data"><i class="fa fa-check"></i><b>7.4</b> Exploring Data</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="working-with-data.html"><a href="working-with-data.html#the-gapminder-dataset"><i class="fa fa-check"></i><b>7.4.1</b> The Gapminder Dataset</a></li>
+<li class="chapter" data-level="7.4.2" data-path="working-with-data.html"><a href="working-with-data.html#structure-and-dimensions"><i class="fa fa-check"></i><b>7.4.2</b> Structure and Dimensions</a></li>
+<li class="chapter" data-level="7.4.3" data-path="working-with-data.html"><a href="working-with-data.html#common-alterations"><i class="fa fa-check"></i><b>7.4.3</b> Common Alterations</a></li>
+<li class="chapter" data-level="7.4.4" data-path="working-with-data.html"><a href="working-with-data.html#summary-statistics"><i class="fa fa-check"></i><b>7.4.4</b> Summary statistics</a></li>
+<li class="chapter" data-level="7.4.5" data-path="working-with-data.html"><a href="working-with-data.html#review-of-subsetting"><i class="fa fa-check"></i><b>7.4.5</b> Review of Subsetting</a></li>
+<li class="chapter" data-level="7.4.6" data-path="working-with-data.html"><a href="working-with-data.html#basic-plotting"><i class="fa fa-check"></i><b>7.4.6</b> Basic Plotting</a></li>
+<li class="chapter" data-level="7.4.7" data-path="working-with-data.html"><a href="working-with-data.html#challenges-10"><i class="fa fa-check"></i><b>7.4.7</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>8</b> Data Transformation</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-transformation.html"><a href="data-transformation.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="data-transformation.html"><a href="data-transformation.html#tidyverse"><i class="fa fa-check"></i><b>8.1.1</b> <code>tidyverse</code></a></li>
+<li class="chapter" data-level="8.1.2" data-path="data-transformation.html"><a href="data-transformation.html#gapminder"><i class="fa fa-check"></i><b>8.1.2</b> Gapminder</a></li>
+<li class="chapter" data-level="8.1.3" data-path="data-transformation.html"><a href="data-transformation.html#why-dplyr"><i class="fa fa-check"></i><b>8.1.3</b> Why <code>dplyr</code>?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="data-transformation.html"><a href="data-transformation.html#dplyr-functions"><i class="fa fa-check"></i><b>8.2</b> <code>dplyr</code> Functions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>8.2.1</b> Select Columns with <code>select</code></a></li>
+<li class="chapter" data-level="8.2.2" data-path="data-transformation.html"><a href="data-transformation.html#the-pipe"><i class="fa fa-check"></i><b>8.2.2</b> The Pipe</a></li>
+<li class="chapter" data-level="8.2.3" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>8.2.3</b> Filter Rows with <code>filter</code></a></li>
+<li class="chapter" data-level="8.2.4" data-path="data-transformation.html"><a href="data-transformation.html#calculate-across-groups-with-group_by"><i class="fa fa-check"></i><b>8.2.4</b> Calculate Across Groups with <code>group_by</code></a></li>
+<li class="chapter" data-level="8.2.5" data-path="data-transformation.html"><a href="data-transformation.html#summarize-across-groups-with-summarize"><i class="fa fa-check"></i><b>8.2.5</b> Summarize Across Groups with <code>summarize</code></a></li>
+<li class="chapter" data-level="8.2.6" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>8.2.6</b> Add New Variables with <code>mutate</code></a></li>
+<li class="chapter" data-level="8.2.7" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>8.2.7</b> Arrange Rows with <code>arrange</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="data-transformation.html"><a href="data-transformation.html#dplyr-and-non-standard-evaluation"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr</code> and “Non-Standard Evaluation”</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="data-transformation.html"><a href="data-transformation.html#challenges-11"><i class="fa fa-check"></i><b>8.3.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>9</b> Tidying Data</a><ul>
+<li class="chapter" data-level="9.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.long-formats"><i class="fa fa-check"></i><b>9.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="9.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>9.2</b> Tidying the Gapminder Data</a></li>
+<li class="chapter" data-level="9.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>9.3</b> <code>tidyr</code> Functions</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>9.3.1</b> <code>gather</code></a></li>
+<li class="chapter" data-level="9.3.2" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>9.3.2</b> <code>separate</code></a></li>
+<li class="chapter" data-level="9.3.3" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>9.3.3</b> <code>spread</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tidying-data.html"><a href="tidying-data.html#more-tidyverse"><i class="fa fa-check"></i><b>9.4</b> More <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="9.4.1" data-path="tidying-data.html"><a href="tidying-data.html#challenges-12"><i class="fa fa-check"></i><b>9.4.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="relational-data-1.html"><a href="relational-data-1.html"><i class="fa fa-check"></i><b>10</b> Relational Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="relational-data-1.html"><a href="relational-data-1.html#why-relational-data"><i class="fa fa-check"></i><b>10.1</b> Why Relational Data</a></li>
+<li class="chapter" data-level="10.2" data-path="relational-data-1.html"><a href="relational-data-1.html#keys-1"><i class="fa fa-check"></i><b>10.2</b> Keys</a></li>
+<li class="chapter" data-level="10.3" data-path="relational-data-1.html"><a href="relational-data-1.html#joins"><i class="fa fa-check"></i><b>10.3</b> Joins</a></li>
+<li class="chapter" data-level="10.4" data-path="relational-data-1.html"><a href="relational-data-1.html#defining-keys"><i class="fa fa-check"></i><b>10.4</b> Defining keys</a></li>
+<li class="chapter" data-level="10.5" data-path="relational-data-1.html"><a href="relational-data-1.html#duplicate-keys"><i class="fa fa-check"></i><b>10.5</b> Duplicate keys</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>11</b> Plotting</a><ul>
+<li class="chapter" data-level="11.1" data-path="plotting.html"><a href="plotting.html#the-dataset"><i class="fa fa-check"></i><b>11.1</b> The dataset</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting.html"><a href="plotting.html#r-base-graphics"><i class="fa fa-check"></i><b>11.2</b> R base graphics</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="plotting.html"><a href="plotting.html#scatter-and-line-plots"><i class="fa fa-check"></i><b>11.2.1</b> Scatter and Line Plots</a></li>
+<li class="chapter" data-level="11.2.2" data-path="plotting.html"><a href="plotting.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>11.2.2</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="11.2.3" data-path="plotting.html"><a href="plotting.html#labels"><i class="fa fa-check"></i><b>11.2.3</b> Labels</a></li>
+<li class="chapter" data-level="11.2.4" data-path="plotting.html"><a href="plotting.html#axis-and-size-scaling"><i class="fa fa-check"></i><b>11.2.4</b> Axis and size scaling</a></li>
+<li class="chapter" data-level="11.2.5" data-path="plotting.html"><a href="plotting.html#graphical-parameters"><i class="fa fa-check"></i><b>11.2.5</b> Graphical parameters</a></li>
+<li class="chapter" data-level="11.2.6" data-path="plotting.html"><a href="plotting.html#annotations-reference-lines-and-legends"><i class="fa fa-check"></i><b>11.2.6</b> Annotations, reference lines, and legends</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="plotting.html"><a href="plotting.html#ggplot2"><i class="fa fa-check"></i><b>11.3</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="plotting.html"><a href="plotting.html#grammar"><i class="fa fa-check"></i><b>11.3.1</b> Grammar</a></li>
+<li class="chapter" data-level="11.3.2" data-path="plotting.html"><a href="plotting.html#anatomy-of-aes"><i class="fa fa-check"></i><b>11.3.2</b> Anatomy of <code>aes</code></a></li>
+<li class="chapter" data-level="11.3.3" data-path="plotting.html"><a href="plotting.html#layers"><i class="fa fa-check"></i><b>11.3.3</b> Layers</a></li>
+<li class="chapter" data-level="11.3.4" data-path="plotting.html"><a href="plotting.html#labels-1"><i class="fa fa-check"></i><b>11.3.4</b> Labels</a></li>
+<li class="chapter" data-level="11.3.5" data-path="plotting.html"><a href="plotting.html#transformations-and-stats"><i class="fa fa-check"></i><b>11.3.5</b> Transformations and Stats</a></li>
+<li class="chapter" data-level="11.3.6" data-path="plotting.html"><a href="plotting.html#facets"><i class="fa fa-check"></i><b>11.3.6</b> Facets</a></li>
+<li class="chapter" data-level="11.3.7" data-path="plotting.html"><a href="plotting.html#putting-it-all-together"><i class="fa fa-check"></i><b>11.3.7</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="plotting.html"><a href="plotting.html#saving-plots"><i class="fa fa-check"></i><b>11.4</b> Saving plots</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="statistical-inferences.html"><a href="statistical-inferences.html"><i class="fa fa-check"></i><b>12</b> Statistical Inferences</a><ul>
+<li class="chapter" data-level="12.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-distributions"><i class="fa fa-check"></i><b>12.1</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#sampling-and-simulation"><i class="fa fa-check"></i><b>12.1.1</b> Sampling and simulation</a></li>
+<li class="chapter" data-level="12.1.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#random-seeds"><i class="fa fa-check"></i><b>12.1.2</b> Random Seeds</a></li>
+<li class="chapter" data-level="12.1.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-13"><i class="fa fa-check"></i><b>12.1.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#inferences-and-regressions"><i class="fa fa-check"></i><b>12.2</b> Inferences and regressions</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>12.2.1</b> Statistical Tests</a></li>
+<li class="chapter" data-level="12.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>12.2.2</b> Regressions and Linear Models</a></li>
+<li class="chapter" data-level="12.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>12.2.3</b> Regression output</a></li>
+<li class="chapter" data-level="12.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>12.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="12.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>12.2.5</b> Formatting Regression Tables</a></li>
+<li class="chapter" data-level="12.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-14"><i class="fa fa-check"></i><b>12.2.6</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html"><i class="fa fa-check"></i><b>13</b> Strings and Regular Expressions</a><ul>
+<li class="chapter" data-level="13.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-string-operations"><i class="fa fa-check"></i><b>13.1</b> Common string operations</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#concatinating-strings-with-paste"><i class="fa fa-check"></i><b>13.1.1</b> Concatinating strings with <code>paste()</code></a></li>
+<li class="chapter" data-level="13.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extracting-substrings"><i class="fa fa-check"></i><b>13.1.2</b> Extracting substrings</a></li>
+<li class="chapter" data-level="13.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replace-substrings-with-gsub"><i class="fa fa-check"></i><b>13.1.3</b> Replace substrings with <code>gsub()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i><b>13.2</b> Regular Expressions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>14</b> Programming in R</a><ul>
+<li class="chapter" data-level="14.1" data-path="programming-in-r.html"><a href="programming-in-r.html#conditional-flow"><i class="fa fa-check"></i><b>14.1</b> Conditional Flow</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>14.1.1</b> Multiple conditions</a></li>
+<li class="chapter" data-level="14.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>14.1.2</b> Complex statements</a></li>
+<li class="chapter" data-level="14.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>14.1.3</b> Code style</a></li>
+<li class="chapter" data-level="14.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>14.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>14.2</b> Functions</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>14.2.1</b> Why write functions?</a></li>
+<li class="chapter" data-level="14.2.2" data-path="programming-in-r.html"><a href="programming-in-r.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>14.2.2</b> Anatomy of a function</a></li>
+<li class="chapter" data-level="14.2.3" data-path="programming-in-r.html"><a href="programming-in-r.html#writing-a-function"><i class="fa fa-check"></i><b>14.2.3</b> Writing a function</a></li>
+<li class="chapter" data-level="14.2.4" data-path="programming-in-r.html"><a href="programming-in-r.html#using-a-function"><i class="fa fa-check"></i><b>14.2.4</b> Using a function</a></li>
+<li class="chapter" data-level="14.2.5" data-path="programming-in-r.html"><a href="programming-in-r.html#variable-scope"><i class="fa fa-check"></i><b>14.2.5</b> Variable Scope</a></li>
+<li class="chapter" data-level="14.2.6" data-path="programming-in-r.html"><a href="programming-in-r.html#arguments-1"><i class="fa fa-check"></i><b>14.2.6</b> Arguments</a></li>
+<li class="chapter" data-level="14.2.7" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-15"><i class="fa fa-check"></i><b>14.2.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="programming-in-r.html"><a href="programming-in-r.html#iteration"><i class="fa fa-check"></i><b>14.3</b> Iteration</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="programming-in-r.html"><a href="programming-in-r.html#vectorized-functions"><i class="fa fa-check"></i><b>14.3.1</b> Vectorized functions</a></li>
+<li class="chapter" data-level="14.3.2" data-path="programming-in-r.html"><a href="programming-in-r.html#for-loops"><i class="fa fa-check"></i><b>14.3.2</b> For-loops</a></li>
+<li class="chapter" data-level="14.3.3" data-path="programming-in-r.html"><a href="programming-in-r.html#functional-programming-and-map"><i class="fa fa-check"></i><b>14.3.3</b> Functional Programming and <code>map</code></a></li>
+<li class="chapter" data-level="14.3.4" data-path="programming-in-r.html"><a href="programming-in-r.html#scoped-verbs"><i class="fa fa-check"></i><b>14.3.4</b> Scoped verbs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html"><i class="fa fa-check"></i><b>15</b> Collecting Data from the Web</a><ul>
+<li class="chapter" data-level="15.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#introduction-1"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#web-apis"><i class="fa fa-check"></i><b>15.2</b> Web APIs</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#some-basic-terminology"><i class="fa fa-check"></i><b>15.2.1</b> Some Basic Terminology</a></li>
+<li class="chapter" data-level="15.2.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#how-do-get-requests-work"><i class="fa fa-check"></i><b>15.2.2</b> How Do GET Requests Work?</a></li>
+<li class="chapter" data-level="15.2.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-apis"><i class="fa fa-check"></i><b>15.2.3</b> Finding APIs</a></li>
+<li class="chapter" data-level="15.2.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#getting-api-access"><i class="fa fa-check"></i><b>15.2.4</b> Getting API Access</a></li>
+<li class="chapter" data-level="15.2.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-apis-in-r"><i class="fa fa-check"></i><b>15.2.5</b> Using APIs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#collecting-twitter-data-with-rtweet"><i class="fa fa-check"></i><b>15.3</b> Collecting Twitter Data with RTweet</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#setting-up-rtweet"><i class="fa fa-check"></i><b>15.3.1</b> Setting up <code>RTweet</code></a></li>
+<li class="chapter" data-level="15.3.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#uchicago-political-science-prof-tweets"><i class="fa fa-check"></i><b>15.3.2</b> UChicago Political Science Prof Tweets</a></li>
+<li class="chapter" data-level="15.3.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#hashtags-and-text-strings"><i class="fa fa-check"></i><b>15.3.3</b> Hashtags and Text Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#writing-api-queries"><i class="fa fa-check"></i><b>15.4</b> Writing API Queries</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#constructing-the-api-get-request"><i class="fa fa-check"></i><b>15.4.1</b> Constructing the API GET Request</a></li>
+<li class="chapter" data-level="15.4.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#parsing-the-response"><i class="fa fa-check"></i><b>15.4.2</b> Parsing the response</a></li>
+<li class="chapter" data-level="15.4.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#iteration-through-results-pager"><i class="fa fa-check"></i><b>15.4.3</b> Iteration through results pager</a></li>
+<li class="chapter" data-level="15.4.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#visualizing-results"><i class="fa fa-check"></i><b>15.4.4</b> Visualizing Results</a></li>
+<li class="chapter" data-level="15.4.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#more-resources-1"><i class="fa fa-check"></i><b>15.4.5</b> More resources</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#webscraping"><i class="fa fa-check"></i><b>15.5</b> Webscraping</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#whats-a-website"><i class="fa fa-check"></i><b>15.5.1</b> What’s a website?</a></li>
+<li class="chapter" data-level="15.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#html"><i class="fa fa-check"></i><b>15.5.2</b> HTML</a></li>
+<li class="chapter" data-level="15.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#css"><i class="fa fa-check"></i><b>15.5.3</b> CSS</a></li>
+<li class="chapter" data-level="15.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-elements-with-selector-gadget"><i class="fa fa-check"></i><b>15.5.4</b> Finding Elements with Selector Gadget</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#scraping-presidential-statements"><i class="fa fa-check"></i><b>15.6</b> Scraping Presidential Statements</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>15.6.1</b> Using <code>RVest</code> to Read HTML</a></li>
+<li class="chapter" data-level="15.6.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>15.6.2</b> Find Page Elements</a></li>
+<li class="chapter" data-level="15.6.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>15.6.3</b> Get Attributes and Text of Elements</a></li>
+<li class="chapter" data-level="15.6.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this."><i class="fa fa-check"></i><b>15.6.4</b> Let’s DO this.</a></li>
+<li class="chapter" data-level="15.6.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#challenge-1-make-a-function"><i class="fa fa-check"></i><b>15.6.5</b> Challenge 1: Make a function</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Assignments and Projects</b></span></li>
+<li class="chapter" data-level="16" data-path="assignments-1.html"><a href="assignments-1.html"><i class="fa fa-check"></i><b>16</b> Assignments</a><ul>
+<li class="chapter" data-level="16.1" data-path="assignments-1.html"><a href="assignments-1.html#assignment-1"><i class="fa fa-check"></i><b>16.1</b> Assignment 1</a></li>
+<li class="chapter" data-level="16.2" data-path="assignments-1.html"><a href="assignments-1.html#assignment-2"><i class="fa fa-check"></i><b>16.2</b> Assignment 2</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="assignments-1.html"><a href="assignments-1.html#assignment-2-solutions"><i class="fa fa-check"></i><b>16.2.1</b> Assignment 2 Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="assignments-1.html"><a href="assignments-1.html#assignment-3"><i class="fa fa-check"></i><b>16.3</b> Assignment 3</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="assignments-1.html"><a href="assignments-1.html#assignment-3-solutions"><i class="fa fa-check"></i><b>16.3.1</b> Assignment 3 Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="subsetting-1.html"><a href="subsetting-1.html"><i class="fa fa-check"></i><b>17</b> 4. Subsetting</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PLSC 31101: Introduction To Computational Tools And Techniques For Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="subsetting-1" class="section level1">
+<h1><span class="header-section-number">Chapter 17</span> 4. Subsetting</h1>
+<p><strong>4.1 Subset the data so that it returns the third column AS ITS OWN A DATAFRAME. (Do not print the object; store it in a variable.)</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sub &lt;-<span class="st"> </span>dat[<span class="dv">3</span>]</code></pre></div>
+<p><strong>4.2 Subset gapminder so that it returns the third column AS A VECTOR</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sub &lt;-<span class="st"> </span>dat[[<span class="dv">3</span>]]
+<span class="co">#OR</span>
+sub &lt;-<span class="st"> </span>dat[,<span class="dv">3</span>]</code></pre></div>
+<p><strong>4.3 Fix each of the following common data frame subsetting errors</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Extract observations collected for the year 1980</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[dat<span class="op">$</span>year =<span class="st"> </span><span class="dv">1980</span>,]
+
+<span class="co"># Corrected</span>
+dat[dat<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">1980</span>,]</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Extract all columns except 1 through to 4</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[,<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]
+
+<span class="co"># Corrected</span>
+dat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)]</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Extract the rows where the polity2 score is greater than 5</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[dat<span class="op">$</span>polity2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>]
+
+<span class="co"># corrected</span>
+dat[dat<span class="op">$</span>polity2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, ]</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Extract the first row, and the third and fourth columns (<code>country</code> and <code>idealpoint</code>).</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>]
+
+<span class="co"># Corrected</span>
+dat[<span class="dv">1</span>, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]
+dat<span class="op">$</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Extract rows that contain information for the years 2002 and 2007</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat[dat<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">2002</span> <span class="op">|</span><span class="st"> </span><span class="dv">2007</span>,]
+
+<span class="co"># Corrected</span>
+dat[dat<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">2002</span> <span class="op">|</span><span class="st"> </span>dat<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>,]</code></pre></div>
+<p><strong>4.4 What does <code>summary(dat$polity2[dat$region ==&quot;Africa&quot;])</code> do? Explain below in your own words.</strong></p>
+<p>It calculates some summary statistics for <code>polity2</code> scores from observations in Africa.</p>
+<p><strong>4.5 Subset the data to include only observations from years 1990-2000 (inclusive). Put the subsetted data in a new variable called <code>dat.1990.2000</code></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat.<span class="fl">1990.2000</span> &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1990</span> <span class="op">&amp;</span><span class="st"> </span>dat<span class="op">$</span>year<span class="op">&lt;=</span><span class="dv">2000</span>,]</code></pre></div>
+<p><strong>4.6 Using <code>mean()</code> function, tell me the average GDP of observations from 1990 to 2000.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat.<span class="fl">1990.2000</span><span class="op">$</span>GDP, <span class="dt">na.rm =</span> T)
+<span class="co">#&gt; [1] 6611</span></code></pre></div>
+<p><strong>4.7 You just calculated the average GDP for years 1990-2000. Now calculate the average GDP from 2001 onwards. Tell me how much larger it is (in percentage).</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat.<span class="fl">2001.</span>plus &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2000</span>,]
+mean1 &lt;-<span class="st"> </span><span class="kw">mean</span>(dat.<span class="fl">1990.2000</span><span class="op">$</span>GDP, <span class="dt">na.rm =</span> T)
+mean2 &lt;-<span class="st"> </span><span class="kw">mean</span>(dat.<span class="fl">2001.</span>plus<span class="op">$</span>GDP, <span class="dt">na.rm =</span> T)
+(mean2 <span class="op">-</span><span class="st"> </span>mean1) <span class="op">/</span><span class="st"> </span>mean1
+<span class="co">#&gt; [1] 0.825</span></code></pre></div>
+<p><strong>4.8 Look up the helpfile for the function <code>is.na()</code>. Using this function, replace all the NA values in the <code>polity2</code> column of <code>dat</code> with 0.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?is.na
+dat<span class="op">$</span>polity2[<span class="kw">is.na</span>(dat<span class="op">$</span>polity2)] &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="kw">summary</span>(dat<span class="op">$</span>polity2)
+<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="co">#&gt;  -10.00   -5.00    0.00    1.46    8.00   10.00</span></code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="assignments-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rochelleterman/plsc-31101/edit/master/98_Assignments/98_3A_Data-SOLUTIONS.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/rochelleterman/plsc-31101/raw/master/98_Assignments/98_3A_Data-SOLUTIONS.Rmd"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

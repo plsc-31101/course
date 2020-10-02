@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Data Classes and Structures | PLSC 31101: Computational Tools for Social Science</title>
+  <meta name="description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Data Classes and Structures | PLSC 31101: Computational Tools for Social Science" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://plsc-31101.github.io/course/" />
+  
+  <meta property="og:description" content="This book contains course notes and other materials for PLSC 31101." />
+  <meta name="github-repo" content="plsc-31101/course" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Data Classes and Structures | PLSC 31101: Computational Tools for Social Science" />
+  
+  <meta name="twitter:description" content="This book contains course notes and other materials for PLSC 31101." />
+  
+
+<meta name="author" content="Rochelle Terman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistical-inferences.html"/>
+<link rel="next" href="strings-and-regular-expressions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PLSC 31101</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Before Class</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i><b>2</b> Syllabus</a><ul>
+<li class="chapter" data-level="2.1" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i><b>2.1</b> Course Description</a></li>
+<li class="chapter" data-level="2.2" data-path="syllabus.html"><a href="syllabus.html#who-should-take-this-course"><i class="fa fa-check"></i><b>2.2</b> Who Should Take This Course</a></li>
+<li class="chapter" data-level="2.3" data-path="syllabus.html"><a href="syllabus.html#requirements-and-evaluation"><i class="fa fa-check"></i><b>2.3</b> Requirements and Evaluation</a></li>
+<li class="chapter" data-level="2.4" data-path="syllabus.html"><a href="syllabus.html#activities-and-materials"><i class="fa fa-check"></i><b>2.4</b> Activities and Materials</a></li>
+<li class="chapter" data-level="2.5" data-path="syllabus.html"><a href="syllabus.html#curriculum-outlineschedule"><i class="fa fa-check"></i><b>2.5</b> Curriculum Outline/Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>3</b> Installation</a><ul>
+<li class="chapter" data-level="3.1" data-path="installation.html"><a href="installation.html#r"><i class="fa fa-check"></i><b>3.1</b> R</a></li>
+<li class="chapter" data-level="3.2" data-path="installation.html"><a href="installation.html#rstudio"><i class="fa fa-check"></i><b>3.2</b> RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="installation.html"><a href="installation.html#r-packages"><i class="fa fa-check"></i><b>3.3</b> R Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="installation.html"><a href="installation.html#latex"><i class="fa fa-check"></i><b>3.4</b> LaTeX</a></li>
+<li class="chapter" data-level="3.5" data-path="installation.html"><a href="installation.html#git"><i class="fa fa-check"></i><b>3.5</b> Git</a></li>
+<li class="chapter" data-level="3.6" data-path="installation.html"><a href="installation.html#google-chrome"><i class="fa fa-check"></i><b>3.6</b> Google Chrome</a></li>
+<li class="chapter" data-level="3.7" data-path="installation.html"><a href="installation.html#selector-gadget"><i class="fa fa-check"></i><b>3.7</b> Selector Gadget</a></li>
+<li class="chapter" data-level="3.8" data-path="installation.html"><a href="installation.html#other-helpful-tools"><i class="fa fa-check"></i><b>3.8</b> Other Helpful Tools</a></li>
+<li class="chapter" data-level="3.9" data-path="installation.html"><a href="installation.html#troubleshooting"><i class="fa fa-check"></i><b>3.9</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="homework-rubric.html"><a href="homework-rubric.html"><i class="fa fa-check"></i><b>4</b> Homework Rubric</a></li>
+<li class="part"><span><b>II Course Notes</b></span></li>
+<li class="chapter" data-level="5" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>5</b> Introduction</a><ul>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#the-motivation"><i class="fa fa-check"></i><b>5.1</b> The Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction.html"><a href="introduction.html#about-this-class"><i class="fa fa-check"></i><b>5.2</b> About This Class</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction.html"><a href="introduction.html#learning-how-to-program"><i class="fa fa-check"></i><b>5.3</b> Learning How to Program</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>6</b> R Basics</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-basics.html"><a href="r-basics.html#what-is-r"><i class="fa fa-check"></i><b>6.1</b> What is R?</a></li>
+<li class="chapter" data-level="6.2" data-path="r-basics.html"><a href="r-basics.html#rstudio-1"><i class="fa fa-check"></i><b>6.2</b> RStudio</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="r-basics.html"><a href="r-basics.html#console"><i class="fa fa-check"></i><b>6.2.1</b> Console</a></li>
+<li class="chapter" data-level="6.2.2" data-path="r-basics.html"><a href="r-basics.html#scripts"><i class="fa fa-check"></i><b>6.2.2</b> Scripts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="r-basics.html"><a href="r-basics.html#running-code"><i class="fa fa-check"></i><b>6.2.3</b> Running Code</a></li>
+<li class="chapter" data-level="6.2.4" data-path="r-basics.html"><a href="r-basics.html#comments"><i class="fa fa-check"></i><b>6.2.4</b> Comments</a></li>
+<li class="chapter" data-level="6.2.5" data-path="r-basics.html"><a href="r-basics.html#diagnostics-and-errors"><i class="fa fa-check"></i><b>6.2.5</b> Diagnostics and errors</a></li>
+<li class="chapter" data-level="6.2.6" data-path="r-basics.html"><a href="r-basics.html#errors-messages-and-warnings"><i class="fa fa-check"></i><b>6.2.6</b> Errors, Messages, and Warnings</a></li>
+<li class="chapter" data-level="6.2.7" data-path="r-basics.html"><a href="r-basics.html#r-environment"><i class="fa fa-check"></i><b>6.2.7</b> R Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-basics.html"><a href="r-basics.html#r-packages-1"><i class="fa fa-check"></i><b>6.3</b> R Packages</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="r-basics.html"><a href="r-basics.html#installing-packages"><i class="fa fa-check"></i><b>6.3.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.3.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>6.3.2</b> Loading Packages</a></li>
+<li class="chapter" data-level="6.3.3" data-path="r-basics.html"><a href="r-basics.html#challenge"><i class="fa fa-check"></i><b>6.3.3</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="r-basics.html"><a href="r-basics.html#r-markdown"><i class="fa fa-check"></i><b>6.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="r-basics.html"><a href="r-basics.html#yaml-header"><i class="fa fa-check"></i><b>6.4.1</b> YAML Header</a></li>
+<li class="chapter" data-level="6.4.2" data-path="r-basics.html"><a href="r-basics.html#markdown"><i class="fa fa-check"></i><b>6.4.2</b> Markdown</a></li>
+<li class="chapter" data-level="6.4.3" data-path="r-basics.html"><a href="r-basics.html#code-chunks"><i class="fa fa-check"></i><b>6.4.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="6.4.4" data-path="r-basics.html"><a href="r-basics.html#knitting"><i class="fa fa-check"></i><b>6.4.4</b> Knitting</a></li>
+<li class="chapter" data-level="6.4.5" data-path="r-basics.html"><a href="r-basics.html#r-chunk-options-for-knitting"><i class="fa fa-check"></i><b>6.4.5</b> R Chunk Options for Knitting</a></li>
+<li class="chapter" data-level="6.4.6" data-path="r-basics.html"><a href="r-basics.html#cheatsheets-and-other-resources"><i class="fa fa-check"></i><b>6.4.6</b> Cheatsheets and Other Resources</a></li>
+<li class="chapter" data-level="6.4.7" data-path="r-basics.html"><a href="r-basics.html#challenges"><i class="fa fa-check"></i><b>6.4.7</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-syntax.html"><a href="r-syntax.html"><i class="fa fa-check"></i><b>7</b> R Syntax</a><ul>
+<li class="chapter" data-level="7.1" data-path="r-syntax.html"><a href="r-syntax.html#variables"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="r-syntax.html"><a href="r-syntax.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-syntax.html"><a href="r-syntax.html#assigning-variables"><i class="fa fa-check"></i><b>7.1.2</b> Assigning Variables</a></li>
+<li class="chapter" data-level="7.1.3" data-path="r-syntax.html"><a href="r-syntax.html#variable-names"><i class="fa fa-check"></i><b>7.1.3</b> Variable Names</a></li>
+<li class="chapter" data-level="7.1.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-1"><i class="fa fa-check"></i><b>7.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-syntax.html"><a href="r-syntax.html#functions"><i class="fa fa-check"></i><b>7.2</b> Functions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="r-syntax.html"><a href="r-syntax.html#arguments"><i class="fa fa-check"></i><b>7.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="7.2.2" data-path="r-syntax.html"><a href="r-syntax.html#store-function-output"><i class="fa fa-check"></i><b>7.2.2</b> Store Function Output</a></li>
+<li class="chapter" data-level="7.2.3" data-path="r-syntax.html"><a href="r-syntax.html#argument-restrictions-and-defaults"><i class="fa fa-check"></i><b>7.2.3</b> Argument Restrictions and Defaults</a></li>
+<li class="chapter" data-level="7.2.4" data-path="r-syntax.html"><a href="r-syntax.html#documentation-and-help-files"><i class="fa fa-check"></i><b>7.2.4</b> Documentation and Help Files</a></li>
+<li class="chapter" data-level="7.2.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-2"><i class="fa fa-check"></i><b>7.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="r-syntax.html"><a href="r-syntax.html#data-types"><i class="fa fa-check"></i><b>7.3</b> Data Types</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="r-syntax.html"><a href="r-syntax.html#what-is-that-type"><i class="fa fa-check"></i><b>7.3.1</b> What Is that Type?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="r-syntax.html"><a href="r-syntax.html#coercion"><i class="fa fa-check"></i><b>7.3.2</b> Coercion</a></li>
+<li class="chapter" data-level="7.3.3" data-path="r-syntax.html"><a href="r-syntax.html#other-objects"><i class="fa fa-check"></i><b>7.3.3</b> Other Objects</a></li>
+<li class="chapter" data-level="7.3.4" data-path="r-syntax.html"><a href="r-syntax.html#challenges-3"><i class="fa fa-check"></i><b>7.3.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-expressions"><i class="fa fa-check"></i><b>7.4</b> Boolean Expressions</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="r-syntax.html"><a href="r-syntax.html#boolean-operators"><i class="fa fa-check"></i><b>7.4.1</b> Boolean Operators</a></li>
+<li class="chapter" data-level="7.4.2" data-path="r-syntax.html"><a href="r-syntax.html#logical-operators"><i class="fa fa-check"></i><b>7.4.2</b> Logical Operators</a></li>
+<li class="chapter" data-level="7.4.3" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors"><i class="fa fa-check"></i><b>7.4.3</b> Boolean Vectors</a></li>
+<li class="chapter" data-level="7.4.4" data-path="r-syntax.html"><a href="r-syntax.html#boolean-vectors-in-action"><i class="fa fa-check"></i><b>7.4.4</b> Boolean Vectors in Action</a></li>
+<li class="chapter" data-level="7.4.5" data-path="r-syntax.html"><a href="r-syntax.html#challenges-4"><i class="fa fa-check"></i><b>7.4.5</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>8</b> Working with Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="working-with-data.html"><a href="working-with-data.html#project-workflow"><i class="fa fa-check"></i><b>8.1</b> Project Workflow</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-data.html"><a href="working-with-data.html#store-analyses-in-scripts-not-workspaces"><i class="fa fa-check"></i><b>8.1.1</b> Store Analyses in Scripts, Not Workspaces</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-data.html"><a href="working-with-data.html#working-directories-and-paths"><i class="fa fa-check"></i><b>8.1.2</b> Working Directories and Paths</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-data.html"><a href="working-with-data.html#r-projects"><i class="fa fa-check"></i><b>8.1.3</b> R Projects</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-data.html"><a href="working-with-data.html#file-organization"><i class="fa fa-check"></i><b>8.1.4</b> File Organization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="working-with-data.html"><a href="working-with-data.html#importing-and-exporting"><i class="fa fa-check"></i><b>8.2</b> Importing and Exporting</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="working-with-data.html"><a href="working-with-data.html#where-is-my-data"><i class="fa fa-check"></i><b>8.2.1</b> Where Is My Data?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="working-with-data.html"><a href="working-with-data.html#data-storage"><i class="fa fa-check"></i><b>8.2.2</b> Data Storage</a></li>
+<li class="chapter" data-level="8.2.3" data-path="working-with-data.html"><a href="working-with-data.html#importing-data"><i class="fa fa-check"></i><b>8.2.3</b> Importing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="working-with-data.html"><a href="working-with-data.html#exporting-data"><i class="fa fa-check"></i><b>8.2.4</b> Exporting Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>9</b> Data Transformation</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-transformation.html"><a href="data-transformation.html#the-gapminder-dataset"><i class="fa fa-check"></i><b>9.1.1</b> The Gapminder Dataset</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-transformation.html"><a href="data-transformation.html#structure-and-dimensions"><i class="fa fa-check"></i><b>9.1.2</b> Structure and Dimensions</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-transformation.html"><a href="data-transformation.html#variables-1"><i class="fa fa-check"></i><b>9.1.3</b> Variables</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-transformation.html"><a href="data-transformation.html#challenges-5"><i class="fa fa-check"></i><b>9.1.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-transformation.html"><a href="data-transformation.html#introduction-to-dplyr"><i class="fa fa-check"></i><b>9.2</b> Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-transformation.html"><a href="data-transformation.html#tidyverse"><i class="fa fa-check"></i><b>9.2.1</b> <code>tidyverse</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-transformation.html"><a href="data-transformation.html#why-dplyr"><i class="fa fa-check"></i><b>9.2.2</b> Why <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>9.2.3</b> Select Columns with <code>select</code></a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-transformation.html"><a href="data-transformation.html#the-pipe"><i class="fa fa-check"></i><b>9.2.4</b> The Pipe</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>9.2.5</b> Filter Rows with <code>filter</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-transformation.html"><a href="data-transformation.html#more-dplyr-functions"><i class="fa fa-check"></i><b>9.3</b> More <code>dplyr</code> functions</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="data-transformation.html"><a href="data-transformation.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>9.3.1</b> Use <code>mutate()</code> to Add New Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="data-transformation.html"><a href="data-transformation.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>9.3.2</b> Use <code>arrange()</code> to Row-order Data in a Principled Way</a></li>
+<li class="chapter" data-level="9.3.3" data-path="data-transformation.html"><a href="data-transformation.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>9.3.3</b> Use <code>rename()</code> to Rename Variables</a></li>
+<li class="chapter" data-level="9.3.4" data-path="data-transformation.html"><a href="data-transformation.html#use-select-to-rename-and-reposition-variables"><i class="fa fa-check"></i><b>9.3.4</b> Use <code>select()</code> to Rename and Reposition Variables</a></li>
+<li class="chapter" data-level="9.3.5" data-path="data-transformation.html"><a href="data-transformation.html#use-count-to-count-variable-quantities"><i class="fa fa-check"></i><b>9.3.5</b> Use <code>count()</code> to Count Variable Quantities</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="data-transformation.html"><a href="data-transformation.html#calculating-across-groups"><i class="fa fa-check"></i><b>9.4</b> Calculating across Groups</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="data-transformation.html"><a href="data-transformation.html#use-group_by-to-create-a-grouped-data"><i class="fa fa-check"></i><b>9.4.1</b> Use <code>group_by</code> to Create a Grouped Data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="data-transformation.html"><a href="data-transformation.html#summarize-across-groups-with-summarize"><i class="fa fa-check"></i><b>9.4.2</b> Summarize Across Groups with <code>summarize</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>9.4.3</b> Add New Variables with <code>mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
+<li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
+<li class="chapter" data-level="10.3.2" data-path="tidying-data.html"><a href="tidying-data.html#separate"><i class="fa fa-check"></i><b>10.3.2</b> <code>separate</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="tidying-data.html"><a href="tidying-data.html#spread"><i class="fa fa-check"></i><b>10.3.3</b> <code>spread</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="tidying-data.html"><a href="tidying-data.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>10.4</b> Dealing with Missing Data</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="tidying-data.html"><a href="tidying-data.html#na_if"><i class="fa fa-check"></i><b>10.4.1</b> <code>na_if</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="tidying-data.html"><a href="tidying-data.html#replace-na-values-with-replace_na"><i class="fa fa-check"></i><b>10.4.2</b> Replace <code>NA</code> values with <code>replace_na</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="tidying-data.html"><a href="tidying-data.html#more-tidyverse"><i class="fa fa-check"></i><b>10.5</b> More <code>tidyverse</code></a></li>
+<li class="chapter" data-level="10.6" data-path="tidying-data.html"><a href="tidying-data.html#challenges-7"><i class="fa fa-check"></i><b>10.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#why-relational-data"><i class="fa fa-check"></i><b>11.1</b> Why Relational Data</a></li>
+<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#keys"><i class="fa fa-check"></i><b>11.2</b> Keys</a></li>
+<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#joins"><i class="fa fa-check"></i><b>11.3</b> Joins</a></li>
+<li class="chapter" data-level="11.4" data-path="relational-data.html"><a href="relational-data.html#defining-keys"><i class="fa fa-check"></i><b>11.4</b> Defining Keys</a></li>
+<li class="chapter" data-level="11.5" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.5</b> Duplicate Keys</a></li>
+<li class="chapter" data-level="11.6" data-path="relational-data.html"><a href="relational-data.html#challenges-8"><i class="fa fa-check"></i><b>11.6</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>12</b> Plotting</a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting.html"><a href="plotting.html#the-dataset"><i class="fa fa-check"></i><b>12.1</b> The Dataset</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting.html"><a href="plotting.html#r-base-graphics"><i class="fa fa-check"></i><b>12.2</b> R Base Graphics</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="plotting.html"><a href="plotting.html#scatter-and-line-plots"><i class="fa fa-check"></i><b>12.2.1</b> Scatter and Line Plots</a></li>
+<li class="chapter" data-level="12.2.2" data-path="plotting.html"><a href="plotting.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>12.2.2</b> Histograms and Density Plots</a></li>
+<li class="chapter" data-level="12.2.3" data-path="plotting.html"><a href="plotting.html#labels"><i class="fa fa-check"></i><b>12.2.3</b> Labels</a></li>
+<li class="chapter" data-level="12.2.4" data-path="plotting.html"><a href="plotting.html#axis-and-size-scaling"><i class="fa fa-check"></i><b>12.2.4</b> Axis and Size Scaling</a></li>
+<li class="chapter" data-level="12.2.5" data-path="plotting.html"><a href="plotting.html#graphical-parameters"><i class="fa fa-check"></i><b>12.2.5</b> Graphical Parameters</a></li>
+<li class="chapter" data-level="12.2.6" data-path="plotting.html"><a href="plotting.html#annotations-reference-lines-and-legends"><i class="fa fa-check"></i><b>12.2.6</b> Annotations, Reference Lines, and Legends</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="plotting.html"><a href="plotting.html#ggplot2"><i class="fa fa-check"></i><b>12.3</b> ggplot2</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="plotting.html"><a href="plotting.html#grammar"><i class="fa fa-check"></i><b>12.3.1</b> Grammar</a></li>
+<li class="chapter" data-level="12.3.2" data-path="plotting.html"><a href="plotting.html#anatomy-of-aes"><i class="fa fa-check"></i><b>12.3.2</b> Anatomy of <code>aes</code></a></li>
+<li class="chapter" data-level="12.3.3" data-path="plotting.html"><a href="plotting.html#layers"><i class="fa fa-check"></i><b>12.3.3</b> Layers</a></li>
+<li class="chapter" data-level="12.3.4" data-path="plotting.html"><a href="plotting.html#labels-1"><i class="fa fa-check"></i><b>12.3.4</b> Labels</a></li>
+<li class="chapter" data-level="12.3.5" data-path="plotting.html"><a href="plotting.html#transformations-and-stats"><i class="fa fa-check"></i><b>12.3.5</b> Transformations and Stats</a></li>
+<li class="chapter" data-level="12.3.6" data-path="plotting.html"><a href="plotting.html#facets"><i class="fa fa-check"></i><b>12.3.6</b> Facets</a></li>
+<li class="chapter" data-level="12.3.7" data-path="plotting.html"><a href="plotting.html#legend-and-scale-manipulations"><i class="fa fa-check"></i><b>12.3.7</b> Legend and Scale Manipulations</a></li>
+<li class="chapter" data-level="12.3.8" data-path="plotting.html"><a href="plotting.html#putting-everything-together"><i class="fa fa-check"></i><b>12.3.8</b> Putting Everything Together</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="plotting.html"><a href="plotting.html#saving-plots"><i class="fa fa-check"></i><b>12.4</b> Saving Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="statistical-inferences.html"><a href="statistical-inferences.html"><i class="fa fa-check"></i><b>13</b> Statistical Inferences</a><ul>
+<li class="chapter" data-level="13.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-distributions"><i class="fa fa-check"></i><b>13.1</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#sampling-and-simulation"><i class="fa fa-check"></i><b>13.1.1</b> Sampling and Simulation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#random-seeds"><i class="fa fa-check"></i><b>13.1.2</b> Random Seeds</a></li>
+<li class="chapter" data-level="13.1.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-9"><i class="fa fa-check"></i><b>13.1.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#inferences-and-regressions"><i class="fa fa-check"></i><b>13.2</b> Inferences and Regressions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>13.2.1</b> Statistical Tests</a></li>
+<li class="chapter" data-level="13.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>13.2.2</b> Regressions and Linear Models</a></li>
+<li class="chapter" data-level="13.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>13.2.3</b> Regression Output</a></li>
+<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>13.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="13.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>13.2.5</b> Formatting Regression Tables</a></li>
+<li class="chapter" data-level="13.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-10"><i class="fa fa-check"></i><b>13.2.6</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html"><i class="fa fa-check"></i><b>14</b> Data Classes and Structures</a><ul>
+<li class="chapter" data-level="14.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors"><i class="fa fa-check"></i><b>14.1</b> Vectors</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-vectors"><i class="fa fa-check"></i><b>14.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="14.1.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#vectors-are-everywhere"><i class="fa fa-check"></i><b>14.1.2</b> Vectors Are Everywhere</a></li>
+<li class="chapter" data-level="14.1.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#recycling"><i class="fa fa-check"></i><b>14.1.3</b> Recycling</a></li>
+<li class="chapter" data-level="14.1.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>14.1.4</b> Types of Vectors</a></li>
+<li class="chapter" data-level="14.1.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#coercion-1"><i class="fa fa-check"></i><b>14.1.5</b> Coercion</a></li>
+<li class="chapter" data-level="14.1.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-a-vector"><i class="fa fa-check"></i><b>14.1.6</b> Naming a Vector</a></li>
+<li class="chapter" data-level="14.1.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-11"><i class="fa fa-check"></i><b>14.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-vectors"><i class="fa fa-check"></i><b>14.2</b> Subsetting Vectors</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-types"><i class="fa fa-check"></i><b>14.2.1</b> Subsetting Types</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-lists"><i class="fa fa-check"></i><b>14.3.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="14.3.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-lists"><i class="fa fa-check"></i><b>14.3.2</b> Naming Lists</a></li>
+<li class="chapter" data-level="14.3.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#list-structure"><i class="fa fa-check"></i><b>14.3.3</b> List Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#subsetting-lists"><i class="fa fa-check"></i><b>14.4</b> Subsetting Lists</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with"><i class="fa fa-check"></i><b>14.4.1</b> With <code>[</code></a></li>
+<li class="chapter" data-level="14.4.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-1"><i class="fa fa-check"></i><b>14.4.2</b> With <code>[[</code></a></li>
+<li class="chapter" data-level="14.4.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#with-2"><i class="fa fa-check"></i><b>14.4.3</b> with <code>$</code></a></li>
+<li class="chapter" data-level="14.4.4" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-12"><i class="fa fa-check"></i><b>14.4.4</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#matrices"><i class="fa fa-check"></i><b>14.5</b> Matrices</a></li>
+<li class="chapter" data-level="14.6" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-a-matrix"><i class="fa fa-check"></i><b>14.6</b> Indexing a Matrix</a></li>
+<li class="chapter" data-level="14.7" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#dataframes"><i class="fa fa-check"></i><b>14.7</b> Dataframes</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#creating-dataframes"><i class="fa fa-check"></i><b>14.7.1</b> Creating Dataframes</a></li>
+<li class="chapter" data-level="14.7.2" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#the-structure-of-dataframes"><i class="fa fa-check"></i><b>14.7.2</b> The Structure of Dataframes</a></li>
+<li class="chapter" data-level="14.7.3" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#naming-dataframes"><i class="fa fa-check"></i><b>14.7.3</b> Naming Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#indexing-dataframes"><i class="fa fa-check"></i><b>14.8</b> Indexing Dataframes</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="data-classes-and-structures.html"><a href="data-classes-and-structures.html#challenges-13"><i class="fa fa-check"></i><b>14.8.1</b> Challenges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html"><i class="fa fa-check"></i><b>15</b> Strings and Regular Expressions</a><ul>
+<li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
+<li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
+<li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-14"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regular-expressions"><i class="fa fa-check"></i><b>15.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#basic-matches"><i class="fa fa-check"></i><b>15.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="15.2.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-characters"><i class="fa fa-check"></i><b>15.2.2</b> Escape Characters</a></li>
+<li class="chapter" data-level="15.2.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#anchors"><i class="fa fa-check"></i><b>15.2.3</b> Anchors</a></li>
+<li class="chapter" data-level="15.2.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>15.2.4</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="15.2.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#repetition"><i class="fa fa-check"></i><b>15.2.5</b> Repetition</a></li>
+<li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
+<li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>16</b> Programming in R</a><ul>
+<li class="chapter" data-level="16.1" data-path="programming-in-r.html"><a href="programming-in-r.html#conditional-flow"><i class="fa fa-check"></i><b>16.1</b> Conditional Flow</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
+<li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
+<li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
+<li class="chapter" data-level="16.2.2" data-path="programming-in-r.html"><a href="programming-in-r.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>16.2.2</b> Anatomy of a Function</a></li>
+<li class="chapter" data-level="16.2.3" data-path="programming-in-r.html"><a href="programming-in-r.html#writing-a-function"><i class="fa fa-check"></i><b>16.2.3</b> Writing a Function</a></li>
+<li class="chapter" data-level="16.2.4" data-path="programming-in-r.html"><a href="programming-in-r.html#using-a-function"><i class="fa fa-check"></i><b>16.2.4</b> Using a Function</a></li>
+<li class="chapter" data-level="16.2.5" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-16"><i class="fa fa-check"></i><b>16.2.5</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="programming-in-r.html"><a href="programming-in-r.html#iteration"><i class="fa fa-check"></i><b>16.3</b> Iteration</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="programming-in-r.html"><a href="programming-in-r.html#vectorized-functions"><i class="fa fa-check"></i><b>16.3.1</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="16.3.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functional-programming-and-map"><i class="fa fa-check"></i><b>16.3.2</b> Functional Programming and <code>map</code></a></li>
+<li class="chapter" data-level="16.3.3" data-path="programming-in-r.html"><a href="programming-in-r.html#challenges-17"><i class="fa fa-check"></i><b>16.3.3</b> Challenges</a></li>
+<li class="chapter" data-level="16.3.4" data-path="programming-in-r.html"><a href="programming-in-r.html#scoped-verbs"><i class="fa fa-check"></i><b>16.3.4</b> Scoped Verbs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html"><i class="fa fa-check"></i><b>17</b> Collecting Data from the Web</a><ul>
+<li class="chapter" data-level="17.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#introduction-1"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#web-apis"><i class="fa fa-check"></i><b>17.2</b> Web APIs</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#some-basic-terminology"><i class="fa fa-check"></i><b>17.2.1</b> Some Basic Terminology</a></li>
+<li class="chapter" data-level="17.2.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#how-do-get-requests-work"><i class="fa fa-check"></i><b>17.2.2</b> How Do GET Requests Work?</a></li>
+<li class="chapter" data-level="17.2.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-apis"><i class="fa fa-check"></i><b>17.2.3</b> Finding APIs</a></li>
+<li class="chapter" data-level="17.2.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#getting-api-access"><i class="fa fa-check"></i><b>17.2.4</b> Getting API Access</a></li>
+<li class="chapter" data-level="17.2.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-apis-in-r"><i class="fa fa-check"></i><b>17.2.5</b> Using APIs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#writing-api-queries"><i class="fa fa-check"></i><b>17.3</b> Writing API Queries</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#constructing-the-api-get-request"><i class="fa fa-check"></i><b>17.3.1</b> Constructing the API GET Request</a></li>
+<li class="chapter" data-level="17.3.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#parsing-the-response"><i class="fa fa-check"></i><b>17.3.2</b> Parsing the Response</a></li>
+<li class="chapter" data-level="17.3.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#iteration-through-results-pager"><i class="fa fa-check"></i><b>17.3.3</b> Iteration through Results Pager</a></li>
+<li class="chapter" data-level="17.3.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#visualizing-results"><i class="fa fa-check"></i><b>17.3.4</b> Visualizing Results</a></li>
+<li class="chapter" data-level="17.3.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#more-resources"><i class="fa fa-check"></i><b>17.3.5</b> More Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#webscraping"><i class="fa fa-check"></i><b>17.4</b> Webscraping</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#what-is-a-website"><i class="fa fa-check"></i><b>17.4.1</b> What Is a Website?</a></li>
+<li class="chapter" data-level="17.4.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#websites-return-html"><i class="fa fa-check"></i><b>17.4.2</b> Websites Return HTML</a></li>
+<li class="chapter" data-level="17.4.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#html-elements"><i class="fa fa-check"></i><b>17.4.3</b> HTML Elements</a></li>
+<li class="chapter" data-level="17.4.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#css"><i class="fa fa-check"></i><b>17.4.4</b> CSS</a></li>
+<li class="chapter" data-level="17.4.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#finding-elements-with-selector-gadget"><i class="fa fa-check"></i><b>17.4.5</b> Finding Elements with Selector Gadget</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#scraping-presidential-statements"><i class="fa fa-check"></i><b>17.5</b> Scraping Presidential Statements</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
+<li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
+<li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
+<li class="chapter" data-level="18.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing"><i class="fa fa-check"></i><b>18.1</b> Preprocessing</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="text-analysis.html"><a href="text-analysis.html#from-words-to-numbers"><i class="fa fa-check"></i><b>18.1.1</b> From Words to Numbers</a></li>
+<li class="chapter" data-level="18.1.2" data-path="text-analysis.html"><a href="text-analysis.html#exploring-the-dtm"><i class="fa fa-check"></i><b>18.1.2</b> Exploring the DTM</a></li>
+<li class="chapter" data-level="18.1.3" data-path="text-analysis.html"><a href="text-analysis.html#exporting-the-dtm"><i class="fa fa-check"></i><b>18.1.3</b> Exporting the DTM</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="text-analysis.html"><a href="text-analysis.html#sentiment-analysis-and-dictionary-methods"><i class="fa fa-check"></i><b>18.2</b> Sentiment Analysis and Dictionary Methods</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-and-setup"><i class="fa fa-check"></i><b>18.2.1</b> Preprocessing and Setup</a></li>
+<li class="chapter" data-level="18.2.2" data-path="text-analysis.html"><a href="text-analysis.html#scoring-the-songs"><i class="fa fa-check"></i><b>18.2.2</b> Scoring the Songs</a></li>
+<li class="chapter" data-level="18.2.3" data-path="text-analysis.html"><a href="text-analysis.html#challenges-18"><i class="fa fa-check"></i><b>18.2.3</b> Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="text-analysis.html"><a href="text-analysis.html#distinctive-words"><i class="fa fa-check"></i><b>18.3</b> Distinctive Words</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="text-analysis.html"><a href="text-analysis.html#unique-usage"><i class="fa fa-check"></i><b>18.3.1</b> Unique Usage</a></li>
+<li class="chapter" data-level="18.3.2" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-frequencies"><i class="fa fa-check"></i><b>18.3.2</b> Differences in Frequencies</a></li>
+<li class="chapter" data-level="18.3.3" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages"><i class="fa fa-check"></i><b>18.3.3</b> Differences in Averages</a></li>
+<li class="chapter" data-level="18.3.4" data-path="text-analysis.html"><a href="text-analysis.html#differences-in-averages-adjustment"><i class="fa fa-check"></i><b>18.3.4</b> Differences in Averages, Adjustment</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="text-analysis.html"><a href="text-analysis.html#structural-topic-models"><i class="fa fa-check"></i><b>18.4</b> Structural Topic Models</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="text-analysis.html"><a href="text-analysis.html#preprocessing-1"><i class="fa fa-check"></i><b>18.4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="18.4.2" data-path="text-analysis.html"><a href="text-analysis.html#estimate-model"><i class="fa fa-check"></i><b>18.4.2</b> Estimate Model</a></li>
+<li class="chapter" data-level="18.4.3" data-path="text-analysis.html"><a href="text-analysis.html#interpret-model"><i class="fa fa-check"></i><b>18.4.3</b> Interpret Model</a></li>
+<li class="chapter" data-level="18.4.4" data-path="text-analysis.html"><a href="text-analysis.html#analyze-topics"><i class="fa fa-check"></i><b>18.4.4</b> Analyze Topics</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PLSC 31101: Computational Tools for Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-classes-and-structures" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> Data Classes and Structures</h1>
+<p>To make the best use of the R language, you will need a strong understanding of basic data structures and how to operate on them.</p>
+<p>This is <strong>critical</strong> to understand because these are the objects you will manipulate on a day-to-day basis in R. But they are not always as easy to work with as they seem at the outset. Dealing with object types and conversions is one of the most common sources of frustration for beginners.</p>
+<p>R's base data structures can be organized by their dimensionality (1d, 2d, or nd) and whether they are homogeneous (all contents must be of the same type) or heterogeneous (the contents can be of different types). This gives rise to the five data types most often used in data analysis:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Homogeneous</th>
+<th>Heterogeneous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1d</td>
+<td>Atomic vector</td>
+<td>List</td>
+</tr>
+<tr class="even">
+<td>2d</td>
+<td>Matrix</td>
+<td>Dataframe</td>
+</tr>
+<tr class="odd">
+<td>nd</td>
+<td>Array</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each data structure has its own specifications and behavior. In the rest of this chapter, we will cover the types of data objects that exist in R and how they work.</p>
+<ol style="list-style-type: decimal">
+<li><a href="data-classes-and-structures.html#vectors">Vectors</a></li>
+<li><a href="data-classes-and-structures.html#lists">Lists</a></li>
+<li><a href="data-classes-and-structures.html#matrices">Matrices</a></li>
+<li><a href="data-classes-and-structures.html#dataframes">Dataframes</a></li>
+</ol>
+
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">14.1</span> Vectors</h2>
+<p>Your garden variety R object is a vector. Vectors are 1-dimensional chains of values. We call each value an <em>element</em> of a vector.</p>
+<div id="creating-vectors" class="section level3">
+<h3><span class="header-section-number">14.1.1</span> Creating Vectors</h3>
+<p>A single piece of information that you regard as a scalar is just a vector of length 1. R will cheerfully let you add stuff to it with <code>c()</code>, which is short for 'combine':</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
+x
+<span class="co">#&gt; [1] 12</span>
+<span class="kw">is.vector</span>(x)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">length</span>(x)
+<span class="co">#&gt; [1] 1</span>
+
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+x
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="kw">length</span>(x)
+<span class="co">#&gt; [1] 3</span>
+
+<span class="co"># Other ways to make a vector</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></code></pre></div>
+<p>We can also add elements to the end of a vector by passing the original vector into the <code>c</code> function, like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Beyonce&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Michelle&quot;</span>, <span class="st">&quot;LeToya&quot;</span>)
+z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="st">&quot;Farrah&quot;</span>)
+z
+<span class="co">#&gt; [1] &quot;Beyonce&quot;  &quot;Kelly&quot;    &quot;Michelle&quot; &quot;LeToya&quot;   &quot;Farrah&quot;</span></code></pre></div>
+<p>Notice that vectors are always flat, even if you nest <code>c()</code>'s:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># These are equivalent</span>
+<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">c</span>(<span class="dv">2</span>, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)))
+<span class="co">#&gt; [1] 1 2 3 4</span>
+<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
+<span class="co">#&gt; [1] 1 2 3 4</span></code></pre></div>
+</div>
+<div id="vectors-are-everywhere" class="section level3">
+<h3><span class="header-section-number">14.1.2</span> Vectors Are Everywhere</h3>
+<p>R is built to work with vectors. Many operations are vectorized, meaning they will perform calculations on each component by default. Novices often do not internalize or exploit this and they write lots of unnecessary for loops.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)
+a<span class="op">^</span><span class="dv">2</span>
+<span class="co">#&gt; [1] 1 4 9</span></code></pre></div>
+<p>We can also add two vectors. It is important to know that if you <strong>sum</strong> two vectors in R, it takes the element-wise sum. For example, the following three statements are completely equivalent:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)
+<span class="kw">c</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span>, <span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)
+<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)</code></pre></div>
+<p>When reading function documentation, keep your eyes peeled for arguments that can be vectors. You will be surprised how common they are. For example, the mean of random normal variables can be provided as a vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1999</span>)
+<span class="kw">rnorm</span>(<span class="dv">5</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>, <span class="dv">100000</span>))
+<span class="co">#&gt; [1]     10.7    100.0   1001.2  10001.5 100000.1</span></code></pre></div>
+<p>This could be awesome in some settings, but dangerous in others, i.e., if you exploit this by mistake and get no warning. This is one of the reasons it is so important to keep close tabs on your R objects: Are they what you expect in terms of their flavor and length or dimensions? Check early and check often.</p>
+</div>
+<div id="recycling" class="section level3">
+<h3><span class="header-section-number">14.1.3</span> Recycling</h3>
+<p>R recycles vectors if they are not the necessary length. You will get a warning if R suspects recycling is unintended, i.e., when one length is not an integer multiple of another, but recycling is silent if it seems like you know what you are doing. This can be a beautiful thing when you are doing it deliberately, but devastating when you are not.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)
+<span class="co">#&gt; [1] 1 2 3</span>
+(z &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">7</span>)
+<span class="co">#&gt; [1] 3 4 5 6 7</span>
+y <span class="op">+</span><span class="st"> </span>z
+<span class="co">#&gt; Warning in y + z: longer object length is not a multiple of shorter object</span>
+<span class="co">#&gt; length</span>
+<span class="co">#&gt; [1] 4 6 8 7 9</span>
+
+(y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
+(z &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">7</span>)
+<span class="co">#&gt; [1] 3 4 5 6 7</span>
+y <span class="op">+</span><span class="st"> </span>z
+<span class="co">#&gt;  [1]  4  6  8 10 12  9 11 13 15 17</span></code></pre></div>
+</div>
+<div id="types-of-vectors" class="section level3">
+<h3><span class="header-section-number">14.1.4</span> Types of Vectors</h3>
+<p>There are four common types of vectors, depending on the class:</p>
+<ol style="list-style-type: decimal">
+<li><code>integer</code></li>
+<li><code>numeric</code> (same as <code>double</code>)</li>
+<li><code>character</code></li>
+<li><code>logical</code></li>
+</ol>
+<div id="numeric-vectors" class="section level4 unnumbered">
+<h4>Numeric Vectors</h4>
+<p>Numeric vectors contain numbers. They can be stored as <em>integers</em> (whole numbers) or <em>doubles</em> (numbers with decimal points). In practice, you rarely need to concern yourself with this difference, but just know that they are different but related things.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">335</span>)
+<span class="co">#&gt; [1]   1   2 335</span>
+<span class="kw">c</span>(<span class="fl">4.2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="fl">53.2</span>)
+<span class="co">#&gt; [1]  4.2  4.0  6.0 53.2</span></code></pre></div>
+</div>
+<div id="character-vectors" class="section level4 unnumbered">
+<h4>Character Vectors</h4>
+<p>Character vectors contain character (or 'string') values. Note that each value has to be surrounded by quotation marks <em>before</em> the comma.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;Beyonce&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Michelle&quot;</span>, <span class="st">&quot;LeToya&quot;</span>)
+<span class="co">#&gt; [1] &quot;Beyonce&quot;  &quot;Kelly&quot;    &quot;Michelle&quot; &quot;LeToya&quot;</span></code></pre></div>
+</div>
+<div id="logical-boolean-vectors" class="section level4 unnumbered">
+<h4>Logical (Boolean) Vectors</h4>
+<p>Logical vectors take on one of three possible values:</p>
+<ol style="list-style-type: decimal">
+<li><code>TRUE</code></li>
+<li><code>FALSE</code></li>
+<li><code>NA</code> (missing value)</li>
+</ol>
+<p>They are often used in conjunction with Boolean expressions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">NA</span>)
+b1
+<span class="co">#&gt; [1]  TRUE  TRUE FALSE    NA</span>
+
+vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">3</span>)
+vec_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span>vec_<span class="dv">2</span>
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span>
+
+b2 &lt;-<span class="st"> </span>vec_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span>vec_<span class="dv">2</span></code></pre></div>
+</div>
+</div>
+<div id="coercion-1" class="section level3">
+<h3><span class="header-section-number">14.1.5</span> Coercion</h3>
+<p>We can change or convert a vector's type using <code>as....</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.5</span>)
+<span class="kw">class</span>(num_var)
+<span class="co">#&gt; [1] &quot;numeric&quot;</span>
+<span class="kw">as.character</span>(num_var)
+<span class="co">#&gt; [1] &quot;1&quot;   &quot;2.5&quot; &quot;4.5&quot;</span></code></pre></div>
+<p>Remember that all elements of a vector must be the same type. So when you attempt to combine different types, they will be <strong>coerced</strong> to the most &quot;flexible&quot; type.</p>
+<p>For example, combining a character and an integer yields a character:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>)
+<span class="co">#&gt; [1] &quot;a&quot; &quot;1&quot;</span></code></pre></div>
+<p>Guess what the following do without running them first:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>) 
+<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>) 
+<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>) </code></pre></div>
+<div id="true-1-and-false-0" class="section level4 unnumbered">
+<h4>TRUE == 1 and FALSE == 0</h4>
+<p>Notice that when a logical vector is coerced to an integer or double, <code>TRUE</code> becomes 1 and <code>FALSE</code> becomes 0. This is very useful in conjunction with <code>sum()</code> and <code>mean()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">3</span>)
+boo_<span class="dv">1</span> &lt;-<span class="st"> </span>vec_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span>vec_<span class="dv">2</span>
+
+<span class="co"># Total number of TRUEs</span>
+<span class="kw">sum</span>(boo_<span class="dv">1</span>)
+<span class="co">#&gt; [1] 2</span>
+
+<span class="co"># Proportion that are TRUE</span>
+<span class="kw">mean</span>(boo_<span class="dv">1</span>)
+<span class="co">#&gt; [1] 0.667</span></code></pre></div>
+</div>
+<div id="coercion-often-happens-automatically." class="section level4 unnumbered">
+<h4>Coercion often happens automatically.</h4>
+<p>This is called <em>implicit coercion</em>. Most mathematical functions (<code>+</code>, <code>log</code>, <code>abs</code>, etc.) will coerce to a double or integer, and most logical operations (<code>&amp;</code>, <code>|</code>, <code>any</code>, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> &quot;2&quot;</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="st">&quot;1&quot;</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p>Sometimes coercions, especially nonsensical ones, will not work.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+<span class="kw">as.numeric</span>(x)
+<span class="co">#&gt; Warning: NAs introduced by coercion</span>
+<span class="co">#&gt; [1] NA NA NA</span>
+<span class="kw">as.logical</span>(x)
+<span class="co">#&gt; [1] NA NA NA</span></code></pre></div>
+</div>
+</div>
+<div id="naming-a-vector" class="section level3">
+<h3><span class="header-section-number">14.1.6</span> Naming a Vector</h3>
+<p>We can also attach names to our vector. This helps us understand what each element refers to.</p>
+<p>You can give names to the elements of a vector with the <code>names()</code> function. Have a look at this example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">days_month &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">31</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">30</span>, <span class="dv">31</span>)
+<span class="kw">names</span>(days_month) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>, <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>)
+
+days_month
+<span class="co">#&gt; Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec </span>
+<span class="co">#&gt;  31  28  31  30  31  30  31  31  30  31  30  31</span></code></pre></div>
+<p>You can name a vector when you create it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">name =</span> <span class="st">&quot;Rochelle Terman&quot;</span>, <span class="dt">profession =</span> <span class="st">&quot;Professor Extraordinaire&quot;</span>)
+some_vector
+<span class="co">#&gt;                       name                 profession </span>
+<span class="co">#&gt;          &quot;Rochelle Terman&quot; &quot;Professor Extraordinaire&quot;</span></code></pre></div>
+<p>Notice that in the first case, we surrounded each name with quotation marks. But we do not have to do this when creating a named vector.</p>
+<p>Names do not have to be unique, and not all values need to have a name associated with them. However, names are most useful for subsetting, described in the next chapter. When subsetting, it is most useful when the names are unique.</p>
+</div>
+<div id="challenges-11" class="section level3">
+<h3><span class="header-section-number">14.1.7</span> Challenges</h3>
+<div id="challenge-1-create-and-examine-your-vector." class="section level4 unnumbered">
+<h4>Challenge 1: Create and examine your vector.</h4>
+<p>Create a character vector called <code>fruit</code> that contains 4 of your favorite fruits. Then evaluate its structure using the commands below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># First create your fruit vector </span>
+<span class="co"># YOUR CODE HERE</span>
+
+
+<span class="co"># Examine your vector</span>
+<span class="kw">length</span>(fruit)
+<span class="kw">class</span>(fruit)
+<span class="kw">str</span>(fruit)</code></pre></div>
+</div>
+<div id="challenge-2-coercion." class="section level4 unnumbered">
+<h4>Challenge 2: Coercion.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># 1. Create a vector of a sequence of numbers from 1 to 10.</span>
+
+<span class="co"># 2. Coerce that vector into a character vector.</span>
+
+<span class="co"># 3. Add the element &quot;11&quot; to the end of the vector.</span>
+
+<span class="co"># 4. Coerce it back to a numeric vector.</span></code></pre></div>
+</div>
+<div id="challenge-3-calculations-on-vectors." class="section level4 unnumbered">
+<h4>Challenge 3: Calculations on Vectors.</h4>
+<p>Create a vector of the numbers 11 to 20 and multiply it by the original vector from Challenge 2.</p>
+
+</div>
+</div>
+</div>
+<div id="subsetting-vectors" class="section level2">
+<h2><span class="header-section-number">14.2</span> Subsetting Vectors</h2>
+<p>Sometimes we want to isolate elements of a vector for inspection, modification, etc. This is often called <strong>indexing</strong> or <strong>subsetting</strong>.</p>
+<blockquote>
+<p>By the way, indexing begins at 1 in R, unlike many other languages that index from 0.</p>
+</blockquote>
+<div id="subsetting-types" class="section level3">
+<h3><span class="header-section-number">14.2.1</span> Subsetting Types</h3>
+<p>Let's explore the different types of subsetting with a simple vector, <code>x</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</code></pre></div>
+<p>Note that the number after the decimal point gives the original position in the vector.</p>
+<p>There are four things you can use to subset a vector:</p>
+<div id="positive-integers-return-elements-at-the-specified-positions." class="section level4 unnumbered">
+<h4>1. <strong>Positive integers</strong> return elements at the specified positions.</h4>
+<p>The simplest way to subset a vector is with a single integer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[<span class="dv">1</span>]
+<span class="co">#&gt; [1] 2.1</span>
+x[<span class="dv">3</span>]
+<span class="co">#&gt; [1] 3.3</span></code></pre></div>
+<p>We can also index multiple values by passing a vector of integers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)]
+<span class="co">#&gt; [1] 3.3 2.1</span></code></pre></div>
+<p>Note that you <em>have</em> to use <code>c</code> inside the <code>[</code> for this to work!</p>
+<p>More examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># `order(x)` gives the index positions of smallest to largest values</span>
+(x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>))
+<span class="co">#&gt; [1] 2.1 4.2 3.3 5.4</span>
+<span class="kw">order</span>(x)
+<span class="co">#&gt; [1] 1 3 2 4</span>
+
+<span class="co"># Use this to order values</span>
+x[<span class="kw">order</span>(x)]
+<span class="co">#&gt; [1] 2.1 3.3 4.2 5.4</span>
+x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)]
+<span class="co">#&gt; [1] 2.1 3.3 4.2 5.4</span></code></pre></div>
+</div>
+<div id="negative-integers-omit-elements-at-the-specified-positions." class="section level4 unnumbered">
+<h4>2. <strong>Negative integers</strong> omit elements at the specified positions.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[<span class="op">-</span><span class="dv">1</span>]
+<span class="co">#&gt; [1] 4.2 3.3 5.4</span>
+x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]
+<span class="co">#&gt; [1] 4.2 5.4</span></code></pre></div>
+<p>You cannot mix positive and negative integers in a single subset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>)]
+<span class="co">#&gt; Error in x[c(-1, 2)]: only 0&#39;s may be mixed with negative subscripts</span></code></pre></div>
+</div>
+<div id="character-vectors-return-elements-with-matching-names.-this-only-works-if-the-vector-is-named." class="section level4 unnumbered">
+<h4>3. <strong>Character vectors</strong> return elements with matching names. This only works if the vector is named.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+
+<span class="co"># Apply names</span>
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)
+
+<span class="co"># Subset using names</span>
+x[<span class="st">&quot;d&quot;</span>]
+<span class="co">#&gt;   d </span>
+<span class="co">#&gt; 5.4</span>
+x[<span class="kw">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)]
+<span class="co">#&gt;   d   c   a </span>
+<span class="co">#&gt; 5.4 3.3 2.1</span></code></pre></div>
+</div>
+<div id="logical-vectors-select-elements-where-the-corresponding-logical-value-is-true." class="section level4 unnumbered">
+<h4>4. <strong>Logical vectors</strong> select elements where the corresponding logical value is <code>TRUE</code>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)]
+<span class="co">#&gt; [1] 2.1 4.2</span></code></pre></div>
+<p>Logical subsetting is the most useful type of subsetting, because you use it to subset based on <strong>comparative</strong> statements.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
+<span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE</span></code></pre></div>
+<p>This command tests if the condition stated by the comparison operator is <code>TRUE</code> or <code>FALSE</code> for every element of the vector, and it returns a logical vector!</p>
+<p>We can now pass this statement between the square brackets that follow <code>x</code> to subset only those items that match <code>TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)
+x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]
+<span class="co">#&gt; [1] 4.2 3.3 5.4</span>
+
+<span class="co"># With !</span>
+<span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> 
+<span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE</span>
+x[<span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>]
+<span class="co">#&gt; [1] 2.1 4.2 3.3</span>
+
+<span class="co"># With %in% </span>
+x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)
+<span class="co">#&gt; [1] FALSE  TRUE  TRUE FALSE</span>
+x[x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)]
+<span class="co">#&gt; [1] 4.2 3.3</span></code></pre></div>
+</div>
+<div id="challenge." class="section level4 unnumbered">
+<h4>Challenge.</h4>
+<p>Subset <code>country_vector</code> below to return every value EXCEPT <code>&quot;Canada&quot;</code> and <code>&quot;Brazil&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">country_vector&lt;-<span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Sierra Leone&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)
+
+<span class="co"># Do it using positive integers.</span>
+
+<span class="co"># Do it using negative integers.</span>
+
+<span class="co"># Do it using a logical vector.</span>
+
+<span class="co"># Do it using a conditional statement (and an implicit logical vector).</span></code></pre></div>
+
+</div>
+</div>
+</div>
+<div id="lists" class="section level2">
+<h2><span class="header-section-number">14.3</span> Lists</h2>
+<p>Lists are different from vectors because their elements can be of <strong>any type</strong>. Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from vectors.</p>
+<p>In data analysis, you will not make lists very often, at least not consciously, but you should still know about them. Why?</p>
+<ol style="list-style-type: decimal">
+<li>Dataframes are lists! They are a special case where each element is an atomic vector, all having the same length.</li>
+<li>Many functions will return lists to you, and you will want to extract goodies from them, such as the p-value for a hypothesis test or the estimated error variance in a regression model.</li>
+</ol>
+<div id="creating-lists" class="section level3">
+<h3><span class="header-section-number">14.3.1</span> Creating Lists</h3>
+<p>You construct lists by using <code>list()</code> instead of <code>c()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))
+x
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;a&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] 4 5 6</span></code></pre></div>
+</div>
+<div id="naming-lists" class="section level3">
+<h3><span class="header-section-number">14.3.2</span> Naming Lists</h3>
+<p>As with vectors, we can attach names to each element on our list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name1 =</span> elem1, 
+                <span class="dt">name2 =</span> elem2)</code></pre></div>
+<p>This creates a list with components that are named <code>name1</code>, <code>name2</code>, and so on. If you want to name your lists after you have created them, you can use the <code>names()</code> function as you did with vectors. The following commands are fully equivalent to the assignment above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(elem1, elem2)
+<span class="kw">names</span>(my_list) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;name1&quot;</span>, <span class="st">&quot;name2&quot;</span>)</code></pre></div>
+</div>
+<div id="list-structure" class="section level3">
+<h3><span class="header-section-number">14.3.3</span> List Structure</h3>
+<p>A very useful tool for working with lists is <code>str()</code>, because it focuses on reviewing the structure of a list, not its contents.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
+          <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;there&quot;</span>),
+          <span class="dt">c =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+<span class="kw">str</span>(x)
+<span class="co">#&gt; List of 3</span>
+<span class="co">#&gt;  $ a: num [1:3] 1 2 3</span>
+<span class="co">#&gt;  $ b: chr [1:2] &quot;Hello&quot; &quot;there&quot;</span>
+<span class="co">#&gt;  $ c: int [1:10] 1 2 3 4 5 6 7 8 9 10</span></code></pre></div>
+<p>A list does not print to the console like a vector. Instead, each element of the list starts on a new line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+x_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+x_vec
+<span class="co">#&gt; [1] 1 2 3</span>
+x_list
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 3</span></code></pre></div>
+<p>Lists are used to build up many of the more complicated data structures in R. For example, both dataframes and linear model objects (as produced by <code>lm()</code>) are lists:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(mtcars)
+<span class="co">#&gt;                    mpg cyl disp  hp drat   wt qsec vs am gear carb</span>
+<span class="co">#&gt; Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4</span>
+<span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4</span>
+<span class="co">#&gt; Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1</span>
+<span class="co">#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1</span>
+<span class="co">#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2</span>
+<span class="co">#&gt; Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1</span>
+<span class="kw">is.list</span>(mtcars)
+<span class="co">#&gt; [1] TRUE</span>
+mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+<span class="kw">is.list</span>(mod)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>You could say that a list is some kind of super data type: You can store practically any piece of information in it!</p>
+<p>For this reason, lists are extremely useful inside functions. You can &quot;staple&quot; together lots of different kinds of results into a single object that a function can return.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+<span class="kw">str</span>(mod)
+<span class="co">#&gt; List of 12</span>
+<span class="co">#&gt;  $ coefficients : Named num [1:2] 37.29 -5.34</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;  $ residuals    : Named num [1:32] -2.28 -0.92 -2.09 1.3 -0.2 ...</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...</span>
+<span class="co">#&gt;  $ effects      : Named num [1:32] -113.65 -29.116 -1.661 1.631 0.111 ...</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;(Intercept)&quot; &quot;wt&quot; &quot;&quot; &quot;&quot; ...</span>
+<span class="co">#&gt;  $ rank         : int 2</span>
+<span class="co">#&gt;  $ fitted.values: Named num [1:32] 23.3 21.9 24.9 20.1 18.9 ...</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...</span>
+<span class="co">#&gt;  $ assign       : int [1:2] 0 1</span>
+<span class="co">#&gt;  $ qr           :List of 5</span>
+<span class="co">#&gt;   ..$ qr   : num [1:32, 1:2] -5.657 0.177 0.177 0.177 0.177 ...</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
+<span class="co">#&gt;   .. .. ..$ : chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...</span>
+<span class="co">#&gt;   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span>
+<span class="co">#&gt;   ..$ qraux: num [1:2] 1.18 1.05</span>
+<span class="co">#&gt;   ..$ pivot: int [1:2] 1 2</span>
+<span class="co">#&gt;   ..$ tol  : num 1e-07</span>
+<span class="co">#&gt;   ..$ rank : int 2</span>
+<span class="co">#&gt;   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span>
+<span class="co">#&gt;  $ df.residual  : int 30</span>
+<span class="co">#&gt;  $ xlevels      : Named list()</span>
+<span class="co">#&gt;  $ call         : language lm(formula = mpg ~ wt, data = mtcars)</span>
+<span class="co">#&gt;  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mpg ~ wt</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
+<span class="co">#&gt;   .. .. .. ..$ : chr [1:2] &quot;mpg&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;   .. .. .. ..$ : chr &quot;wt&quot;</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;wt&quot;</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;order&quot;)= int 1</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;intercept&quot;)= int 1</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;response&quot;)= int 1</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;predvars&quot;)= language list(mpg, wt)</span>
+<span class="co">#&gt;   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mpg&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;  $ model        :&#39;data.frame&#39;:   32 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...</span>
+<span class="co">#&gt;   ..$ wt : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...</span>
+<span class="co">#&gt;   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mpg ~ wt</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span>
+<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
+<span class="co">#&gt;   .. .. .. .. ..$ : chr [1:2] &quot;mpg&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;   .. .. .. .. ..$ : chr &quot;wt&quot;</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;wt&quot;</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;order&quot;)= int 1</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;response&quot;)= int 1</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mpg, wt)</span>
+<span class="co">#&gt;   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span>
+<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mpg&quot; &quot;wt&quot;</span>
+<span class="co">#&gt;  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></code></pre></div>
+
+</div>
+</div>
+<div id="subsetting-lists" class="section level2">
+<h2><span class="header-section-number">14.4</span> Subsetting Lists</h2>
+<p>Subsetting a list works in the same way as subsetting an atomic vector. However, there is one important difference: <code>[</code> will always return a list. <code>[[</code> and <code>$</code>, as described below, let you pull out the components of the list.</p>
+<p>The <a href="https://r4ds.had.co.nz/vectors.html#lists-of-condiments">&quot;pepper shaker photos&quot;</a> in R for Data Science are a splendid visual explanation of the different ways to get stuff out of a list. Highly recommended.</p>
+<p>Let's illustrate with the following list <code>my_list</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, 
+                <span class="dt">b =</span> <span class="st">&quot;a string&quot;</span>, 
+                <span class="dt">c =</span> pi, 
+                <span class="dt">d =</span> <span class="kw">list</span>(<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">5</span>))</code></pre></div>
+<div id="with" class="section level3">
+<h3><span class="header-section-number">14.4.1</span> With <code>[</code></h3>
+<p><code>[</code> extracts a sub-list where the result will always be a list. Like with vectors, you can subset with a logical, integer, or character vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[<span class="dv">1</span>]
+<span class="co">#&gt; $a</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="kw">str</span>(my_list[<span class="dv">1</span>])
+<span class="co">#&gt; List of 1</span>
+<span class="co">#&gt;  $ a: int [1:3] 1 2 3</span>
+
+my_list[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
+<span class="co">#&gt; $a</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $b</span>
+<span class="co">#&gt; [1] &quot;a string&quot;</span>
+<span class="kw">str</span>(my_list[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])
+<span class="co">#&gt; List of 2</span>
+<span class="co">#&gt;  $ a: int [1:3] 1 2 3</span>
+<span class="co">#&gt;  $ b: chr &quot;a string&quot;</span></code></pre></div>
+</div>
+<div id="with-1" class="section level3">
+<h3><span class="header-section-number">14.4.2</span> With <code>[[</code></h3>
+<p><code>[[</code> extracts a single <em>component</em> from a list. In other words, it removes that hierarchy and returns whatever object is stored inside.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="kw">str</span>(my_list[[<span class="dv">1</span>]])
+<span class="co">#&gt;  int [1:3] 1 2 3</span>
+
+<span class="co"># Compare to</span>
+my_list[<span class="dv">1</span>]
+<span class="co">#&gt; $a</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="kw">str</span>(my_list[<span class="dv">1</span>])
+<span class="co">#&gt; List of 1</span>
+<span class="co">#&gt;  $ a: int [1:3] 1 2 3</span></code></pre></div>
+<p>The distinction between <code>[</code> and <code>[[</code> is really important for lists, because <code>[[</code> drills down into the list while <code>[</code> returns a new, smaller list.</p>
+<blockquote>
+<p>&quot;If list <code>x</code> is a train carrying objects, then <code>x[[5]]</code> is the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.&quot;</p>
+<p>--- <span class="citation">(<span class="citeproc-not-found" data-reference-id="RLangTip"><strong>???</strong></span>)</span></p>
+</blockquote>
+</div>
+<div id="with-2" class="section level3">
+<h3><span class="header-section-number">14.4.3</span> with <code>$</code></h3>
+<p><code>$</code> is a shorthand for extracting a single named element of a list. It works especially well when coupled with tab completion.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list<span class="op">$</span>a
+<span class="co">#&gt; [1] 1 2 3</span></code></pre></div>
+</div>
+<div id="challenges-12" class="section level3">
+<h3><span class="header-section-number">14.4.4</span> Challenges</h3>
+<div id="challenge-1.-9" class="section level4 unnumbered">
+<h4>Challenge 1.</h4>
+<p>What are the four basic types of atomic vectors? How does a list differ from an atomic vector?</p>
+</div>
+<div id="challenge-2.-8" class="section level4 unnumbered">
+<h4>Challenge 2.</h4>
+<p>Why is <code>1 == &quot;1&quot;</code> true? Why is <code>-1 &lt; FALSE</code> true? Why is <code>&quot;one&quot; &lt; 2</code> false?</p>
+</div>
+<div id="challenge-3.-6" class="section level4 unnumbered">
+<h4>Challenge 3.</h4>
+<p>Create three vectors and combine them into a list. Assign them names.</p>
+</div>
+<div id="challenge-4.-2" class="section level4 unnumbered">
+<h4>Challenge 4.</h4>
+<p>If <code>x</code> is a list, what is the class of <code>x[1]</code>? How about <code>x[[1]]</code>?</p>
+</div>
+<div id="challenge-5.-1" class="section level4 unnumbered">
+<h4>Challenge 5.</h4>
+<p>Take a look at the linear model below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+<span class="kw">summary</span>(mod)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = mpg ~ wt, data = mtcars)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt; -4.543 -2.365 -0.125  1.410  6.873 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   37.285      1.878   19.86  &lt; 2e-16 ***</span>
+<span class="co">#&gt; wt            -5.344      0.559   -9.56  1.3e-10 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 3.05 on 30 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.753,  Adjusted R-squared:  0.745 </span>
+<span class="co">#&gt; F-statistic: 91.4 on 1 and 30 DF,  p-value: 1.29e-10</span></code></pre></div>
+<p>Extract the R squared from the model summary.</p>
+
+</div>
+</div>
+</div>
+<div id="matrices" class="section level2">
+<h2><span class="header-section-number">14.5</span> Matrices</h2>
+<p>Matrices are like 2-d vectors, that is, they are a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
+m
+<span class="co">#&gt;      [,1] [,2] [,3]</span>
+<span class="co">#&gt; [1,]    1    3    5</span>
+<span class="co">#&gt; [2,]    2    4    6</span></code></pre></div>
+<blockquote>
+<p>General arrays are available in R, where a matrix is an important special case having dimension 2.</p>
+</blockquote>
+<p>Practically speaking, matrices are good for large tables of numbers. However, as social scientists, we rarely work with purely numerical data.</p>
+<p>By definition, if you want to combine different types of data (one column numbers, another column characters...), you want a <strong>dataframe</strong>, not a matrix.</p>
+<p>Let’s make a simple matrix and give it decent row and column names. You will see familiar or self-explanatory functions below for getting to know a matrix.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Do not worry if the construction of this matrix confuses you; 
+## just focus on the product
+m &lt;-<span class="st"> </span><span class="kw">outer</span>(<span class="kw">as.character</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="kw">as.character</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>),
+              <span class="cf">function</span>(x, y) {
+                <span class="kw">paste0</span>(<span class="st">&#39;x&#39;</span>, x, <span class="st">&#39;-&#39;</span>, y)
+                })
+m
+<span class="co">#&gt;      [,1]   [,2]   [,3]   [,4]  </span>
+<span class="co">#&gt; [1,] &quot;x1-1&quot; &quot;x1-2&quot; &quot;x1-3&quot; &quot;x1-4&quot;</span>
+<span class="co">#&gt; [2,] &quot;x2-1&quot; &quot;x2-2&quot; &quot;x2-3&quot; &quot;x2-4&quot;</span>
+<span class="co">#&gt; [3,] &quot;x3-1&quot; &quot;x3-2&quot; &quot;x3-3&quot; &quot;x3-4&quot;</span>
+<span class="co">#&gt; [4,] &quot;x4-1&quot; &quot;x4-2&quot; &quot;x4-3&quot; &quot;x4-4&quot;</span>
+<span class="kw">str</span>(m)
+<span class="co">#&gt;  chr [1:4, 1:4] &quot;x1-1&quot; &quot;x2-1&quot; &quot;x3-1&quot; &quot;x4-1&quot; &quot;x1-2&quot; &quot;x2-2&quot; &quot;x3-2&quot; &quot;x4-2&quot; ...</span>
+<span class="kw">class</span>(m)
+<span class="co">#&gt; [1] &quot;matrix&quot; &quot;array&quot;</span>
+<span class="kw">dim</span>(m)
+<span class="co">#&gt; [1] 4 4</span>
+<span class="kw">nrow</span>(m)
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">ncol</span>(m)
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">rownames</span>(m)
+<span class="co">#&gt; NULL</span>
+
+<span class="kw">rownames</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;row1&quot;</span>, <span class="st">&quot;row2&quot;</span>, <span class="st">&quot;row3&quot;</span>, <span class="st">&quot;row4&quot;</span>)
+<span class="kw">colnames</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>, <span class="st">&quot;col4&quot;</span>)
+
+m
+<span class="co">#&gt;      col1   col2   col3   col4  </span>
+<span class="co">#&gt; row1 &quot;x1-1&quot; &quot;x1-2&quot; &quot;x1-3&quot; &quot;x1-4&quot;</span>
+<span class="co">#&gt; row2 &quot;x2-1&quot; &quot;x2-2&quot; &quot;x2-3&quot; &quot;x2-4&quot;</span>
+<span class="co">#&gt; row3 &quot;x3-1&quot; &quot;x3-2&quot; &quot;x3-3&quot; &quot;x3-4&quot;</span>
+<span class="co">#&gt; row4 &quot;x4-1&quot; &quot;x4-2&quot; &quot;x4-3&quot; &quot;x4-4&quot;</span></code></pre></div>
+</div>
+<div id="indexing-a-matrix" class="section level2">
+<h2><span class="header-section-number">14.6</span> Indexing a Matrix</h2>
+<p>Similar to vectors, you can use the square brackets <code>[ ]</code> to select one or multiple elements from a matrix. But whereas vectors have one dimension, matrices have two dimensions. We therefore have to use two subsetting vectors – one for rows and another for columns to select – separated by a comma. Blank subsetting is also useful because it lets you keep all rows or all columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="dv">2</span>, <span class="dv">3</span>] <span class="co"># Selects the value at the second row and third column</span>
+<span class="co">#&gt; [1] &quot;x2-3&quot;</span>
+
+m[<span class="dv">2</span>, ] <span class="co"># We get row 2</span>
+<span class="co">#&gt;   col1   col2   col3   col4 </span>
+<span class="co">#&gt; &quot;x2-1&quot; &quot;x2-2&quot; &quot;x2-3&quot; &quot;x2-4&quot;</span>
+
+m[ , <span class="dv">3</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>] <span class="co"># We get column 3</span>
+<span class="co">#&gt;      col3  </span>
+<span class="co">#&gt; row1 &quot;x1-3&quot;</span>
+<span class="co">#&gt; row2 &quot;x2-3&quot;</span>
+<span class="co">#&gt; row3 &quot;x3-3&quot;</span>
+<span class="co">#&gt; row4 &quot;x4-3&quot;</span>
+
+<span class="kw">dim</span>(m[ , <span class="dv">3</span>, <span class="dt">drop =</span> <span class="ot">FALSE</span>]) <span class="co"># We get column 3 as a 4 x 1 matrix</span>
+<span class="co">#&gt; [1] 4 1</span>
+
+m[<span class="kw">c</span>(<span class="st">&quot;row1&quot;</span>, <span class="st">&quot;row4&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>)] <span class="co"># We get rows 1, 4 and columns 2, 3</span>
+<span class="co">#&gt;      col2   col3  </span>
+<span class="co">#&gt; row1 &quot;x1-2&quot; &quot;x1-3&quot;</span>
+<span class="co">#&gt; row4 &quot;x4-2&quot; &quot;x4-3&quot;</span>
+
+m[<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)] <span class="co"># Wacky but possible</span>
+<span class="co">#&gt;      col1   col2  </span>
+<span class="co">#&gt; row1 &quot;x1-1&quot; &quot;x1-2&quot;</span>
+<span class="co">#&gt; row4 &quot;x4-1&quot; &quot;x4-2&quot;</span></code></pre></div>
+
+</div>
+<div id="dataframes" class="section level2">
+<h2><span class="header-section-number">14.7</span> Dataframes</h2>
+<p>Dataframes are a very important data type in R. It is pretty much the <em>de facto</em> data structure for most tabular data and it is also what we use for statistics.</p>
+<p>Hopefully the slog through vectors, matrices, and lists will be redeemed by greater prowess at manipulating <code>data.frames</code>. Why should this be true?</p>
+<ol style="list-style-type: decimal">
+<li>A dataframe is a <em>list</em>.</li>
+<li>The list elements are the variables, and they are atomic vectors.</li>
+<li>Dataframes are rectangular, like their matrix friends, so your intuition – and even some syntax – can be borrowed from the matrix world.</li>
+</ol>
+<p><strong>NB</strong>: You might have heard of &quot;tibbles,&quot; used in the <code>tidyverse</code> suite of packages. Tibbles are like dataframes 2.0, tweaking some of the behavior of dataframes to make life easier for data anlysis. For now, just think of tibbles and dataframes as the same thing and do not worry about the difference.</p>
+<div id="creating-dataframes" class="section level3">
+<h3><span class="header-section-number">14.7.1</span> Creating Dataframes</h3>
+<p>We have already worked extensively with dataframes that we have imported through a package or <code>read.csv</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
+<p>We can create a dataframe from scratch using <code>data.frame()</code>. This function takes vectors as input:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)</code></pre></div>
+</div>
+<div id="the-structure-of-dataframes" class="section level3">
+<h3><span class="header-section-number">14.7.2</span> The Structure of Dataframes</h3>
+<p>Under the hood, a dataframe is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)
+
+<span class="kw">str</span>(df)
+<span class="co">#&gt; &#39;data.frame&#39;:    3 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ vec_1: int  1 2 3</span>
+<span class="co">#&gt;  $ vec_2: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot;</span></code></pre></div>
+<p>The <code>length()</code> of a dataframe is the length of the underlying list and so is the same as <code>ncol()</code>; <code>nrow()</code> gives the number of rows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)
+
+<span class="co"># These two are equivalent - number of columns</span>
+<span class="kw">length</span>(df)
+<span class="co">#&gt; [1] 2</span>
+<span class="kw">ncol</span>(df)
+<span class="co">#&gt; [1] 2</span>
+
+<span class="co"># Get number of rows</span>
+<span class="kw">nrow</span>(df)
+<span class="co">#&gt; [1] 3</span>
+
+<span class="co"># Get number of both columns and rows</span>
+<span class="kw">dim</span>(df)
+<span class="co">#&gt; [1] 3 2</span></code></pre></div>
+</div>
+<div id="naming-dataframes" class="section level3">
+<h3><span class="header-section-number">14.7.3</span> Naming Dataframes</h3>
+<p>Dataframes have <code>colnames()</code> and <code>rownames()</code>. However, since dataframes are really lists (of vectors) under the hood, <code>names()</code> and <code>colnames()</code> are the same thing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)
+
+<span class="co"># These two are equivalent</span>
+<span class="kw">names</span>(df)
+<span class="co">#&gt; [1] &quot;vec_1&quot; &quot;vec_2&quot;</span>
+<span class="kw">colnames</span>(df)
+<span class="co">#&gt; [1] &quot;vec_1&quot; &quot;vec_2&quot;</span>
+
+<span class="co"># Change the colnames</span>
+<span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Number&quot;</span>, <span class="st">&quot;Character&quot;</span>)
+
+<span class="co"># Change the rownames</span>
+<span class="kw">rownames</span>(df) 
+<span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</span>
+<span class="kw">rownames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;donut&quot;</span>, <span class="st">&quot;pickle&quot;</span>, <span class="st">&quot;pretzel&quot;</span>)
+df
+<span class="co">#&gt;         Number Character</span>
+<span class="co">#&gt; donut        1         a</span>
+<span class="co">#&gt; pickle       2         b</span>
+<span class="co">#&gt; pretzel      3         c</span></code></pre></div>
+</div>
+</div>
+<div id="indexing-dataframes" class="section level2">
+<h2><span class="header-section-number">14.8</span> Indexing Dataframes</h2>
+<blockquote>
+<p>A dataframe is a list that quacks like a matrix.</p>
+</blockquote>
+<p>Remember that dataframes are really lists of vectors (one vector per column). That means that dataframes have both list- and matrix-like behavior.</p>
+<p>For example, just as <code>list$name</code> selects the <code>name</code> element from the list, <code>df$name</code> selects the <code>name</code> column (vector) from the dataframe:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+gap &lt;-<span class="st"> </span>gapminder
+
+<span class="kw">head</span>(gap<span class="op">$</span>country)
+<span class="co">#&gt; [1] Afghanistan Afghanistan Afghanistan Afghanistan Afghanistan Afghanistan</span>
+<span class="co">#&gt; 142 Levels: Afghanistan Albania Algeria Angola Argentina Australia ... Zimbabwe</span></code></pre></div>
+<p>Likewise, we can use square brackets to subset rows and columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Row 1, column 3</span>
+gap[<span class="dv">1</span>, <span class="dv">3</span>]
+<span class="co">#&gt; # A tibble: 1 x 1</span>
+<span class="co">#&gt;    year</span>
+<span class="co">#&gt;   &lt;int&gt;</span>
+<span class="co">#&gt; 1  1952</span>
+
+<span class="co"># Fourth row</span>
+gap[<span class="dv">4</span>, ]
+<span class="co">#&gt; # A tibble: 1 x 6</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Afghanistan Asia       1967    34.0 11537966      836.</span>
+
+<span class="co"># First two rows of the columns 1 and 5</span>
+gap[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]
+<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt;   country         pop</span>
+<span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan 8425333</span>
+<span class="co">#&gt; 2 Afghanistan 9240934</span></code></pre></div>
+<p>We can also use subsetting in conjunction with assignment to quickly add a column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(gap)
+<span class="co">#&gt; [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;</span>
+gap<span class="op">$</span>new_col &lt;-<span class="st"> </span><span class="ot">NA</span>
+<span class="kw">head</span>(gap)
+<span class="co">#&gt; # A tibble: 6 x 7</span>
+<span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap new_col</span>
+<span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;lgl&gt;  </span>
+<span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779. NA     </span>
+<span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821. NA     </span>
+<span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853. NA     </span>
+<span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836. NA     </span>
+<span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740. NA     </span>
+<span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786. NA</span></code></pre></div>
+<div id="challenges-13" class="section level3">
+<h3><span class="header-section-number">14.8.1</span> Challenges</h3>
+<div id="challenge-1.-10" class="section level4 unnumbered">
+<h4>Challenge 1.</h4>
+<p>Create a 3x2 dataframe called <code>basket</code>. The first column should contain the names of 3 fruits. The second column should contain the price of those fruits. Now give your dataframe appropriate column and row names.</p>
+</div>
+<div id="challenge-2.-9" class="section level4 unnumbered">
+<h4>Challenge 2.</h4>
+<p>Add a third column called <code>color</code> that tells what color each fruit is.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-inferences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="strings-and-regular-expressions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/plsc-31101/course/edit/master/10-Objects/10_1-Objects.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/plsc-31101/course/raw/master/10-Objects/10_1-Objects.Rmd"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
