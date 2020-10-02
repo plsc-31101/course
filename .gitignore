@@ -48,6 +48,6 @@ Icon*
 .DS_Store 
 
 # drafts, etc
-# */_*.Rmd
+*/_*.Rmd
 
 
