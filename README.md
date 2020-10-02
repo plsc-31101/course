@@ -14,7 +14,7 @@ install.packages("tidyverse")
 library("usethis")
 
 # download course materials
-use_course("https://github.com/plsc-31101/course/archive/students.zip")
+use_course("plsc-31101/course/")
 ```
 
 #### Acknowledgments 
