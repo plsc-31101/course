@@ -1,0 +1,41 @@
+---
+title: "06-99_Challenge_Solutions"
+output: html_document
+---
+
+```{r message = F}
+library(tidyverse)
+library(gapminder)
+
+gap <- gapminder
+```
+
+## 6-1_tidyr Challenges
+
+#### Challenge 1. {-}
+
+Subset the results from Challenge #3 (of the previous chapter) to select only the `country`, `year`, and `gdpPercap_diff` columns. Use `tidyr` to put it in wide format so that countries are rows and years are columns.
+
+
+```{r}
+# Solution from Chapter 5-2, Challenge 3:
+gap <- gap %>%
+  group_by(continent, year) %>%
+  mutate(mean_gdpPercap = mean(gdpPercap)) %>%
+  mutate(gdpPercap_diff = gdpPercap - mean_gdpPercap) %>%
+  ungroup() %>%
+  arrange(desc(gdpPercap_diff), year)
+
+# Spreading into wide format:
+gap <- gap %>%
+  select(country, year, gdpPercap_diff) %>%
+  spread(year, gdpPercap_diff)
+```
+
+#### Challenge 2. {-}
+Now turn the dataframe above back into the long format with three columns: `country`, `year`, and `gdpPercap_diff`.
+
+```{r}
+gap <- gap %>%
+  gather(year, gdpPercap_diff, 2:13)
+```

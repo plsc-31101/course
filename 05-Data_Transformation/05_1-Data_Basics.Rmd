@@ -1,0 +1,121 @@
+---
+title: "Exploring Data"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Data Transformation
+
+## Introduction to Data
+
+The upcoming weeks will be focused on using R for data cleaning and analysis. Let's first get on the same page with some terms:
+
+* A **variable** is a quantity, quality, or property that you can measure.
+
+* An **observation** is a set of measurements for the same unit. An observation will contain several values, each associated with a different variable. I will sometimes refer to an observation as a **data point** or an **element**.
+
+* A **value** is the state of a variable for a particular observation. 
+
+* **Tabular data** are a set of values, each associated with a variable and an observation. Tabular data have rows (observations) and columns (variables). Tabular data are also called **rectangular** data or **spreadsheets**. 
+
+### The Gapminder Dataset
+
+This lesson discusses how to perform basic exploratory data analysis.
+
+For this unit, we will be working with the "Gapminder" dataset, which is an excerpt of the data available at gapminder.org. For each of 142 countries, the data provide values for life expectancy, GDP per capita, and population, every five years from 1952 to 2007.
+
+```{r}
+require(gapminder)
+gap <- gapminder
+```
+
+### Structure and Dimensions
+
+By loading the gapminder package, we now have access to a data frame by the same name. Get an overview of this with `str()`, which displays the structure of an object.
+
+```{r}
+str(gap)
+```
+
+`str()` will provide a sensible description of almost anything and, worst case, nothing bad can actually happen. When in doubt, just `str()` some of the recently created objects to get some ideas about what to do next.
+
+We could print the `gapminder` object itself to screen. However, if you have used R before, you might be reluctant to do this, because large datasets just fill up your Console and provide very little insight.
+
+The `head` function displays the first 6 rows of any dataframe.
+
+```{r}
+head(gap)
+```
+
+Here are some more common ways to query info from a dataframe:
+
+```{r}
+# Get number of rows and columns:
+dim(gap)
+
+# See column names:
+names(gap)
+
+# A statistical overview can be obtained with summary():
+summary(gap)
+```
+
+
+### Variables
+
+To specify a single variable from a data frame, use the dollar sign `$`. Let’s explore the numeric variable for life expectancy.
+
+```{r}
+head(gap$lifeExp)
+summary(gap$lifeExp)
+hist(gap$lifeExp)
+```
+
+Data frames – unlike matrices in R – can hold variables of different flavors, such as character data (subject ID or name), quantitative data (white blood cell count), and categorical information (treated vs. untreated). 
+
+For example, the `year` variables is numeric, while the variables for `country` and `continent` hold categorical information, which is stored as a factor in R.
+
+```{r}
+summary(gap$year)
+summary(gap$country)
+summary(gap$contintent)
+```
+
+Sometimes we need to do some basic checking for the number of observations or types of observations in our dataset. To do this quickly and easily, `table()` is our friend. 
+
+Let's look at the number of observations first by region, and then by both region and year:
+
+```{r}
+table(gap$continent)
+table(gap$continent, gap$year)
+```
+
+We can even divide by the total number of rows to get proportion, percent, etc.:
+
+```{r}
+table(gap$continent)/nrow(gap)
+table(gap$continent)/nrow(gap)*100
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Read the `polity_sub` dataset in the `Data` sub-directory.
+
+#### Challenge 2. {-}
+
+Report the number and name of each variable in the dataset.
+
+#### Challenge 3. {-}
+
+What is the mean `polity2` score in the dataset?
+
+#### Challenge 4. {-}
+
+What is the range of the `polity2` variable?
+
+#### Challenge 5. {-}
+
+How many unique countries are in the dataset?

@@ -1,0 +1,175 @@
+---
+title: "Manipulating Data with `dplyr`"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+```{r message=F}
+library(tidyverse)
+library(gapminder)
+
+gap <- gapminder
+head(gap)
+```
+
+## Calculating across Groups
+
+A common task you will encounter when working with data is running calculations on different groups within the data. For instance, what if we wanted to calculate the mean GDP per capita for each continent?
+
+In base R, you would have to run the `mean()` function for each subset of data.
+
+```{r}
+mean(gap$gdpPercap[gap$continent == "Africa"])
+mean(gap$gdpPercap[gap$continent == "Americas"])
+mean(gap$gdpPercap[gap$continent == "Asia"])
+mean(gap$gdpPercap[gap$continent == "Europe"])
+mean(gap$gdpPercap[gap$continent == "Oceania"])
+```
+
+That is a lot of repetition! To make matters worse, what if we wanted to add these values to our original data frame as a new column? We would have to write something like this:
+
+```{r}
+gap$mean.continent.GDP <- NA
+gap$mean.continent.GDP[gap$continent == "Africa"] <- mean(gap$gdpPercap[gap$continent == "Africa"])
+gap$mean.continent.GDP[gap$continent == "Americas"] <- mean(gap$gdpPercap[gap$continent == "Americas"])
+gap$mean.continent.GDP[gap$continent == "Asia"] <- mean(gap$gdpPercap[gap$continent == "Asia"])
+gap$mean.continent.GDP[gap$continent == "Europe"] <- mean(gap$gdpPercap[gap$continent == "Europe"])
+gap$mean.continent.GDP[gap$continent == "Oceania"] <- mean(gap$gdpPercap[gap$continent == "Oceania"])
+```
+
+You can see how this can get pretty tedious, especially if we want to calculate more complicated or refined statistics. We could use loops or apply functions, but these can be difficult, slow, and error-prone. 
+
+#### Split-apply-combine {-}
+
+The abstract problem we are encountering here is know as "split-apply-combine":
+
+```{r echo = F}
+knitr::include_graphics(path = "img/splitapply.png")
+```
+
+We want to *split* our data into groups (in this case, continents), *apply* some calculations on that group, then *combine* the results together afterwards. 
+
+Luckily, `dplyr` offers a much cleaner, straight-forward solution to this problem.
+
+First, let's remove the column we just made:
+
+```{r}
+gap <- gapminder
+```
+
+### Use `group_by` to Create a Grouped Data
+
+We have already seen how `filter()` can help us select observations that meet certain criteria (in the above: `continent == "Africa"`). More helpful, however, is the `group_by()` function, which will essentially use every unique criterium that we could have used in `filter()`.
+
+A `grouped_df` can be thought of as a `list` where each item in the `list` is a `data.frame` which contains only the rows that correspond to a particular value for `continent` (at least in the example above).
+
+```{r echo = F}
+knitr::include_graphics(path = "img/dplyr-fig2.png")
+```
+
+### Summarize Across Groups with `summarize`
+
+`group_by()` on its own is not particularly interesting. It is much more exciting used in conjunction with the `summarize()` function. 
+
+This will allow us to create new variable(s) by applying transformations to variables in each of our groups (continent-specific data frames).
+
+In other words, using the `group_by()` function, we split our original data frame into multiple pieces, to which we then apply summary functions (e.g., `mean()` or `sd()`) within `summarize()`.
+
+The output is a new data frame reduced in size, with one row per group.
+
+```{r}
+gap %>%
+  group_by(continent) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap)) 
+```
+
+```{r echo = F}
+knitr::include_graphics(path = "img/dplyr-fig3.png")
+```
+
+That allowed us to calculate the mean `gdpPercap` for each continent. 
+
+But it gets even better -- the function `group_by()` allows us to group by multiple variables. Let's group by `year` and `continent`:
+
+```{r}
+gap %>%
+  group_by(continent, year) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap)) %>%
+  head()
+```
+
+That is already quite powerful, but it gets even better! You are not limited to defining only one new variable in `summarize()`.
+
+```{r}
+gap %>%
+  group_by(continent, year) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap), 
+            sd_gdpPercap = sd(gdpPercap),
+            mean_pop = mean(pop),
+            sd_pop = sd(pop))
+```
+
+### Add New Variables with `mutate`
+
+What if we wanted to add these values to our original data frame instead of creating a new object?
+
+For this, we can use the `mutate()` function, which is similar to `summarize()` except that it creates new variables in the same data frame that you pass into it.
+
+```{r}
+gap %>%
+  group_by(continent, year) %>%
+  mutate(mean_gdpPercap = mean(gdpPercap), 
+            sd_gdpPercap = sd(gdpPercap),
+            mean_pop = mean(pop),
+            sd_pop = sd(pop))
+```
+
+We can also use `mutate()` to create new variables prior to (or even after) summarizing the information.
+
+```{r}
+gap %>%
+  mutate(gdp_billion = gdpPercap*pop/10^9) %>%
+  group_by(continent, year) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap),
+            sd_gdpPercap = sd(gdpPercap),
+            mean_pop = mean(pop),
+            sd_pop = sd(pop),
+            mean_gdp_billion = mean(gdp_billion),
+            sd_gdp_billion = sd(gdp_billion))
+```
+
+#### `mutate` vs. `summarize` {-}
+
+It can be confusing to decide whether to use `mutate` or `summarize`. The key distinction is whether you want the output to have one row for each group or one row for each row in the original data frame:
+
+  - `mutate`: Creates new columns with as many rows as the original data frame.
+  - `summarize`: Creates a data frame with as many rows as groups.
+
+Note that if you use an aggregation function such as `mean()` within `mutate()` without using `group_by()`, you will simply do the summary over all the rows of the input data frame.
+
+And if you use an aggregation function such as `mean()` within `summarize()` without using `group_by()`, you will simply create an output data frame with one row (i.e., the whole input data frame is a single group).
+
+## Challenges
+
+#### Challenge 1. {-}
+
+Use `dplyr` to create a data frame containing the median `lifeExp` for each continent.
+
+#### Challenge 2. {-}
+
+Use `dplyr` to add a column to the Gapminder dataset that contains the total population of the continent of each observation in a given year. For example, if the first observation is Afghanistan in 1952, the new column would contain the population of Asia in 1952. 
+
+#### Challenge 3. {-}
+
+Use `dplyr` to: (a) add a column called `gdpPercap_diff` that contains the difference between the observation's `gdpPercap` and the mean `gdpPercap` of the continent in that year, and (b) arrange the data frame by the column you just created in descending order (so that the relatively richest country-years are listed first).
+
+**Hint:** You might have to `ungroup()` before you `arrange()`.
+
+
+#### Acknowledgments {-}
+
+Some of the materials in this module were adapted from:
+
+* [Software Carpentry](http://swcarpentry.github.io/r-novice-gapminder/).
+* [R bootcamp at UC Berkeley](https://github.com/berkeley-scf/r-bootcamp-fall-2019).

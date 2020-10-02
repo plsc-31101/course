@@ -1,0 +1,64 @@
+---
+title: "R Packages"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## R Packages
+
+The best part about R are its user-contributed packages (also called "libraries"). A _package_ is a collection of functions (and sometimes data) that can be used by other programers. 
+
+A good analogy for R packages is they are like apps you can download onto a mobile phone:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/R_vs_R_packages.png")
+```
+
+So R is like a new mobile phone: while it has a certain amount of features when you use it for the first time, it does not have everything. R packages are like the apps you can download onto your phone from Apple's App Store or Android's Google Play.
+
+Let's continue this analogy by considering the Instagram app for editing and sharing pictures. Say you have purchased a new phone and you would like to share a photo you have just taken with friends and family on Instagram. You need to:
+
+1. __Install the app__: Since your phone is new and does not include the Instagram app, you need to download the app from either the App Store or Google Play. You do this once and you are set for the time being. You might need to do this again in the future when there is an update to the app.
+2. __Open the app__: After you have installed Instagram, you need to open the app.
+
+The process is very similar for using an R package. You need to:
+
+1. __Install the package__: This is like installing an app on your phone. Most packages are not installed by default when you install R and RStudio. Thus, if you want to use a package for the first time, you need to install it first. Once you have installed a package, you likely will not install it again unless you want to update it to a newer version.
+2. __"Load" the package__: Loading a package is like opening an app on your phone. Packages are not loaded by default when you start RStudio on your computer; you need to load each package you want to use every time you start RStudio.
+
+### Installing Packages
+
+First, we download the package from one of the CRAN mirrors onto our computer. For this we use  `install.packages("package-name")`. If you have not set a preferred CRAN mirror in your `options()`, a menu will pop up asking you to choose a location. 
+
+Let's download the package `dplyr`.
+
+```{r eval=F}
+install.packages("dplyr")
+```
+
+If you run into errors later in the course about a function or package not being found, run the `install.packages` function to make sure the package is actually installed. 
+
+**Important**: Once we download the package, we never need to run `install.packages` again (unless we get a new computer).
+
+### Loading Packages
+
+Once we download the package, we need to load it into our session to use it. This is required at the beginning of each R session. This step is necessary because, if we automatically loaded every package we have ever downloaded, our computer would fry.
+
+```{r, eval = FALSE}
+library(dplyr)
+```
+
+The message tells you which functions from `dplyr` conflict with functions in base R (or from other packages you might have loaded).
+
+### Challenge
+
+Let's go ahead and download some core, important packages we will use for the rest of the course. Download (if you have not done so already) and load the following packages:
+
+* `tidyverse`
+* `rmarkdown`
+* `knitr`
+* `gapminder`
+* `devtools`
+* `stargazer` 
+* `rtweet`

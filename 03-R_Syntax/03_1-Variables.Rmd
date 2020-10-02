@@ -1,0 +1,167 @@
+---
+title: "Basic Syntax"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# R Syntax
+
+Frustration is natural when you start programming in R. R is a stickler for punctuation, and even one character out of place will cause it to complain. But while you should expect to be a little frustrated, take comfort in that it is both typical and temporary: it happens to everyone, and the only way to get over it is to keep trying.
+
+> To understand computations in R, two slogans are helpful:
+
+>  - Everything that exists is an object.
+
+>  - Everything that happens is a function call.
+  
+> __John Chambers__
+
+## Variables
+
+### Arithmetic operators
+
+In its most basic form, R can be used as a simple calculator. Consider the following arithmetic operators:
+
+| Operator | Description                 |
+|----------|-----------------------------|
+| +        | addition                    |
+| -        | subtraction                 |
+| *        | multiplication              |
+| /        | division                    |
+| ^ or **  | exponentiation              |
+| x %% y   | modulus (remainder)         |
+
+
+```{r}
+1 / 200 * 30
+(59 + 73 + 2) / 3
+5 %% 2
+```
+
+But when we do this, none of our results are saved for later use.
+
+### Assigning Variables
+
+An essential part of programming is creating objects (or variables).^[Technically, objects and variables are different things, but we will use the two interchangeably for now.] Variables are names for values. 
+
+A variable is created when a value is assigned to it. We do that with `<-`.
+
+```{r}
+x <- 3
+```
+
+`<-` is called the *assignment operator*. It assigns values on the right to objects on the left, like this:
+
+```{r eval = F}
+object_name <- value
+```
+
+So, after executing `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 goes into `x`. 
+
+**NB**: Do not use `=` for assignments. It will work in some contexts, but it will cause confusion later. There will be other scenarios where you will use `=` - we will discuss these later on.
+
+We can use variables in calculations just as if they were values.
+
+```{r}
+x <- 3
+x + 5
+``` 
+
+#### Inspect objects to display values. {-}
+
+In R, the contents of an object can be printed by simply executing the object name.
+
+```{r}
+x <- 3
+x
+```
+
+#### Whitespace makes code easier to read. {-}
+
+Notice that we surrounded `<-` with spaces. In R, white space is ignored (unlike Python). It is good practice to use spaces, because it makes code easier to read.
+
+```{r}
+experiment<-"current vs. voltage"   # this is bad
+experiment <- "current vs. voltage" # this is better
+```
+
+### Variable Names
+
+Object names can only contain letters, numbers, `_` and `.`. 
+
+You want your object names to be descriptive. `x` is not a good variable name (sorry!). You will also need a convention for multiple words. I recommend *snake_case*, where you separate lowercase words with `_`.
+
+```{r eval = F}
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+Let's make an assignment using snake_case:
+
+```{r}
+r_rocks <- 2 ^ 3
+```
+
+And let's try to inspect it:
+
+```{r, error = TRUE}
+r_rock
+R_rocks
+```
+
+R is case-sensitive!
+
+#### Use the TAB key to autocomplete. {-}
+
+Because typos are the absolute worst, we can use R Studio to help us type. Let's inspect `r_rocks` using RStudio’s tab completion facility. Type `r_`, press TAB, add characters until you have a unique prefix, then press return.
+
+```{r}
+r_rocks
+```
+
+### Challenges
+
+#### Challenge 1: Making and printing variables. {-}
+
+Make 3 variables: name (with your full name), city (where you were born), and year (when you were born).
+
+#### Challenge 2: Swapping values. {-}
+
+Draw a table showing the values of the variables in this program after each statement is executed.
+
+In simple terms, what do the last three lines of this program do?
+
+```{r}
+lowest <- 1.0
+highest <- 3.0
+temp <- lowest
+lowest <- highest
+highest <- temp
+```
+
+#### Challenge 3: Predicting values. {-}
+
+What is the final value of `position` in the program below? Try to predict the value without running the program, then check your prediction.
+
+```{r}
+initial <- "left"
+position <- initial
+initial <- "right"
+```
+
+#### Challenge 4: Syntax. {-}
+
+Why does the following code fail?
+
+```{r eval = F}
+age == 31
+```
+
+And the following?
+
+```{r eval = F}
+31 <-  age
+```

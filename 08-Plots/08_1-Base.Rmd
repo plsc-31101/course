@@ -1,0 +1,227 @@
+---
+title: "Plotting and Visualization in R"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Plotting
+
+> "Make it informative, then make it pretty"
+
+There are two major sets of tools for creating plots in R:
+
+* 1. [Base](#1-r-base-graphics), which comes with all R installations. 
+* 2. [`ggplot2`](#2-ggplot2), a stand-alone package.  
+
+Note that other plotting facilities do exist (notably `lattice`), but base and `ggplot2` are by far the most popular.
+
+## The Dataset
+
+For the following examples, we will be using the `gapminder` dataset we have used previously. Gapminder is a country-year dataset with information on life expectancy, among other things.
+
+```{r}
+library(gapminder)
+gap <- gapminder
+```
+
+## R Base Graphics
+
+The **basic** call takes the following form:
+
+```{r, eval=F}
+plot(x=, y=)
+```
+
+We will also introduce a base R command to help us with creating these plots. To reference a specific column in a dataset, we use a `$` with the following syntax: `dataset$column`. See this in action below, where we plot `gdpPercap` against `lifeExp`:
+
+```{r}
+plot(x = gap$gdpPercap, y = gap$lifeExp)
+```
+
+### Scatter and Line Plots
+
+The `type` argument accepts the following character indicators:
+
+* `"p"`: Point/scatter plots (default plotting behavior).
+
+```{r, fig.cap=" "}
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p")
+```
+
+* `"l"`: Line graphs.
+
+```{r, fig.cap=" "}
+# Note that "line" does not create a smooth line, just connected points
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l") 
+```
+
+* `"b"`: Both line and point plots.
+
+```{r, fig.cap=" "}
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="b") 
+```
+
+### Histograms and Density Plots
+
+Histograms display the frequency of different values of a variable.
+
+```{r}
+hist(x=gap$lifeExp)
+```
+
+Histograms require a `breaks` argument, which determines the number of bins in the plot. Let's play around with different `breaks` values:
+
+```{r}
+hist(x=gap$lifeExp, breaks=5)
+hist(x=gap$lifeExp, breaks=10)
+```
+
+Density plots are similar; they visualize the distribution of data over a continuous interval. 
+
+```{r, fig.cap=" "}
+# Create a density object (NOTE: Be sure to remove missing values)
+age.density <- density(x=gap$lifeExp, na.rm=T)
+
+# Plot the density object
+plot(x=age.density)
+```
+
+Density passes a `bw` parameter, which determines the plot's "bandwidth." 
+
+```{r}
+# Plot the density object, bandwidth of 0.5
+plot(x=density(x=gap$lifeExp, bw=.5))
+# Plot the density object, bandwidth of 2
+plot(x=density(x=gap$lifeExp, bw=2))
+# Plot the density object, bandwidth of 6
+plot(x=density(x=gap$lifeExp, bw=6)) 
+```
+
+### Labels
+
+Here is the basic call with popular labeling arguments:
+
+```{r, eval=F}
+plot(x=, y=, type="", xlab="", ylab="", main="") 
+```
+
+From the previous example...
+
+```{r, fig.cap=" "}
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", xlab="GDP per cap", ylab="Life Expectancy", main="Life Expectancy ~ GDP") # Add labels for axes and overall plot
+```
+
+### Axis and Size Scaling
+
+Currently it is hard to see the relationship between the points due to some strong outliers in GDP per capita. We can change the scale of units on the x-axis using scaling arguments.
+
+Here is the basic call with popular scaling arguments:
+
+```{r, eval=F}
+plot(x=, y=, type="", xlim=, ylim=, cex=)
+```
+
+From the previous example...
+
+```{r, fig.cap=" "}
+# Create a basic plot
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p")
+# Limit gdp (x-axis) to between 1,000 and 20,000
+plot(x = gap$gdpPercap, y = gap$lifeExp, xlim = c(1000,20000)) 
+# Limit gdp (x-axis) to between 1,000 and 20,000, increase point size to 2
+plot(x = gap$gdpPercap, y = gap$lifeExp, xlim = c(1000,20000), cex=2) 
+# Limit gdp (x-axis) to between 1,000 and 20,000, decrease point size to 0.5
+plot(x = gap$gdpPercap, y = gap$lifeExp, xlim = c(1000,20000), cex=0.5)  
+```
+
+### Graphical Parameters
+
+We can change the points with a number of graphical options:
+
+```{r, eval=F}
+plot(x=, y=, type="", col="", pch=, lty=, lwd=)
+```
+
+* Colors
+
+```{r}
+library(dplyr)
+colors() %>%
+  head(20)# View first 20 elements of the color vector
+
+```
+
+Another option: [R Color Infographic](http://research.stowers-institute.org/efg/R/Color/Chart/ColorsChart1.jpg)
+```{r, fig.cap=" "}
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", col="aquamarine1")
+```
+
+* Point Styles and Widths
+
+[A Good Reference](http://www.endmemo.com/program/R/pic/pchsymbols.png)
+
+```{r, fig.cap=" "}
+# Change point style to crosses
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", pch=3) 
+# Change point style to filled squares
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", pch=15) 
+# Change point style to filled squares and increase point size to 3
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", pch=15, cex=3) 
+# Change point style to "w"
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", pch="w")
+# Change point style to "$" and increase point size to 2
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p", pch="$", cex=2) 
+```
+
+* Line Styles and Widths
+
+```{r, fig.cap=" "}
+# Line plot with solid line
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l", lty=1)
+# Line plot with medium dashed line
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l", lty=2)
+# Line plot with short dashed line
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l", lty=3)
+# Change line width to 2
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l", lty=3, lwd=2)
+# Change line width to 5
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l",  lwd=5)
+# Change line width to 10 and use dash-dot
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="l",  lty=4, lwd=10)
+```
+
+### Annotations, Reference Lines, and Legends
+
+* Text
+
+We can add text to an arbitrary point on the graph like this:
+
+```{r, fig.cap=" "}
+# Plot the line first
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p")
+# Now add the label
+text(x=40000, y=50, labels="Evens Out", cex = .75)
+```
+
+We can also add labels for every point by passing in a vector of text:
+
+```{r, fig.cap=" "}
+# First randomly select rows for a smaller gapaset
+small <- gap %>% sample_n(100)
+
+# Plot the line first
+plot(x = small$gdpPercap, y = small$lifeExp, type="p")
+# Now add the label
+text(x = small$gdpPercap, y = small$lifeExp, labels = small$country)
+```
+
+* Reference Lines
+
+```{r, fig.cap=" "}
+# Plot the line
+plot(x = gap$gdpPercap, y = gap$lifeExp, type="p")
+# Now the guides
+abline(v=40000, h=75, lty=2)
+```
+

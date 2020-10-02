@@ -1,0 +1,91 @@
+---
+title: "Indexing Lists"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Subsetting Lists
+
+Subsetting a list works in the same way as subsetting an atomic vector. However, there is one important difference: `[` will always return a list. `[[` and `$`, as described below, let you pull out the components of the list.
+
+The ["pepper shaker photos"](https://r4ds.had.co.nz/vectors.html#lists-of-condiments) in R for Data Science are a splendid visual explanation of the different ways to get stuff out of a list. Highly recommended.
+
+Let's illustrate with the following list `my_list`:
+
+```{r}
+my_list <- list(a = 1:3, 
+                b = "a string", 
+                c = pi, 
+                d = list(-1, -5))
+```
+
+### With `[`
+
+`[` extracts a sub-list where the result will always be a list. Like with vectors, you can subset with a logical, integer, or character vector.
+
+```{r}
+my_list[1]
+str(my_list[1])
+
+my_list[1:2]
+str(my_list[1:2])
+```
+
+### With `[[`
+
+`[[` extracts a single _component_ from a list. In other words, it removes that hierarchy and returns whatever object is stored inside.
+
+```{r}
+my_list[[1]]
+str(my_list[[1]])
+
+# Compare to
+my_list[1]
+str(my_list[1])
+```
+
+The distinction between `[` and `[[` is really important for lists, because `[[` drills down into the list while `[` returns a new, smaller list. 
+
+>  "If list `x` is a train carrying objects, then `x[[5]]` is
+> the object in car 5; `x[4:6]` is a train of cars 4-6." 
+>
+> --- @RLangTip
+
+
+### with `$`
+
+`$` is a shorthand for extracting a single named element of a list. It works especially well when coupled with tab completion. 
+
+```{r}
+my_list$a
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+What are the four basic types of atomic vectors? How does a list differ from an atomic vector?
+
+#### Challenge 2. {-}
+
+Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+
+#### Challenge 3. {-}
+
+Create three vectors and combine them into a list. Assign them names.
+
+#### Challenge 4.  {-}
+
+If `x` is a list, what is the class of `x[1]`?  How about `x[[1]]`?
+
+#### Challenge 5.  {-}
+
+Take a look at the linear model below:
+
+```{r}
+mod <- lm(mpg ~ wt, data = mtcars)
+summary(mod)
+```
+
+Extract the R squared from the model summary.

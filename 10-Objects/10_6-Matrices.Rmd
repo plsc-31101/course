@@ -1,0 +1,62 @@
+---
+title: "Matrices"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Matrices
+
+Matrices are like 2-d vectors, that is, they are a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns.
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3)
+m
+```
+
+> General arrays are available in R, where a matrix is an important special case having dimension 2.
+
+Practically speaking, matrices are good for large tables of numbers. However, as social scientists, we rarely work with purely numerical data. 
+
+By definition, if you want to combine different types of data (one column numbers, another column characters...), you want a **dataframe**, not a matrix. 
+
+Let’s make a simple matrix and give it decent row and column names. You will see familiar or self-explanatory functions below for getting to know a matrix.
+
+```{r}
+## Do not worry if the construction of this matrix confuses you; 
+## just focus on the product
+m <- outer(as.character(1:4), as.character(1:4),
+              function(x, y) {
+                paste0('x', x, '-', y)
+                })
+m
+str(m)
+class(m)
+dim(m)
+nrow(m)
+ncol(m)
+rownames(m)
+
+rownames(m) <- c("row1", "row2", "row3", "row4")
+colnames(m) <- c("col1", "col2", "col3", "col4")
+
+m
+```
+
+## Indexing a Matrix
+
+Similar to vectors, you can use the square brackets `[ ]` to select one or multiple elements from a matrix. But whereas vectors have one dimension, matrices have two dimensions. We therefore have to use two subsetting vectors – one for rows and another for columns to select – separated by a comma. Blank subsetting is also useful because it lets you keep all rows or all columns.
+
+```{r}
+m[2, 3] # Selects the value at the second row and third column
+
+m[2, ] # We get row 2
+
+m[ , 3, drop = FALSE] # We get column 3
+
+dim(m[ , 3, drop = FALSE]) # We get column 3 as a 4 x 1 matrix
+
+m[c("row1", "row4"), c("col2", "col3")] # We get rows 1, 4 and columns 2, 3
+
+m[-c(2, 3), c(TRUE, TRUE, FALSE, FALSE)] # Wacky but possible
+```

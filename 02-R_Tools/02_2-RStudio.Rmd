@@ -1,0 +1,157 @@
+---
+title: "R Studio"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## RStudio 
+
+Throughout this class, we will assume that you are using R via RStudio. First-time users often confuse the two. At its simplest, R is like a car’s engine, while RStudio is like a car's dashboard.
+
+```{r echo = F}
+knitr::include_graphics(path = "img/R_vs_RStudio_1.png")
+```
+
+More precisely, R is a programming language that runs computations, while RStudio is an _integrated development environment (IDE)_ that provides an interface with many convenient features and tools. Just as the way of having access to a speedometer, rear-view mirrors, and a navigation system makes driving much easier, using RStudio’s interface makes using R much easier as well.
+
+RStudio includes a console, a syntax-highlighting code editor, as well as tools for plotting, history, debuggingm and workspace management. It is also free and open-source. Yay!
+
+**NB**: We do not have to use RStudio to use R. For example, we can write R code in a plain text editor (like `textedit` or `notepad`) and then execute the script using the shell (e.g., `terminal` in Mac). But this is not ideal.
+
+After you install R and RStudio on your computer, you will have two new applications you can open. We will always work in RStudio -- not in the R application. 
+
+```{r echo = F}
+knitr::include_graphics(path = "img/R_vs_RStudio.png")
+```
+
+After you open RStudio, you should see something similar to this:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/rstudio.png")
+```
+
+### Console
+
+There are two main ways of interacting with R: by using the __console__ or by using the __script editor__.
+
+The console window (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do and where it will show the results of a command.  
+
+You can type commands directly into the console, but they will be forgotten when you close the session. Try it out now.
+
+```{r eval = F}
+> 2 + 2
+```
+
+If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting, or sending from the script editor using `Ctrl-Enter`), R will try to execute it andm when ready, show the results and come back with a new `>`-prompt to wait for new commands.
+
+If R is still waiting for you to enter more data because it is not complete yet, the console will show a `+` prompt. It means that you have not finished entering a complete command. This happens when you have not 'closed' a parenthesis or quotation. If you are in RStudio and this happens, click inside the console window and press `Esc`; this should help get you out of trouble.
+
+```{r eval = F}
+> "This is an incomplete quote
++
+```
+
+#### More Console Features {-}
+
+1. Retrieving previous commands: As you work with R, you will often want to re-execute a command which you previously entered. Recall previous commands using the up and down arrow keys.
+
+2. Console title bar: This screenshot illustrates a few additional capabilities provided by the console title bar:
+
+    * Display of the current working directory.
+    * The ability to interrupt R during a long computation.
+    * Minimizing and maximizing the console in relation to the Source pane (by using the buttons at the top-right or by double-clicking the title bar).
+
+```{r echo = F}
+knitr::include_graphics(path = "img/using_console_title_bar.png")
+```
+
+### Scripts
+
+It is better practice to enter commands in the script editor and save the script. This way, you have a complete record of what you did, you can easily show others how you did it, and you can do it again later on if needed. Open it up either by clicking the *File* menu and selecting *New File*, then R script; or by using the keyboard shortcut Cmd/Ctrl + Shift + N. Now you will see four panes.
+
+```{r echo = F}
+knitr::include_graphics(path = "img/4-panes.png")
+```
+
+The script editor is a great place to put code you care about. Keep experimenting in the console, but, once you have written code that works and does what you want, put it in the script editor. 
+
+RStudio will automatically save the contents of the editor when you quit RStudio and load them when you re-open RStudio. Nevertheless, it is a good idea to save your scripts regularly and to back them up.
+
+### Running Code
+
+While you certainly can copy-paste code that you would like to run from the editor into the console, this workflow is pretty inefficient. The key to using the script editor effectively is to memorize one of the most important keyboard shortcuts in RStudio: __`Cmd/Ctrl + Enter`__. This executes the current R expression from the script editor in the console.
+
+For example, take the code below. If your cursor is somewhere on the first line, pressing `Cmd/Ctrl + Enter` will run the complete command that generates `dems`. It will also move the cursor to the next statement (beginning with `reps`). That makes it easy to run your complete script by repeatedly pressing `Cmd/Ctrl + Enter`.
+
+```{r}
+dems <- (55 + 70) * 1.3
+
+reps <- (20 - 1) / 2
+```
+
+Instead of running expression by expression, you can also execute the complete script in one step: `Cmd/Ctrl + Shift + S`. Doing this regularly is a great way to check that you have captured all the important parts of your code in the script.
+
+### Comments
+
+Use `#` signs to add comments within your code chunks. You are encouraged to regularly comment within your code. Anything to the right of a `#` is ignored by R. Each line of a comment needs to begin with a `#`.
+
+```{r}
+# This is a comment.
+# This is another line of comments.
+```
+
+### Diagnostics and errors
+
+The script editor will also highlight syntax errors with a red squiggly line and a cross in the sidebar:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/rstudio-diagnostic.png")
+```
+
+You can hover over the cross to see what the problem is:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/rstudio-diagnostic-tip.png")
+```
+
+If you try to execute the code, you will see an error in the console:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/error.png")
+```
+
+When errors happen, your code is haulted -- meaning it is never executed. Errors can be frustrating in R, but, with practice, you will be able to debug your code quickly.
+
+### Errors, Messages, and Warnings
+
+One thing that intimidates new R and RStudio users is how it reports errors, warnings, and messages. R reports errors, warnings, and messages in a glaring font, which makes it seem like it is scolding you. However, seeing red text in the console is not always bad:
+
+1. __Errors__: When the text is a legitimate error, it will be prefaced with "Error:", and R will try to explain what went wrong. Generally, when there is an error, the code will not run. _Think of errors as a red traffic light: something is wrong!_
+
+2. __Warnings__: When the text is a warning, it will be prefaced with "Warning:", and R will try to explain why there is a warning. Generally, your code will still work, but perhaps not in the way you would expect. _Think of warnings as a yellow traffic light: everything is working fine, but watch out/pay attention._
+
+2. __Messages__: When the text doesn not start with either "Error:" or "Warning:", it is just a friendly message. These are helpful diagnostic messages and they do not stop your code from working. _Think of messages as a green traffic light: everything is working fine, and keep on going!_
+
+###  R Environment
+
+Turn your attention to the upper right pane. This pane displays your "global environment" and contains the data objects you have saved in your current session. Notice that we have the two objects created earlier, `dems` and `reps`, along with their values.
+
+You can list all objects in your current environment by running:
+
+```{r}
+ls()
+```
+
+Sometimes we want to remove objects that we no longer need.
+
+```{r}
+x <- 5
+rm(x)
+```
+
+If you want to remove all objects from your current environment, you can run:
+
+```{r}
+rm(list = ls())
+```

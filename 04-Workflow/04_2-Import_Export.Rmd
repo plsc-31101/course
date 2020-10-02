@@ -1,0 +1,166 @@
+---
+title: "Importing Data"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Importing and Exporting 
+
+### Where Is My Data?
+
+To start, you first need to know where your data lives. Sometimes, the data is stored as a file on your computer, e.g., CSV, Excel, SPSS, or some other file type. When the data is on your computer, we say the data is stored **locally**.
+
+Data can also be stored externally on the Internet, in a package, or obtained through other sources. For example, some R packages contain datasets (like the `gapminder` package). Later in this course, we will discuss how to obtain data from web APIs and websites. For now, the rest of the unit discusses data that is stored **locally**.
+
+### Data Storage
+
+Ideally, your data should be stored in a certain file format. I recommend a CSV (comma separated value) file, which formats spreadsheet (rectangular) data in a plain-text format. CSV files are plain-text and can be read into almost any statistical software program, including R. Try to avoid Excel files if you can. 
+
+Here are some other tips:
+
+* When working with spreadsheets, the first row is usually reserved for the header, while the first column is used to identify the sampling unit (**unique identifier**, or **key**).
+* Avoid file names and variable names with blank spaces. This can cause errors when reading in data.
+* If you want to concatenate words, insert a `.` or `_` in between two words instead of a space.
+* Short names are prefered over longer names.
+* Try to avoid using names that contain symbols such as `?`, `$`,`%`, `^`, `&`, `*`, `(`, `)`, `-`, `#`, `?`, `,`, `<`, `>`, `/`, `|`, `\`, `[` ,`]`,`{`, and `}`.
+* make sure that any missing values in your dataset are indicated with `NA` or blank fields (do not use 99 or 77).
+
+### Importing Data
+
+#### Find Paths First {-}
+
+In order to import (or read) data into R, you first have to know where it is and how to find it.
+
+First, remember that you will need to know the *current working directory* so that you know where R is looking for files. If you are using R Projects, that working directory will be the top-level directory of the project.
+
+Second, you will need to know where the data file is relative to your working directory. If it is stored in the `Data/raw/` folder, the relative path to your file will be `Data/raw/file-name.csv`
+
+#### Reading Tabular Data {-}
+
+The workhorse for reading into a dataframe is *read.table()*, which allows any separator (CSV, tab-delimited, etc.). *read.csv()* is a special case of *read.table()* for CSV files.
+
+The basic formula is:
+
+```{r eval=F}
+# Basic CSV read: Import data with header row, values separated by ",", decimals as "."
+mydataset <- read.csv(file="  ", stringsAsFactors=)
+```
+
+Here is a practical example using the PolityIV dataset:
+
+```{r}
+# Import polity
+polity <- read.csv("data/polity_sub.csv", stringsAsFactors = F)
+head(polity)
+```
+
+We use `stringsAsFactors = F` in order to treat text columns as character vectors, not as factors. If we do not set this, the default is that all non-numerical columns will be encoded as factors. This behavior usually makes poor sense and is due to historical reasons. At one point in time, factors were faster than character vectors, so R's `read.table()` set the default to read in text as factors. 
+
+`read.table()` has a number of other options:
+
+```{r eval = F}
+# For importing tabular data with maximum customizability
+mydataset <- read.table(file=, header=, sep=, quote=, dec=, fill=, stringsAsFactors=)
+```
+
+You might also see commands like `read_csv()` (notice the underscore instead of a period). This is the `tidyverse` version of `read.csv()` and accomplishes the same task.
+
+#### Reading Excel Files {-}
+
+Do not use Microsoft Excel files (.xls or .xlsx). But if you must:
+
+```{r message=F}
+# Make sure you have installed the tidyverse suite (only necessary one time)
+# install.packages("tidyverse") # Not Run
+
+# Load the "readxl" package (necessary every new R session)
+library(readxl)
+```
+
+`read_excel()` reads both .xls and .xlsx files, and detects the format from the extension.
+
+```{r, eval=FALSE}
+# Basic call
+mydataset <- read_excel(path = , sheet = ")
+```
+
+Here is a real example:
+
+```{r}
+# Example with .xlsx (single sheet)
+air <- read_excel("data/airline_small.xlsx", sheet = 1) 
+air[1:5, 1:5]
+```
+
+#### Reading Stata (.dta) Files {-}
+
+There are many ways to read .dta files into R. I recommend using `haven`, because it is part of the `tidyverse`.
+
+```{r}
+library(haven)
+air.dta <- read_dta("data/airline_small.dta") 
+air[1:5, 1:5]
+```
+
+#### For Really Big Data {-}
+
+If you have really big data, `read.csv()` will be too slow. In these cases, check out the following options:
+
+1) `read_csv()` in the `readr` package is a faster, more helpful drop-in replacement for `read.csv()` that plays well with `tidyverse` packages (discussed in future lessons).
+2) The `data.table` package is great for reading and manipulating large datasets (orders of gigabytes or 10s of gigabytes).
+
+### Exporting Data
+
+You should never go from raw data to results in one script. Typically, you will want to import raw data, clean it, and then export that cleaned dataset onto your computer. That cleaned dataset will then be imported into another script for analysis, in a modular fashion.
+
+To export (or write) data from R onto your computer, you can create individual CSV files or export many data objects into an `.RData` object.
+
+#### Writing a `csv` Spreadsheet {-}
+
+To export an individual dataframe as a spreadsheet, use `write.csv()`
+
+```{r eval = F}
+# Basic call
+write.csv(x = , file = , row.names = , col.names =)
+```
+
+Let's write the `air` dataset as a CSV:
+
+```{r eval = F}
+# Basic call
+write.csv(air, "data/airlines.csv", row.names = F)
+```
+
+#### Packaging Data into .RData {-}
+
+Sometimes, it is helpful to write several dataframes at once to be used in later analysis. To do so, we use the `save()` function to create one file containing many R data objects:
+
+```{r eval = F}
+# Basic call
+save(..., file = )
+```
+
+Here is how we can write both `air` and `polity` into one file:
+
+```{r eval = F}
+save(air, polity, file = "data/datasets.RData")
+```
+
+We can then read these datasets back into R using `load()`:
+
+```{r eval = F}
+# Clear environment
+rm(list=ls())
+
+# Load datasets
+load("data/datasets.RData")
+```
+
+#### Acknowledgements {-}
+
+This page is, in part, derived from the following sources:
+
+1. [R for Data Science](https://r4ds.had.co.nz), licensed under [Creative Commons Attribution-NonCommercial-NoDerivs 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+
+2. [Gentzkow, Matthew and Jesse M. Shapiro. 2014. Code and Data for the Social Sciences: A Practitioner’s Guide.](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf).

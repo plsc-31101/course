@@ -1,0 +1,24 @@
+---
+title: "Homework Rubric"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Homework Rubric
+
+Each question will be graded along the following criteria:
+
+**Check Minus**: The code does not run or does not do what the question is asking.
+
+**Check**: The code works but exhibits one of the following problems: 
+
+1) Poor documentation/disorganized code. 
+2) Repetitive/redundant/overly complex code. 
+3) Graphs and tables lack labels or are otherwise difficult to understand.
+
+**Check Plus**: The code works and exhibits: 
+
+1) Well-documented and organized code.
+2) Clean and efficient code.
+3) Graphs and tables that have proper labels and are easily readable.

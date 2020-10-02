@@ -1,0 +1,130 @@
+---
+title: "Indexing Vectors"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Subsetting Vectors
+
+Sometimes we want to isolate elements of a vector for inspection, modification, etc. This is often called **indexing** or **subsetting**.
+
+> By the way, indexing begins at 1 in R, unlike many other languages that index from 0.
+
+### Subsetting Types
+
+Let's explore the different types of subsetting with a simple vector, `x`:
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+```
+
+Note that the number after the decimal point gives the original position in the vector.
+
+There are four things you can use to subset a vector: 
+
+#### 1.   __Positive integers__ return elements at the specified positions. {-}
+
+The simplest way to subset a vector is with a single integer:
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[1]
+x[3]
+```
+
+We can also index multiple values by passing a vector of integers:
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[c(3, 1)]
+```
+
+Note that you *have* to use `c` inside the `[` for this to work!
+
+More examples:
+
+```{r}
+# `order(x)` gives the index positions of smallest to largest values
+(x <- c(2.1, 4.2, 3.3, 5.4))
+order(x)
+
+# Use this to order values
+x[order(x)]
+x[c(1, 3, 2, 4)]
+```
+
+#### 2.   __Negative integers__ omit elements at the specified positions. {-}
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[-1]
+x[-c(1, 3)]
+```
+
+You cannot mix positive and negative integers in a single subset:
+
+```{r, error = TRUE}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[c(-1, 2)]
+```
+
+#### 3. __Character vectors__ return elements with matching names. This only works if the vector is named. {-}
+ 
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+# Apply names
+names(x) <- c("a", "b", "c", "d")
+
+# Subset using names
+x["d"]
+x[c("d", "c", "a")]
+```
+
+#### 4.  __Logical vectors__ select elements where the corresponding logical value is `TRUE`. {-}
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[c(TRUE, TRUE, FALSE, FALSE)]
+```
+
+Logical subsetting is the most useful type of subsetting, because you use it to subset based on __comparative__ statements.
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x > 3
+```
+
+This command tests if the condition stated by the comparison operator is `TRUE` or `FALSE` for every element of the vector, and it returns a logical vector! 
+
+We can now pass this statement between the square brackets that follow `x` to subset only those items that match `TRUE`:
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[x > 3]
+
+# With !
+!x > 5 
+x[!x > 5]
+
+# With %in% 
+x %in% c(3.3, 4.2)
+x[x %in% c(3.3, 4.2)]
+```
+
+#### Challenge. {-}
+
+Subset `country_vector` below to return every value EXCEPT `"Canada"` and `"Brazil"`.
+
+```{r}
+country_vector<-c("Afghanistan", "Canada", "Sierra Leone", "Denmark", "Japan", "Brazil")
+
+# Do it using positive integers.
+
+# Do it using negative integers.
+
+# Do it using a logical vector.
+
+# Do it using a conditional statement (and an implicit logical vector).
+```

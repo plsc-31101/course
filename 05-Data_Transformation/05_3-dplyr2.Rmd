@@ -1,0 +1,122 @@
+---
+title: "Manipulating Data with `dplyr`"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## More `dplyr` functions
+
+#### Where were we? {-}
+
+In the previous lesson, we used two very important verbs and an operator:
+
+* `filter()` for subsetting data with row logic.
+* `select()` for subsetting data variable- or column-wise.
+* The pipe operator `%>%`, which feeds the LHS as the first argument to the expression on the RHS.
+  
+We also discussed `dplyr`'s role inside the tidyverse:
+
+* `dplyr` is a core package in the [tidyverse](tidyverse-github) meta-package. 
+* Since we often make incidental usage of the others, we will load `dplyr` and the others via `library(tidyverse)`.
+
+```{r message=F}
+library(tidyverse)
+library(gapminder)
+
+gap <- gapminder
+```
+
+### Use `mutate()` to Add New Variables
+
+Imagine we wanted to recover each country's GDP. After all, the Gapminder data has a variable for population and GDP per capita. Let's multiply them together.
+
+`mutate()` is a function that defines and inserts new variables into a tibble. You can refer to existing variables by name.
+
+```{r}
+gap %>%
+  mutate(gdp = pop * gdpPercap) %>%
+  head()
+```
+
+We can add multiple columns in one call:
+
+```{r}
+gap %>%
+  mutate(gdp = pop * gdpPercap,
+         log_gdp = log(gdp)) %>%
+  head()
+```
+
+### Use `arrange()` to Row-order Data in a Principled Way
+
+`arrange()` reorders the rows in a data frame. Imagine you wanted this data ordered by year then country, as opposed to by country then year.
+
+```{r}
+gap %>%
+  arrange(year, country)
+```
+
+Or maybe you want just the data from 2007, sorted on life expectancy?
+
+```{r}
+gap %>%
+  filter(year == 2007) %>%
+  arrange(lifeExp)
+```
+
+Oh, you would like to sort on life expectancy in **desc**ending order? Then use `desc()`.
+
+```{r}
+gap %>%
+  filter(year == 2007) %>%
+  arrange(desc(lifeExp))
+```
+
+I advise that your analyses NEVER rely on rows or variables being in a specific order. But it is still true that human beings write the code, and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.
+
+
+### Use `rename()` to Rename Variables
+
+When I first cleaned this Gapminder excerpt, I was a `camelCase` person, but now I am all about `snake_case`. So I am vexed by the variable names I chose when I cleaned this data years ago. Let's rename some variables!
+
+```{r}
+gap %>%
+  rename(life_exp = lifeExp,
+         gdp_percap = gdpPercap)
+```
+
+### Use `select()` to Rename and Reposition Variables
+
+You have seen the simple use of `select()`. There are two tricks you might enjoy:
+
+1. `select()` can rename the variables you request to keep.
+1. `select()` can be used with `everything()` to hoist a variable up to the front of the tibble.
+  
+```{r}
+gap %>%
+  filter(country == "Burundi", year > 1996) %>% 
+  select(yr = year, lifeExp, gdpPercap) %>% 
+  select(gdpPercap, everything())
+```
+
+`everything()` is one of several helpers for variable selection. Read its help to see the rest.
+
+### Use `count()` to Count Variable Quantities
+
+Finally, let's say we want to examine if the number of countries covered in the Gapminder dataset varies between years. We can use `count()` to count the number of observations within a set of parameters we choose.
+
+Below, we will specify that we want to `count()` the number of observations in each year of the dataset:
+
+```{r}
+gap %>%
+  dplyr::count(year)
+```
+
+We can confirm that each year in the dataset contains the same number of observations. We can use similar syntax to answer other questions: For example, how many countries in each year have a GDP that is greater than $10,000 per capita?
+
+```{r}
+gap %>%
+  filter(gdpPercap >= 10000) %>%
+  dplyr::count(year) 
+```

@@ -1,0 +1,120 @@
+---
+title: "Basic Syntax"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Data Types
+
+Every value in a program has a specific __type__. In R, those types are called "classes", and there are 4 of them:
+
+* Character (text or "string").
+* Numeric (integer or decimal).
+* Integer (just integer).
+* Logical (TRUE or FALSE booleans).
+
+| Example | Type |
+| ------- | ---- |
+| "a", "swc" | character |
+| 2, 15.5 | numeric | 
+| 2 (Must add a `L` at end to denote integer) | integer |
+| `TRUE`, `FALSE` | logical |
+
+### What Is that Type?
+
+R is dynamically typed, meaning that it "guesses" what class a value is. Every piece of information in R has a type!
+
+Use the built-in function ```class()``` to find out what type a value has.
+
+```{r}
+class(3)
+class(3L)
+class("Three")
+class(T)
+```
+
+This works on variables as well. But remember: the _value_ has the type --- the _variable_ is just a label.
+
+```{r}
+three <- 3
+class(three)
+
+three <- "three"
+class(three)
+```
+
+A value's class determines what the program can do to it.
+
+```{r error = T}
+3 - 1
+3 - "1"
+```
+
+### Coercion
+
+We just learned we cannot subtract numbers and strings. Instead, use  `as.` + name of class as a function to convert a value to a specified type.
+
+```{r eval = F}
+3 - as.numeric("1")
+```
+
+This is called `coercion`. Here is another example:
+
+```{r}
+my_var <- "FALSE"
+my_var
+as.logical(my_var)
+```
+
+What difference did you notice?
+
+### Other Objects
+
+There are a few other "odd ball" types in R:
+
+#### `NA` are missing values. {-}
+
+Missing values are specified with `NA`. `NA` will always be coerced to the correct type if used inside `c()`.
+
+```{r}
+x <- c(NA, 1)
+x
+typeof(NA)
+typeof(x)
+```
+
+#### `Inf` is infinity. {-}
+
+You can have either positive or negative infinity.
+
+```{r}
+1/0
+1/Inf
+```
+
+#### `NaN` means "not a number." It is an undefined value. {-}
+
+```{r}
+0/0
+```
+
+
+### Challenges
+
+#### Challenge 1: Making and Coercing Variables {-}
+
+1. Make a variable `year` and assign it as the year you were born.
+2. Coerce that variable to a string and assign it to a new variable `year_string`.
+3. Someone in your class says they were born in 2001. Really? Really. Find out what your age difference is, using only `year_string`.
+
+#### Challenge 2: Fixing the Code {-}
+
+Change the following code to make the output `TRUE`:
+
+```{r}
+val_1 <- F
+val_2 <- "F"
+
+class(val_1) == class(val_2)
+```

@@ -1,0 +1,43 @@
+---
+title: "07-99_Challenge_Solutions"
+output: html_document
+---
+
+```{r message=F} 
+library(tidyverse)
+library(gapminder)
+```
+
+## 7-1_Relational-Data Challenges
+
+```{r}
+#Setup from chapter
+gap <- gapminder
+polity <- read.csv("data/polity_sub.csv", stringsAsFactors = F)
+ciri <- read.csv("data/ciri_sub.csv", stringsAsFactors = F)
+
+gap1 <- gapminder %>%
+  left_join(polity)
+```
+
+#### Challenge 1. {-}
+
+Merge the polityVI and CIRI datasets, keeping all observations in polityVI. Save this merged dataframe as `p1`. How many observations does `p1` have? Why?
+
+```{r}
+p1 <- polity %>%
+  left_join(ciri, by = c("country" = "CTRY", "year" = "YEAR"))
+```
+
+`p1` has 16,727 observations, because `polity` has 16,727 observations, and `left_join()` keeps all observations in `x`.
+
+#### Challenge 2. {-}
+
+Merge the `gap1` dataset we created above with the `ciri` dataset, this time keeping all observations in `ciri`. Save this as `gap2`. How many observations does it have? What is the major problem with merging the datasets this way?
+
+```{r}
+gap2 <- ciri %>%
+  left_join(gap1, by = c("CTRY" = "country", "YEAR" = "year"))
+```
+
+`gap2` has 6,262 observations. Because the ciri dataframe has many more observations than `gap1`, merging in this direction introduces a lot of `NA`s into the data.

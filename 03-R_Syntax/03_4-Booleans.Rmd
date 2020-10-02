@@ -1,0 +1,115 @@
+---
+title: "Basic Syntax"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Boolean Expressions 
+
+Boolean expressions are logical statements that are either true or false. For our purposes, we will often use Boolean expressions to compare quantities. For instance, the Boolean expression `1 < 2` is true, whereas the Boolean expression `1 > 2` is false.
+
+When you type a Boolean expression in R, R will output `TRUE` if the expression is true and `FALSE` if the expression is false. 
+
+### Boolean Operators
+
+| Operator  | Description              |
+|-----------|--------------------------|
+| `<`         | less than                |
+| `<=`        | less than or equal to    |
+| `>`         | greater than             |
+| `>=`        | greater than or equal to |
+| `==`        | exactly equal to         |
+| `!=`        | not equal to             |
+| `%in%`      | is an item of a set      |
+
+
+Note that we use a double equal sign `==` to check whether two values are equal. Typing `a = b` would set the value of `a` equal to the value of `b`.
+
+Here are some examples of Boolean expressions in action:
+
+```{r}
+1 < 2
+1 > 2
+1 == 2
+
+value_1 <- 1
+value_1 > 0
+
+value_2 <- value_1 + 10
+value_1 + value_2 <= 12
+```
+
+### Logical Operators
+
+In practice, we often use two or more conditions to decide what to do. To combine different conditions, there are three logical operators:
+
+| Operator  | Description              |
+|-----------|--------------------------|
+| `x & y`     | `x` AND y              |
+| `x | y`     | `x` OR y               |
+| `!x`        | Not `x`                |
+
+First, `&` is similar to **AND** in English, that is, `x & y` is true only if both `x` and `y` are true. Second,  is similar to **OR** in English, that is, A || B is false only if both `x` and `y` are false. Third, `!` is similar to **NOT** in English, that is, `!x` is true only if `x` is false.
+
+```{r}
+x <- 10
+y <- 20
+
+# check to see if values are between 5 and 15
+x > 5 & x < 15
+y > 5 & y < 15
+
+# more complex chains
+(x > 5 & x < 15) & (x > y & y < 15)
+(x > 5 & x < 15) | (x > y & y < 15)
+(x > 5 & x < 15) & !(x > y & y < 15)
+```
+
+Different operator take different precendence. It is always a good practice to use brackets to control operation ordering.
+
+### Boolean Vectors
+
+The nice thing about R is that you can use these comparison operators also on vectors. As with many expressions in R, the Boolean expressions discussed above are all *vectorized.* We will learn more about vectors and vectorization later in this class, but here is a quick example:
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x > 3
+```
+
+This command tests for every element of the vector if the condition stated by the comparison operator is `TRUE` or `FALSE`.
+
+### Boolean Vectors in Action
+
+Boolean vectors are partially what makes R so magical. Check out the example below and examine each line. We will cover subsetting operations later, but pay attention to the work of boolean expressions and logical operators.
+
+```{r}
+# An example
+x <- c(1:10)
+x[(x>8) | (x<5)]
+
+# How it works
+x <- c(1:10)
+x
+x > 8
+x < 5
+x > 8 | x < 5
+x[c(T,T,T,T,F,F,F,F,T,T)]
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+In the partially written code below, `vector_1` and `vector_2` each contain 10 values. Using the fact that Boolean expressions are vectorized, write code that outputs:
+
+1. A vector of length 10 such that element `i` of this vector equals `TRUE` if `vector_1[i]` is less than `vector_2[i]` and equals `FALSE` otherwise.
+2. The number of times that element `i` of `vector_1` is less than element `i` of `vector_2`, using the `sum` function.
+
+```{r}
+vector_1 <- c(1, 2, 4, 5, 3, 7, 8, 7, 1, 2)
+vector_2 <- c(1, 3, 4, 4, 5, 10, 6, 8, 9, 1)
+
+# YOUR CODE HERE
+```
+

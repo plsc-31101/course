@@ -1,0 +1,140 @@
+---
+title: "Regex"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+```{r message = FALSE}
+library(tidyverse)
+library(stringr)
+```
+
+## Regular Expressions
+
+Regular expressions are a very terse language that allows you to describe patterns in strings. They take a little while to get your head around, but once you understand them, you will find them extremely useful. 
+
+To learn regular expressions, we will use `str_view()` and `str_view_all()`. These functions take a character vector and a regular expression and show you how they match. We will start with very simple regular expressions and then gradually get more and more complicated. Once you have mastered pattern matching, you will learn how to apply those ideas with various `stringr` functions.
+
+### Basic Matches
+
+The simplest patterns match exact strings:
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+```
+
+The next step up in complexity is `.`, which matches any character (except a newline):
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, ".a.")
+```
+
+### Escape Characters
+
+If "`.`" matches any character, how do you match the character "`.`"? You need to use an "escape" to tell the regular expression you want to match it exactly, not use its special behavior. 
+
+Regexps use the backslash, `\`, to escape special behavior. So, to match an `.`, you need the regexp `\.`. Unfortunately, this creates a problem. We use *strings* to represent regular expressions, and `\` is also used as an escape symbol in strings. So, to create the regular expression `\.`, we need the string `"\\."`. 
+
+```{r}
+# To create the regular expression, we need \\
+dot <- "\\."
+# But the expression itself only contains one:
+writeLines(dot)
+```
+
+In this lesson, I will write the regular expression as `\.` and strings that represent the regular expression as `"\\."`.
+
+### Anchors
+
+By default, regular expressions will match any part of a string. It is often useful to _anchor_ the regular expression so that it matches from the start or end of the string. You can use:
+
+* `^` to match the start of the string.
+* `$` to match the end of the string.
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "^a")
+str_view(x, "a$")
+```
+
+To remember which is which, try this mnemonic which I learned from [Evan Misshula](https://twitter.com/emisshula/status/323863393167613953): If you begin with power (`^`), you end up with money (`$`).
+
+To force a regular expression to only match a complete string, anchor it with both `^` and `$`:
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "apple")
+str_view(x, "^apple$")
+```
+
+### Character Classes and Alternatives
+
+There are a number of special patterns that match more than one character. You have already seen `.`, which matches any character apart from a newline. There are four other useful tools:
+
+* `\d`: Matches any digit.
+* `\s`: Matches any whitespace (e.g., space, tab, newline).
+* `[abc]`: Matches a, b, or c.
+* `[^abc]`: Matches anything except a, b, or c.
+
+Remember that, to create a regular expression containing `\d` or `\s`, you will need to escape the `\` for the string, so you will type `"\\d"` or `"\\s"`.
+
+A character class containing a single character is a nice alternative to backslash escapes when you want to include a single metacharacter in a regex. Many people find this more readable.
+
+```{r}
+# Look for a literal character that normally has special meaning in a regex:
+x <- c("abc", "a.c", "a*c", "a c")
+str_view(x, "a[.]c")
+str_view(x, ".[*]c")
+str_view(x, "a[ ]")
+```
+
+This works for most (but not all) regex metacharacters: `$`, `.`, `|`, `?`, `*`, `+`, `(`, `)`, `[`, and `{`. Unfortunately, a few characters have special meaning even inside a character class and must be handled with backslash escapes: `]`, `\`, `^`, and `-`.
+
+You can use _alternation_ to pick between one or more alternative patterns. For example, `abc|deaf` will match either `"abc"` or `"deaf"`. 
+
+Like with mathematical expressions, if precedence ever gets confusing, use parentheses to make it clear what you want:
+
+```{r}
+x <- c("grey", "gray")
+str_view(x, "gr(e|a)y")
+```
+
+### Repetition
+
+The next step up in power involves controlling how many times a pattern matches:
+
+* `?`: 0 or 1
+* `+`: 1 or more
+* `*`: 0 or more
+
+```{r}
+x <- "1888 is the longest year in Roman numerals: MDCCCLXXXVIII"
+str_view(x, "CC?")
+str_view(x, "CC+")
+str_view(x, 'C[LX]+')
+```
+
+### Regex Resources
+
+For more information on regular expressions, see:
+
+1. [This tutorial](http://regextutorials.com/).
+2. [This cheatsheet](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285).
+
+### Challenges
+
+Create regular expressions to find all words that
+
+  1. Start with a vowel.
+  
+  2. Only contain consonants. (Hint: Think about matching 
+         "not"-vowels.)
+  
+  3. End with `ed`, but not with `eed`.
+      
+  4. End with `ing` or `ise`.
+
+

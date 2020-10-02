@@ -1,0 +1,201 @@
+--- 
+title: "PLSC 31101: Computational Tools for Social Science"
+author: "Rochelle Terman"
+date: "Fall 2020"
+output: html_document
+---
+
+# Syllabus
+
+* Instructor: [Rochelle Terman](http://rochelleterman.com/), rterman@uchicago.edu
+
+* TA: Pete Cuppernull, pcuppernull@uchicago.edu
+
+* Time: Mondays and Wednesdays, 1:50 pm – 3:30 pm
+
+* Lab: Wednesdays, 04:10 pm - 05:30 pm
+
+* Zoom link:  https://uchicago.zoom.us/j/92579198152?pwd=SzJPSzFyNVpIQm14ZlhJQnJrdDhMUT09
+
+* Office hours:
+	* Rochelle Terman: Fridays, 10:00am - 12:00pm (sign up [here](https://calendar.google.com/calendar/u/0/selfsched?sstoken=UU15RV92YzJrVDNDfGRlZmF1bHR8NjcyM2ZhMGM4ODIwMGIxYTZmYjdmZDE1NzhiOGM0OGI).) 
+	* Pete Cuppernull: Tuesdays, 3:00 pm - 5:00pm
+
+## Course Description
+
+The purpose of this course is to provide graduate students with the critical computing skills necessary to conduct research in quantitative/computational social science. This course is not an introduction to statistics, computer science, or specialized social science methods. Rather, the focus will be on practical skills necessary to be successful in further methods work. The first portion of the class introduces students to basic computer literacy, terminologies, and the R programming language. The second part of the course provides students with the opportunity to use the skills they learned in part 1 towards practical applications such as webscraping, data collection through APIs, automated text analysis, etc. We will assume no prior experience with programming or computer science.
+
+#### Objectives {-}
+
+By the end of the course, students should be able to
+
+* Understand basic programming terminologies, structures, and conventions.
+* Write, execute, and debug R code.
+* Produce reproducible analyses using R Markdown.
+* Clean, transform, and wrangle data using the `tidyverse` packages.
+* Scrape data from websites and APIs.
+* Parse and analyze text documents.
+* Be familiar with the concepts and tools of a variety of computational social science applications.
+* Master basic Git and GitHub workflows.
+* Learn independently and train themselves in a variety of computational applications and tasks through online documentation.
+
+## Who Should Take This Course
+
+This course is designed for Political Science graduate students, but any graduate student is welcome. We will not presume any prior programming or computer science experience.
+
+## Requirements and Evaluation
+
+#### Final Grades {-}
+
+This is a graded class based on the following:
+
+* Completion of assigned homework (50%).
+* Participation (25%).
+* Final project (25%).
+
+#### Assignments {-}
+
+The assignments are intended to expand upon the lecture material and to help students develop the actual skills that will be useful for applied work. The assignments will be frequent, but each of them should be fairly short.
+
+You are encouraged to work in groups, but the work you turn in must be your own. It is not acceptable to submit homework as a group or to turn in copies of the same code or output. While you are encouraged to use the internet to help you debug, do not copy and paste large chunks of code that you do not understand. Remember, the only way you actually learn how to write code is by writing code!
+
+Portions of the homework in R should be completed using [R Markdown](https://rmarkdown.rstudio.com/), a markup language for producing well-formatted documents with embedded R code and outputs. To submit your homework, knit the R Markdown file to PDF and then submit the PDF file through Canvas (unless otherwise noted).
+
+#### Class Participation {-}
+
+The class participation portion of the grade can be satisfied in one or more of the following ways:
+
+* Attending the lectures.
+* Asking and answering questions in class.
+* Attending office hours.
+* Contributing to class discussion on the Piazza site.
+* Collaborating with the computing community by attending a workshop or meetup, submitting a pull request to a GitHub repository (including the class repository), answering a question on StackExchange, or other involvement in the social computing/digital humanities community. 
+
+#### Final Project {-}
+
+Students have two options for class projects:
+
+1. __Data project__: Use the tools we learned in class on your own data of interest. Collect and/or clean the data, perform some analysis, and visualize the results. Post your reproducible code on GitHub.
+
+2. __Tool project__: Create a tutorial on a tool we did not cover in class. Ideas include: Bash, LaTeX, pandoc, quanteda, tidytext, etc. Post it on GitHub.
+
+Students are required to write a short proposal by __November 6__ (no more than 2 paragraphs) in order to get approval/feedback from the instructors. 
+
+Project materials (i.e., a GitHub repository) will be due by end of day on __December 10__. We will specify submission details in class.
+
+On __December 11 (1:30 pm - 3:30 pm)__, we will have a **lightning talk session** where students can present their projects in a maximum 5-minute talk.
+
+#### Late Policy and Incompletes {-}
+All deadlines are strict. Late assignments will be dropped a full letter grade for each 24 hours past the deadline. Exceptions will be made for students with a documented emergency or illness.
+
+I will only consider granting incompletes to students under extreme personal/family duress.
+
+#### Academic Integrity {-}
+I follow a zero-tolerance policy on all forms of academic dishonesty. All students are responsible for familiarizing themselves with, and following, university policies regarding proper student conduct. Being found guilty of academic dishonesty is a serious offense and may result in a failing grade for the assignment in question and, possibly, for the entire course.
+
+## Activities and Materials
+
+#### Class Format and Zoom {-}
+
+All classes and discussion sections will be held remotely on Zoom at this link:  https://uchicago.zoom.us/j/92579198152?pwd=SzJPSzFyNVpIQm14ZlhJQnJrdDhMUT09
+
+Classes will follow a "workshop" style, combining lecture, demonstration, and coding exercises. We envision the class to be as interactive/hands-on as possible, with students programming every session. 
+
+It is important that students __complete the requisite reading__ before class. I anticipate spending 1/2 the class lecturing and 1/2 practicing with code challenges. 
+
+#### Course Notes and Code {-}
+
+All materials will be available on GitHub, including class notes, code demonstrations, sample data, etc.
+
+Download the materials on your computer by running the following code in RStudio. Note that for this to work, you will need to have `tidyverse` installed.
+
+```{r eval = F}
+# Install tidyverse if you have not already done so.
+install.packages("tidyverse")
+
+# load "usethis" library
+library("usethis")
+
+# download course materials
+use_course("plsc-31101/course")
+```
+
+Those materials are also available on this website: https://plsc-31101.github.io/course/. Students will be assigned readings from these notes before every class.
+
+#### Canvas and Piazza {-}
+
+We will use Canvas for turning in assignments. 
+
+We will use [Piazza](piazza.com/uchicago/fall2020/plsc31101/home) for communication (announcements and questions). You should ask questions about class materials and assignments through the Piazza website so that everyone can benefit from the discussion. We encourage you to respond to each other’s questions as well. Questions of a personal nature can be emailed to us directly.
+
+Find our Piazza class signup link at: http://piazza.com/uchicago/fall2020/plsc31101
+
+#### Tech Requirements and Software {-}
+
+See the [Install Page](installation) page for detailed information on the software we will be using. Please download and install the required software before the first class. 
+
+We will be having an __InstallFest on Wednesday, September 30 from 9:30 am to 11:30 am, on Zoom__ for those students experiencing difficulties downloading and installing the requisite software. 
+
+If you have difficulties installing, please post a question on Piazza with details on what you are trying to install, what actions you took, any error messages, etc.
+
+## Curriculum Outline/Schedule
+
+__Week 1__: Intro
+
+* M (No Class).
+* W 9/30: Intro, R Tools.
+* L 9/30: R Markdown + Homework.
+
+__Week 2__: Working with Data
+
+* M 10/5: R Syntax/coding basics.
+* W 10/7: Introduction to data, data transformation with `dplyr`.
+* L 10/7: Workflow (scripts, projects, paths, import/export).
+
+__Week 3__: Data Munging
+
+* M 10/12: Tidying data with `tidyr`.
+* W 10/14: Relational data and joins.
+* L 10/14: 
+
+__Week 4__: Visualization
+
+* M 10/19: `ggplot`.
+* W 10/21: Factors and models.
+* L 10/21: 
+
+__Week 5__: R Objects and Indexing
+
+* M 10/26: Vectors.
+* W 10/28: Lists and dataframes.
+* L 10/28: 
+
+__Week 6__: Strings and Dates
+
+* M 11/2: Strings.
+* W 11/4: Regex.
+* L 11/4: Dates and times.
+
+__Week 7__: Programming in R
+
+* M 11/9: Functions and conditionals.
+* W 11/11: Iteration.
+* L 11/11: 
+
+__Week 8__: Data From the Web
+
+* M 11/16: APIs.
+* W 11/18: Webscraping.
+* L 11/18: Twitter API.
+
+__Week 9__: Thanksgiving Break -- No Class
+
+__Week 10__: Text Analysis.
+
+* M 11/30: Text analysis 1.
+* W 12/2: Text analysis 2.
+* L 12/2:  
+
+__Week 11__: Finals
+
+* FRIDAY 12/11, 1:30 PM-3:30 PM

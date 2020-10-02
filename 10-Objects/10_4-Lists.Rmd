@@ -1,0 +1,78 @@
+---
+title: "Lists"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Lists
+
+Lists are different from vectors because their elements can be of __any type__. Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from vectors.
+
+In data analysis, you will not make lists very often, at least not consciously, but you should still know about them. Why?
+
+1. Dataframes are lists! They are a special case where each element is an atomic vector, all having the same length.
+2. Many functions will return lists to you, and you will want to extract goodies from them, such as the p-value for a hypothesis test or the estimated error variance in a regression model.
+
+### Creating Lists
+
+You construct lists by using `list()` instead of `c()`: 
+
+```{r}
+x <- list(1, "a", TRUE, c(4, 5, 6))
+x
+```
+
+### Naming Lists
+
+As with vectors, we can attach names to each element on our list:
+
+```{r eval = F}
+my_list <- list(name1 = elem1, 
+                name2 = elem2)
+```
+
+This creates a list with components that are named `name1`, `name2`, and so on. If you want to name your lists after you have created them, you can use the `names()` function as you did with vectors. The following commands are fully equivalent to the assignment above:
+
+```{r eval = F}
+my_list <- list(elem1, elem2)
+names(my_list) <- c("name1", "name2")
+```
+
+### List Structure
+
+A very useful tool for working with lists is `str()`, because it focuses on reviewing the structure of a list, not its contents.
+
+```{r}
+x <- list(a = c(1, 2, 3),
+          b = c("Hello", "there"),
+          c = 1:10)
+str(x)
+```
+
+A list does not print to the console like a vector. Instead, each element of the list starts on a new line.
+
+```{r}
+x_vec <- c(1,2,3)
+x_list <- list(1,2,3)
+x_vec
+x_list
+```
+
+Lists are used to build up many of the more complicated data structures in R. For example, both dataframes and linear model objects (as produced by `lm()`) are lists:
+
+```{r}
+head(mtcars)
+is.list(mtcars)
+mod <- lm(mpg ~ wt, data = mtcars)
+is.list(mod)
+```
+
+You could say that a list is some kind of super data type: You can store practically any piece of information in it!
+
+For this reason, lists are extremely useful inside functions. You can "staple" together lots of different kinds of results into a single object that a function can return.
+
+```{r}
+mod <- lm(mpg ~ wt, data = mtcars)
+str(mod)
+```

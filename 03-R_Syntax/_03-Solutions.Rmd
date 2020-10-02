@@ -1,0 +1,191 @@
+---
+title: "03_Challenge-Solutions"
+output: html_document
+---
+
+## 1_R-Variables Challenges
+
+#### Challenge 1. {-}
+
+Make 3 variables: name (with your full name), city (where you were born), and year (when you were born).
+
+A:
+```{r}
+
+name <- "Jenna Gibson"
+
+city <- "Stillwater"
+
+year <- 1989
+
+```
+
+#### Challenge 2. {-}
+
+Draw a table showing the values of the variables in this program after each statement is executed.
+
+In simple terms, what do the last three lines of this program do?
+
+```{r}
+
+lowest <- 1.0
+
+highest <- 3.0
+
+temp <- lowest
+
+lowest <- highest
+
+highest <- temp
+
+```
+
+A: 
+Values:
+1) lowest = 1
+2) highest = 3
+3) temp = 1
+4) lowest = 3
+5) highest = 1
+
+The last three lines overwrite existing variables, changing their value.
+
+
+#### Challenge 3. {-}
+
+What is the final value of `position` in the program below? Try to predict the value without running the program, then check your prediction.
+
+```{r}
+
+initial <- "left"
+position <- initial
+initial <- "right"
+
+```
+
+A:
+Position should have the value of "left."
+
+#### Challenge 4. {-}
+
+Why does the following code fail?
+
+```{r eval = F}
+
+age == 31
+
+```
+
+And the following?
+
+```{r eval = F}
+31 <-  age
+```
+
+
+A:
+We do not have a variable called "age," so R cannot evaluate whether the variable age has the value of 31 or not.
+
+Numbers cannot be variable names, and also we still do not have a variable called age that we can assign to things.
+
+
+## 2_R-Functions Challenges
+
+#### Challenge 1. {-}
+
+Explain, in simple terms, the order of operations in the following program: when does the addition happen, when does the subtraction happen, when is each function called, etc.
+What is the final value of `radiance`?
+
+```{r}
+
+radiance <- 1.0
+radiance <- max(2.1, 2.0 + min(radiance, 1.1 * radiance - 0.5))
+
+```
+
+A:
+1) Assigning the value of 1 to the variable radiance.
+2) 1.1 * radiance = 1.1
+3) 1.1 - 0.5 = 0.6
+4) Smaller number between radiance (1.0) and 0.6 = 0.6
+5) 2.0 + 0.6 = 2.6
+6) Larger number between 2.1 and 2.6 = 2.6
+
+The final value of radiance is 2.6.
+
+#### Challenge 2. {-}
+
+Run the following code and, using the help files for `max`, explain why it returns the result it does:
+
+```{r eval = F}
+
+rich <- "gold"
+poor <- "tin"
+max(rich, poor)
+
+?max
+```
+
+A:
+The max function takes either numeric or character inputs. For character inputs, it will evaluate based on alphabetical order. Max returns the value that is last in alphabetical order --- in this case, "tin."
+
+
+## 3_R-Syntax Challenges
+
+#### Challenge 1. {-}
+
+1. Make a variable `year` and assign it as the year you were born.
+2. Coerce that variable to a string and assign it to a new variable `year_string`.
+3. Someone in your class says they were born in 2001. Really? Really. Find out what your age difference is, using only `year_string`.
+
+```{r}
+
+year <- 1989
+
+year_string <- as.character(year)
+
+2001 - as.numeric(year_string)
+
+```
+
+
+#### Challenge 2. {-}
+
+Change the following code to make the output `TRUE`:
+
+```{r}
+#Original Code
+val_1 <- F
+val_2 <- "F"
+class(val_1) == class(val_2)
+
+#A: Fixed Code
+#Can just add " " to val_1 to make it a character vector originally, or:
+
+val_1 <- F
+val_2 <- "F"
+class(val_1) == class(as.logical(val_2))
+
+```
+
+
+
+
+
+## 4_R-Syntax Challenges
+
+#### Challenge 1. {-}
+
+In the partially written code below, `vector_1` and `vector_2` each contain 10 values. Using the fact that Boolean expressions are vectorized, write code that outputs:
+
+1. a vector of length 10 such that element `i` of this vector equals `TRUE` if `vector_1[i]` is less than `vector_2[i]` and equals `FALSE` otherwise.
+2. the number of times that element `i` of `vector_1` is less than element `i` of `vector_2`, using the `sum` function.
+
+```{r}
+vector_1 <- c(1, 2, 4, 5, 3, 7, 8, 7, 1, 2)
+vector_2 <- c(1, 3, 4, 4, 5, 10, 6, 8, 9, 1)
+
+vector_1 < vector_2
+sum(vector_1 < vector_2)
+```
+

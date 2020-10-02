@@ -1,0 +1,119 @@
+---
+title: "Basic Syntax"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Functions
+
+R has a large collection of built-in functions that helps us do things. When we use a function, we say we are _calling_ a function.
+
+```{r eval=F}
+function_name(arg1 = val1, arg2 = val2, ...)
+```
+
+Here are some helpful built-in functions:
+
+```{r}
+my_var <- c(1, 5, 2, 4, 5)
+
+sum(my_var)
+length(my_var)
+min(my_var)
+max(my_var)
+unique(my_var)
+```
+
+### Arguments
+
+An *argument* is a value that is *passed* into a function. Every function returns a *result*.
+
+Let’s try using `seq()`, which makes regular sequences of numbers. While we are at it, we will learn more helpful features of RStudio. 
+
+Type `se` and hit TAB. A popup shows you possible completions. Specify `seq()` by typing more (a `q`) to disambiguate, or by using ↑/↓ arrows to select. Notice the floating tooltip that pops up, reminding you of the function’s arguments and purpose. 
+
+Press TAB once more when you have selected the function you want. RStudio will add matching opening (`(`) and closing (`)`) parentheses for you. Type the arguments `1, 10` and hit return.
+
+```{r}
+seq(1, 10)
+```
+
+How many arguments did we pass into the `seq` function?
+
+### Store Function Output
+
+Notice that, when we called the `seq` function, nothing changed in our environment. That is because we did not save our results to an object. Let's try it again by assigning a variable:
+
+```{r}
+y <- seq(1, 10)
+y
+```
+
+### Argument Restrictions and Defaults
+
+Let's use another function, called `round`:
+
+```{r}
+round(60.123)
+```
+
+`round` must be given at least one argument. Moreover, it must be given things that can be meaningfully rounded.
+
+```{r eval = F}
+round()
+round('a')
+```
+
+Functions may have __default__ values for some arguments.
+
+By default, `round` will round off any number to zero decimal places. But we can specify the number of decimal places we want.
+
+```{r}
+round(60.123)
+round(60.123, digits = 2)
+round(60.123, 2)
+```
+
+### Documentation and Help Files
+
+How do we know what kinds of arguments to pass into a function? Every built-in function comes with __documentation__.
+
+* `?` + object opens a help page for that specific object.
+* `??` + object searches help pages containing the name of the object.
+
+```{r, eval = FALSE}
+?mean
+??mean
+```
+
+All help files are structured the same way:
+
+* The __Arguments__ section tells us exactly what kind of information we can pass into a function.
+* The __Value__ section explains what the output of the function is.
+* The __Examples__ section contains real examples of the function in use.
+
+### Challenges
+
+#### Challenge 1: What Happens When {-}
+
+Explain, in simple terms, the order of operations in the following program: When does the addition happen, when does the subtraction happen, when is each function called, etc.
+
+What is the final value of `radiance`?
+
+```{r}
+radiance <- 1.0
+radiance <- max(2.1, 2.0 + min(radiance, 1.1 * radiance - 0.5))
+```
+
+#### Challenge 2: Why? {-}
+
+Run the following code.
+
+```{r eval = F}
+rich <- "gold"
+poor <- "tin"
+max(rich, poor)
+```
+
+Using the help files for `max`, explain why it returns the result it does.

@@ -1,0 +1,133 @@
+---
+title: "Two-Dimensional Data in R"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Dataframes
+
+Dataframes are a very important data type in R. It is pretty much the *de facto* data structure for most tabular data and it is also what we use for statistics. 
+
+Hopefully the slog through vectors, matrices, and lists will be redeemed by greater prowess at manipulating `data.frames`. Why should this be true?
+
+1. A dataframe is a *list*.
+2. The list elements are the variables, and they are atomic vectors.
+3. Dataframes are rectangular, like their matrix friends, so your intuition – and even some syntax – can be borrowed from the matrix world.
+
+**NB**: You might have heard of "tibbles," used in the `tidyverse` suite of packages. Tibbles are like dataframes 2.0, tweaking some of the behavior of dataframes to make life easier for data anlysis. For now, just think of tibbles and dataframes as the same thing and do not worry about the difference. 
+
+### Creating Dataframes
+
+We have already worked extensively with dataframes that we have imported through a package or `read.csv`.
+
+```{r}
+library(gapminder)
+gap <- gapminder
+```
+
+We can create a dataframe from scratch using `data.frame()`.  This function takes vectors as input:
+
+```{r}
+vec_1 <- 1:3
+vec_2 <- c("a", "b", "c")
+df <- data.frame(vec_1, vec_2)
+```
+
+### The Structure of Dataframes
+
+Under the hood, a dataframe is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list. 
+
+```{r}
+vec_1 <- 1:3
+vec_2 <- c("a", "b", "c")
+df <- data.frame(vec_1, vec_2)
+
+str(df)
+```
+
+The `length()` of a dataframe is the length of the underlying list and so is the same as `ncol()`; `nrow()` gives the number of rows. 
+
+```{r}
+vec_1 <- 1:3
+vec_2 <- c("a", "b", "c")
+df <- data.frame(vec_1, vec_2)
+
+# These two are equivalent - number of columns
+length(df)
+ncol(df)
+
+# Get number of rows
+nrow(df)
+
+# Get number of both columns and rows
+dim(df)
+```
+
+### Naming Dataframes
+
+Dataframes have `colnames()` and `rownames()`. However, since dataframes are really lists (of vectors) under the hood, `names()` and `colnames()` are the same thing. 
+
+```{r}
+vec_1 <- 1:3
+vec_2 <- c("a", "b", "c")
+df <- data.frame(vec_1, vec_2)
+
+# These two are equivalent
+names(df)
+colnames(df)
+
+# Change the colnames
+colnames(df) <- c("Number", "Character")
+
+# Change the rownames
+rownames(df) 
+rownames(df) <- c("donut", "pickle", "pretzel")
+df
+```
+
+## Indexing Dataframes
+
+> A dataframe is a list that quacks like a matrix.
+
+Remember that dataframes are really lists of vectors (one vector per column). That means that dataframes have both list- and matrix-like behavior.
+
+For example, just as `list$name` selects the `name` element from the list, `df$name` selects the `name` column (vector) from the dataframe:
+
+```{r}
+library(gapminder)
+gap <- gapminder
+
+head(gap$country)
+```
+
+Likewise, we can use square brackets to subset rows and columns:
+
+```{r}
+# Row 1, column 3
+gap[1, 3]
+
+# Fourth row
+gap[4, ]
+
+# First two rows of the columns 1 and 5
+gap[c(1,2), c(1, 5)]
+```
+
+We can also use subsetting in conjunction with assignment to quickly add a column:
+
+```{r}
+names(gap)
+gap$new_col <- NA
+head(gap)
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Create a 3x2 dataframe called `basket`. The first column should contain the names of 3 fruits. The second column should contain the price of those fruits. Now give your dataframe appropriate column and row names.
+
+#### Challenge 2. {-}
+
+Add a third column called `color` that tells what color each fruit is.

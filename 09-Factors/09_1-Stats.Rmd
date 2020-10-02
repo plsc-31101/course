@@ -1,0 +1,117 @@
+---
+title: "Stats"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Statistical Inferences
+
+```{r}
+# setup
+library(gapminder)
+gap <- gapminder
+```
+
+## Statistical Distributions
+
+Since R was developed by statisticians, it handles distributions and simulation seamlessly.
+
+All commonly-used distributions have functions in R. Each distribution has a family of functions: 
+
+* `d` - Probability density/mass function, e.g., `dnorm()`
+* `r` - Generate a random value, e.g., `rnorm()`
+* `p` - Cumulative distribution function, e.g., `pnorm()`
+* `q` - Quantile function (inverse CDF), e.g., `qnorm()`
+
+Let's see some of these functions in action with the normal distribution (mean 0, standard deviation 1):
+
+```{r, fig.cap = ""}
+dnorm(1.96) # Probability density of 1.96 from the normal distribution
+rnorm(1:10) # Get 10 random values from the normal distribution
+pnorm(1.96) # Cumulative distribution function
+qnorm(.975) # Inverse cumulative distribution function
+```
+
+We can also use these functions on other distributions:
+
+* `rnorm()` # Normal distribution
+* `runif()` # Uniform distribution
+* `rbinom()` # Binomial distribution
+* `rpois()` # Poisson distribution
+* `rbeta()` # Beta distribution
+* `rgamma()` # Gamma distribution
+* `rt()` # Student t distribution
+* `rchisq()`. # Chi-squared distribution
+
+```{r}
+rbinom(0:10, size = 10, prob = 0.3)
+dt(5, df = 1)
+
+x <- seq(-5, 5, length = 100)
+plot(x, dnorm(x), type = 'l')
+```
+
+### Sampling and Simulation
+
+We can draw a sample with or without replacement with `sample`.
+
+```{r}
+sample(1:nrow(gap), 20, replace = FALSE)
+```
+
+`dplyr` has a helpful `select_n` function that samples rows of a dataframe.
+
+```{r}
+small <- sample_n(gap, 20)
+nrow(small)
+```
+
+Here's an example of some code that would be part of a bootstrap:
+
+```{r}
+gap <- read.csv("data/gapminder-FiveYearData.csv", stringsAsFactors = F)
+
+# Actual mean
+mean(gap$lifeExp, na.rm = TRUE)
+
+# Here's a bootstrap sample:
+smp <- sample_n(gap, size = nrow(gap), replace = TRUE) 
+mean(smp$lifeExp, na.rm = TRUE)
+```
+
+### Random Seeds
+
+A few key facts about generating random numbers:
+
+* Random numbers on a computer are *pseudo-random*; they are generated deterministically from a very, very, very long sequence that repeats.
+* The *seed* determines where you are in that sequence.
+
+To replicate any work involving random numbers, make sure to set the seed first. The seed can be arbitrary -- pick your favorite number.
+
+```{r}
+set.seed(1)
+vals <- sample(1:nrow(gap), 10)
+vals
+
+vals <- sample(1:nrow(gap), 10)
+vals
+
+set.seed(1)
+vals <- sample(1:nrow(gap), 10)
+vals
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Generate 100 random Poisson values with a population mean of 5. How close is the mean of those 100 values to the value of 5? 
+
+#### Challenge 2. {-}
+
+What is the 95th percentile of a chi-square distribution with 1 degree of freedom? 
+
+#### Challenge 3. {-}
+
+What is the probability of getting a value greater than 5 if you draw from a standard normal distribution? What about a t distribution with 1 degree of freedom?

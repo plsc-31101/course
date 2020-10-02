@@ -1,0 +1,251 @@
+---
+title: "Models"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Inferences and Regressions
+
+Once we have imported our data, summarized it, carried out group-wise operations, and perhaps reshaped it, we may also want to attempt causal inference.
+
+This often requires doing the following:
+
+1) Carrying out Classical Hypothesis Tests
+2) Estimating Regressions
+
+```{r}
+# Setup
+library(gapminder)
+gap <- gapminder
+```
+
+### Statistical Tests
+
+Let's say we are interested in whether the life expectancy in 1967 is different than in 1977.
+
+```{r message=F}
+# Pull out life expectancy by different years
+life.exp.1967 <- gap$lifeExp[gap$year==1967]
+life.exp.1977 <- gap$lifeExp[gap$year==1977]
+```
+
+One can test for differences in distributions in either:
+
+1) Their means using t-tests:
+```{r message=F}
+# t test of means
+t.test(x = life.exp.1967, y = life.exp.1977)
+```
+
+2) Their entire distributions using ks-tests:
+```{r message=F}
+# ks tests of distributions
+ks.test(x = life.exp.1967, y = life.exp.1977)
+```
+
+### Regressions and Linear Models
+
+Running regressions in R is generally straightforward. There are two basic, catch-all regression functions in R:
+
+- `glm` fits a generalized linear model with your choice of family/link function (Gaussian, logit, Poisson, etc.).
+
+- `lm` is just a standard linear regression (equivalent to `glm` with `family = gaussian(link = "identity")`).
+
+The basic `glm` call looks something like this:
+
+```{r eval=FALSE}
+glm(formula = y ~ x1 + x2 + x3 + ..., family = familyname(link = "linkname"), data = )
+```
+
+There are a bunch of families and links to use (`?family` for a full list), but some essentials are: **`binomial(link = "logit")`**, **`gaussian(link = "identity")`**, and **`poisson(link = "log")`**.
+
+If you are using `lm`, the call looks the same but without the `family` argument. 
+
+- Example: Suppose we want to regress the life expectency on the GDP per capita and the population, as well as the continent and the year.  The `lm` call would be something like this:
+
+```{r}
+reg <- lm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year, data = gap)
+```
+
+#### Missing values {-}
+
+Missing values obviously cannot convey any information about the relationship between the variables. Most modeling functions will drop any rows that contain missing values.
+
+### Regression Output
+
+When we store this regression in an object, we get access to several items of interest:
+
+1. All components contained in the regression output:
+
+```{r}
+names(reg)
+```
+
+2. Regression coefficients:
+
+```{r}
+reg$coefficients
+```
+
+3. Regression degrees of freedom:
+
+```{r}
+reg$df.residual
+```
+
+4. Standard (diagnostic) plots for a regression:
+
+```{r}
+plot(reg)
+```
+
+R also has a helpful `summary` method for regression objects:
+
+```{r}
+summary(reg)
+```
+
+We can also extract useful things from the summary object:
+
+```{r}
+# Store summary method results
+summ_reg <- summary(reg)
+
+# View summary method results objects
+objects(summ_reg)
+
+# View table of coefficients
+summ_reg$coefficients
+```
+
+### Interactions
+
+There are also some useful shortcuts for regressing on interaction terms:
+
+1. `x1:x2` interacts all terms in `x1` with all terms in `x2`:
+
+```{r}
+mod.1 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent:factor(year), data = gap)
+summary(mod.1)
+```
+
+2. `x1*x2` produces the cross of `x1` and `x2`, or `x1+x2+x1:x2`:
+
+```{r}
+mod.2 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent*factor(year), data = gap)
+summary(mod.2)
+```
+
+Note that we wrapped the `year` variable into a `factor()` function. By default, R breaks up our variables into their different factor levels (as it will do whenever your regressors have factor levels).
+
+If your data are not factorized, you can tell `lm/glm` to factorize a variable (i.e., create dummy variables on the fly) by writing `factor()`.
+
+```{r, eval=FALSE}
+glm(formula = y ~ x1 + x2 + factor(x3), family = family(link = "link"),
+            data = )
+```
+
+### Formatting Regression Tables
+
+Most papers report the results of regression analysis in some kind of table. Typically, this table includes the values of coefficients, standard errors, and significance levels from one or more models. 
+
+The `stargazer` package provides excellent tools to make and format regression tables automatically. It can also output summary statistics from a dataframe.
+
+```{r}
+library(stargazer)
+stargazer(gap, type = "text")
+```
+
+Let's say we want to report the results from three different models:
+
+```{r}
+mod.1 <- lm(lifeExp ~ log(gdpPercap) + log(pop), data = gap)
+mod.2 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent, data = gap)
+mod.3 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent + year, data = gap)
+```
+
+`stargazer` can produce well-formatted tables that hold regression analysis results from all these models side-by-side.
+
+```{r}
+stargazer(mod.1, mod.2, mod.3, title = "Regression Results", type = "text")
+```
+
+#### Customization {-}
+
+`stargazer` is incredibly customizable. Let's say we wanted to
+
+- Re-name our explanatory variables;
+- Remove information on the "Constant";
+- Only keep the number of observations from the summary statistics; and
+- Style the table to look like those in the American Journal of Political Science.
+
+```{r}
+stargazer(mod.1, mod.2, mod.3, title = "Regression Results", type = "text", 
+          covariate.labels	= c("GDP per capita, logged", "Population, logged", "Americas", "Asia", "Europe", "Oceania", "Year", "Constant"), 
+          omit = "Constant", 
+          keep.stat="n", style = "ajps")
+```
+
+Check out `?stargazer` to see more options.
+
+#### Output Types {-}
+
+Once we like the look of our table, we can output/export it in a number of ways. The `type` argument specifies what output the command should produce. Possible values are:
+
+- `"latex"` for LaTeX code.
+- `"html"` for HTML code.
+- `"text"` for ASCII text output (what we used above).
+
+Let's say we are using LaTeX to typeset our paper. We can output our regression table in LaTeX:
+
+```{r}
+stargazer(mod.1, mod.2, mod.3, title = "Regression Results", type = "latex", 
+          covariate.labels	= c("GDP per capita, logged", "Population, logged", "Americas", "Asia", "Europe", "Oceania", "Year", "Constant"), 
+          omit = "Constant", 
+          keep.stat="n", style = "ajps")
+```
+
+
+To include the produced tables in our paper, we can simply insert this `stargazer` LaTeX output into the publication's TeX source. 
+
+Alternatively, you can use the `out` argument to save the output in a .tex or .txt file:
+
+```{r eval = F}
+stargazer(mod.1, mod.2, mod.3, title = "Regression Results", type = "latex", 
+          covariate.labels	= c("GDP per capita, logged", "Population, logged", "Americas", "Asia", "Europe", "Oceania", "Year", "Constant"), 
+          omit = "Constant", 
+          keep.stat="n", style = "ajps",
+          out = "regression-table.txt")
+```
+
+To include `stargazer` tables in Microsoft Word documents (e.g., .doc or .docx), use the following procedure:
+
+- Use the `out` argument to save output into an `.html` file.
+- Open the resulting file in your web browser.
+- Copy and paste the table from the web browser to your Microsoft Word document.
+
+```{r eval = F}
+stargazer(mod.1, mod.2, mod.3, title = "Regression Results", type = "html", 
+          covariate.labels	= c("GDP per capita, logged", "Population, logged", "Americas", "Asia", "Europe", "Oceania", "Year", "Constant"), 
+          omit = "Constant", 
+          keep.stat="n", style = "ajps",
+          out = "regression-table.html")
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Fit two linear regression models from the `gapminder` data where the outcome is `lifeExp` and the explanatory variables are `log(pop)`, `log(gdpPercap)`, and `year`. In one model, treat `year` as a numeric variable. In the other, factorize the `year` variable. How do you interpret each model?
+
+#### Challenge 2. {-}
+
+Fit a logistic regression model where the outcome is whether `lifeExp` is greater than or less than 60 years, exploring the use of different predictors.
+
+#### Challenge 3. {-}
+
+Using `stargazer`, format a table reporting the results from the three models you created above (two linear regressions and one logistic).
+
+
+

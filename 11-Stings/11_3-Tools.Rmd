@@ -1,0 +1,235 @@
+---
+title: "String Tools"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+always_allow_html: true
+---
+
+```{r message = FALSE}
+library(tidyverse)
+library(stringr)
+```
+
+## Common Tools
+
+Now that you have learned the basics of regular expressions, it is time to learn how to apply them to real problems. In this section, you will learn a wide array of `stringr` functions that let you
+
+* Determine which strings match a pattern.
+* Find the positions of matches.
+* Extract the content of matches.
+* Replace matches with new values.
+* Split a string based on a match.
+
+### Detect Matches
+
+To determine if a character vector matches a pattern, use `str_detect()`. It returns a logical vector the same length as the input:
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_detect(x, "e")
+```
+
+Remember that, when you use a logical vector in a numeric context, `FALSE` becomes 0 and `TRUE` becomes 1. That makes `sum()` and `mean()` useful if you want to answer questions about matches across a larger vector:
+
+```{r}
+words<- stringr::words
+# See common words
+words[1:10]
+# How many common words start with t?
+sum(str_detect(words, "^t"))
+# What proportion of common words end with a vowel?
+mean(str_detect(words, "[aeiou]$"))
+```
+
+A common use of `str_detect()` is to select the elements that match a pattern. You can do this with logical subsetting, or the convenient `str_subset()` wrapper:
+
+```{r}
+words[str_detect(words, "x$")]
+str_subset(words, "x$")
+```
+
+Typically, however, your strings will be one column of a data frame, and you will want to use `filter` instead:
+
+```{r}
+df <- data.frame(
+  i = seq_along(words),
+  word = words
+)
+df %>% 
+  filter(str_detect(word, "x$"))
+```
+
+A variation on `str_detect()` is `str_count()`. Rather than a simple yes or no, it tells you how many matches there are in a string:
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_count(x, "a")
+# On average, how many vowels per word?
+mean(str_count(words, "[aeiou]"))
+```
+
+It is natural to use `str_count()` with `mutate()`:
+
+```{r}
+df1 <- df %>% 
+  mutate(
+    vowels = str_count(word, "[aeiou]"),
+    consonants = str_count(word, "[^aeiou]")
+  )
+
+head(df1)
+```
+
+
+#### Challenge 1. {-}
+
+For each of the following challenges, try solving it by using both a single regular expression and a combination of multiple `str_detect()` calls.
+    
+    1.  Find all words that start or end with `x`.
+    
+    2.  Find all words that start with a vowel and end with a consonant.
+    
+
+### Extract Matches
+
+To extract the actual text of a match, use `str_extract()`. To show that off, we are going to need a more complicated example. I am going to use the [Harvard sentences](https://en.wikipedia.org/wiki/Harvard_sentences). These are provided in `stringr::sentences`:
+
+```{r}
+length(sentences)
+head(sentences)
+```
+
+Imagine we want to find all sentences that contain a color. We first create a vector of color names, and then turn it into a single regular expression:
+
+```{r}
+colors <- c("red", "orange", "yellow", "green", "blue", "purple")
+color_match <- str_c(colors, collapse = "|")
+color_match
+```
+
+Now we can select the sentences that contain a color, and then extract the color to figure out which one it is:
+
+```{r}
+# Find sentences with colors
+has_color <- str_subset(sentences, color_match)
+head(has_color)
+
+# Extract the color
+matches <- str_extract(has_color, color_match)
+head(matches)
+```
+
+Note that `str_extract()` only extracts the first match. This is a common pattern for `stringr` functions, because working with a single match allows you to use much simpler data structures. To get all matches, use `str_extract_all()`. It returns a list:
+
+```{r}
+all_colors <- str_extract_all(has_color, color_match)
+all_colors[15:20]
+```
+
+If you use `simplify = TRUE`, `str_extract_all()` will return a matrix with short matches expanded to the same length as the longest:
+
+```{r}
+str_extract_all(has_color, color_match, simplify = TRUE)
+```
+
+#### Challenge 2. {-}
+
+In the previous example, you might have noticed that the regular expression matched "flickered", which is not a color. Modify the regex to fix the problem.
+
+### Replacing Matches
+
+`str_replace()` and `str_replace_all()` allow you to replace matches with new strings. The simplest use is to replace a pattern with a fixed string:
+
+```{r}
+x <- c("apple", "pear", "banana")
+str_replace(x, "[aeiou]", "-") # replace the first instance of a match
+str_replace_all(x, "[aeiou]", "-") # replace all instances of a match
+```
+
+With `str_replace_all()`, you can perform multiple replacements by supplying a named vector:
+
+```{r}
+x <- c("1 house", "2 cars", "3 people")
+str_replace_all(x, c("1" = "one", "2" = "two", "3" = "three"))
+```
+
+### Splitting
+
+Use `str_split()` to split a string up into pieces. For example, we could split sentences into words:
+
+```{r}
+sentences %>%
+  head(5) %>% 
+  str_split(" ")
+```
+
+Like the other `stringr` functions that return a list, you can use `simplify = TRUE` to return a matrix:
+
+```{r}
+sentences %>%
+  head(5) %>% 
+  str_split(" ", simplify = TRUE)
+```
+
+You can also request a maximum number of pieces:
+
+```{r}
+fields <- c("Name: Hadley", "Country: NZ", "Age: 35")
+fields %>% str_split(": ", n = 2, simplify = TRUE)
+```
+
+Instead of splitting up strings by patterns, you can also split them up by character, line, sentence, or word `boundary()`s:
+
+```{r}
+x <- "This is a sentence.  This is another sentence."
+str_view_all(x, boundary("word"))
+str_split(x, boundary("word"))[[1]]
+```
+
+#### Challenge 3. {-}
+
+  1.  Split up a string like `"apples, pears, and bananas"` into individual
+      components.
+      
+  2.  What does splitting with an empty string (`""`) do? Experiment, and
+      then read the documentation.
+
+
+## Other Types of Patterns
+
+When you use a pattern that is a string, it is automatically wrapped into a call to `regex()`:
+
+```{r, eval = FALSE}
+# The regular call
+str_view(fruit, "nana")
+# Is shorthand for
+str_view(fruit, regex("nana"))
+```
+
+You can use the other arguments of `regex()` to control details of the match:
+
+*   `ignore_case = TRUE` allows characters to match either their uppercase or 
+    lowercase forms. This always uses the current locale.
+    
+    ```{r}
+    bananas <- c("banana", "Banana", "BANANA")
+    str_view(bananas, "banana")
+    str_view(bananas, regex("banana", ignore_case = TRUE))
+    ```
+    
+*   `multiline = TRUE` allows `^` and `$` to match the start and end of each
+    line rather than the start and end of the complete string.
+    
+    ```{r}
+    x <- "Line 1\nLine 2\nLine 3"
+    str_extract_all(x, "^Line")[[1]]
+    str_extract_all(x, regex("^Line", multiline = TRUE))[[1]]
+    ```
+
+
+#### Acknowledgments {-}
+
+This page was adapted from the following source:
+
+[R for Data Science](https://r4ds.had.co.nz), licensed under [Creative Commons Attribution-NonCommercial-NoDerivs 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).

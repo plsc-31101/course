@@ -1,0 +1,45 @@
+---
+title: "R Basics"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# R Basics
+
+This unit introduces you to the R programming language and the tools we use to program in R. We will explore:
+
+1. **[What is R?]**, a brief introduction to the R language.
+2. **[RStudio]**, a tour of the Interactive Development Environment RStudio.
+3. **[R Packages]**, extra tools and functionalities.
+4. **[R Markdown]**, a type of R script file we will be working with in this class.
+
+
+## What is R?
+
+R is a versatile, open-source programming and scripting language that is useful both for statistics and data science. It is inspired by the programming language [S][S]. Some of its __best features__ are:
+
+* It is free, open-source, and available on every major platform. As a result, if you do your analysis in R, most people can easily replicate it.
+
+* It contains a massive set of packages for statistical modelling, machine learning, visualization, and importing and manipulating data. Over 14,000 packages are available as of August 2019. Whatever model or graphic you are trying to do, chances are that someone has already tried to do it (and a package for it exists).
+
+* It is designed for statistics and data analysis, but also general-purpose programming.
+
+* It is an [Interactive Development Environment](http://www.rstudio.com/ide/) tailored to the needs of interactive data analysis and statistical programming.
+
+* It has powerful tools for communicating your results. R packages make it easy to produce HTML or PDF [reports](http://yihui.name/knitr/), or create [interactive websites](http://www.rstudio.com/shiny/).
+
+* A large and growing community of peers.
+
+R also has a number of __shortcomings__:
+
+* It has a steeper learning curve than SPSS or Stata.
+
+* R is not a particularly fast programming language, and poorly written R code can be terribly slow. R is also a profligate user of memory.
+
+* Much of the R code you will see in the wild is written in haste to solve a pressing problem. As a result, code is not very elegant, fast, or easy to understand. Most users do not revise their code to address these shortcomings.
+
+* Inconsistency is rife across contributed packages, even within base R. You are confronted with over 20 years of evolution every time you use R. Learning R can be tough, because there are many special cases to remember.
+
+[S]: https://en.wikipedia.org/wiki/S_(programming_language)
+

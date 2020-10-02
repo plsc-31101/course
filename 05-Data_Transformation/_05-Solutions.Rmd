@@ -1,0 +1,97 @@
+---
+title: "05_Challenge_Solutions"
+output: html_document
+---
+```{r message=F}
+library(tidyverse)
+library(gapminder)
+
+gap <- gapminder
+```
+
+## 5_1-Data-Basics Challenges
+
+#### Challenge 1. {-}
+
+Read the `polity` dataset.
+
+```{r}
+polity <- read.csv("Data/polity_sub.csv", stringsAsFactors = F)
+```
+
+#### Challenge 2. {-}
+
+Report the number and name of each variable in the dataset.
+
+```{r}
+dim(polity)
+names(polity)
+```
+
+#### Challenge 3. {-}
+
+What is the mean `polity2` score in the dataset?
+
+```{r}
+mean(polity$polity2, na.rm = T)
+```
+
+#### Challenge 4. {-}
+
+What is the range of the `polity2` variable?
+
+```{r}
+range(polity$polity2, na.rm = T)
+```
+
+#### Challenge 5. {-}
+
+How many unique countries are in the dataset?
+
+```{r}
+length(unique(polity$country))
+```
+
+## 5_2-dplyr Challenges
+
+#### Challenge 1. {-}
+
+Use `dplyr` to create a data frame containing the median `lifeExp` for each continent.
+
+```{r}
+gap %>%
+  group_by(continent) %>%
+  mutate(median = median(lifeExp))
+```
+
+#### Challenge 2. {-}
+
+Use `dplyr` to add a column to the Gapminder dataset that contains the total population of the continent of each observation in a given year. For example, if the first observation is Afghanistan in 1952, the new column would contain the population of Asia in 1952. 
+
+
+```{r}
+gap %>%
+  group_by(continent, year) %>%
+  mutate(continent_pop = sum(pop))
+```
+
+#### Challenge 3. {-}
+
+Use `dplyr` to: (a) add a column called `gdpPercap_diff` that contains the difference between the observation's `gdpPercap` and the mean `gdpPercap` of the continent in that year, and (b) arrange the dataframe by the column you just created in descending order (so that the relatively richest country-years are listed first).
+
+**Hint**: You might have to `ungroup()` before you `arrange()`.
+
+```{r}
+gap <- gap %>%
+  group_by(continent, year) %>%
+  mutate(mean_gdpPercap = mean(gdpPercap)) %>%
+  mutate(gdpPercap_diff = gdpPercap - mean_gdpPercap) %>%
+  ungroup() %>%
+  arrange(desc(gdpPercap_diff), year)
+
+head(gap)
+
+# Top observation should be Kuwait in 1957, followed by Kuwait in 1952, 1972, etc.
+
+```
+

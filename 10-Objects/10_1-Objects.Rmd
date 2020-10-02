@@ -1,0 +1,28 @@
+---
+title: "Classes"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Data Classes and Structures
+
+To make the best use of the R language, you will need a strong understanding of basic data structures and how to operate on them. 
+
+This is **critical** to understand because these are the objects you will manipulate on a day-to-day basis in R. But they are not always as easy to work with as they seem at the outset. Dealing with object types and conversions is one of the most common sources of frustration for beginners.
+
+R's base data structures can be organized by their dimensionality (1d, 2d, or nd) and whether they are homogeneous (all contents must be of the same type) or heterogeneous (the contents can be of different types). This gives rise to the five data types most often used in data analysis: 
+
+|    | Homogeneous   | Heterogeneous |
+|----|---------------|---------------|
+| 1d | Atomic vector | List          |
+| 2d | Matrix        | Dataframe    |
+| nd | Array         |               |
+
+Each data structure has its own specifications and behavior. In the rest of this chapter, we will cover the types of data objects that exist in R and how they work.
+
+1. [Vectors]
+2. [Lists]
+3. [Matrices]
+4. [Dataframes]
+

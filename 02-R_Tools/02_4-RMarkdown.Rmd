@@ -1,0 +1,162 @@
+---
+title: "R Markdown"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## R Markdown
+
+Throughout this course, we will be using [R Markdown](http://rmarkdown.rstudio.com>) for lecture notes and homework assignments. R Markdown documents combine executable code, results, and prose commentary into one document. Think of an R Markdown files as a modern-day lab notebook, where you can capture not only what you did, but also what you were thinking.
+
+The filename of an R Markdown document should end in `.Rmd` or `.rmd`. An R Markdown document can also be converted to an output format, like PDF, HTML, slideshows, Word files, and more. 
+
+R Markdown documents contain three important types of content:
+
+1. An (optional) YAML header surrounded by `---`s.
+2. Chunks of R code surrounded by ` ``` `.
+3. Text mixed with simple text formatting like `# heading` and `_italics_`.
+
+### YAML Header
+
+YAML stands for "yet another markup language." R Markdown uses it to control many details of the output.
+
+```{md}
+---
+title: "Homework 1"
+author: "Rochelle Terman"
+date: "Fall 2020"
+output: html_document
+---
+```
+
+In this example, we specified the document's title, author, and date; we also specified that we want it to eventually be converted into an HTML document.
+
+### Markdown
+
+Prose in `.Rmd` files is written in Markdown, a lightweight set of conventions for formatting plain text files. Markdown is designed to be easy to read and easy to write. It is also very easy to learn. The guide below shows how to use Pandoc’s Markdown, a slightly extended version of Markdown that R Markdown understands.
+
+```{md}
+Text formatting 
+------------------------------------------------------------
+
+*italic*  or _italic_
+**bold**   __bold__
+`code`
+superscript^2^ and subscript~2~
+
+Headings
+------------------------------------------------------------
+
+# 1st Level Header
+
+## 2nd Level Header
+
+### 3rd Level Header
+
+Lists
+------------------------------------------------------------
+
+*   Bulleted list item 1
+
+*   Item 2
+
+    * Item 2a
+
+    * Item 2b
+
+1.  Numbered list item 1
+
+1.  Item 2. The numbers are incremented automatically in the output.
+
+Links and images
+------------------------------------------------------------
+
+<http://example.com>
+
+[linked phrase](http://example.com)
+
+![optional caption text](path/to/img.png)
+
+Tables 
+------------------------------------------------------------
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+```
+
+The best way to learn these is simply to try them out. It will take a few days, but soon they will become second nature, and you will not need to think about them. If you forget, you can get to a handy reference sheet with Help > Markdown Quick Reference.
+
+### Code Chunks
+
+To run code inside an R Markdown document, you do it inside a "chunk." Think of a chunk like a step in a larger process. A chunk should be relatively self-contained and focused around a single task.
+
+Chunks begin with a header which consists of ` ```{r,`, followed by an optional chunk name, followed by comma separated options, followed by `}`. Next comes your R code, and the chunk end is indicated by a final ` ``` `.
+
+You can continue to run the code using the keyboard shortcut that we learned earlier: `Cmd/Ctrl + Enter`. You can also run the entire chunk by clicking the Run icon (it looks like a play button at the top of the chunk) or by pressing `Cmd/Ctrl + Shift + Enter`.
+
+RStudio executes the code and displays the results inline with the code:
+
+![](img/r-markdown.png)
+
+### Knitting
+
+To produce a complete report containing all text, code, and results, click the "Knit" button at the top of the script editor (it looks like a ball of yarn) or press `Cmd/Ctrl + Shift + K`. This will display the report in the viewer pane and create a self-contained HTML file that you can share with others. The `.html` file is written in the same directory as your `.Rmd` file.
+
+Knitting can be a finicky process that is sometimes challenging to troubleshoot. You will inevitably run into Knitting errors where RStudio will tell you that it is unable to knit your `.Rmd` file. When this happens, here are some approaches you can try out for troubleshooting:
+
+1. **Read the error that RStudio gives you.** Usually, it will tell you which line in the code produced the error that stopped the Knitting process. Check out this line and see if there is a syntax error that needs to be fixed.
+2. **Run every code chunk in order, one chunk at a time.** It is possible something will not run, which would cause the Knitting error. You can also try clearing your environment (in the top right pane) before running all the chunks.
+3. **Have you copied and pasted text in from other sources?** Occasionally, an abnormal character copied from another app can cause a Knitting error.
+4. **Check all of the file paths** and make sure they are accurate.
+
+This list is by no means exhaustive. The most important step is step 1: read the error message. You can also try pasting it into Google to see how other R users have dealt with similar errors.
+
+### R Chunk Options for Knitting
+
+You will notice that each R Chunk begins with `{r}`. Within these brackets, you can add "Chunk Options" to the R Chunk that will dictate how the R Chunk is treated when you Knit the `.Rmd`. Some commonly used options are:
+
+- `eval` (default: `TRUE`): If `FALSE`, knitr will not run the code in the code chunk (it will, however, still display the code in the knitted document).
+- `include` (default: `TRUE`): If `FALSE`, knitr will run the chunk but hide the code and its results in the final document.
+- `echo` (default: `TRUE`): If `FALSE`, knitr will run the chunk and display the results but hide the code above its results in the final document.
+- `error` (default: `TRUE`): If `FALSE`, knitr will not display any error messages generated by the code.
+- `message` (default: `TRUE`): If `FALSE`, knitr will not display any messages generated by the code.
+- `warning` (default: `TRUE`): If `FALSE`, knitr will not display any warnings generated by the code.
+
+### Cheatsheets and Other Resources
+
+When working in RStudio, you can find an R Markdown cheatsheet by going to Help > Cheatsheets > R Markdown Cheat Sheet. 
+
+A helpful overview of R Markdown can also be found in [R for Data Science](https://r4ds.had.co.nz/r-markdown.html).
+
+A deep dive into R Markdown can be found [here](https://bookdown.org/yihui/rmarkdown/).
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Create a new R Markdown document with *File > New File > R Markdown...* Read the instructions. Practice running the chunks. 
+
+Now add some new markdown. Try adding some first-, second-, and third-level headers. Insert a link to a website.
+
+#### Challenge 2. {-}
+
+In the first code chunk, modify `cars` to `mtcars`. Re-run the chunk and see modified output. 
+
+#### Challenge 3. {-}
+
+Knit the document into a PDF file. Verify that you can modify the input and see the output update.
+
+#### Acknowledgments {-}
+
+This page is in part derived from the following sources:
+
+1. [R for Data Science](https://r4ds.had.co.nz), licensed under [Creative Commons Attribution-NonCommercial-NoDerivs 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+
+2. [Advanced R](https://adv-r.hadley.nz/), licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+3. [R Studio Support](https://support.rstudio.com/hc/en-us/articles/200484448).
+
+4. [A ModernDive into R and the tidyverse](https://moderndive.netlify.com/1-getting-started.html).

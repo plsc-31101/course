@@ -1,0 +1,252 @@
+---
+title: "Vectors"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Vectors 
+
+Your garden variety R object is a vector. Vectors are 1-dimensional chains of values. We call each value an _element_ of a vector.
+
+### Creating Vectors
+
+A single piece of information that you regard as a scalar is just a vector of length 1. R will cheerfully let you add stuff to it with `c()`, which is short for 'combine':
+
+```{r}
+x <- 3 * 4
+x
+is.vector(x)
+length(x)
+
+x <- c(1, 2, 3)
+x
+length(x)
+
+# Other ways to make a vector
+x <- 1:3
+```
+
+We can also add elements to the end of a vector by passing the original vector into the `c` function, like so:
+
+```{r}
+z <- c("Beyonce", "Kelly", "Michelle", "LeToya")
+z <- c(z, "Farrah")
+z
+```
+
+Notice that vectors are always flat, even if you nest `c()`'s:
+
+```{r}
+# These are equivalent
+c(1, c(2, c(3, 4)))
+c(1, 2, 3, 4)
+```
+
+### Vectors Are Everywhere
+
+R is built to work with vectors. Many operations are vectorized, meaning they will perform calculations on each component by default. Novices often do not internalize or exploit this and they write lots of unnecessary for loops.
+
+```{r}
+a <- c(1, -2, 3)
+a^2
+```
+
+We can also add two vectors. It is important to know that if you __sum__ two vectors in R, it takes the element-wise sum. For example, the following three statements are completely equivalent:
+
+```{r eval = F}
+c(1, 2, 3) + c(4, 5, 6)
+c(1 + 4, 2 + 5, 3 + 6)
+c(5, 7, 9)
+```
+
+When reading function documentation, keep your eyes peeled for arguments that can be vectors. You will be surprised how common they are. For example, the mean of random normal variables can be provided as a vector.
+
+```{r}
+set.seed(1999)
+rnorm(5, mean = c(10, 100, 1000, 10000, 100000))
+```
+
+This could be awesome in some settings, but dangerous in others, i.e., if you exploit this by mistake and get no warning. This is one of the reasons it is so important to keep close tabs on your R objects: Are they what you expect in terms of their flavor and length or dimensions? Check early and check often.
+
+### Recycling
+
+R recycles vectors if they are not the necessary length. You will get a warning if R suspects recycling is unintended, i.e., when one length is not an integer multiple of another, but recycling is silent if it seems like you know what you are doing. This can be a beautiful thing when you are doing it deliberately, but devastating when you are not.
+
+```{r}
+(y <- 1:3)
+(z <- 3:7)
+y + z
+
+(y <- 1:10)
+(z <- 3:7)
+y + z
+```
+
+
+### Types of Vectors
+
+There are four common types of vectors, depending on the class:
+
+1. `integer` 
+2. `numeric` (same as `double`)
+3. `character`
+4. `logical` 
+
+#### Numeric Vectors {-}
+
+Numeric vectors contain numbers. They can be stored as *integers* (whole numbers) or *doubles* (numbers with decimal points). In practice, you rarely need to concern yourself with this difference, but just know that they are different but related things.
+
+```{r}
+c(1, 2, 335)
+c(4.2, 4, 6, 53.2)
+```
+
+#### Character Vectors {-}
+
+Character vectors contain character (or 'string') values. Note that each value has to be surrounded by quotation marks *before* the comma.
+
+```{r}
+c("Beyonce", "Kelly", "Michelle", "LeToya")
+```
+
+#### Logical (Boolean) Vectors {-}
+
+Logical vectors take on one of three possible values:
+
+1. `TRUE`
+2. `FALSE`
+3. `NA` (missing value)
+
+They are often used in conjunction with Boolean expressions.
+
+```{r}
+b1 <- c(TRUE, TRUE, FALSE, NA)
+b1
+
+vec_1 <- c(1, 2, 3)
+vec_2 <- c(1, 9, 3)
+vec_1 == vec_2
+
+b2 <- vec_1 == vec_2
+```
+
+### Coercion
+
+We can change or convert a vector's type using `as....`.
+
+```{r}
+num_var <- c(1, 2.5, 4.5)
+class(num_var)
+as.character(num_var)
+```
+
+Remember that all elements of a vector must be the same type. So when you attempt to combine different types, they will be __coerced__ to the most "flexible" type. 
+
+For example, combining a character and an integer yields a character:
+
+```{r}
+c("a", 1)
+```
+
+Guess what the following do without running them first:
+
+```{r eval = F}
+c(1.7, "a") 
+c(TRUE, 2) 
+c("a", TRUE) 
+```
+
+#### TRUE == 1 and FALSE == 0 {-}
+
+Notice that when a logical vector is coerced to an integer or double, `TRUE` becomes 1 and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`.
+
+```{r}
+vec_1 <- c(1, 2, 3)
+vec_2 <- c(1, 9, 3)
+boo_1 <- vec_1 == vec_2
+
+# Total number of TRUEs
+sum(boo_1)
+
+# Proportion that are TRUE
+mean(boo_1)
+```
+
+#### Coercion often happens automatically. {-}
+
+This is called _implicit coercion_. Most mathematical functions (`+`, `log`, `abs`, etc.) will coerce to a double or integer, and most logical operations (`&`, `|`, `any`, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. 
+
+```{r}
+1 < "2"
+"1" > 2
+```
+
+Sometimes coercions, especially nonsensical ones, will not work.
+
+```{r}
+x <- c("a", "b", "c")
+as.numeric(x)
+as.logical(x)
+```
+
+
+### Naming a Vector
+
+We can also attach names to our vector. This helps us understand what each element refers to.
+
+You can give names to the elements of a vector with the `names()` function. Have a look at this example:
+
+```{r}
+days_month <- c(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+names(days_month) <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+days_month
+```
+
+You can name a vector when you create it:
+
+```{r}
+some_vector <- c(name = "Rochelle Terman", profession = "Professor Extraordinaire")
+some_vector
+```
+
+Notice that in the first case, we surrounded each name with quotation marks. But we do not have to do this when creating a named vector. 
+
+Names do not have to be unique, and not all values need to have a name associated with them. However, names are most useful for subsetting, described in the next chapter. When subsetting, it is most useful when the names are unique. 
+
+
+### Challenges
+
+#### Challenge 1: Create and examine your vector. {-}
+
+Create a character vector called `fruit` that contains 4 of your favorite fruits. Then evaluate its structure using the commands below:
+
+```{r, eval = FALSE}
+
+# First create your fruit vector 
+# YOUR CODE HERE
+
+
+# Examine your vector
+length(fruit)
+class(fruit)
+str(fruit)
+```
+
+#### Challenge 2: Coercion. {-}
+
+```{r, eval=FALSE}
+
+# 1. Create a vector of a sequence of numbers from 1 to 10.
+
+# 2. Coerce that vector into a character vector.
+
+# 3. Add the element "11" to the end of the vector.
+
+# 4. Coerce it back to a numeric vector.
+```
+
+#### Challenge 3: Calculations on Vectors. {-}
+
+Create a vector of the numbers 11 to 20 and multiply it by the original vector from Challenge 2.

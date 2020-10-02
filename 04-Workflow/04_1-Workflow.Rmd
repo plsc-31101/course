@@ -1,0 +1,144 @@
+---
+title: "Workflow"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+# Working with Data
+
+This unit will cover the basics of working with data, including project workflow, data terms and concepts, importing data, and exploring data.
+
+## Project Workflow
+
+One day... 
+
+* You will need to quit R, go do something else, and return to your analysis the next day. 
+* You will be working on multiple projects simultaneously, and you will want to keep them separate.
+* You will need to bring data from the outside world into R and send numerical results and figures from R back out into the world. 
+
+This unit will teach you how to set up your workflow to make the best use of R.
+
+### Store Analyses in Scripts, Not Workspaces
+
+R Studio automatically preserves your workspace (environment and command history) when you quit R and re-loads it the next session. I recommend you turn this behavior off.
+
+```{r echo = F}
+knitr::include_graphics(path = "img/rstudio-workspace.png")
+```
+
+This will cause you some short-term pain, because now when you restart RStudio, it will not remember the results of the code that you ran last time. But this short-term pain will save you long-term agony, because it will force you to capture all important interactions in your scripts. 
+
+### Working Directories and Paths
+
+Like many programming languages, R has a powerful notion of the **working directory**. This is where R looks for files that you ask it to load and where it will put any files that you ask it to save.
+
+RStudio shows your current working directory at the top of the console. You can print this out in R code by running `getwd()`:
+
+```{r}
+getwd()
+```
+
+I do not recommend it, but you can set the working directory from within R:
+
+```{r eval = F}
+setwd("/path/to/my/CoolProject")
+```
+
+The command above prints out a **path** to your working directory. Think of a path as an address. Paths are incredibly important in programming, but they can be a little tricky. Let's go into a bit more detail. 
+
+#### Absolute Paths {-}
+
+Absolute paths are paths that point to the same place regardless of your current working directory. They always start with the **root directory** that holds everything else on your computer.
+
+* In Windows, absolute paths start with a drive letter (e.g., `C:`) or two backslashes (e.g., `\\servername`). 
+* In Mac/Linux, they start with a slash `/`. This is the leading slash in `/users/rterman`. 
+
+Inside the root directory are several other directories, which we call **subdirectories**. We know that the directory `/home/rterman` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
+
+Notice that there are two meanings for the `/` character:
+
+* When it appears *at the front* of a file or directory name, it refers to the root directory.
+* When it appears *inside* a name, it is just a separator.
+
+#### Mac/Linux vs. Windows  {-}
+
+There are two basic styles of paths: Mac/Linux and Windows. The main difference is how they separate the components of the path. Mac and Linux use slashes (e.g., `plots/diamonds.pdf`), whereas Windows uses backslashes (e.g., `plots\diamonds.pdf`). 
+
+R can work with either type, no matter what platform you are currently using. Unfortunately, backslashes mean something special to R, and to get a single backslash in the path, you need to type two backslashes! That makes life frustrating, so I recommend always using the Linux/Mac style with forward slashes.
+
+#### Home Directory {-}
+
+Sometimes you will see a `~` character in a path. 
+
+* In Mac/Linux, the `~` is a convenient shortcut to your **home directory** (`/users/rterman`). 
+* Windows does not really have the notion of a home directory, so it usually points to your documents directory (`C:\Documents` and `Settings\rterman`).
+
+#### Absolute vs. Relative Paths {-}
+
+You should try not to use absolute paths in your scripts, because they hinder sharing: no one else will have exactly the same directory configuration as you. Another way to direct R to something is to give it a **relative path**.
+
+Relative paths point to something relative to where you are (i.e., relative to your working directory) rather than from the root of the file system. For example, if your current working directory is `/home/rterman`, then the relative path `data/un.csv` directs to the full absolute path: `/home/rterman/data/un.csv`.
+
+### R Projects
+
+As a beginning R user, it is OK to let your home directory, documents directory, or any other weird directory on your computer be R's working directory.
+
+But from this point forward, you should be organizing your projects into dedicated subdirectories containing all the files associated with a project — input data, R scripts, results, figures...
+
+This is such a common practice that RStudio has built-in support for this via **projects**.
+
+Let's make a project together. Click `File > New Project`, then:
+
+```{r echo = F}
+knitr::include_graphics(path = "img/rstudio-project-1.png")
+```
+
+Think carefully about which subdirectory you put the project in. If you do not store it somewhere sensible, it will be hard to find in the future!
+
+Once this process is complete, you will get a new RStudio project. Check that the "home" directory of your project is the current working directory:
+
+```{r}
+getwd()
+```
+
+Now whenever you refer to a file with a relative path, R will look for the file there.
+
+Go ahead and create a new R script and save it inside the project folder. 
+
+Quit RStudio. Inspect the folder associated with your project — notice the .Rproj file. Double-click that file to re-open the project. Notice you get back to where you left off: it is the same working directory and command history, and all the files you were working on are still open. Because you followed my instructions above, however, you will have a completely fresh environment, guaranteeing that you are starting with a clean slate.
+
+### File Organization
+
+You should be saving all your files associated with your project in one directory. Here is a basic organization structure that I recommend:
+
+```{md}
+~~~
+masters_thesis:
+  masters_thesis.Rproj
+  01_Clean.R
+  02_Model.R
+  03_Visualizations.R
+  Data/
+    raw/
+      un-raw.csv
+      worldbank-raw.csv
+    cleaned/
+      country-year.csv
+  Results:
+    regressions
+      h1.txt
+      h2.txt
+    figures
+      bivariate.pdf
+      bar_plot.pdf
+~~~
+```
+
+Here are some important tips:
+
+* Read raw data from the `Data` subdirectory. Do not ever change or overwrite the raw data!
+* Export cleaned and altered data into a separate subdirectory.
+* Write separate scripts for each stage in the research pipeline. Keep scripts short and focused on one main purpose. If a script gets too long, that might be a sign you need to split it up.
+* Write scripts that reproduce your results and figures, which you can save in the `Results` subdirectory.
+
