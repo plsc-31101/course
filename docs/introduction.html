@@ -49,47 +49,75 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -232,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
 <li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
 <li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
@@ -358,7 +386,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
 <li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
 <li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
-<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
 <li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
@@ -401,7 +429,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
 <li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
 <li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
-<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let’s DO This</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
@@ -455,17 +483,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Here is the dream:</strong></p>
 <p><img src="img/tony_stark.gif" width="70%" style="display: block; margin: auto;" /></p>
 <blockquote>
-<p>Computers have revolutionized research, and that revolution is only beginning. Every day, social scientists and humanists all over the world use them to study things that are too big, too small, too fast, too slow, too expensive, too dangerous, or just too hard to study any other way.</p>
+<p>Computers have revolutionized research, and that revolution is only
+beginning. Every day, social scientists and humanists all over the world
+use them to study things that are too big, too small, too fast, too slow,
+too expensive, too dangerous, or just too hard to study any other way.</p>
 </blockquote>
 <p><strong>Now here is the reality:</strong></p>
 <p><img src="img/mulder.gif" width="70%" style="display: block; margin: auto;" /></p>
 <blockquote>
-<p>Every day, scholars all over the world waste time wrestling with computers. Tasks that should take a few moments take hours or days, and many things never work at all. When scholars try to get help, they are inundated with unhelpful information and give up.</p>
+<p>Every day, scholars all over the world waste time wrestling with
+computers. Tasks that should take a few moments take hours or days,
+and many things never work at all. When scholars try to get help,
+they are inundated with unhelpful information and give up.</p>
 </blockquote>
 <p>This sorry state of affairs persists for three reasons:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>No room, no time</strong>: Everybody's schedule is full — there is simply not space to add more about computing without dropping something else.</p></li>
-<li><p><strong>The blind leading the blind</strong>: The infrastructure does not exist to help scholars develop the skills they need. Senior researchers cannot teach the next generation how to do things that they do not know how to do themselves.</p></li>
+<li><p><strong>No room, no time</strong>: Everybody’s schedule is full — there is simply not space to add more
+about computing without dropping something else.</p></li>
+<li><p><strong>The blind leading the blind</strong>: The infrastructure does not exist to help scholars develop the skills they need. Senior researchers cannot teach the next generation how to do things
+that they do not know how to do themselves.</p></li>
 <li><p><strong>Autodidact chauvinism</strong>: Since there are no classrooms, scholars are pressured to teach themselves. But self-learning is time consuming and nearly impossible without a base level of knowledge.</p></li>
 </ol>
 <p>Despite these challenges, there are great reasons to learn how to program:</p>
@@ -478,7 +514,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="goal-of-the-class-learn-to-learn" class="section level4 unnumbered">
 <h4>Goal of the Class: Learn to Learn</h4>
 <blockquote>
-<p>The basic learning objective of this course is to leave here with the knowledge and skills required to learn on your own, whether that is through programming documentation, StackExchange and other online fora, courses, or D-Lab workshops.</p>
+<p>The basic learning objective of this course is to leave here with the
+knowledge and skills required to learn on your own, whether that is through
+programming documentation, StackExchange and other online fora, courses, or
+D-Lab workshops.</p>
 </blockquote>
 <p>By the end of the course, students should be able to</p>
 <ul>
@@ -506,7 +545,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Do a poor job of explaining how computer programming tools might be used by social scientists.</li>
 <li>Are too resource-intensive for the average social scientist.</li>
 </ul>
-<p>Programming is not useful just for computer scientists, methodologists, or people who work with &quot;big data.&quot;</p>
+<p>Programming is not useful just for computer scientists, methodologists, or people who work with “big data.”</p>
 </div>
 <div id="a-practical-example" class="section level4 unnumbered">
 <h4>A Practical Example</h4>
@@ -514,9 +553,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="task-1-by-hand" class="section level4 unnumbered">
 <h4>Task 1 (by hand)</h4>
-<p><strong>Topic</strong>: International Human Rights &quot;Naming and Shaming&quot;</p>
+<p><strong>Topic</strong>: International Human Rights “Naming and Shaming”</p>
 <p><strong>Question</strong>: Who shames whom on what?</p>
-<p><strong>Data</strong>: UN Human Rights Committee's Universal Periodic Review</p>
+<p><strong>Data</strong>: UN Human Rights Committee’s Universal Periodic Review</p>
 <p>From Antigua &amp; Barbuda 2011 review:</p>
 <p><img src="img/upr-text.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><strong>The Task</strong>: Parse a bunch of reports (PDFs) into a dataset (CSV). Add metadata for issue, action, and sentiment.</p>
@@ -528,8 +567,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4>Task 2 (by hand)</h4>
 <p>What if we wanted to extend this research?</p>
 <p><strong>Question:</strong>: How does UPR shaming compare to actual human rights abuses?</p>
-<p><strong>Data</strong>: Amnesty International's Urgent Actions</p>
-<p><strong>Task</strong>: Collect all of Amnesty International's Urgent Actions and add metadata for issue and country.</p>
+<p><strong>Data</strong>: Amnesty International’s Urgent Actions</p>
+<p><strong>Task</strong>: Collect all of Amnesty International’s Urgent Actions and add metadata for issue and country.</p>
 <p><img src="img/amnesty.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>How much time will it take?</p>
 <p><strong>By hand</strong>: 25,000 recommendations x 3 min per recommendation x 8-hour days x 5-day weeks <strong>= 7.5 months</strong></p>
@@ -540,7 +579,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li>Parses recommendations into a CSV.</li>
 <li>Codes recommendations by issue, action, and sentiment using computational text analysis tools.</li>
-<li>Uses webscraping to collect all of Amnesty International's urgent actions.</li>
+<li>Uses webscraping to collect all of Amnesty International’s urgent actions.</li>
 <li>Runs simple regression models with R to correlate Amnesty reports with UPR shaming.</li>
 </ol>
 <p>Total time: 2 months</p>
@@ -585,12 +624,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="class-activities" class="section level4 unnumbered">
 <h4>Class Activities</h4>
-<p>Classes will follow a &quot;workshop&quot; style, combining lecture, demonstration, and coding exercises. We envision the class to be as interactive/hands-on as possible, with students programming every session.</p>
+<p>Classes will follow a “workshop” style, combining lecture, demonstration, and coding exercises. We envision the class to be as interactive/hands-on as possible, with students programming every session.</p>
 <p>It is important that students <strong>complete the requisite reading</strong> before class. I anticipate spending 1/2 the class lecturing and 1/2 practicing with coding challenges.</p>
 </div>
 <div id="course-websites" class="section level4 unnumbered">
 <h4>Course Websites</h4>
-<p>Class notes and other materials are available here: <a href="https://github.com/plsc-31101/course/" class="uri">https://github.com/plsc-31101/course/</a></p>
+<p>Class notes and other materials are available here:
+<a href="https://github.com/plsc-31101/course/" class="uri">https://github.com/plsc-31101/course/</a></p>
 <p>We will use Canvas to distribute/accept assignments.</p>
 <p>We will use Piazza for communications and discussion. Please use Piazza liberally.</p>
 </div>
@@ -643,10 +683,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="learning-how-to-program" class="section level2">
 <h2><span class="header-section-number">5.3</span> Learning How to Program</h2>
-<p>Before we talk about what it takes to learn how to program, let's first review what programming is.</p>
+<p>Before we talk about what it takes to learn how to program, let’s first review what programming is.</p>
 <div id="what-is-programming" class="section level4 unnumbered">
 <h4>What is programming?</h4>
-<p>A <em>program</em> is a sequence of instructions that specifies how to perform a computation. Most programs are written in a human-readable <em>programming language</em> (or &quot;source code&quot;) and then executed with the help of a <em>compiler</em> or <em>interpreter</em>.</p>
+<p>A <em>program</em> is a sequence of instructions that specifies how to perform a computation. Most programs are written in a human-readable <em>programming language</em> (or “source code”) and then executed with the help of a <em>compiler</em> or <em>interpreter</em>.</p>
 <p>A few basic instructions appear in just about every language:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Input</strong>: Get data from the keyboard, a file, the network, or some other device.</li>
@@ -659,23 +699,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><strong>Syntax</strong>: Whether to add a semicolon at the end of each line, etc.</li>
 <li><strong>Usage</strong>: JavaScript is for building websites, R is for statistics, Python is general purpose, etc.</li>
-<li><strong>Level</strong>: How close you are to the hardware. 'C' is often considered to be the lowest- (or one of the lowest-) level language.</li>
-<li><strong>Object-oriented</strong>: &quot;Objects&quot; are data + functions. Some programming languages are object-oriented (e.g., Python), and some are not (e.g., C).</li>
+<li><strong>Level</strong>: How close you are to the hardware. ‘C’ is often considered to be the lowest- (or one of the lowest-) level language.</li>
+<li><strong>Object-oriented</strong>: “Objects” are data + functions. Some programming languages are object-oriented (e.g., Python), and some are not (e.g., C).</li>
 <li><strong>Many more</strong>: Here is a <a href="https://en.wikipedia.org/wiki/List_of_programming_languages_by_type">list</a> of all the types of programming languages out there.</li>
 </ol>
 </div>
 <div id="what-language-should-you-learn" class="section level4 unnumbered">
 <h4>What language should you learn?</h4>
-<p>Most programmers can program in more than one language. That is because they know <em>how to program</em> generally, as opposed to &quot;knowing&quot; Python, R, Ruby, or whatever.</p>
+<p>Most programmers can program in more than one language. That is because they know <em>how to program</em> generally, as opposed to “knowing” Python, R, Ruby, or whatever.</p>
 <p>So what should your first programming language be? That is, what programming language should you use to learn <em>how to program</em>? At the end of the day, the answer depends on what you want to get out of programming. Many people recommend Python because it is fun, easy, and multi-purpose. Here is an <a href="http://lifehacker.com/which-programming-language-should-i-learn-first-1477153665">article</a> that can offer more advice.</p>
 <p>In this class, we will be using R because it is the most popular language in our disciplinary community (of political scientists).</p>
-<p>Regardless of what you choose, you will probably grow comfortable in one language while learning the basic concepts and skills that allow you to 'hack' your way into other languages. That is because <strong>programming is an extendible skill</strong>.</p>
-<p>Thus, &quot;knowing how to program&quot; means learning how to <em>think</em> like a programmer, not necessarily knowing all the language-specific commands off the top of your head. <strong>Do not learn specific programming languages; learn how to program.</strong></p>
+<p>Regardless of what you choose, you will probably grow comfortable in one language while learning the basic concepts and skills that allow you to ‘hack’ your way into other languages. That is because <strong>programming is an extendible skill</strong>.</p>
+<p>Thus, “knowing how to program” means learning how to <em>think</em> like a programmer, not necessarily knowing all the language-specific commands off the top of your head. <strong>Do not learn specific programming languages; learn how to program.</strong></p>
 </div>
 <div id="what-programming-is-really-like." class="section level4 unnumbered">
 <h4>What programming is really like.</h4>
 <p><img src="img/xkcd.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Here is the sad reality: When you are programming, 80% or more of your time will be spent debugging, looking stuff up (like program-specific syntax, documentation for packages, useful functions, etc.), or testing. This does not apply just to beginner or intermediate programmers, although you will grow more &quot;fluent&quot; over time.</p>
+<p>Here is the sad reality: When you are programming, 80% or more of your time will be spent debugging, looking stuff up (like program-specific syntax, documentation for packages, useful functions, etc.), or testing. This does not apply just to beginner or intermediate programmers, although you will grow more “fluent” over time.</p>
 <blockquote>
 <p>Google software engineers write an average of 10-20 lines of code per day.</p>
 </blockquote>
@@ -693,7 +733,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Program a little bit every day.</li>
 <li>Program with others. Do the problem sets in pairs or groups.</li>
 <li>It is better to type than to copy and paste.</li>
-<li>Most &quot;programming&quot; is actually researching, experimenting, and thinking.</li>
+<li>Most “programming” is actually researching, experimenting, and thinking.</li>
 <li>Stay organized.</li>
 </ol>
 </div>
@@ -727,12 +767,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Google: name-of-program + text in error message.</li>
 <li>Remove user- and data-specific information first!</li>
-<li>See if you can find examples that do and do not produce the error. Try other people's code, but do not fall into the copy-paste trap.</li>
+<li>See if you can find examples that do and do not produce the error. Try other people’s code, but do not fall into the copy-paste trap.</li>
 </ul>
 </div>
 <div id="asking-for-help" class="section level4 unnumbered">
 <h4>Asking for Help</h4>
-<p>We will use Piazza for class-related questions and discussion. You are highly encouraged to ask questions and answer one another's questions.</p>
+<p>We will use Piazza for class-related questions and discussion. You are highly encouraged to ask questions and answer one another’s questions.</p>
 <ol style="list-style-type: decimal">
 <li>Include a brief, informative title.</li>
 <li>Explain what you are trying to do and how it failed.</li>
@@ -740,9 +780,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ol>
 <p>Here are some helpful guidelines on how to properly ask programming questions:</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://www.propublica.org/nerds/how-to-ask-programming-questions">&quot;How to Ask Programming Questions,&quot; ProPublica.</a></li>
-<li><a href="https://stackoverflow.com/help/how-to-ask">&quot;How do I ask a good question?&quot; StackOverflow.</a></li>
-<li><a href="https://cfss.uchicago.edu/faq/asking-questions/">&quot;How to properly ask for help,&quot; Computing for Social Science.</a></li>
+<li><a href="https://www.propublica.org/nerds/how-to-ask-programming-questions">“How to Ask Programming Questions,” ProPublica.</a></li>
+<li><a href="https://stackoverflow.com/help/how-to-ask">“How do I ask a good question?” StackOverflow.</a></li>
+<li><a href="https://cfss.uchicago.edu/faq/asking-questions/">“How to properly ask for help,” Computing for Social Science.</a></li>
 </ol>
 
 </div>
@@ -801,7 +841,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

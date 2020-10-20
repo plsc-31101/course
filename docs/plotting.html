@@ -49,47 +49,75 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -232,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
 <li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
 <li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
@@ -358,7 +386,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
 <li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
 <li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
-<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
 <li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
@@ -401,7 +429,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
 <li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
 <li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
-<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let’s DO This</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
@@ -451,7 +479,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="plotting" class="section level1">
 <h1><span class="header-section-number">Chapter 12</span> Plotting</h1>
 <blockquote>
-<p>&quot;Make it informative, then make it pretty&quot;</p>
+<p>“Make it informative, then make it pretty”</p>
 </blockquote>
 <p>There are two major sets of tools for creating plots in R:</p>
 <ul>
@@ -466,42 +494,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="the-dataset" class="section level2">
 <h2><span class="header-section-number">12.1</span> The Dataset</h2>
 <p>For the following examples, we will be using the <code>gapminder</code> dataset we have used previously. Gapminder is a country-year dataset with information on life expectancy, among other things.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
-gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="plotting.html#cb129-1"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb129-2"><a href="plotting.html#cb129-2"></a>gap &lt;-<span class="st"> </span>gapminder</span></code></pre></div>
 </div>
 <div id="r-base-graphics" class="section level2">
 <h2><span class="header-section-number">12.2</span> R Base Graphics</h2>
 <p>The <strong>basic</strong> call takes the following form:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>)</code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="plotting.html#cb130-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>)</span></code></pre></div>
 <p>We will also introduce a base R command to help us with creating these plots. To reference a specific column in a dataset, we use a <code>$</code> with the following syntax: <code>dataset$column</code>. See this in action below, where we plot <code>gdpPercap</code> against <code>lifeExp</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp)</code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="plotting.html#cb131-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-176-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="scatter-and-line-plots" class="section level3">
 <h3><span class="header-section-number">12.2.1</span> Scatter and Line Plots</h3>
 <p>The <code>type</code> argument accepts the following character indicators:</p>
 <ul>
-<li><code>&quot;p&quot;</code>: Point/scatter plots (default plotting behavior).</li>
+<li><code>"p"</code>: Point/scatter plots (default plotting behavior).</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="plotting.html#cb132-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-177-1.png" alt=" " width="70%" />
 <p class="caption">
 </p>
 </div>
 <ul>
-<li><code>&quot;l&quot;</code>: Line graphs.</li>
+<li><code>"l"</code>: Line graphs.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that &quot;line&quot; does not create a smooth line, just connected points</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="plotting.html#cb133-1"></a><span class="co"># Note that &quot;line&quot; does not create a smooth line, just connected points</span></span>
+<span id="cb133-2"><a href="plotting.html#cb133-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-178-1.png" alt=" " width="70%" />
 <p class="caption">
 </p>
 </div>
 <ul>
-<li><code>&quot;b&quot;</code>: Both line and point plots.</li>
+<li><code>"b"</code>: Both line and point plots.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="plotting.html#cb134-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-179-1.png" alt=" " width="70%" />
 <p class="caption">
@@ -511,38 +539,38 @@ gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
 <div id="histograms-and-density-plots" class="section level3">
 <h3><span class="header-section-number">12.2.2</span> Histograms and Density Plots</h3>
 <p>Histograms display the frequency of different values of a variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp)</code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="plotting.html#cb135-1"></a><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-180-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Histograms require a <code>breaks</code> argument, which determines the number of bins in the plot. Let's play around with different <code>breaks</code> values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">5</span>)
-<span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">10</span>)</code></pre></div>
+<p>Histograms require a <code>breaks</code> argument, which determines the number of bins in the plot. Let’s play around with different <code>breaks</code> values:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="plotting.html#cb136-1"></a><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">5</span>)</span>
+<span id="cb136-2"><a href="plotting.html#cb136-2"></a><span class="kw">hist</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">breaks=</span><span class="dv">10</span>)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-181-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-181-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Density plots are similar; they visualize the distribution of data over a continuous interval.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a density object (</span><span class="al">NOTE</span><span class="co">: Be sure to remove missing values)</span>
-age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">na.rm=</span>T)
-
-<span class="co"># Plot the density object</span>
-<span class="kw">plot</span>(<span class="dt">x=</span>age.density)</code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="plotting.html#cb137-1"></a><span class="co"># Create a density object (</span><span class="al">NOTE</span><span class="co">: Be sure to remove missing values)</span></span>
+<span id="cb137-2"><a href="plotting.html#cb137-2"></a>age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">na.rm=</span>T)</span>
+<span id="cb137-3"><a href="plotting.html#cb137-3"></a></span>
+<span id="cb137-4"><a href="plotting.html#cb137-4"></a><span class="co"># Plot the density object</span></span>
+<span id="cb137-5"><a href="plotting.html#cb137-5"></a><span class="kw">plot</span>(<span class="dt">x=</span>age.density)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-182-1.png" alt=" " width="70%" />
 <p class="caption">
 </p>
 </div>
-<p>Density passes a <code>bw</code> parameter, which determines the plot's &quot;bandwidth.&quot;</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the density object, bandwidth of 0.5</span>
-<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span>.<span class="dv">5</span>))
-<span class="co"># Plot the density object, bandwidth of 2</span>
-<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">2</span>))
-<span class="co"># Plot the density object, bandwidth of 6</span>
-<span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">6</span>)) </code></pre></div>
+<p>Density passes a <code>bw</code> parameter, which determines the plot’s “bandwidth.”</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="plotting.html#cb138-1"></a><span class="co"># Plot the density object, bandwidth of 0.5</span></span>
+<span id="cb138-2"><a href="plotting.html#cb138-2"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span>.<span class="dv">5</span>))</span>
+<span id="cb138-3"><a href="plotting.html#cb138-3"></a><span class="co"># Plot the density object, bandwidth of 2</span></span>
+<span id="cb138-4"><a href="plotting.html#cb138-4"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">2</span>))</span>
+<span id="cb138-5"><a href="plotting.html#cb138-5"></a><span class="co"># Plot the density object, bandwidth of 6</span></span>
+<span id="cb138-6"><a href="plotting.html#cb138-6"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">density</span>(<span class="dt">x=</span>gap<span class="op">$</span>lifeExp, <span class="dt">bw=</span><span class="dv">6</span>)) </span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-183-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-183-2.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-183-3.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="labels" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Labels</h3>
 <p>Here is the basic call with popular labeling arguments:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;&quot;</span>) </code></pre></div>
-<p>From the previous example...</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;GDP per cap&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Life Expectancy ~ GDP&quot;</span>) <span class="co"># Add labels for axes and overall plot</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="plotting.html#cb139-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;&quot;</span>) </span></code></pre></div>
+<p>From the previous example…</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="plotting.html#cb140-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;GDP per cap&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Life Expectancy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Life Expectancy ~ GDP&quot;</span>) <span class="co"># Add labels for axes and overall plot</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-185-1.png" alt=" " width="70%" />
 <p class="caption">
@@ -553,16 +581,16 @@ age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span 
 <h3><span class="header-section-number">12.2.4</span> Axis and Size Scaling</h3>
 <p>Currently it is hard to see the relationship between the points due to some strong outliers in GDP per capita. We can change the scale of units on the x-axis using scaling arguments.</p>
 <p>Here is the basic call with popular scaling arguments:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlim=</span>, <span class="dt">ylim=</span>, <span class="dt">cex=</span>)</code></pre></div>
-<p>From the previous example...</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a basic plot</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
-<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>)) 
-<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, increase point size to 2</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="dv">2</span>) 
-<span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, decrease point size to 0.5</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="fl">0.5</span>)  </code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="plotting.html#cb141-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlim=</span>, <span class="dt">ylim=</span>, <span class="dt">cex=</span>)</span></code></pre></div>
+<p>From the previous example…</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="plotting.html#cb142-1"></a><span class="co"># Create a basic plot</span></span>
+<span id="cb142-2"><a href="plotting.html#cb142-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb142-3"><a href="plotting.html#cb142-3"></a><span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000</span></span>
+<span id="cb142-4"><a href="plotting.html#cb142-4"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>)) </span>
+<span id="cb142-5"><a href="plotting.html#cb142-5"></a><span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, increase point size to 2</span></span>
+<span id="cb142-6"><a href="plotting.html#cb142-6"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="dv">2</span>) </span>
+<span id="cb142-7"><a href="plotting.html#cb142-7"></a><span class="co"># Limit gdp (x-axis) to between 1,000 and 20,000, decrease point size to 0.5</span></span>
+<span id="cb142-8"><a href="plotting.html#cb142-8"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1000</span>,<span class="dv">20000</span>), <span class="dt">cex=</span><span class="fl">0.5</span>)  </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-187-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-187-4.png" alt=" " width="70%" />
 <p class="caption">
@@ -572,20 +600,20 @@ age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span 
 <div id="graphical-parameters" class="section level3">
 <h3><span class="header-section-number">12.2.5</span> Graphical Parameters</h3>
 <p>We can change the points with a number of graphical options:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;&quot;</span>, <span class="dt">pch=</span>, <span class="dt">lty=</span>, <span class="dt">lwd=</span>)</code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="plotting.html#cb143-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">type=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;&quot;</span>, <span class="dt">pch=</span>, <span class="dt">lty=</span>, <span class="dt">lwd=</span>)</span></code></pre></div>
 <ul>
 <li>Colors</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">colors</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>)<span class="co"># View first 20 elements of the color vector</span>
-<span class="co">#&gt;  [1] &quot;white&quot;         &quot;aliceblue&quot;     &quot;antiquewhite&quot;  &quot;antiquewhite1&quot;</span>
-<span class="co">#&gt;  [5] &quot;antiquewhite2&quot; &quot;antiquewhite3&quot; &quot;antiquewhite4&quot; &quot;aquamarine&quot;   </span>
-<span class="co">#&gt;  [9] &quot;aquamarine1&quot;   &quot;aquamarine2&quot;   &quot;aquamarine3&quot;   &quot;aquamarine4&quot;  </span>
-<span class="co">#&gt; [13] &quot;azure&quot;         &quot;azure1&quot;        &quot;azure2&quot;        &quot;azure3&quot;       </span>
-<span class="co">#&gt; [17] &quot;azure4&quot;        &quot;beige&quot;         &quot;bisque&quot;        &quot;bisque1&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="plotting.html#cb144-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb144-2"><a href="plotting.html#cb144-2"></a><span class="kw">colors</span>() <span class="op">%&gt;%</span></span>
+<span id="cb144-3"><a href="plotting.html#cb144-3"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>)<span class="co"># View first 20 elements of the color vector</span></span>
+<span id="cb144-4"><a href="plotting.html#cb144-4"></a><span class="co">#&gt;  [1] &quot;white&quot;         &quot;aliceblue&quot;     &quot;antiquewhite&quot;  &quot;antiquewhite1&quot;</span></span>
+<span id="cb144-5"><a href="plotting.html#cb144-5"></a><span class="co">#&gt;  [5] &quot;antiquewhite2&quot; &quot;antiquewhite3&quot; &quot;antiquewhite4&quot; &quot;aquamarine&quot;   </span></span>
+<span id="cb144-6"><a href="plotting.html#cb144-6"></a><span class="co">#&gt;  [9] &quot;aquamarine1&quot;   &quot;aquamarine2&quot;   &quot;aquamarine3&quot;   &quot;aquamarine4&quot;  </span></span>
+<span id="cb144-7"><a href="plotting.html#cb144-7"></a><span class="co">#&gt; [13] &quot;azure&quot;         &quot;azure1&quot;        &quot;azure2&quot;        &quot;azure3&quot;       </span></span>
+<span id="cb144-8"><a href="plotting.html#cb144-8"></a><span class="co">#&gt; [17] &quot;azure4&quot;        &quot;beige&quot;         &quot;bisque&quot;        &quot;bisque1&quot;</span></span></code></pre></div>
 <p>Another option: <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorsChart1.jpg">R Color Infographic</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span><span class="st">&quot;aquamarine1&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="plotting.html#cb145-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span><span class="st">&quot;aquamarine1&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-190-1.png" alt=" " width="70%" />
 <p class="caption">
@@ -595,16 +623,16 @@ age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span 
 <li>Point Styles and Widths</li>
 </ul>
 <p><a href="http://www.endmemo.com/program/R/pic/pchsymbols.png">A Good Reference</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Change point style to crosses</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">3</span>) 
-<span class="co"># Change point style to filled squares</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>) 
-<span class="co"># Change point style to filled squares and increase point size to 3</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>, <span class="dt">cex=</span><span class="dv">3</span>) 
-<span class="co"># Change point style to &quot;w&quot;</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;w&quot;</span>)
-<span class="co"># Change point style to &quot;$&quot; and increase point size to 2</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;$&quot;</span>, <span class="dt">cex=</span><span class="dv">2</span>) </code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="plotting.html#cb146-1"></a><span class="co"># Change point style to crosses</span></span>
+<span id="cb146-2"><a href="plotting.html#cb146-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">3</span>) </span>
+<span id="cb146-3"><a href="plotting.html#cb146-3"></a><span class="co"># Change point style to filled squares</span></span>
+<span id="cb146-4"><a href="plotting.html#cb146-4"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>) </span>
+<span id="cb146-5"><a href="plotting.html#cb146-5"></a><span class="co"># Change point style to filled squares and increase point size to 3</span></span>
+<span id="cb146-6"><a href="plotting.html#cb146-6"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">15</span>, <span class="dt">cex=</span><span class="dv">3</span>) </span>
+<span id="cb146-7"><a href="plotting.html#cb146-7"></a><span class="co"># Change point style to &quot;w&quot;</span></span>
+<span id="cb146-8"><a href="plotting.html#cb146-8"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;w&quot;</span>)</span>
+<span id="cb146-9"><a href="plotting.html#cb146-9"></a><span class="co"># Change point style to &quot;$&quot; and increase point size to 2</span></span>
+<span id="cb146-10"><a href="plotting.html#cb146-10"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="st">&quot;$&quot;</span>, <span class="dt">cex=</span><span class="dv">2</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-191-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-4.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-191-5.png" alt=" " width="70%" />
 <p class="caption">
@@ -613,18 +641,18 @@ age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span 
 <ul>
 <li>Line Styles and Widths</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Line plot with solid line</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)
-<span class="co"># Line plot with medium dashed line</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)
-<span class="co"># Line plot with short dashed line</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>)
-<span class="co"># Change line width to 2</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
-<span class="co"># Change line width to 5</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lwd=</span><span class="dv">5</span>)
-<span class="co"># Change line width to 10 and use dash-dot</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lty=</span><span class="dv">4</span>, <span class="dt">lwd=</span><span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="plotting.html#cb147-1"></a><span class="co"># Line plot with solid line</span></span>
+<span id="cb147-2"><a href="plotting.html#cb147-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</span>
+<span id="cb147-3"><a href="plotting.html#cb147-3"></a><span class="co"># Line plot with medium dashed line</span></span>
+<span id="cb147-4"><a href="plotting.html#cb147-4"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb147-5"><a href="plotting.html#cb147-5"></a><span class="co"># Line plot with short dashed line</span></span>
+<span id="cb147-6"><a href="plotting.html#cb147-6"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>)</span>
+<span id="cb147-7"><a href="plotting.html#cb147-7"></a><span class="co"># Change line width to 2</span></span>
+<span id="cb147-8"><a href="plotting.html#cb147-8"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb147-9"><a href="plotting.html#cb147-9"></a><span class="co"># Change line width to 5</span></span>
+<span id="cb147-10"><a href="plotting.html#cb147-10"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lwd=</span><span class="dv">5</span>)</span>
+<span id="cb147-11"><a href="plotting.html#cb147-11"></a><span class="co"># Change line width to 10 and use dash-dot</span></span>
+<span id="cb147-12"><a href="plotting.html#cb147-12"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,  <span class="dt">lty=</span><span class="dv">4</span>, <span class="dt">lwd=</span><span class="dv">10</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-192-1.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-2.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-3.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-4.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-5.png" alt=" " width="70%" /><img src="plsc31101_files/figure-html/unnamed-chunk-192-6.png" alt=" " width="70%" />
 <p class="caption">
@@ -637,23 +665,23 @@ age.density &lt;-<span class="st"> </span><span class="kw">density</span>(<span 
 <li>Text</li>
 </ul>
 <p>We can add text to an arbitrary point on the graph like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the line first</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
-<span class="co"># Now add the label</span>
-<span class="kw">text</span>(<span class="dt">x=</span><span class="dv">40000</span>, <span class="dt">y=</span><span class="dv">50</span>, <span class="dt">labels=</span><span class="st">&quot;Evens Out&quot;</span>, <span class="dt">cex =</span> .<span class="dv">75</span>)</code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="plotting.html#cb148-1"></a><span class="co"># Plot the line first</span></span>
+<span id="cb148-2"><a href="plotting.html#cb148-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb148-3"><a href="plotting.html#cb148-3"></a><span class="co"># Now add the label</span></span>
+<span id="cb148-4"><a href="plotting.html#cb148-4"></a><span class="kw">text</span>(<span class="dt">x=</span><span class="dv">40000</span>, <span class="dt">y=</span><span class="dv">50</span>, <span class="dt">labels=</span><span class="st">&quot;Evens Out&quot;</span>, <span class="dt">cex =</span> <span class="fl">.75</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-193-1.png" alt=" " width="70%" />
 <p class="caption">
 </p>
 </div>
 <p>We can also add labels for every point by passing in a vector of text:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First randomly select rows for a smaller gapaset</span>
-small &lt;-<span class="st"> </span>gap <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">100</span>)
-
-<span class="co"># Plot the line first</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
-<span class="co"># Now add the label</span>
-<span class="kw">text</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">labels =</span> small<span class="op">$</span>country)</code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="plotting.html#cb149-1"></a><span class="co"># First randomly select rows for a smaller gapaset</span></span>
+<span id="cb149-2"><a href="plotting.html#cb149-2"></a>small &lt;-<span class="st"> </span>gap <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">100</span>)</span>
+<span id="cb149-3"><a href="plotting.html#cb149-3"></a></span>
+<span id="cb149-4"><a href="plotting.html#cb149-4"></a><span class="co"># Plot the line first</span></span>
+<span id="cb149-5"><a href="plotting.html#cb149-5"></a><span class="kw">plot</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb149-6"><a href="plotting.html#cb149-6"></a><span class="co"># Now add the label</span></span>
+<span id="cb149-7"><a href="plotting.html#cb149-7"></a><span class="kw">text</span>(<span class="dt">x =</span> small<span class="op">$</span>gdpPercap, <span class="dt">y =</span> small<span class="op">$</span>lifeExp, <span class="dt">labels =</span> small<span class="op">$</span>country)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-194-1.png" alt=" " width="70%" />
 <p class="caption">
@@ -662,20 +690,20 @@ small &lt;-<span class="st"> </span>gap <span class="op">%&gt;%</span><span clas
 <ul>
 <li>Reference Lines</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the line</span>
-<span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)
-<span class="co"># Now the guides</span>
-<span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">40000</span>, <span class="dt">h=</span><span class="dv">75</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="plotting.html#cb150-1"></a><span class="co"># Plot the line</span></span>
+<span id="cb150-2"><a href="plotting.html#cb150-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> gap<span class="op">$</span>gdpPercap, <span class="dt">y =</span> gap<span class="op">$</span>lifeExp, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb150-3"><a href="plotting.html#cb150-3"></a><span class="co"># Now the guides</span></span>
+<span id="cb150-4"><a href="plotting.html#cb150-4"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">40000</span>, <span class="dt">h=</span><span class="dv">75</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plsc31101_files/figure-html/unnamed-chunk-195-1.png" alt=" " width="70%" />
 <p class="caption">
 </p>
 </div>
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(gapminder)
-
-gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="plotting.html#cb151-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb151-2"><a href="plotting.html#cb151-2"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb151-3"><a href="plotting.html#cb151-3"></a></span>
+<span id="cb151-4"><a href="plotting.html#cb151-4"></a>gap &lt;-<span class="st"> </span>gapminder</span></code></pre></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">
@@ -694,31 +722,31 @@ gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
 <div id="grammar" class="section level3">
 <h3><span class="header-section-number">12.3.1</span> Grammar</h3>
 <p>The general call for <code>ggplot2</code> looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>), <span class="dt">color=</span>, <span class="dt">size=</span>,) <span class="op">+</span><span class="st"> </span><span class="kw">geom_xxxx</span>()<span class="op">+</span><span class="kw">geom_yyyy</span>()</code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="plotting.html#cb152-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>), <span class="dt">color=</span>, <span class="dt">size=</span>,) <span class="op">+</span><span class="st"> </span><span class="kw">geom_xxxx</span>()<span class="op">+</span><span class="kw">geom_yyyy</span>()</span></code></pre></div>
 <p>The <em>grammar</em> involves some basic components:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Data</strong>: A dataframe.</li>
-<li><strong>Aes</strong>thetics: How your data are represented visually, i.e., its &quot;mapping.&quot; Which variables are shown on the x- and y-axes, as well as color, size, shape, etc.</li>
-<li><strong>Geom</strong>etry: The geometric objects in a plot -- points, lines, polygons, etc.</li>
+<li><strong>Aes</strong>thetics: How your data are represented visually, i.e., its “mapping.” Which variables are shown on the x- and y-axes, as well as color, size, shape, etc.</li>
+<li><strong>Geom</strong>etry: The geometric objects in a plot – points, lines, polygons, etc.</li>
 </ol>
 <p>The key to understanding <code>ggplot2</code> is thinking about a figure in layers, just like you might do in an image editing program like Photoshop, Illustrator, or Inkscape.</p>
-<p>Let's look at an example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>Let’s look at an example:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="plotting.html#cb153-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
+<span id="cb153-2"><a href="plotting.html#cb153-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-199-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>So the first thing we do is call the <code>ggplot</code> function. This function lets R know that we are creating a new plot, and any of the arguments we give the <code>ggplot</code> function are the global options for the plot: They apply to all layers on the plot.</p>
-<p>We have passed in two arguments to <code>ggplot</code>. First, we told <code>ggplot</code> what <strong><code>data</code></strong> we wanted to show on our figure -- in this example, the <code>gapminder</code> data we read in earlier.</p>
-<p>For the second argument, we passed in the <strong><code>aes</code></strong> function, which tells <code>ggplot</code> how variables in the data map to aesthetic properties of the figure -- in this case, the x and y locations. Here we told <code>ggplot</code> we wanted to plot the <code>lifeExp</code> column of the <code>gapminder</code> dataframe on the x-axis, and the <code>gdpPercap</code> column on the y-axis.</p>
+<p>We have passed in two arguments to <code>ggplot</code>. First, we told <code>ggplot</code> what <strong><code>data</code></strong> we wanted to show on our figure – in this example, the <code>gapminder</code> data we read in earlier.</p>
+<p>For the second argument, we passed in the <strong><code>aes</code></strong> function, which tells <code>ggplot</code> how variables in the data map to aesthetic properties of the figure – in this case, the x and y locations. Here we told <code>ggplot</code> we wanted to plot the <code>lifeExp</code> column of the <code>gapminder</code> dataframe on the x-axis, and the <code>gdpPercap</code> column on the y-axis.</p>
 <p>Notice that we did not need to explicitly pass <code>aes</code> these columns (e.g., <code>x = gapminder$lifeExp</code>). This is because <code>ggplot</code> is smart enough to know to look in the data for that column!</p>
 <p>By itself, the call to <code>ggplot</code> is not enough to draw a figure:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp))</code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="plotting.html#cb154-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp))</span></code></pre></div>
 <p>We need to tell <code>ggplot</code> how we want to visually represent the data, which we do by adding a new <strong><code>geom</code></strong> layer. In our example, we used <code>geom_point</code>, which tells <code>ggplot</code> we want to visually represent the relationship between x and y as a scatterplot of points:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()
-
-<span class="co"># Same as</span>
-<span class="co"># my_plot &lt;- ggplot(data = gap, aes(x = gdpPercap, y = lifeExp))</span>
-<span class="co"># my_plot + geom_point()</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="plotting.html#cb155-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb155-2"><a href="plotting.html#cb155-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb155-3"><a href="plotting.html#cb155-3"></a></span>
+<span id="cb155-4"><a href="plotting.html#cb155-4"></a><span class="co"># Same as</span></span>
+<span id="cb155-5"><a href="plotting.html#cb155-5"></a><span class="co"># my_plot &lt;- ggplot(data = gap, aes(x = gdpPercap, y = lifeExp))</span></span>
+<span id="cb155-6"><a href="plotting.html#cb155-6"></a><span class="co"># my_plot + geom_point()</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-201-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="challenge-1.-6" class="section level4 unnumbered">
 <h4>Challenge 1.</h4>
@@ -729,29 +757,29 @@ gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
 <div id="anatomy-of-aes" class="section level3">
 <h3><span class="header-section-number">12.3.2</span> Anatomy of <code>aes</code></h3>
 <p>In the previous examples and challenge, we have used the <code>aes</code> function to tell the scatterplot <code>geom</code> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another aesthetic property we can modify is the point <strong>color</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="plotting.html#cb156-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb156-2"><a href="plotting.html#cb156-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-202-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Normally, specifying options like <code>color=&quot;red&quot;</code> or <code>size=10</code> for a given layer results in its contents being red and quite large. Inside the <code>aes()</code> function, however, these arguments are given entire variables whose values will then be displayed using different realizations of that aesthetic.</p>
+<p>Normally, specifying options like <code>color="red"</code> or <code>size=10</code> for a given layer results in its contents being red and quite large. Inside the <code>aes()</code> function, however, these arguments are given entire variables whose values will then be displayed using different realizations of that aesthetic.</p>
 <p><strong>Color</strong> is not the only aesthetic argument we can set to display variation in the data. We can also vary by shape, size, etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">by =</span>, <span class="dt">color=</span>, <span class="dt">linetype=</span>, <span class="dt">shape=</span>, <span class="dt">size=</span>))</code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="plotting.html#cb157-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>, <span class="kw">aes</span>(<span class="dt">x=</span>, <span class="dt">y=</span>, <span class="dt">by =</span>, <span class="dt">color=</span>, <span class="dt">linetype=</span>, <span class="dt">shape=</span>, <span class="dt">size=</span>))</span></code></pre></div>
 </div>
 <div id="layers" class="section level3">
 <h3><span class="header-section-number">12.3.3</span> Layers</h3>
 <p>In the previous challenge, you plotted <code>lifExp</code> over time. Using a scatterplot probably is not the best for visualizing change over time. Instead, let’s tell <code>ggplot</code> to visualize the data as a line plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="plotting.html#cb158-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb158-2"><a href="plotting.html#cb158-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-204-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Instead of adding a <code>geom_point</code> layer, we have added a <code>geom_line</code> layer. We have also added the <code>**by**</code> aesthetic, which tells <code>ggplot</code> to draw a line for each country.</p>
 <p>But what if we want to visualize both lines and points on the plot? We can simply add another layer to the plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="plotting.html#cb159-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb159-2"><a href="plotting.html#cb159-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb159-3"><a href="plotting.html#cb159-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-205-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>It is important to note that each layer is drawn on top of the previous layer. In this example, the points have been drawn on top of the lines. Here is a demonstration:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="plotting.html#cb160-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb160-2"><a href="plotting.html#cb160-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb160-3"><a href="plotting.html#cb160-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-206-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>In this example, the aesthetic mapping of <strong>color</strong> has been moved from the global plot options in <code>ggplot</code> to the <code>geom_line</code> layer, so it no longer applies to the points. Now we can clearly see that the points are drawn on top of the lines.</p>
 <div id="challenge-2.-5" class="section level4 unnumbered">
@@ -762,57 +790,57 @@ gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
 <div id="labels-1" class="section level3">
 <h3><span class="header-section-number">12.3.4</span> Labels</h3>
 <p>Labels are considered to be their own layers in <code>ggplot</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add x- and y-axis labels</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="plotting.html#cb161-1"></a><span class="co"># Add x- and y-axis labels</span></span>
+<span id="cb161-2"><a href="plotting.html#cb161-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb161-3"><a href="plotting.html#cb161-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb161-4"><a href="plotting.html#cb161-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb161-5"><a href="plotting.html#cb161-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb161-6"><a href="plotting.html#cb161-6"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-207-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>So are scales:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Limit x-axis from 1,000 to 20,000</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlim</span>(<span class="dv">1000</span>, <span class="dv">20000</span>)
-<span class="co">#&gt; Warning: Removed 515 rows containing missing values (geom_point).</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="plotting.html#cb162-1"></a><span class="co"># Limit x-axis from 1,000 to 20,000</span></span>
+<span id="cb162-2"><a href="plotting.html#cb162-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-3"><a href="plotting.html#cb162-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-4"><a href="plotting.html#cb162-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;GDP per capita&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-5"><a href="plotting.html#cb162-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-6"><a href="plotting.html#cb162-6"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;My fancy graph&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-7"><a href="plotting.html#cb162-7"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">1000</span>, <span class="dv">20000</span>)</span>
+<span id="cb162-8"><a href="plotting.html#cb162-8"></a><span class="co">#&gt; Warning: Removed 515 rows containing missing values (geom_point).</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-208-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="transformations-and-stats" class="section level3">
 <h3><span class="header-section-number">12.3.5</span> Transformations and Stats</h3>
 <p><code>ggplot</code> also makes it easy to overlay statistical models over the data. To demonstrate, we will go back to an earlier example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="plotting.html#cb163-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb163-2"><a href="plotting.html#cb163-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-209-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We can change the scale of units on the x-axis using the <code>scale</code> functions, which control the mapping between the data values and visual values of an aesthetic.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="plotting.html#cb164-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb164-2"><a href="plotting.html#cb164-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb164-3"><a href="plotting.html#cb164-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-210-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>The <code>log10</code> function applied a transformation to the values of the <code>gdpPercap</code> column before rendering them on the plot, so that each multiple of 10 now only corresponds to an increase in 1 on the transformed scale, e.g., a GDP per capita of 1,000 is now 3 on the y-axis, a value of 10,000 corresponds to 4 on the x-axis, and so on. This makes it easier to visualize the spread of data on the x-axis.</p>
 <p>We can fit a simple relationship to the data by adding another layer, <code>geom_smooth</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)
-<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="plotting.html#cb165-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb165-2"><a href="plotting.html#cb165-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb165-3"><a href="plotting.html#cb165-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb165-4"><a href="plotting.html#cb165-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb165-5"><a href="plotting.html#cb165-5"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-211-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Note that we have 5 lines, one for each region, because of the <strong><code>color</code></strong> option in the global <code>aes</code> function. But if we move it, we get different results:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)
-<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="plotting.html#cb166-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb166-2"><a href="plotting.html#cb166-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb166-3"><a href="plotting.html#cb166-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb166-4"><a href="plotting.html#cb166-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb166-5"><a href="plotting.html#cb166-5"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-212-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>So, there are two ways an aesthetic can be specified. Here, we set the <strong><code>color</code></strong> aesthetic by passing it as an argument to <code>geom_point</code>. Previously in the lesson, we used the <code>aes</code> function to define a <em>mapping</em> between data variables and their visual representation.</p>
 <p>We can make the line thicker by setting the <strong><code>size</code></strong> aesthetic in the <code>geom_smooth</code> layer:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>)
-<span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="plotting.html#cb167-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb167-2"><a href="plotting.html#cb167-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb167-3"><a href="plotting.html#cb167-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb167-4"><a href="plotting.html#cb167-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb167-5"><a href="plotting.html#cb167-5"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-213-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="challenge-3.-3" class="section level4 unnumbered">
 <h4>Challenge 3.</h4>
@@ -823,85 +851,85 @@ gap &lt;-<span class="st"> </span>gapminder</code></pre></div>
 <div id="facets" class="section level3">
 <h3><span class="header-section-number">12.3.6</span> Facets</h3>
 <p>Earlier, we visualized the change in life expectancy over time across all countries in one plot. Alternatively, we can split this out over multiple panels by adding a layer of <strong>facet</strong> panels:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>continent)</code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="plotting.html#cb168-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
+<span id="cb168-2"><a href="plotting.html#cb168-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb168-3"><a href="plotting.html#cb168-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>continent)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-214-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="legend-and-scale-manipulations" class="section level3">
 <h3><span class="header-section-number">12.3.7</span> Legend and Scale Manipulations</h3>
 <p>When creating plots with <code>ggplot</code>, you will notice that legends are sometimes automatically produced. Additionally, you will often need to transform the axis scales, similar to the modifcations we made with the base plots.</p>
 <p>We can easily set axis limits with <code>xlim</code> and <code>ylim</code> layers, or with the <code>limits</code> argument withing <code>scale_x_log10</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100000</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)
-<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="plotting.html#cb169-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
+<span id="cb169-2"><a href="plotting.html#cb169-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb169-3"><a href="plotting.html#cb169-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100000</span>)) <span class="op">+</span></span>
+<span id="cb169-4"><a href="plotting.html#cb169-4"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb169-5"><a href="plotting.html#cb169-5"></a><span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-215-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>There are many other axis features we can change. For example, we can change the angle of an axis text with <code>theme</code> or reverse the direction of an axis with <code>scale_x_reverse</code> or <code>scale_y_reverse</code>. Stack Overflow is a great resource for a variety of axis transformations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scales)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: &#39;scales&#39;</span>
-<span class="co">#&gt; The following object is masked from &#39;package:purrr&#39;:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     discard</span>
-<span class="co">#&gt; The following object is masked from &#39;package:readr&#39;:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     col_factor</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">45</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_reverse</span>()</code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="plotting.html#cb170-1"></a><span class="kw">library</span>(scales)</span>
+<span id="cb170-2"><a href="plotting.html#cb170-2"></a><span class="co">#&gt; </span></span>
+<span id="cb170-3"><a href="plotting.html#cb170-3"></a><span class="co">#&gt; Attaching package: &#39;scales&#39;</span></span>
+<span id="cb170-4"><a href="plotting.html#cb170-4"></a><span class="co">#&gt; The following object is masked from &#39;package:purrr&#39;:</span></span>
+<span id="cb170-5"><a href="plotting.html#cb170-5"></a><span class="co">#&gt; </span></span>
+<span id="cb170-6"><a href="plotting.html#cb170-6"></a><span class="co">#&gt;     discard</span></span>
+<span id="cb170-7"><a href="plotting.html#cb170-7"></a><span class="co">#&gt; The following object is masked from &#39;package:readr&#39;:</span></span>
+<span id="cb170-8"><a href="plotting.html#cb170-8"></a><span class="co">#&gt; </span></span>
+<span id="cb170-9"><a href="plotting.html#cb170-9"></a><span class="co">#&gt;     col_factor</span></span>
+<span id="cb170-10"><a href="plotting.html#cb170-10"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
+<span id="cb170-11"><a href="plotting.html#cb170-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb170-12"><a href="plotting.html#cb170-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">45</span>)) <span class="op">+</span></span>
+<span id="cb170-13"><a href="plotting.html#cb170-13"></a><span class="st">  </span><span class="kw">scale_x_reverse</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-216-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Legend manipulations can be a little trickier. Let's consider a plot where we group our observations by continent:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(gdpPercap), <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>()
-
-legend_plot</code></pre></div>
+<p>Legend manipulations can be a little trickier. Let’s consider a plot where we group our observations by continent:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="plotting.html#cb171-1"></a>legend_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(gdpPercap), <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) <span class="op">+</span></span>
+<span id="cb171-2"><a href="plotting.html#cb171-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb171-3"><a href="plotting.html#cb171-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>()</span>
+<span id="cb171-4"><a href="plotting.html#cb171-4"></a></span>
+<span id="cb171-5"><a href="plotting.html#cb171-5"></a>legend_plot</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-217-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>First, let's change the legend position:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)
-
-legend_plot <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p>First, let’s change the legend position:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="plotting.html#cb172-1"></a>legend_plot <span class="op">+</span><span class="st"> </span></span>
+<span id="cb172-2"><a href="plotting.html#cb172-2"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb172-3"><a href="plotting.html#cb172-3"></a></span>
+<span id="cb172-4"><a href="plotting.html#cb172-4"></a>legend_plot <span class="op">+</span><span class="st"> </span></span>
+<span id="cb172-5"><a href="plotting.html#cb172-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-218-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-218-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We can also remove the title of the legend for self-explanatory groupings:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="plotting.html#cb173-1"></a>legend_plot <span class="op">+</span><span class="st"> </span></span>
+<span id="cb173-2"><a href="plotting.html#cb173-2"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-219-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We can reverse the order of the groups with the <code>guides</code> layer. Here, we specify that we want to reverse <code>color</code>, because that was the original aesthetic that we specified to create the groupings and the legend:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="plotting.html#cb174-1"></a>legend_plot <span class="op">+</span></span>
+<span id="cb174-2"><a href="plotting.html#cb174-2"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-220-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Finally, we can also change the legend title by modifying the label for <code>color</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;My New Title&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="plotting.html#cb175-1"></a>legend_plot <span class="op">+</span></span>
+<span id="cb175-2"><a href="plotting.html#cb175-2"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;My New Title&quot;</span>)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-221-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>And we can change the legend labels and colors. Again, we are using <code>scale_color_manual</code> because we originally specified the groups with the <code>**color**</code> aesthetic:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">legend_plot <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Af&quot;</span>, <span class="st">&quot;Am&quot;</span>, <span class="st">&quot;As&quot;</span>, <span class="st">&quot;Eu&quot;</span>, <span class="st">&quot;Oc&quot;</span>), 
-                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;seagreen&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;#5ab4ac&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="plotting.html#cb176-1"></a>legend_plot <span class="op">+</span></span>
+<span id="cb176-2"><a href="plotting.html#cb176-2"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Af&quot;</span>, <span class="st">&quot;Am&quot;</span>, <span class="st">&quot;As&quot;</span>, <span class="st">&quot;Eu&quot;</span>, <span class="st">&quot;Oc&quot;</span>), </span>
+<span id="cb176-3"><a href="plotting.html#cb176-3"></a>                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;seagreen&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;#5ab4ac&quot;</span>))</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-222-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="putting-everything-together" class="section level3">
 <h3><span class="header-section-number">12.3.8</span> Putting Everything Together</h3>
 <p>Here are some other common <code>geom</code> layers:</p>
 <p><strong>Bar Plots</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Count of lifeExp bins</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)
-<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-
-<span class="co"># With color representing regions</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">fill =</span> continent)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)
-<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="plotting.html#cb177-1"></a><span class="co"># Count of lifeExp bins</span></span>
+<span id="cb177-2"><a href="plotting.html#cb177-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb177-3"><a href="plotting.html#cb177-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)</span>
+<span id="cb177-4"><a href="plotting.html#cb177-4"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
+<span id="cb177-5"><a href="plotting.html#cb177-5"></a></span>
+<span id="cb177-6"><a href="plotting.html#cb177-6"></a><span class="co"># With color representing regions</span></span>
+<span id="cb177-7"><a href="plotting.html#cb177-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">fill =</span> continent)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb177-8"><a href="plotting.html#cb177-8"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;bin&quot;</span>)</span>
+<span id="cb177-9"><a href="plotting.html#cb177-9"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-223-1.png" width="70%" style="display: block; margin: auto;" /><img src="plsc31101_files/figure-html/unnamed-chunk-223-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><strong>Box Plots</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="plotting.html#cb178-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gap, <span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y =</span> lifeExp)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-2"><a href="plotting.html#cb178-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-224-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This is just a taste of what you can do with <code>ggplot2</code>.</p>
 <p>RStudio provides a really useful <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">cheat sheet</a> of the different layers available, and more extensive documentation is available on the <a href="http://docs.ggplot2.org/current/"><code>ggplot2</code> website</a>.</p>
@@ -924,19 +952,19 @@ legend_plot <span class="op">+</span><span class="st"> </span>
 <li><strong>Raster/Bitmap</strong> (.png, .jpeg)</li>
 </ol>
 <p>Every pixel of a plot contains its own separate coding; not so great if you want to resize the image.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">jpeg</span>(<span class="dt">filename=</span><span class="st">&quot;example.png&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)
-<span class="kw">plot</span>(x,y)
-<span class="kw">dev.off</span>()</code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="plotting.html#cb179-1"></a><span class="kw">jpeg</span>(<span class="dt">filename=</span><span class="st">&quot;example.png&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)</span>
+<span id="cb179-2"><a href="plotting.html#cb179-2"></a><span class="kw">plot</span>(x,y)</span>
+<span id="cb179-3"><a href="plotting.html#cb179-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Vector</strong> (.pdf, .ps)</li>
 </ol>
 <p>Every element of a plot is encoded with a function that gives its coding conditional on several factors; this is great for resizing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)
-<span class="kw">plot</span>(x,y)
-<span class="kw">dev.off</span>()</code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="plotting.html#cb180-1"></a><span class="kw">pdf</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)</span>
+<span id="cb180-2"><a href="plotting.html#cb180-2"></a><span class="kw">plot</span>(x,y)</span>
+<span id="cb180-3"><a href="plotting.html#cb180-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 <p><strong>Exporting with <code>ggplot</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Assume we saved our plot as an object called example.plot</span>
-<span class="kw">ggsave</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">plot=</span>example.plot, <span class="dt">scale=</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)</code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="plotting.html#cb181-1"></a><span class="co"># Assume we saved our plot as an object called example.plot</span></span>
+<span id="cb181-2"><a href="plotting.html#cb181-2"></a><span class="kw">ggsave</span>(<span class="dt">filename=</span><span class="st">&quot;example.pdf&quot;</span>, <span class="dt">plot=</span>example.plot, <span class="dt">scale=</span>, <span class="dt">width=</span>, <span class="dt">height=</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -993,7 +1021,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

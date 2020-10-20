@@ -49,47 +49,75 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -232,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5" data-path="data-transformation.html"><a href="data-transformation.html#challenges-6"><i class="fa fa-check"></i><b>9.5</b> Challenges</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="tidying-data.html"><a href="tidying-data.html"><i class="fa fa-check"></i><b>10</b> Tidying Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
+<li class="chapter" data-level="10.1" data-path="tidying-data.html"><a href="tidying-data.html#wide-vs.-long-formats"><i class="fa fa-check"></i><b>10.1</b> Wide vs. Long Formats</a></li>
 <li class="chapter" data-level="10.2" data-path="tidying-data.html"><a href="tidying-data.html#tidying-the-gapminder-data"><i class="fa fa-check"></i><b>10.2</b> Tidying the Gapminder Data</a></li>
 <li class="chapter" data-level="10.3" data-path="tidying-data.html"><a href="tidying-data.html#tidyr-functions"><i class="fa fa-check"></i><b>10.3</b> <code>tidyr</code> Functions</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="tidying-data.html"><a href="tidying-data.html#gather"><i class="fa fa-check"></i><b>10.3.1</b> <code>gather</code></a></li>
@@ -358,7 +386,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.1.1" data-path="programming-in-r.html"><a href="programming-in-r.html#multiple-conditions"><i class="fa fa-check"></i><b>16.1.1</b> Multiple Conditions</a></li>
 <li class="chapter" data-level="16.1.2" data-path="programming-in-r.html"><a href="programming-in-r.html#complex-statements"><i class="fa fa-check"></i><b>16.1.2</b> Complex Statements</a></li>
 <li class="chapter" data-level="16.1.3" data-path="programming-in-r.html"><a href="programming-in-r.html#code-style"><i class="fa fa-check"></i><b>16.1.3</b> Code Style</a></li>
-<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
+<li class="chapter" data-level="16.1.4" data-path="programming-in-r.html"><a href="programming-in-r.html#if-vs.-if_else"><i class="fa fa-check"></i><b>16.1.4</b> <code>if</code> vs. <code>if_else</code></a></li>
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="programming-in-r.html"><a href="programming-in-r.html#functions-1"><i class="fa fa-check"></i><b>16.2</b> Functions</a><ul>
 <li class="chapter" data-level="16.2.1" data-path="programming-in-r.html"><a href="programming-in-r.html#why-write-functions"><i class="fa fa-check"></i><b>16.2.1</b> Why Write Functions?</a></li>
@@ -401,7 +429,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="17.5.1" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#using-rvest-to-read-html"><i class="fa fa-check"></i><b>17.5.1</b> Using <code>RVest</code> to Read HTML</a></li>
 <li class="chapter" data-level="17.5.2" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#find-page-elements"><i class="fa fa-check"></i><b>17.5.2</b> Find Page Elements</a></li>
 <li class="chapter" data-level="17.5.3" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#get-attributes-and-text-of-elements"><i class="fa fa-check"></i><b>17.5.3</b> Get Attributes and Text of Elements</a></li>
-<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let's DO This</a></li>
+<li class="chapter" data-level="17.5.4" data-path="collecting-data-from-the-web.html"><a href="collecting-data-from-the-web.html#lets-do-this"><i class="fa fa-check"></i><b>17.5.4</b> Let’s DO This</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>18</b> Text Analysis</a><ul>
@@ -453,7 +481,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This unit will cover the basics of working with data, including project workflow, data terms and concepts, importing data, and exploring data.</p>
 <div id="project-workflow" class="section level2">
 <h2><span class="header-section-number">8.1</span> Project Workflow</h2>
-<p>One day...</p>
+<p>One day…</p>
 <ul>
 <li>You will need to quit R, go do something else, and return to your analysis the next day.</li>
 <li>You will be working on multiple projects simultaneously, and you will want to keep them separate.</li>
@@ -470,11 +498,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">8.1.2</span> Working Directories and Paths</h3>
 <p>Like many programming languages, R has a powerful notion of the <strong>working directory</strong>. This is where R looks for files that you ask it to load and where it will put any files that you ask it to save.</p>
 <p>RStudio shows your current working directory at the top of the console. You can print this out in R code by running <code>getwd()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
-<span class="co">#&gt; [1] &quot;/Users/rochelleterman/Desktop/materials&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1"></a><span class="kw">getwd</span>()</span>
+<span id="cb53-2"><a href="working-with-data.html#cb53-2"></a><span class="co">#&gt; [1] &quot;/Users/rochelleterman/Desktop/materials&quot;</span></span></code></pre></div>
 <p>I do not recommend it, but you can set the working directory from within R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/path/to/my/CoolProject&quot;</span>)</code></pre></div>
-<p>The command above prints out a <strong>path</strong> to your working directory. Think of a path as an address. Paths are incredibly important in programming, but they can be a little tricky. Let's go into a bit more detail.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="working-with-data.html#cb54-1"></a><span class="kw">setwd</span>(<span class="st">&quot;/path/to/my/CoolProject&quot;</span>)</span></code></pre></div>
+<p>The command above prints out a <strong>path</strong> to your working directory. Think of a path as an address. Paths are incredibly important in programming, but they can be a little tricky. Let’s go into a bit more detail.</p>
 <div id="absolute-paths" class="section level4 unnumbered">
 <h4>Absolute Paths</h4>
 <p>Absolute paths are paths that point to the same place regardless of your current working directory. They always start with the <strong>root directory</strong> that holds everything else on your computer.</p>
@@ -490,7 +518,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="maclinux-vs.-windows" class="section level4 unnumbered">
-<h4>Mac/Linux vs. Windows</h4>
+<h4>Mac/Linux vs. Windows</h4>
 <p>There are two basic styles of paths: Mac/Linux and Windows. The main difference is how they separate the components of the path. Mac and Linux use slashes (e.g., <code>plots/diamonds.pdf</code>), whereas Windows uses backslashes (e.g., <code>plots\diamonds.pdf</code>).</p>
 <p>R can work with either type, no matter what platform you are currently using. Unfortunately, backslashes mean something special to R, and to get a single backslash in the path, you need to type two backslashes! That makes life frustrating, so I recommend always using the Linux/Mac style with forward slashes.</p>
 </div>
@@ -503,22 +531,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="absolute-vs.-relative-paths" class="section level4 unnumbered">
-<h4>Absolute vs. Relative Paths</h4>
+<h4>Absolute vs. Relative Paths</h4>
 <p>You should try not to use absolute paths in your scripts, because they hinder sharing: no one else will have exactly the same directory configuration as you. Another way to direct R to something is to give it a <strong>relative path</strong>.</p>
 <p>Relative paths point to something relative to where you are (i.e., relative to your working directory) rather than from the root of the file system. For example, if your current working directory is <code>/home/rterman</code>, then the relative path <code>data/un.csv</code> directs to the full absolute path: <code>/home/rterman/data/un.csv</code>.</p>
 </div>
 </div>
 <div id="r-projects" class="section level3">
 <h3><span class="header-section-number">8.1.3</span> R Projects</h3>
-<p>As a beginning R user, it is OK to let your home directory, documents directory, or any other weird directory on your computer be R's working directory.</p>
-<p>But from this point forward, you should be organizing your projects into dedicated subdirectories containing all the files associated with a project — input data, R scripts, results, figures...</p>
+<p>As a beginning R user, it is OK to let your home directory, documents directory, or any other weird directory on your computer be R’s working directory.</p>
+<p>But from this point forward, you should be organizing your projects into dedicated subdirectories containing all the files associated with a project — input data, R scripts, results, figures…</p>
 <p>This is such a common practice that RStudio has built-in support for this via <strong>projects</strong>.</p>
-<p>Let's make a project together. Click <code>File &gt; New Project</code>, then:</p>
+<p>Let’s make a project together. Click <code>File &gt; New Project</code>, then:</p>
 <p><img src="img/rstudio-project-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Think carefully about which subdirectory you put the project in. If you do not store it somewhere sensible, it will be hard to find in the future!</p>
-<p>Once this process is complete, you will get a new RStudio project. Check that the &quot;home&quot; directory of your project is the current working directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
-<span class="co">#&gt; [1] &quot;/Users/rochelleterman/Desktop/materials&quot;</span></code></pre></div>
+<p>Once this process is complete, you will get a new RStudio project. Check that the “home” directory of your project is the current working directory:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1"></a><span class="kw">getwd</span>()</span>
+<span id="cb55-2"><a href="working-with-data.html#cb55-2"></a><span class="co">#&gt; [1] &quot;/Users/rochelleterman/Desktop/materials&quot;</span></span></code></pre></div>
 <p>Now whenever you refer to a file with a relative path, R will look for the file there.</p>
 <p>Go ahead and create a new R script and save it inside the project folder.</p>
 <p>Quit RStudio. Inspect the folder associated with your project — notice the .Rproj file. Double-click that file to re-open the project. Notice you get back to where you left off: it is the same working directory and command history, and all the files you were working on are still open. Because you followed my instructions above, however, you will have a completely fresh environment, guaranteeing that you are starting with a clean slate.</p>
@@ -526,26 +554,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="file-organization" class="section level3">
 <h3><span class="header-section-number">8.1.4</span> File Organization</h3>
 <p>You should be saving all your files associated with your project in one directory. Here is a basic organization structure that I recommend:</p>
-<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown">~~~
-masters_thesis:
-  masters_thesis.Rproj
-  01_Clean.R
-  02_Model.R
-  03_Visualizations.R
-  Data/
-<span class="bn">    raw/</span>
-<span class="bn">      un-raw.csv</span>
-<span class="bn">      worldbank-raw.csv</span>
-<span class="bn">    cleaned/</span>
-<span class="bn">      country-year.csv</span>
-  Results:
-<span class="bn">    regressions</span>
-<span class="bn">      h1.txt</span>
-<span class="bn">      h2.txt</span>
-<span class="bn">    figures</span>
-<span class="bn">      bivariate.pdf</span>
-<span class="bn">      bar_plot.pdf</span>
-~~~</code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb56-1"><a href="working-with-data.html#cb56-1"></a>~~~</span>
+<span id="cb56-2"><a href="working-with-data.html#cb56-2"></a>masters_thesis:</span>
+<span id="cb56-3"><a href="working-with-data.html#cb56-3"></a>  masters_thesis.Rproj</span>
+<span id="cb56-4"><a href="working-with-data.html#cb56-4"></a>  01_Clean.R</span>
+<span id="cb56-5"><a href="working-with-data.html#cb56-5"></a>  02_Model.R</span>
+<span id="cb56-6"><a href="working-with-data.html#cb56-6"></a>  03_Visualizations.R</span>
+<span id="cb56-7"><a href="working-with-data.html#cb56-7"></a>  Data/</span>
+<span id="cb56-8"><a href="working-with-data.html#cb56-8"></a><span class="bn">    raw/</span></span>
+<span id="cb56-9"><a href="working-with-data.html#cb56-9"></a><span class="bn">      un-raw.csv</span></span>
+<span id="cb56-10"><a href="working-with-data.html#cb56-10"></a><span class="bn">      worldbank-raw.csv</span></span>
+<span id="cb56-11"><a href="working-with-data.html#cb56-11"></a><span class="bn">    cleaned/</span></span>
+<span id="cb56-12"><a href="working-with-data.html#cb56-12"></a><span class="bn">      country-year.csv</span></span>
+<span id="cb56-13"><a href="working-with-data.html#cb56-13"></a>  Results:</span>
+<span id="cb56-14"><a href="working-with-data.html#cb56-14"></a><span class="bn">    regressions</span></span>
+<span id="cb56-15"><a href="working-with-data.html#cb56-15"></a><span class="bn">      h1.txt</span></span>
+<span id="cb56-16"><a href="working-with-data.html#cb56-16"></a><span class="bn">      h2.txt</span></span>
+<span id="cb56-17"><a href="working-with-data.html#cb56-17"></a><span class="bn">    figures</span></span>
+<span id="cb56-18"><a href="working-with-data.html#cb56-18"></a><span class="bn">      bivariate.pdf</span></span>
+<span id="cb56-19"><a href="working-with-data.html#cb56-19"></a><span class="bn">      bar_plot.pdf</span></span>
+<span id="cb56-20"><a href="working-with-data.html#cb56-20"></a>~~~</span></code></pre></div>
 <p>Here are some important tips:</p>
 <ul>
 <li>Read raw data from the <code>Data</code> subdirectory. Do not ever change or overwrite the raw data!</li>
@@ -588,63 +616,63 @@ masters_thesis:
 <h4>Reading Tabular Data</h4>
 <p>The workhorse for reading into a dataframe is <em>read.table()</em>, which allows any separator (CSV, tab-delimited, etc.). <em>read.csv()</em> is a special case of <em>read.table()</em> for CSV files.</p>
 <p>The basic formula is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic CSV read: Import data with header row, values separated by &quot;,&quot;, decimals as &quot;.&quot;</span>
-mydataset &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;  &quot;</span>, <span class="dt">stringsAsFactors=</span>)</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1"></a><span class="co"># Basic CSV read: Import data with header row, values separated by &quot;,&quot;, decimals as &quot;.&quot;</span></span>
+<span id="cb57-2"><a href="working-with-data.html#cb57-2"></a>mydataset &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;  &quot;</span>, <span class="dt">stringsAsFactors=</span>)</span></code></pre></div>
 <p>Here is a practical example using the PolityIV dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import polity</span>
-polity &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/polity_sub.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F)
-<span class="kw">head</span>(polity)
-<span class="co">#&gt;       country year polity2</span>
-<span class="co">#&gt; 1 Afghanistan 1800      -6</span>
-<span class="co">#&gt; 2 Afghanistan 1801      -6</span>
-<span class="co">#&gt; 3 Afghanistan 1802      -6</span>
-<span class="co">#&gt; 4 Afghanistan 1803      -6</span>
-<span class="co">#&gt; 5 Afghanistan 1804      -6</span>
-<span class="co">#&gt; 6 Afghanistan 1805      -6</span></code></pre></div>
-<p>We use <code>stringsAsFactors = F</code> in order to treat text columns as character vectors, not as factors. If we do not set this, the default is that all non-numerical columns will be encoded as factors. This behavior usually makes poor sense and is due to historical reasons. At one point in time, factors were faster than character vectors, so R's <code>read.table()</code> set the default to read in text as factors.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="working-with-data.html#cb58-1"></a><span class="co"># Import polity</span></span>
+<span id="cb58-2"><a href="working-with-data.html#cb58-2"></a>polity &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/polity_sub.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F)</span>
+<span id="cb58-3"><a href="working-with-data.html#cb58-3"></a><span class="kw">head</span>(polity)</span>
+<span id="cb58-4"><a href="working-with-data.html#cb58-4"></a><span class="co">#&gt;       country year polity2</span></span>
+<span id="cb58-5"><a href="working-with-data.html#cb58-5"></a><span class="co">#&gt; 1 Afghanistan 1800      -6</span></span>
+<span id="cb58-6"><a href="working-with-data.html#cb58-6"></a><span class="co">#&gt; 2 Afghanistan 1801      -6</span></span>
+<span id="cb58-7"><a href="working-with-data.html#cb58-7"></a><span class="co">#&gt; 3 Afghanistan 1802      -6</span></span>
+<span id="cb58-8"><a href="working-with-data.html#cb58-8"></a><span class="co">#&gt; 4 Afghanistan 1803      -6</span></span>
+<span id="cb58-9"><a href="working-with-data.html#cb58-9"></a><span class="co">#&gt; 5 Afghanistan 1804      -6</span></span>
+<span id="cb58-10"><a href="working-with-data.html#cb58-10"></a><span class="co">#&gt; 6 Afghanistan 1805      -6</span></span></code></pre></div>
+<p>We use <code>stringsAsFactors = F</code> in order to treat text columns as character vectors, not as factors. If we do not set this, the default is that all non-numerical columns will be encoded as factors. This behavior usually makes poor sense and is due to historical reasons. At one point in time, factors were faster than character vectors, so R’s <code>read.table()</code> set the default to read in text as factors.</p>
 <p><code>read.table()</code> has a number of other options:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For importing tabular data with maximum customizability</span>
-mydataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span>, <span class="dt">header=</span>, <span class="dt">sep=</span>, <span class="dt">quote=</span>, <span class="dt">dec=</span>, <span class="dt">fill=</span>, <span class="dt">stringsAsFactors=</span>)</code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="working-with-data.html#cb59-1"></a><span class="co"># For importing tabular data with maximum customizability</span></span>
+<span id="cb59-2"><a href="working-with-data.html#cb59-2"></a>mydataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span>, <span class="dt">header=</span>, <span class="dt">sep=</span>, <span class="dt">quote=</span>, <span class="dt">dec=</span>, <span class="dt">fill=</span>, <span class="dt">stringsAsFactors=</span>)</span></code></pre></div>
 <p>You might also see commands like <code>read_csv()</code> (notice the underscore instead of a period). This is the <code>tidyverse</code> version of <code>read.csv()</code> and accomplishes the same task.</p>
 </div>
 <div id="reading-excel-files" class="section level4 unnumbered">
 <h4>Reading Excel Files</h4>
 <p>Do not use Microsoft Excel files (.xls or .xlsx). But if you must:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make sure you have installed the tidyverse suite (only necessary one time)</span>
-<span class="co"># install.packages(&quot;tidyverse&quot;) # Not Run</span>
-
-<span class="co"># Load the &quot;readxl&quot; package (necessary every new R session)</span>
-<span class="kw">library</span>(readxl)</code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="working-with-data.html#cb60-1"></a><span class="co"># Make sure you have installed the tidyverse suite (only necessary one time)</span></span>
+<span id="cb60-2"><a href="working-with-data.html#cb60-2"></a><span class="co"># install.packages(&quot;tidyverse&quot;) # Not Run</span></span>
+<span id="cb60-3"><a href="working-with-data.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="working-with-data.html#cb60-4"></a><span class="co"># Load the &quot;readxl&quot; package (necessary every new R session)</span></span>
+<span id="cb60-5"><a href="working-with-data.html#cb60-5"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
 <p><code>read_excel()</code> reads both .xls and .xlsx files, and detects the format from the extension.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic call</span>
-mydataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> , <span class="dt">sheet =</span> <span class="st">&quot;)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="working-with-data.html#cb61-1"></a><span class="co"># Basic call</span></span>
+<span id="cb61-2"><a href="working-with-data.html#cb61-2"></a>mydataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> , <span class="dt">sheet =</span> <span class="st">&quot;)</span></span></code></pre></div>
 <p>Here is a real example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example with .xlsx (single sheet)</span>
-air &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/airline_small.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>) 
-air[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
-<span class="co">#&gt; # A tibble: 5 x 5</span>
-<span class="co">#&gt;    Year Month DayofMonth DayOfWeek DepTime</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1  2005    11         22         2 1700   </span>
-<span class="co">#&gt; 2  2008     1         31         4 2216   </span>
-<span class="co">#&gt; 3  2005     7         17         7 905    </span>
-<span class="co">#&gt; 4  2008     9         23         2 859    </span>
-<span class="co">#&gt; 5  2005     3          5         6 827</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="working-with-data.html#cb62-1"></a><span class="co"># Example with .xlsx (single sheet)</span></span>
+<span id="cb62-2"><a href="working-with-data.html#cb62-2"></a>air &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/airline_small.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>) </span>
+<span id="cb62-3"><a href="working-with-data.html#cb62-3"></a>air[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb62-4"><a href="working-with-data.html#cb62-4"></a><span class="co">#&gt; # A tibble: 5 x 5</span></span>
+<span id="cb62-5"><a href="working-with-data.html#cb62-5"></a><span class="co">#&gt;    Year Month DayofMonth DayOfWeek DepTime</span></span>
+<span id="cb62-6"><a href="working-with-data.html#cb62-6"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb62-7"><a href="working-with-data.html#cb62-7"></a><span class="co">#&gt; 1  2005    11         22         2 1700   </span></span>
+<span id="cb62-8"><a href="working-with-data.html#cb62-8"></a><span class="co">#&gt; 2  2008     1         31         4 2216   </span></span>
+<span id="cb62-9"><a href="working-with-data.html#cb62-9"></a><span class="co">#&gt; 3  2005     7         17         7 905    </span></span>
+<span id="cb62-10"><a href="working-with-data.html#cb62-10"></a><span class="co">#&gt; 4  2008     9         23         2 859    </span></span>
+<span id="cb62-11"><a href="working-with-data.html#cb62-11"></a><span class="co">#&gt; 5  2005     3          5         6 827</span></span></code></pre></div>
 </div>
 <div id="reading-stata-.dta-files" class="section level4 unnumbered">
 <h4>Reading Stata (.dta) Files</h4>
 <p>There are many ways to read .dta files into R. I recommend using <code>haven</code>, because it is part of the <code>tidyverse</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
-air.dta &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;data/airline_small.dta&quot;</span>) 
-air[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
-<span class="co">#&gt; # A tibble: 5 x 5</span>
-<span class="co">#&gt;    Year Month DayofMonth DayOfWeek DepTime</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1  2005    11         22         2 1700   </span>
-<span class="co">#&gt; 2  2008     1         31         4 2216   </span>
-<span class="co">#&gt; 3  2005     7         17         7 905    </span>
-<span class="co">#&gt; 4  2008     9         23         2 859    </span>
-<span class="co">#&gt; 5  2005     3          5         6 827</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="working-with-data.html#cb63-1"></a><span class="kw">library</span>(haven)</span>
+<span id="cb63-2"><a href="working-with-data.html#cb63-2"></a>air.dta &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;data/airline_small.dta&quot;</span>) </span>
+<span id="cb63-3"><a href="working-with-data.html#cb63-3"></a>air[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb63-4"><a href="working-with-data.html#cb63-4"></a><span class="co">#&gt; # A tibble: 5 x 5</span></span>
+<span id="cb63-5"><a href="working-with-data.html#cb63-5"></a><span class="co">#&gt;    Year Month DayofMonth DayOfWeek DepTime</span></span>
+<span id="cb63-6"><a href="working-with-data.html#cb63-6"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb63-7"><a href="working-with-data.html#cb63-7"></a><span class="co">#&gt; 1  2005    11         22         2 1700   </span></span>
+<span id="cb63-8"><a href="working-with-data.html#cb63-8"></a><span class="co">#&gt; 2  2008     1         31         4 2216   </span></span>
+<span id="cb63-9"><a href="working-with-data.html#cb63-9"></a><span class="co">#&gt; 3  2005     7         17         7 905    </span></span>
+<span id="cb63-10"><a href="working-with-data.html#cb63-10"></a><span class="co">#&gt; 4  2008     9         23         2 859    </span></span>
+<span id="cb63-11"><a href="working-with-data.html#cb63-11"></a><span class="co">#&gt; 5  2005     3          5         6 827</span></span></code></pre></div>
 </div>
 <div id="for-really-big-data" class="section level4 unnumbered">
 <h4>For Really Big Data</h4>
@@ -662,25 +690,25 @@ air[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
 <div id="writing-a-csv-spreadsheet" class="section level4 unnumbered">
 <h4>Writing a <code>csv</code> Spreadsheet</h4>
 <p>To export an individual dataframe as a spreadsheet, use <code>write.csv()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic call</span>
-<span class="kw">write.csv</span>(<span class="dt">x =</span> , <span class="dt">file =</span> , <span class="dt">row.names =</span> , <span class="dt">col.names =</span>)</code></pre></div>
-<p>Let's write the <code>air</code> dataset as a CSV:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic call</span>
-<span class="kw">write.csv</span>(air, <span class="st">&quot;data/airlines.csv&quot;</span>, <span class="dt">row.names =</span> F)</code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="working-with-data.html#cb64-1"></a><span class="co"># Basic call</span></span>
+<span id="cb64-2"><a href="working-with-data.html#cb64-2"></a><span class="kw">write.csv</span>(<span class="dt">x =</span> , <span class="dt">file =</span> , <span class="dt">row.names =</span> , <span class="dt">col.names =</span>)</span></code></pre></div>
+<p>Let’s write the <code>air</code> dataset as a CSV:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="working-with-data.html#cb65-1"></a><span class="co"># Basic call</span></span>
+<span id="cb65-2"><a href="working-with-data.html#cb65-2"></a><span class="kw">write.csv</span>(air, <span class="st">&quot;data/airlines.csv&quot;</span>, <span class="dt">row.names =</span> F)</span></code></pre></div>
 </div>
 <div id="packaging-data-into-.rdata" class="section level4 unnumbered">
 <h4>Packaging Data into .RData</h4>
 <p>Sometimes, it is helpful to write several dataframes at once to be used in later analysis. To do so, we use the <code>save()</code> function to create one file containing many R data objects:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic call</span>
-<span class="kw">save</span>(..., <span class="dt">file =</span> )</code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="working-with-data.html#cb66-1"></a><span class="co"># Basic call</span></span>
+<span id="cb66-2"><a href="working-with-data.html#cb66-2"></a><span class="kw">save</span>(..., <span class="dt">file =</span> )</span></code></pre></div>
 <p>Here is how we can write both <code>air</code> and <code>polity</code> into one file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(air, polity, <span class="dt">file =</span> <span class="st">&quot;data/datasets.RData&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="working-with-data.html#cb67-1"></a><span class="kw">save</span>(air, polity, <span class="dt">file =</span> <span class="st">&quot;data/datasets.RData&quot;</span>)</span></code></pre></div>
 <p>We can then read these datasets back into R using <code>load()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Clear environment</span>
-<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
-
-<span class="co"># Load datasets</span>
-<span class="kw">load</span>(<span class="st">&quot;data/datasets.RData&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="working-with-data.html#cb68-1"></a><span class="co"># Clear environment</span></span>
+<span id="cb68-2"><a href="working-with-data.html#cb68-2"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb68-3"><a href="working-with-data.html#cb68-3"></a></span>
+<span id="cb68-4"><a href="working-with-data.html#cb68-4"></a><span class="co"># Load datasets</span></span>
+<span id="cb68-5"><a href="working-with-data.html#cb68-5"></a><span class="kw">load</span>(<span class="st">&quot;data/datasets.RData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="acknowledgements" class="section level4 unnumbered">
 <h4>Acknowledgements</h4>
@@ -747,7 +775,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
