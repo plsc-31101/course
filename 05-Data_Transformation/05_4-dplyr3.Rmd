@@ -164,9 +164,6 @@ Use `dplyr` to add a column to the Gapminder dataset that contains the total pop
 
 Use `dplyr` to: (a) add a column called `gdpPercap_diff` that contains the difference between the observation's `gdpPercap` and the mean `gdpPercap` of the continent in that year, and (b) arrange the data frame by the column you just created in descending order (so that the relatively richest country-years are listed first).
 
-**Hint:** You might have to `ungroup()` before you `arrange()`.
-
-
 #### Acknowledgments {-}
 
 Some of the materials in this module were adapted from:
