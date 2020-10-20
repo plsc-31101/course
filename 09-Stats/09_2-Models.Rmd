@@ -11,12 +11,16 @@ Once we have imported our data, summarized it, carried out group-wise operations
 
 This often requires doing the following:
 
-1) Carrying out Classical Hypothesis Tests
-2) Estimating Regressions
+1) Carrying out hypothesis tests
+2) Estimating regression models
 
 ```{r}
 # Setup
 library(gapminder)
+library(tidyverse)
+library(broom)
+
+# read gapminder
 gap <- gapminder
 ```
 
@@ -24,49 +28,100 @@ gap <- gapminder
 
 Let's say we are interested in whether the life expectancy in 1967 is different than in 1977.
 
+NB: `pull()` is a `dplyr` method to select a single variable as store it as a 1d vector.
+
 ```{r message=F}
 # Pull out life expectancy by different years
-life.exp.1967 <- gap$lifeExp[gap$year==1967]
-life.exp.1977 <- gap$lifeExp[gap$year==1977]
+lifeExp_1967 <- gap %>% 
+  filter(year==1967) %>%
+  pull(lifeExp)
+
+lifeExp_1977 <- gap %>% 
+  filter(year==1977) %>%
+  pull(lifeExp)
 ```
 
 One can test for differences in distributions in either:
 
 1) Their means using t-tests:
-```{r message=F}
+```{r warning=F}
 # t test of means
-t.test(x = life.exp.1967, y = life.exp.1977)
+t.test(x = lifeExp_1967, y = lifeExp_1977)
 ```
 
 2) Their entire distributions using ks-tests:
-```{r message=F}
+```{r warning=F}
 # ks tests of distributions
-ks.test(x = life.exp.1967, y = life.exp.1977)
+ks.test(x = lifeExp_1967, y = lifeExp_1977)
 ```
 
 ### Regressions and Linear Models
 
 Running regressions in R is generally straightforward. There are two basic, catch-all regression functions in R:
 
-- `glm` fits a generalized linear model with your choice of family/link function (Gaussian, logit, Poisson, etc.).
+- `lm` fits a standard linear regression with OLS (equivalent to `glm` with `family = gaussian(link = "identity")`).
 
-- `lm` is just a standard linear regression (equivalent to `glm` with `family = gaussian(link = "identity")`).
+- `glm` fits a generalized linear model with your choice of family/link function.
 
-The basic `glm` call looks something like this:
+There are a bunch of families and links to use (`?family` for a full list), but some essentials are: 
 
-```{r eval=FALSE}
-glm(formula = y ~ x1 + x2 + x3 + ..., family = familyname(link = "linkname"), data = )
-```
+* `binomial(link = "logit")`, 
+* `gaussian(link = "identity")`
+* `poisson(link = "log")`.
 
-There are a bunch of families and links to use (`?family` for a full list), but some essentials are: **`binomial(link = "logit")`**, **`gaussian(link = "identity")`**, and **`poisson(link = "log")`**.
+#### Formulas {-}
 
-If you are using `lm`, the call looks the same but without the `family` argument. 
+We specify the statistical relationships to fit using a *formula*. The variable on the left-hand side of a tilde (`~`) is called the "dependent variable", while the variables on the right-hand side are called the "independent variables" and are joined by plus signs `+` (for a basic linear combination).
 
-- Example: Suppose we want to regress the life expectency on the GDP per capita and the population, as well as the continent and the year.  The `lm` call would be something like this:
+Example: Suppose we want to regress life expectancy on GDP per capita and population, as well as continent and year.  
+
+The `lm` call looks something like this:
 
 ```{r}
-reg <- lm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year, data = gap)
+mod <- lm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year, 
+          data = gap)
 ```
+
+The `glm` call would look something like this:
+
+```{r eval=FALSE}
+mod <- glm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year,
+           data = gap, 
+           family = gaussian(link = "identity"))
+```
+
+In addition to the `+` symbol, there are also other operators to control your formulas:
+
+`-` for removing terms;
+`:` for interaction;
+`*` for crossing;
+`.` for all other variables in the dataframe that haven't yet been included in the model.
+
+Let's see some of these in action:
+
+```{r}
+# `.` includes all  variables but `-` removes specific terms:
+mod.1 <- lm(lifeExp ~ . - country,
+            data = gap)
+summary(mod.1)
+
+# `x1:x2` interacts all terms in `x1` with all terms in `x2`:
+mod.2 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent:factor(year), 
+            data = gap)
+summary(mod.2)
+
+# `x1*x2` produces the cross of `x1` and `x2`, or `x1 + x2 + x1:x2`:
+mod.3 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent*factor(year), 
+            data = gap)
+summary(mod.3)
+
+```
+
+#### Categorical variables (Factors) {-}
+
+Note that we wrapped the `year` variable into a `factor()` function. By default, R breaks up our variables into their different factor levels (as it will do whenever your regressors have factor levels).
+
+If your data are not factorized, you can tell `lm/glm` to factorize a variable (i.e., create dummy variables on the fly) by writing `factor()`.
 
 #### Missing values {-}
 
@@ -74,77 +129,51 @@ Missing values obviously cannot convey any information about the relationship be
 
 ### Regression Output
 
-When we store this regression in an object, we get access to several items of interest:
+When we store this regression in an object, we get access to several items of interest.
+
+First, R has a helpful `summary` method for regression objects:
+
+```{r}
+summary(mod)
+```
+
+We can also extract specific information from the model object itself:
 
 1. All components contained in the regression output:
 
 ```{r}
-names(reg)
+names(mod)
 ```
 
 2. Regression coefficients:
 
 ```{r}
-reg$coefficients
+mod$coefficients
 ```
 
 3. Regression degrees of freedom:
 
 ```{r}
-reg$df.residual
+mod$df.residual
 ```
 
 4. Standard (diagnostic) plots for a regression:
 
 ```{r}
-plot(reg)
+plot(mod)
 ```
 
-R also has a helpful `summary` method for regression objects:
+### Tidying model data with `broom`
+
+The `broom` package, by David Robinson, turn models into tidy data. 
+`broom::tidy(model)` returns a row for each coefficient in the model. Each column gives information about the estimate or its variability.
 
 ```{r}
-summary(reg)
+mod_tidy <- tidy(mod)
+mod_tidy
 ```
 
-We can also extract useful things from the summary object:
-
-```{r}
-# Store summary method results
-summ_reg <- summary(reg)
-
-# View summary method results objects
-objects(summ_reg)
-
-# View table of coefficients
-summ_reg$coefficients
-```
-
-### Interactions
-
-There are also some useful shortcuts for regressing on interaction terms:
-
-1. `x1:x2` interacts all terms in `x1` with all terms in `x2`:
-
-```{r}
-mod.1 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent:factor(year), data = gap)
-summary(mod.1)
-```
-
-2. `x1*x2` produces the cross of `x1` and `x2`, or `x1+x2+x1:x2`:
-
-```{r}
-mod.2 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + continent*factor(year), data = gap)
-summary(mod.2)
-```
-
-Note that we wrapped the `year` variable into a `factor()` function. By default, R breaks up our variables into their different factor levels (as it will do whenever your regressors have factor levels).
-
-If your data are not factorized, you can tell `lm/glm` to factorize a variable (i.e., create dummy variables on the fly) by writing `factor()`.
-
-```{r, eval=FALSE}
-glm(formula = y ~ x1 + x2 + factor(x3), family = family(link = "link"),
-            data = )
-```
+This is a powerful technique for working with large numbers of models because once you have tidy data, you can apply all of the techniques that you’ve learned about earlier in the book.
 
 ### Formatting Regression Tables
 
@@ -247,5 +276,34 @@ Fit a logistic regression model where the outcome is whether `lifeExp` is greate
 
 Using `stargazer`, format a table reporting the results from the three models you created above (two linear regressions and one logistic).
 
+#### Challenge 4 {-}
 
+Check out the program below. For each line of code, write a comment describing what it does.
+
+NB: You might some see some code we haven't yet covered in class. Try to guess what it does anyway.
+
+```{r}
+mod <- lm(lifeExp ~ country + year + log(pop) + log(gdpPercap), data = gap)
+
+mod_df <- tidy(mod) %>%
+  slice(2:142) %>%
+  separate(term, into = c("term", "country"), sep = "country") %>%
+  select(country, estimate, std.error)
+  
+mod_df <- mod_df %>%
+  mutate(low = estimate - qnorm((1-0.95)/2)*(std.error),
+         hi = estimate + qnorm((1-0.95)/2)*(std.error))
+
+ggplot(mod_df, aes(x =  fct_reorder(country, estimate),
+                   y = estimate, 
+                   ymin = low, 
+                   ymax = hi)) +
+  geom_pointrange(colour = "red", size = .2) +
+  ylab("Marginal Effect on Life Expectancy") +
+  xlab("Country") +
+  coord_flip() +
+  theme(axis.text.y = element_text(size = 5))
+```
+        
+      
 
