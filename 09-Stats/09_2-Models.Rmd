@@ -282,7 +282,7 @@ Check out the program below. For each line of code, write a comment describing w
 
 NB: You might some see some code we haven't yet covered in class. Try to guess what it does anyway.
 
-```{r}
+```{r eval = F}
 mod <- lm(lifeExp ~ country + year + log(pop) + log(gdpPercap), data = gap)
 
 mod_df <- tidy(mod) %>%

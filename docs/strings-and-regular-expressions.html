@@ -314,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2.1" data-path="statistical-inferences.html"><a href="statistical-inferences.html#statistical-tests"><i class="fa fa-check"></i><b>13.2.1</b> Statistical Tests</a></li>
 <li class="chapter" data-level="13.2.2" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regressions-and-linear-models"><i class="fa fa-check"></i><b>13.2.2</b> Regressions and Linear Models</a></li>
 <li class="chapter" data-level="13.2.3" data-path="statistical-inferences.html"><a href="statistical-inferences.html#regression-output"><i class="fa fa-check"></i><b>13.2.3</b> Regression Output</a></li>
-<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#interactions"><i class="fa fa-check"></i><b>13.2.4</b> Interactions</a></li>
+<li class="chapter" data-level="13.2.4" data-path="statistical-inferences.html"><a href="statistical-inferences.html#tidying-model-data-with-broom"><i class="fa fa-check"></i><b>13.2.4</b> Tidying model data with <code>broom</code></a></li>
 <li class="chapter" data-level="13.2.5" data-path="statistical-inferences.html"><a href="statistical-inferences.html#formatting-regression-tables"><i class="fa fa-check"></i><b>13.2.5</b> Formatting Regression Tables</a></li>
 <li class="chapter" data-level="13.2.6" data-path="statistical-inferences.html"><a href="statistical-inferences.html#challenges-10"><i class="fa fa-check"></i><b>13.2.6</b> Challenges</a></li>
 </ul></li>
@@ -485,100 +485,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Common tools</strong> that take regex and apply them to real problems.</li>
 </ol>
 <p>This chapter will focus on the <strong><code>stringr</code></strong> package for string manipulation. <code>stringr</code> is not part of the core <code>tidyverse</code> because you do not always have textual data, so we need to load it explicitly.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="strings-and-regular-expressions.html#cb265-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb265-2"><a href="strings-and-regular-expressions.html#cb265-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="strings-and-regular-expressions.html#cb264-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb264-2"><a href="strings-and-regular-expressions.html#cb264-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 <div id="string-basics" class="section level2">
 <h2><span class="header-section-number">15.1</span> String Basics</h2>
 <p>This unit focuses on character (or “string”) data. We will focus on <strong>string basics</strong>, such as concatinating and subsettings.</p>
 <div id="creating-strings" class="section level3">
 <h3><span class="header-section-number">15.1.1</span> Creating Strings</h3>
 <p>You can create strings with either single quotes or double quotes. Unlike other languages, there is no difference in behavior. I recommend always using <code>"</code>, unless you want to create a string that contains multiple <code>"</code>.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="strings-and-regular-expressions.html#cb266-1"></a>string1 &lt;-<span class="st"> &quot;This is a string&quot;</span></span>
-<span id="cb266-2"><a href="strings-and-regular-expressions.html#cb266-2"></a>string2 &lt;-<span class="st"> &#39;If I want to include a &quot;quote&quot; inside a string, I use single quotes&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="strings-and-regular-expressions.html#cb265-1"></a>string1 &lt;-<span class="st"> &quot;This is a string&quot;</span></span>
+<span id="cb265-2"><a href="strings-and-regular-expressions.html#cb265-2"></a>string2 &lt;-<span class="st"> &#39;If I want to include a &quot;quote&quot; inside a string, I use single quotes&#39;</span></span></code></pre></div>
 </div>
 <div id="escape-and-special-characters" class="section level3">
 <h3><span class="header-section-number">15.1.2</span> Escape and Special Characters</h3>
 <p>Single and double quotes are known as “metacharacters,” meaning that they have special meaning to the R language. To include a literal single or double quote in a string you can use <code>\</code> to “escape” it:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="strings-and-regular-expressions.html#cb267-1"></a>double_quote &lt;-<span class="st"> &quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span> <span class="co"># or &#39;&quot;&#39;</span></span>
-<span id="cb267-2"><a href="strings-and-regular-expressions.html#cb267-2"></a>single_quote &lt;-<span class="st"> &#39;</span><span class="ch">\&#39;</span><span class="st">&#39;</span> <span class="co"># or &quot;&#39;&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="strings-and-regular-expressions.html#cb266-1"></a>double_quote &lt;-<span class="st"> &quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span> <span class="co"># or &#39;&quot;&#39;</span></span>
+<span id="cb266-2"><a href="strings-and-regular-expressions.html#cb266-2"></a>single_quote &lt;-<span class="st"> &#39;</span><span class="ch">\&#39;</span><span class="st">&#39;</span> <span class="co"># or &quot;&#39;&quot;</span></span></code></pre></div>
 <p>That means if you want to include a literal backslash, you will need to double it up: <code>"\\"</code>.</p>
 <p>Beware that the printed representation of a string is not the same as the string itself, because the printed representation shows the escapes. To see the raw contents of the string, use <code>writeLines()</code>:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="strings-and-regular-expressions.html#cb268-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>)</span>
-<span id="cb268-2"><a href="strings-and-regular-expressions.html#cb268-2"></a>x</span>
-<span id="cb268-3"><a href="strings-and-regular-expressions.html#cb268-3"></a><span class="co">#&gt; [1] &quot;\&quot;&quot; &quot;\\&quot;</span></span>
-<span id="cb268-4"><a href="strings-and-regular-expressions.html#cb268-4"></a><span class="kw">writeLines</span>(x)</span>
-<span id="cb268-5"><a href="strings-and-regular-expressions.html#cb268-5"></a><span class="co">#&gt; &quot;</span></span>
-<span id="cb268-6"><a href="strings-and-regular-expressions.html#cb268-6"></a><span class="co">#&gt; \</span></span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="strings-and-regular-expressions.html#cb267-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>)</span>
+<span id="cb267-2"><a href="strings-and-regular-expressions.html#cb267-2"></a>x</span>
+<span id="cb267-3"><a href="strings-and-regular-expressions.html#cb267-3"></a><span class="co">#&gt; [1] &quot;\&quot;&quot; &quot;\\&quot;</span></span>
+<span id="cb267-4"><a href="strings-and-regular-expressions.html#cb267-4"></a><span class="kw">writeLines</span>(x)</span>
+<span id="cb267-5"><a href="strings-and-regular-expressions.html#cb267-5"></a><span class="co">#&gt; &quot;</span></span>
+<span id="cb267-6"><a href="strings-and-regular-expressions.html#cb267-6"></a><span class="co">#&gt; \</span></span></code></pre></div>
 <p>There are a handful of other special characters. The most common are <code>"\n"</code>, newline, and <code>"\t"</code>, tab, but you can see the complete list by requesting help on <code>"</code>: <code>?'"'</code>, or <code>?"'"</code>.</p>
 <p>Sometimes you will also see strings like <code>"\u00b5"</code>. This is a way of writing non-English characters that works on all platforms:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="strings-and-regular-expressions.html#cb269-1"></a>x &lt;-<span class="st"> &quot;\u00b5&quot;</span></span>
-<span id="cb269-2"><a href="strings-and-regular-expressions.html#cb269-2"></a>x</span>
-<span id="cb269-3"><a href="strings-and-regular-expressions.html#cb269-3"></a><span class="co">#&gt; [1] &quot;µ&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="strings-and-regular-expressions.html#cb268-1"></a>x &lt;-<span class="st"> &quot;\u00b5&quot;</span></span>
+<span id="cb268-2"><a href="strings-and-regular-expressions.html#cb268-2"></a>x</span>
+<span id="cb268-3"><a href="strings-and-regular-expressions.html#cb268-3"></a><span class="co">#&gt; [1] &quot;µ&quot;</span></span></code></pre></div>
 <p>Multiple strings are often stored in a character vector, which you can create with <code>c()</code>:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="strings-and-regular-expressions.html#cb270-1"></a><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>)</span>
-<span id="cb270-2"><a href="strings-and-regular-expressions.html#cb270-2"></a><span class="co">#&gt; [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="strings-and-regular-expressions.html#cb269-1"></a><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>)</span>
+<span id="cb269-2"><a href="strings-and-regular-expressions.html#cb269-2"></a><span class="co">#&gt; [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</span></span></code></pre></div>
 </div>
 <div id="string-length" class="section level3">
 <h3><span class="header-section-number">15.1.3</span> String Length</h3>
 <p>Base R contains many functions to work with strings, but we will avoid them because they can be inconsistent, which makes them hard to remember.</p>
 <p>Instead, we will use functions from <code>stringr</code>. <code>stringr</code> contains functions with more intuitive names, and all start with <code>str_</code>. For example, <code>str_length()</code> tells you the number of characters in a string:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="strings-and-regular-expressions.html#cb271-1"></a><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;R for data science&quot;</span>, <span class="ot">NA</span>))</span>
-<span id="cb271-2"><a href="strings-and-regular-expressions.html#cb271-2"></a><span class="co">#&gt; [1]  1 18 NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="strings-and-regular-expressions.html#cb270-1"></a><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;R for data science&quot;</span>, <span class="ot">NA</span>))</span>
+<span id="cb270-2"><a href="strings-and-regular-expressions.html#cb270-2"></a><span class="co">#&gt; [1]  1 18 NA</span></span></code></pre></div>
 <p>The common <code>str_</code> prefix is particularly useful if you use RStudio, because typing <code>str_</code> will trigger autocomplete, allowing you to see all <code>stringr</code> functions:</p>
 </div>
 <div id="combining-strings" class="section level3">
 <h3><span class="header-section-number">15.1.4</span> Combining Strings</h3>
 <p>To combine two or more strings, use <code>str_c()</code>:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="strings-and-regular-expressions.html#cb272-1"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
-<span id="cb272-2"><a href="strings-and-regular-expressions.html#cb272-2"></a><span class="co">#&gt; [1] &quot;xy&quot;</span></span>
-<span id="cb272-3"><a href="strings-and-regular-expressions.html#cb272-3"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)</span>
-<span id="cb272-4"><a href="strings-and-regular-expressions.html#cb272-4"></a><span class="co">#&gt; [1] &quot;xyz&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="strings-and-regular-expressions.html#cb271-1"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb271-2"><a href="strings-and-regular-expressions.html#cb271-2"></a><span class="co">#&gt; [1] &quot;xy&quot;</span></span>
+<span id="cb271-3"><a href="strings-and-regular-expressions.html#cb271-3"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)</span>
+<span id="cb271-4"><a href="strings-and-regular-expressions.html#cb271-4"></a><span class="co">#&gt; [1] &quot;xyz&quot;</span></span></code></pre></div>
 <p>Use the <code>sep</code> argument to control how they are separated:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="strings-and-regular-expressions.html#cb273-1"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb273-2"><a href="strings-and-regular-expressions.html#cb273-2"></a><span class="co">#&gt; [1] &quot;x, y&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="strings-and-regular-expressions.html#cb272-1"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb272-2"><a href="strings-and-regular-expressions.html#cb272-2"></a><span class="co">#&gt; [1] &quot;x, y&quot;</span></span></code></pre></div>
 <p><code>str_c()</code> is vectorised, and it automatically recycles shorter vectors to the same length as the longest:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="strings-and-regular-expressions.html#cb274-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
-<span id="cb274-2"><a href="strings-and-regular-expressions.html#cb274-2"></a><span class="kw">str_c</span>(<span class="st">&quot;prefix-&quot;</span>, x)</span>
-<span id="cb274-3"><a href="strings-and-regular-expressions.html#cb274-3"></a><span class="co">#&gt; [1] &quot;prefix-a&quot; &quot;prefix-b&quot; &quot;prefix-c&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="strings-and-regular-expressions.html#cb273-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb273-2"><a href="strings-and-regular-expressions.html#cb273-2"></a><span class="kw">str_c</span>(<span class="st">&quot;prefix-&quot;</span>, x)</span>
+<span id="cb273-3"><a href="strings-and-regular-expressions.html#cb273-3"></a><span class="co">#&gt; [1] &quot;prefix-a&quot; &quot;prefix-b&quot; &quot;prefix-c&quot;</span></span></code></pre></div>
 <p>To collapse a vector of strings into a single string, use <code>collapse</code>:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="strings-and-regular-expressions.html#cb275-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)</span>
-<span id="cb275-2"><a href="strings-and-regular-expressions.html#cb275-2"></a><span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># This will not work</span></span>
-<span id="cb275-3"><a href="strings-and-regular-expressions.html#cb275-3"></a><span class="co">#&gt; [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span>
-<span id="cb275-4"><a href="strings-and-regular-expressions.html#cb275-4"></a><span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># But this will</span></span>
-<span id="cb275-5"><a href="strings-and-regular-expressions.html#cb275-5"></a><span class="co">#&gt; [1] &quot;x, y, z&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="strings-and-regular-expressions.html#cb274-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)</span>
+<span id="cb274-2"><a href="strings-and-regular-expressions.html#cb274-2"></a><span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># This will not work</span></span>
+<span id="cb274-3"><a href="strings-and-regular-expressions.html#cb274-3"></a><span class="co">#&gt; [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span>
+<span id="cb274-4"><a href="strings-and-regular-expressions.html#cb274-4"></a><span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># But this will</span></span>
+<span id="cb274-5"><a href="strings-and-regular-expressions.html#cb274-5"></a><span class="co">#&gt; [1] &quot;x, y, z&quot;</span></span></code></pre></div>
 </div>
 <div id="subsetting-strings" class="section level3">
 <h3><span class="header-section-number">15.1.5</span> Subsetting Strings</h3>
 <p>You can extract parts of a string using <code>str_sub()</code>. As well as the string, <code>str_sub()</code> takes <code>start</code> and <code>end</code> arguments, which give the (inclusive) position of the substring:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="strings-and-regular-expressions.html#cb276-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rochelle is the GOAT&quot;</span>)</span>
-<span id="cb276-2"><a href="strings-and-regular-expressions.html#cb276-2"></a><span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">8</span>)</span>
-<span id="cb276-3"><a href="strings-and-regular-expressions.html#cb276-3"></a><span class="co">#&gt; [1] &quot;Rochelle&quot;</span></span>
-<span id="cb276-4"><a href="strings-and-regular-expressions.html#cb276-4"></a></span>
-<span id="cb276-5"><a href="strings-and-regular-expressions.html#cb276-5"></a><span class="co"># Negative numbers count backwards from the end</span></span>
-<span id="cb276-6"><a href="strings-and-regular-expressions.html#cb276-6"></a><span class="kw">str_sub</span>(x, <span class="dv">-8</span>, <span class="dv">-1</span>)</span>
-<span id="cb276-7"><a href="strings-and-regular-expressions.html#cb276-7"></a><span class="co">#&gt; [1] &quot;the GOAT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="strings-and-regular-expressions.html#cb275-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rochelle is the GOAT&quot;</span>)</span>
+<span id="cb275-2"><a href="strings-and-regular-expressions.html#cb275-2"></a><span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb275-3"><a href="strings-and-regular-expressions.html#cb275-3"></a><span class="co">#&gt; [1] &quot;Rochelle&quot;</span></span>
+<span id="cb275-4"><a href="strings-and-regular-expressions.html#cb275-4"></a></span>
+<span id="cb275-5"><a href="strings-and-regular-expressions.html#cb275-5"></a><span class="co"># Negative numbers count backwards from the end</span></span>
+<span id="cb275-6"><a href="strings-and-regular-expressions.html#cb275-6"></a><span class="kw">str_sub</span>(x, <span class="dv">-8</span>, <span class="dv">-1</span>)</span>
+<span id="cb275-7"><a href="strings-and-regular-expressions.html#cb275-7"></a><span class="co">#&gt; [1] &quot;the GOAT&quot;</span></span></code></pre></div>
 <p>You can also use the assignment form of <code>str_sub()</code> to modify strings:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="strings-and-regular-expressions.html#cb277-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rochelle is the GOAT&quot;</span>)</span>
-<span id="cb277-2"><a href="strings-and-regular-expressions.html#cb277-2"></a><span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">1</span>) &lt;-<span class="st"> </span><span class="kw">str_to_lower</span>(<span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb277-3"><a href="strings-and-regular-expressions.html#cb277-3"></a>x</span>
-<span id="cb277-4"><a href="strings-and-regular-expressions.html#cb277-4"></a><span class="co">#&gt; [1] &quot;rochelle is the GOAT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="strings-and-regular-expressions.html#cb276-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rochelle is the GOAT&quot;</span>)</span>
+<span id="cb276-2"><a href="strings-and-regular-expressions.html#cb276-2"></a><span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">1</span>) &lt;-<span class="st"> </span><span class="kw">str_to_lower</span>(<span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb276-3"><a href="strings-and-regular-expressions.html#cb276-3"></a>x</span>
+<span id="cb276-4"><a href="strings-and-regular-expressions.html#cb276-4"></a><span class="co">#&gt; [1] &quot;rochelle is the GOAT&quot;</span></span></code></pre></div>
 </div>
 <div id="locales" class="section level3">
 <h3><span class="header-section-number">15.1.6</span> Locales</h3>
 <p>Above I used <code>str_to_lower()</code> to change the text to lower case. You can also use <code>str_to_upper()</code> or <code>str_to_title()</code>. However, changing case is more complicated than it might at first appear, because different languages have different rules for changing case. You can pick which set of rules to use by specifying a locale:</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="strings-and-regular-expressions.html#cb278-1"></a><span class="co"># Turkish has two i&#39;s (with and without a dot), and it</span></span>
-<span id="cb278-2"><a href="strings-and-regular-expressions.html#cb278-2"></a><span class="co"># has a different rule for capitalising each of them:</span></span>
-<span id="cb278-3"><a href="strings-and-regular-expressions.html#cb278-3"></a><span class="kw">str_to_upper</span>(<span class="kw">c</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;ı&quot;</span>))</span>
-<span id="cb278-4"><a href="strings-and-regular-expressions.html#cb278-4"></a><span class="co">#&gt; [1] &quot;I&quot; &quot;I&quot;</span></span>
-<span id="cb278-5"><a href="strings-and-regular-expressions.html#cb278-5"></a><span class="kw">str_to_upper</span>(<span class="kw">c</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;ı&quot;</span>), <span class="dt">locale =</span> <span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb278-6"><a href="strings-and-regular-expressions.html#cb278-6"></a><span class="co">#&gt; [1] &quot;İ&quot; &quot;I&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="strings-and-regular-expressions.html#cb277-1"></a><span class="co"># Turkish has two i&#39;s (with and without a dot), and it</span></span>
+<span id="cb277-2"><a href="strings-and-regular-expressions.html#cb277-2"></a><span class="co"># has a different rule for capitalising each of them:</span></span>
+<span id="cb277-3"><a href="strings-and-regular-expressions.html#cb277-3"></a><span class="kw">str_to_upper</span>(<span class="kw">c</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;ı&quot;</span>))</span>
+<span id="cb277-4"><a href="strings-and-regular-expressions.html#cb277-4"></a><span class="co">#&gt; [1] &quot;I&quot; &quot;I&quot;</span></span>
+<span id="cb277-5"><a href="strings-and-regular-expressions.html#cb277-5"></a><span class="kw">str_to_upper</span>(<span class="kw">c</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;ı&quot;</span>), <span class="dt">locale =</span> <span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb277-6"><a href="strings-and-regular-expressions.html#cb277-6"></a><span class="co">#&gt; [1] &quot;İ&quot; &quot;I&quot;</span></span></code></pre></div>
 <p>The locale is specified as a ISO 639 language code, which is a two- or three-letter abbreviation. If you do not already know the code for your language, <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> has a good list. If you leave the locale blank, it will use the current locale, as provided by your operating system.</p>
 <p>Another important operation that is affected by the locale is sorting. The base R <code>order()</code> and <code>sort()</code> functions sort strings using the current locale. If you want robust behavior across different computers, you may want to use <code>str_sort()</code> and <code>str_order()</code>, which take an additional <code>locale</code> argument:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="strings-and-regular-expressions.html#cb279-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;eggplant&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
-<span id="cb279-2"><a href="strings-and-regular-expressions.html#cb279-2"></a><span class="kw">str_sort</span>(x, <span class="dt">locale =</span> <span class="st">&quot;en&quot;</span>)  <span class="co"># English</span></span>
-<span id="cb279-3"><a href="strings-and-regular-expressions.html#cb279-3"></a><span class="co">#&gt; [1] &quot;apple&quot;    &quot;banana&quot;   &quot;eggplant&quot;</span></span>
-<span id="cb279-4"><a href="strings-and-regular-expressions.html#cb279-4"></a><span class="kw">str_sort</span>(x, <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>) <span class="co"># Hawaiian</span></span>
-<span id="cb279-5"><a href="strings-and-regular-expressions.html#cb279-5"></a><span class="co">#&gt; [1] &quot;apple&quot;    &quot;eggplant&quot; &quot;banana&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="strings-and-regular-expressions.html#cb278-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;eggplant&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
+<span id="cb278-2"><a href="strings-and-regular-expressions.html#cb278-2"></a><span class="kw">str_sort</span>(x, <span class="dt">locale =</span> <span class="st">&quot;en&quot;</span>)  <span class="co"># English</span></span>
+<span id="cb278-3"><a href="strings-and-regular-expressions.html#cb278-3"></a><span class="co">#&gt; [1] &quot;apple&quot;    &quot;banana&quot;   &quot;eggplant&quot;</span></span>
+<span id="cb278-4"><a href="strings-and-regular-expressions.html#cb278-4"></a><span class="kw">str_sort</span>(x, <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>) <span class="co"># Hawaiian</span></span>
+<span id="cb278-5"><a href="strings-and-regular-expressions.html#cb278-5"></a><span class="co">#&gt; [1] &quot;apple&quot;    &quot;eggplant&quot; &quot;banana&quot;</span></span></code></pre></div>
 </div>
 <div id="challenges-14" class="section level3">
 <h3><span class="header-section-number">15.1.7</span> Challenges</h3>
@@ -599,8 +599,8 @@ a string. What will you do if the string has an even number of characters?</p>
 <h4>Challenge 4.</h4>
 <p>What does <code>str_trim()</code> do? What is the opposite of <code>str_trim()</code>?</p>
 
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="strings-and-regular-expressions.html#cb280-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb280-2"><a href="strings-and-regular-expressions.html#cb280-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="strings-and-regular-expressions.html#cb279-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb279-2"><a href="strings-and-regular-expressions.html#cb279-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -611,13 +611,13 @@ a string. What will you do if the string has an even number of characters?</p>
 <div id="basic-matches" class="section level3">
 <h3><span class="header-section-number">15.2.1</span> Basic Matches</h3>
 <p>The simplest patterns match exact strings:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="strings-and-regular-expressions.html#cb281-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb281-2"><a href="strings-and-regular-expressions.html#cb281-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;an&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="strings-and-regular-expressions.html#cb280-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb280-2"><a href="strings-and-regular-expressions.html#cb280-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;an&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>The next step up in complexity is <code>.</code>, which matches any character (except a newline):</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="strings-and-regular-expressions.html#cb282-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb282-2"><a href="strings-and-regular-expressions.html#cb282-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="strings-and-regular-expressions.html#cb281-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb281-2"><a href="strings-and-regular-expressions.html#cb281-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-e5c8c404fe174e4c81bd" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -625,11 +625,11 @@ a string. What will you do if the string has an even number of characters?</p>
 <h3><span class="header-section-number">15.2.2</span> Escape Characters</h3>
 <p>If “<code>.</code>” matches any character, how do you match the character “<code>.</code>”? You need to use an “escape” to tell the regular expression you want to match it exactly, not use its special behavior.</p>
 <p>Regexps use the backslash, <code>\</code>, to escape special behavior. So, to match an <code>.</code>, you need the regexp <code>\.</code>. Unfortunately, this creates a problem. We use <em>strings</em> to represent regular expressions, and <code>\</code> is also used as an escape symbol in strings. So, to create the regular expression <code>\.</code>, we need the string <code>"\\."</code>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="strings-and-regular-expressions.html#cb283-1"></a><span class="co"># To create the regular expression, we need \\</span></span>
-<span id="cb283-2"><a href="strings-and-regular-expressions.html#cb283-2"></a>dot &lt;-<span class="st"> &quot;</span><span class="ch">\\</span><span class="st">.&quot;</span></span>
-<span id="cb283-3"><a href="strings-and-regular-expressions.html#cb283-3"></a><span class="co"># But the expression itself only contains one:</span></span>
-<span id="cb283-4"><a href="strings-and-regular-expressions.html#cb283-4"></a><span class="kw">writeLines</span>(dot)</span>
-<span id="cb283-5"><a href="strings-and-regular-expressions.html#cb283-5"></a><span class="co">#&gt; \.</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="strings-and-regular-expressions.html#cb282-1"></a><span class="co"># To create the regular expression, we need \\</span></span>
+<span id="cb282-2"><a href="strings-and-regular-expressions.html#cb282-2"></a>dot &lt;-<span class="st"> &quot;</span><span class="ch">\\</span><span class="st">.&quot;</span></span>
+<span id="cb282-3"><a href="strings-and-regular-expressions.html#cb282-3"></a><span class="co"># But the expression itself only contains one:</span></span>
+<span id="cb282-4"><a href="strings-and-regular-expressions.html#cb282-4"></a><span class="kw">writeLines</span>(dot)</span>
+<span id="cb282-5"><a href="strings-and-regular-expressions.html#cb282-5"></a><span class="co">#&gt; \.</span></span></code></pre></div>
 <p>In this lesson, I will write the regular expression as <code>\.</code> and strings that represent the regular expression as <code>"\\."</code>.</p>
 </div>
 <div id="anchors" class="section level3">
@@ -639,20 +639,20 @@ a string. What will you do if the string has an even number of characters?</p>
 <li><code>^</code> to match the start of the string.</li>
 <li><code>$</code> to match the end of the string.</li>
 </ul>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="strings-and-regular-expressions.html#cb284-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb284-2"><a href="strings-and-regular-expressions.html#cb284-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="strings-and-regular-expressions.html#cb283-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb283-2"><a href="strings-and-regular-expressions.html#cb283-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-36aa3d2a04d42bbc2145" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="strings-and-regular-expressions.html#cb285-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="strings-and-regular-expressions.html#cb284-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-febe03efa1a2d8d52a86" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-febe03efa1a2d8d52a86">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>To remember which is which, try this mnemonic which I learned from <a href="https://twitter.com/emisshula/status/323863393167613953">Evan Misshula</a>: If you begin with power (<code>^</code>), you end up with money (<code>$</code>).</p>
 <p>To force a regular expression to only match a complete string, anchor it with both <code>^</code> and <code>$</code>:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="strings-and-regular-expressions.html#cb286-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple pie&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;apple cake&quot;</span>)</span>
-<span id="cb286-2"><a href="strings-and-regular-expressions.html#cb286-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;apple&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="strings-and-regular-expressions.html#cb285-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple pie&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;apple cake&quot;</span>)</span>
+<span id="cb285-2"><a href="strings-and-regular-expressions.html#cb285-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;apple&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-1fb4450895fe099f74a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-1fb4450895fe099f74a1">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="strings-and-regular-expressions.html#cb287-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;^apple$&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="strings-and-regular-expressions.html#cb286-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;^apple$&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-10b3b7155e8045a1b2ad" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-10b3b7155e8045a1b2ad">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -667,22 +667,22 @@ a string. What will you do if the string has an even number of characters?</p>
 </ul>
 <p>Remember that, to create a regular expression containing <code>\d</code> or <code>\s</code>, you will need to escape the <code>\</code> for the string, so you will type <code>"\\d"</code> or <code>"\\s"</code>.</p>
 <p>A character class containing a single character is a nice alternative to backslash escapes when you want to include a single metacharacter in a regex. Many people find this more readable.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="strings-and-regular-expressions.html#cb288-1"></a><span class="co"># Look for a literal character that normally has special meaning in a regex:</span></span>
-<span id="cb288-2"><a href="strings-and-regular-expressions.html#cb288-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;a*c&quot;</span>, <span class="st">&quot;a c&quot;</span>)</span>
-<span id="cb288-3"><a href="strings-and-regular-expressions.html#cb288-3"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a[.]c&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="strings-and-regular-expressions.html#cb287-1"></a><span class="co"># Look for a literal character that normally has special meaning in a regex:</span></span>
+<span id="cb287-2"><a href="strings-and-regular-expressions.html#cb287-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;a*c&quot;</span>, <span class="st">&quot;a c&quot;</span>)</span>
+<span id="cb287-3"><a href="strings-and-regular-expressions.html#cb287-3"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a[.]c&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-4018eef1a407a0df6b52" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-4018eef1a407a0df6b52">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>a*c<\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="strings-and-regular-expressions.html#cb289-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;.[*]c&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="strings-and-regular-expressions.html#cb288-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;.[*]c&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-5b1b2f4ad92281566982" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-5b1b2f4ad92281566982">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li><span class='match'>a*c<\/span><\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="strings-and-regular-expressions.html#cb290-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a[ ]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="strings-and-regular-expressions.html#cb289-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;a[ ]&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-25c3e940e6859592f801" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-25c3e940e6859592f801">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li>a*c<\/li>\n  <li><span class='match'>a <\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>This works for most (but not all) regex metacharacters: <code>$</code>, <code>.</code>, <code>|</code>, <code>?</code>, <code>*</code>, <code>+</code>, <code>(</code>, <code>)</code>, <code>[</code>, and <code>{</code>. Unfortunately, a few characters have special meaning even inside a character class and must be handled with backslash escapes: <code>]</code>, <code>\</code>, <code>^</code>, and <code>-</code>.</p>
 <p>You can use <em>alternation</em> to pick between one or more alternative patterns. For example, <code>abc|deaf</code> will match either <code>"abc"</code> or <code>"deaf"</code>.</p>
 <p>Like with mathematical expressions, if precedence ever gets confusing, use parentheses to make it clear what you want:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="strings-and-regular-expressions.html#cb291-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;gray&quot;</span>)</span>
-<span id="cb291-2"><a href="strings-and-regular-expressions.html#cb291-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;gr(e|a)y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="strings-and-regular-expressions.html#cb290-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb290-2"><a href="strings-and-regular-expressions.html#cb290-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;gr(e|a)y&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-3f27c09be0c60bb52829" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-3f27c09be0c60bb52829">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -694,14 +694,14 @@ a string. What will you do if the string has an even number of characters?</p>
 <li><code>+</code>: 1 or more</li>
 <li><code>*</code>: 0 or more</li>
 </ul>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="strings-and-regular-expressions.html#cb292-1"></a>x &lt;-<span class="st"> &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;</span></span>
-<span id="cb292-2"><a href="strings-and-regular-expressions.html#cb292-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;CC?&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="strings-and-regular-expressions.html#cb291-1"></a>x &lt;-<span class="st"> &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;</span></span>
+<span id="cb291-2"><a href="strings-and-regular-expressions.html#cb291-2"></a><span class="kw">str_view</span>(x, <span class="st">&quot;CC?&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-416566eb193bf50d04e6" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-416566eb193bf50d04e6">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="strings-and-regular-expressions.html#cb293-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;CC+&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="strings-and-regular-expressions.html#cb292-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;CC+&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-72cbf064100ce560a04c" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-72cbf064100ce560a04c">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="strings-and-regular-expressions.html#cb294-1"></a><span class="kw">str_view</span>(x, <span class="st">&#39;C[LX]+&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="strings-and-regular-expressions.html#cb293-1"></a><span class="kw">str_view</span>(x, <span class="st">&#39;C[LX]+&#39;</span>)</span></code></pre></div>
 <div id="htmlwidget-d11fc4360aa0230696d7" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-d11fc4360aa0230696d7">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -724,8 +724,8 @@ a string. What will you do if the string has an even number of characters?</p>
 <li><p>End with <code>ing</code> or <code>ise</code>.</p></li>
 </ol>
 
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="strings-and-regular-expressions.html#cb295-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb295-2"><a href="strings-and-regular-expressions.html#cb295-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="strings-and-regular-expressions.html#cb294-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb294-2"><a href="strings-and-regular-expressions.html#cb294-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 </div>
 </div>
 <div id="common-tools" class="section level2">
@@ -741,60 +741,60 @@ a string. What will you do if the string has an even number of characters?</p>
 <div id="detect-matches" class="section level3">
 <h3><span class="header-section-number">15.3.1</span> Detect Matches</h3>
 <p>To determine if a character vector matches a pattern, use <code>str_detect()</code>. It returns a logical vector the same length as the input:</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="strings-and-regular-expressions.html#cb296-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb296-2"><a href="strings-and-regular-expressions.html#cb296-2"></a><span class="kw">str_detect</span>(x, <span class="st">&quot;e&quot;</span>)</span>
-<span id="cb296-3"><a href="strings-and-regular-expressions.html#cb296-3"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="strings-and-regular-expressions.html#cb295-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb295-2"><a href="strings-and-regular-expressions.html#cb295-2"></a><span class="kw">str_detect</span>(x, <span class="st">&quot;e&quot;</span>)</span>
+<span id="cb295-3"><a href="strings-and-regular-expressions.html#cb295-3"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>Remember that, when you use a logical vector in a numeric context, <code>FALSE</code> becomes 0 and <code>TRUE</code> becomes 1. That makes <code>sum()</code> and <code>mean()</code> useful if you want to answer questions about matches across a larger vector:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="strings-and-regular-expressions.html#cb297-1"></a>words&lt;-<span class="st"> </span>stringr<span class="op">::</span>words</span>
-<span id="cb297-2"><a href="strings-and-regular-expressions.html#cb297-2"></a><span class="co"># See common words</span></span>
-<span id="cb297-3"><a href="strings-and-regular-expressions.html#cb297-3"></a>words[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
-<span id="cb297-4"><a href="strings-and-regular-expressions.html#cb297-4"></a><span class="co">#&gt;  [1] &quot;a&quot;        &quot;able&quot;     &quot;about&quot;    &quot;absolute&quot; &quot;accept&quot;   &quot;account&quot; </span></span>
-<span id="cb297-5"><a href="strings-and-regular-expressions.html#cb297-5"></a><span class="co">#&gt;  [7] &quot;achieve&quot;  &quot;across&quot;   &quot;act&quot;      &quot;active&quot;</span></span>
-<span id="cb297-6"><a href="strings-and-regular-expressions.html#cb297-6"></a><span class="co"># How many common words start with t?</span></span>
-<span id="cb297-7"><a href="strings-and-regular-expressions.html#cb297-7"></a><span class="kw">sum</span>(<span class="kw">str_detect</span>(words, <span class="st">&quot;^t&quot;</span>))</span>
-<span id="cb297-8"><a href="strings-and-regular-expressions.html#cb297-8"></a><span class="co">#&gt; [1] 65</span></span>
-<span id="cb297-9"><a href="strings-and-regular-expressions.html#cb297-9"></a><span class="co"># What proportion of common words end with a vowel?</span></span>
-<span id="cb297-10"><a href="strings-and-regular-expressions.html#cb297-10"></a><span class="kw">mean</span>(<span class="kw">str_detect</span>(words, <span class="st">&quot;[aeiou]$&quot;</span>))</span>
-<span id="cb297-11"><a href="strings-and-regular-expressions.html#cb297-11"></a><span class="co">#&gt; [1] 0.277</span></span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="strings-and-regular-expressions.html#cb296-1"></a>words&lt;-<span class="st"> </span>stringr<span class="op">::</span>words</span>
+<span id="cb296-2"><a href="strings-and-regular-expressions.html#cb296-2"></a><span class="co"># See common words</span></span>
+<span id="cb296-3"><a href="strings-and-regular-expressions.html#cb296-3"></a>words[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb296-4"><a href="strings-and-regular-expressions.html#cb296-4"></a><span class="co">#&gt;  [1] &quot;a&quot;        &quot;able&quot;     &quot;about&quot;    &quot;absolute&quot; &quot;accept&quot;   &quot;account&quot; </span></span>
+<span id="cb296-5"><a href="strings-and-regular-expressions.html#cb296-5"></a><span class="co">#&gt;  [7] &quot;achieve&quot;  &quot;across&quot;   &quot;act&quot;      &quot;active&quot;</span></span>
+<span id="cb296-6"><a href="strings-and-regular-expressions.html#cb296-6"></a><span class="co"># How many common words start with t?</span></span>
+<span id="cb296-7"><a href="strings-and-regular-expressions.html#cb296-7"></a><span class="kw">sum</span>(<span class="kw">str_detect</span>(words, <span class="st">&quot;^t&quot;</span>))</span>
+<span id="cb296-8"><a href="strings-and-regular-expressions.html#cb296-8"></a><span class="co">#&gt; [1] 65</span></span>
+<span id="cb296-9"><a href="strings-and-regular-expressions.html#cb296-9"></a><span class="co"># What proportion of common words end with a vowel?</span></span>
+<span id="cb296-10"><a href="strings-and-regular-expressions.html#cb296-10"></a><span class="kw">mean</span>(<span class="kw">str_detect</span>(words, <span class="st">&quot;[aeiou]$&quot;</span>))</span>
+<span id="cb296-11"><a href="strings-and-regular-expressions.html#cb296-11"></a><span class="co">#&gt; [1] 0.277</span></span></code></pre></div>
 <p>A common use of <code>str_detect()</code> is to select the elements that match a pattern. You can do this with logical subsetting, or the convenient <code>str_subset()</code> wrapper:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="strings-and-regular-expressions.html#cb298-1"></a>words[<span class="kw">str_detect</span>(words, <span class="st">&quot;x$&quot;</span>)]</span>
-<span id="cb298-2"><a href="strings-and-regular-expressions.html#cb298-2"></a><span class="co">#&gt; [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</span></span>
-<span id="cb298-3"><a href="strings-and-regular-expressions.html#cb298-3"></a><span class="kw">str_subset</span>(words, <span class="st">&quot;x$&quot;</span>)</span>
-<span id="cb298-4"><a href="strings-and-regular-expressions.html#cb298-4"></a><span class="co">#&gt; [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="strings-and-regular-expressions.html#cb297-1"></a>words[<span class="kw">str_detect</span>(words, <span class="st">&quot;x$&quot;</span>)]</span>
+<span id="cb297-2"><a href="strings-and-regular-expressions.html#cb297-2"></a><span class="co">#&gt; [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</span></span>
+<span id="cb297-3"><a href="strings-and-regular-expressions.html#cb297-3"></a><span class="kw">str_subset</span>(words, <span class="st">&quot;x$&quot;</span>)</span>
+<span id="cb297-4"><a href="strings-and-regular-expressions.html#cb297-4"></a><span class="co">#&gt; [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</span></span></code></pre></div>
 <p>Typically, however, your strings will be one column of a data frame, and you will want to use <code>filter</code> instead:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="strings-and-regular-expressions.html#cb299-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb299-2"><a href="strings-and-regular-expressions.html#cb299-2"></a>  <span class="dt">i =</span> <span class="kw">seq_along</span>(words),</span>
-<span id="cb299-3"><a href="strings-and-regular-expressions.html#cb299-3"></a>  <span class="dt">word =</span> words</span>
-<span id="cb299-4"><a href="strings-and-regular-expressions.html#cb299-4"></a>)</span>
-<span id="cb299-5"><a href="strings-and-regular-expressions.html#cb299-5"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb299-6"><a href="strings-and-regular-expressions.html#cb299-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(word, <span class="st">&quot;x$&quot;</span>))</span>
-<span id="cb299-7"><a href="strings-and-regular-expressions.html#cb299-7"></a><span class="co">#&gt;     i word</span></span>
-<span id="cb299-8"><a href="strings-and-regular-expressions.html#cb299-8"></a><span class="co">#&gt; 1 108  box</span></span>
-<span id="cb299-9"><a href="strings-and-regular-expressions.html#cb299-9"></a><span class="co">#&gt; 2 747  sex</span></span>
-<span id="cb299-10"><a href="strings-and-regular-expressions.html#cb299-10"></a><span class="co">#&gt; 3 772  six</span></span>
-<span id="cb299-11"><a href="strings-and-regular-expressions.html#cb299-11"></a><span class="co">#&gt; 4 841  tax</span></span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="strings-and-regular-expressions.html#cb298-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb298-2"><a href="strings-and-regular-expressions.html#cb298-2"></a>  <span class="dt">i =</span> <span class="kw">seq_along</span>(words),</span>
+<span id="cb298-3"><a href="strings-and-regular-expressions.html#cb298-3"></a>  <span class="dt">word =</span> words</span>
+<span id="cb298-4"><a href="strings-and-regular-expressions.html#cb298-4"></a>)</span>
+<span id="cb298-5"><a href="strings-and-regular-expressions.html#cb298-5"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb298-6"><a href="strings-and-regular-expressions.html#cb298-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(word, <span class="st">&quot;x$&quot;</span>))</span>
+<span id="cb298-7"><a href="strings-and-regular-expressions.html#cb298-7"></a><span class="co">#&gt;     i word</span></span>
+<span id="cb298-8"><a href="strings-and-regular-expressions.html#cb298-8"></a><span class="co">#&gt; 1 108  box</span></span>
+<span id="cb298-9"><a href="strings-and-regular-expressions.html#cb298-9"></a><span class="co">#&gt; 2 747  sex</span></span>
+<span id="cb298-10"><a href="strings-and-regular-expressions.html#cb298-10"></a><span class="co">#&gt; 3 772  six</span></span>
+<span id="cb298-11"><a href="strings-and-regular-expressions.html#cb298-11"></a><span class="co">#&gt; 4 841  tax</span></span></code></pre></div>
 <p>A variation on <code>str_detect()</code> is <code>str_count()</code>. Rather than a simple yes or no, it tells you how many matches there are in a string:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="strings-and-regular-expressions.html#cb300-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb300-2"><a href="strings-and-regular-expressions.html#cb300-2"></a><span class="kw">str_count</span>(x, <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb300-3"><a href="strings-and-regular-expressions.html#cb300-3"></a><span class="co">#&gt; [1] 1 3 1</span></span>
-<span id="cb300-4"><a href="strings-and-regular-expressions.html#cb300-4"></a><span class="co"># On average, how many vowels per word?</span></span>
-<span id="cb300-5"><a href="strings-and-regular-expressions.html#cb300-5"></a><span class="kw">mean</span>(<span class="kw">str_count</span>(words, <span class="st">&quot;[aeiou]&quot;</span>))</span>
-<span id="cb300-6"><a href="strings-and-regular-expressions.html#cb300-6"></a><span class="co">#&gt; [1] 1.99</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="strings-and-regular-expressions.html#cb299-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb299-2"><a href="strings-and-regular-expressions.html#cb299-2"></a><span class="kw">str_count</span>(x, <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb299-3"><a href="strings-and-regular-expressions.html#cb299-3"></a><span class="co">#&gt; [1] 1 3 1</span></span>
+<span id="cb299-4"><a href="strings-and-regular-expressions.html#cb299-4"></a><span class="co"># On average, how many vowels per word?</span></span>
+<span id="cb299-5"><a href="strings-and-regular-expressions.html#cb299-5"></a><span class="kw">mean</span>(<span class="kw">str_count</span>(words, <span class="st">&quot;[aeiou]&quot;</span>))</span>
+<span id="cb299-6"><a href="strings-and-regular-expressions.html#cb299-6"></a><span class="co">#&gt; [1] 1.99</span></span></code></pre></div>
 <p>It is natural to use <code>str_count()</code> with <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="strings-and-regular-expressions.html#cb301-1"></a>df1 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb301-2"><a href="strings-and-regular-expressions.html#cb301-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb301-3"><a href="strings-and-regular-expressions.html#cb301-3"></a>    <span class="dt">vowels =</span> <span class="kw">str_count</span>(word, <span class="st">&quot;[aeiou]&quot;</span>),</span>
-<span id="cb301-4"><a href="strings-and-regular-expressions.html#cb301-4"></a>    <span class="dt">consonants =</span> <span class="kw">str_count</span>(word, <span class="st">&quot;[^aeiou]&quot;</span>)</span>
-<span id="cb301-5"><a href="strings-and-regular-expressions.html#cb301-5"></a>  )</span>
-<span id="cb301-6"><a href="strings-and-regular-expressions.html#cb301-6"></a></span>
-<span id="cb301-7"><a href="strings-and-regular-expressions.html#cb301-7"></a><span class="kw">head</span>(df1)</span>
-<span id="cb301-8"><a href="strings-and-regular-expressions.html#cb301-8"></a><span class="co">#&gt;   i     word vowels consonants</span></span>
-<span id="cb301-9"><a href="strings-and-regular-expressions.html#cb301-9"></a><span class="co">#&gt; 1 1        a      1          0</span></span>
-<span id="cb301-10"><a href="strings-and-regular-expressions.html#cb301-10"></a><span class="co">#&gt; 2 2     able      2          2</span></span>
-<span id="cb301-11"><a href="strings-and-regular-expressions.html#cb301-11"></a><span class="co">#&gt; 3 3    about      3          2</span></span>
-<span id="cb301-12"><a href="strings-and-regular-expressions.html#cb301-12"></a><span class="co">#&gt; 4 4 absolute      4          4</span></span>
-<span id="cb301-13"><a href="strings-and-regular-expressions.html#cb301-13"></a><span class="co">#&gt; 5 5   accept      2          4</span></span>
-<span id="cb301-14"><a href="strings-and-regular-expressions.html#cb301-14"></a><span class="co">#&gt; 6 6  account      3          4</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="strings-and-regular-expressions.html#cb300-1"></a>df1 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb300-2"><a href="strings-and-regular-expressions.html#cb300-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb300-3"><a href="strings-and-regular-expressions.html#cb300-3"></a>    <span class="dt">vowels =</span> <span class="kw">str_count</span>(word, <span class="st">&quot;[aeiou]&quot;</span>),</span>
+<span id="cb300-4"><a href="strings-and-regular-expressions.html#cb300-4"></a>    <span class="dt">consonants =</span> <span class="kw">str_count</span>(word, <span class="st">&quot;[^aeiou]&quot;</span>)</span>
+<span id="cb300-5"><a href="strings-and-regular-expressions.html#cb300-5"></a>  )</span>
+<span id="cb300-6"><a href="strings-and-regular-expressions.html#cb300-6"></a></span>
+<span id="cb300-7"><a href="strings-and-regular-expressions.html#cb300-7"></a><span class="kw">head</span>(df1)</span>
+<span id="cb300-8"><a href="strings-and-regular-expressions.html#cb300-8"></a><span class="co">#&gt;   i     word vowels consonants</span></span>
+<span id="cb300-9"><a href="strings-and-regular-expressions.html#cb300-9"></a><span class="co">#&gt; 1 1        a      1          0</span></span>
+<span id="cb300-10"><a href="strings-and-regular-expressions.html#cb300-10"></a><span class="co">#&gt; 2 2     able      2          2</span></span>
+<span id="cb300-11"><a href="strings-and-regular-expressions.html#cb300-11"></a><span class="co">#&gt; 3 3    about      3          2</span></span>
+<span id="cb300-12"><a href="strings-and-regular-expressions.html#cb300-12"></a><span class="co">#&gt; 4 4 absolute      4          4</span></span>
+<span id="cb300-13"><a href="strings-and-regular-expressions.html#cb300-13"></a><span class="co">#&gt; 5 5   accept      2          4</span></span>
+<span id="cb300-14"><a href="strings-and-regular-expressions.html#cb300-14"></a><span class="co">#&gt; 6 6  account      3          4</span></span></code></pre></div>
 <div id="challenge-1.-12" class="section level4 unnumbered">
 <h4>Challenge 1.</h4>
 <p>For each of the following challenges, try solving it by using both a single regular expression and a combination of multiple <code>str_detect()</code> calls.</p>
@@ -806,115 +806,115 @@ a string. What will you do if the string has an even number of characters?</p>
 <div id="extract-matches" class="section level3">
 <h3><span class="header-section-number">15.3.2</span> Extract Matches</h3>
 <p>To extract the actual text of a match, use <code>str_extract()</code>. To show that off, we are going to need a more complicated example. I am going to use the <a href="https://en.wikipedia.org/wiki/Harvard_sentences">Harvard sentences</a>. These are provided in <code>stringr::sentences</code>:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="strings-and-regular-expressions.html#cb303-1"></a><span class="kw">length</span>(sentences)</span>
-<span id="cb303-2"><a href="strings-and-regular-expressions.html#cb303-2"></a><span class="co">#&gt; [1] 720</span></span>
-<span id="cb303-3"><a href="strings-and-regular-expressions.html#cb303-3"></a><span class="kw">head</span>(sentences)</span>
-<span id="cb303-4"><a href="strings-and-regular-expressions.html#cb303-4"></a><span class="co">#&gt; [1] &quot;The birch canoe slid on the smooth planks.&quot; </span></span>
-<span id="cb303-5"><a href="strings-and-regular-expressions.html#cb303-5"></a><span class="co">#&gt; [2] &quot;Glue the sheet to the dark blue background.&quot;</span></span>
-<span id="cb303-6"><a href="strings-and-regular-expressions.html#cb303-6"></a><span class="co">#&gt; [3] &quot;It&#39;s easy to tell the depth of a well.&quot;     </span></span>
-<span id="cb303-7"><a href="strings-and-regular-expressions.html#cb303-7"></a><span class="co">#&gt; [4] &quot;These days a chicken leg is a rare dish.&quot;   </span></span>
-<span id="cb303-8"><a href="strings-and-regular-expressions.html#cb303-8"></a><span class="co">#&gt; [5] &quot;Rice is often served in round bowls.&quot;       </span></span>
-<span id="cb303-9"><a href="strings-and-regular-expressions.html#cb303-9"></a><span class="co">#&gt; [6] &quot;The juice of lemons makes fine punch.&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="strings-and-regular-expressions.html#cb302-1"></a><span class="kw">length</span>(sentences)</span>
+<span id="cb302-2"><a href="strings-and-regular-expressions.html#cb302-2"></a><span class="co">#&gt; [1] 720</span></span>
+<span id="cb302-3"><a href="strings-and-regular-expressions.html#cb302-3"></a><span class="kw">head</span>(sentences)</span>
+<span id="cb302-4"><a href="strings-and-regular-expressions.html#cb302-4"></a><span class="co">#&gt; [1] &quot;The birch canoe slid on the smooth planks.&quot; </span></span>
+<span id="cb302-5"><a href="strings-and-regular-expressions.html#cb302-5"></a><span class="co">#&gt; [2] &quot;Glue the sheet to the dark blue background.&quot;</span></span>
+<span id="cb302-6"><a href="strings-and-regular-expressions.html#cb302-6"></a><span class="co">#&gt; [3] &quot;It&#39;s easy to tell the depth of a well.&quot;     </span></span>
+<span id="cb302-7"><a href="strings-and-regular-expressions.html#cb302-7"></a><span class="co">#&gt; [4] &quot;These days a chicken leg is a rare dish.&quot;   </span></span>
+<span id="cb302-8"><a href="strings-and-regular-expressions.html#cb302-8"></a><span class="co">#&gt; [5] &quot;Rice is often served in round bowls.&quot;       </span></span>
+<span id="cb302-9"><a href="strings-and-regular-expressions.html#cb302-9"></a><span class="co">#&gt; [6] &quot;The juice of lemons makes fine punch.&quot;</span></span></code></pre></div>
 <p>Imagine we want to find all sentences that contain a color. We first create a vector of color names, and then turn it into a single regular expression:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="strings-and-regular-expressions.html#cb304-1"></a>colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>)</span>
-<span id="cb304-2"><a href="strings-and-regular-expressions.html#cb304-2"></a>color_match &lt;-<span class="st"> </span><span class="kw">str_c</span>(colors, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
-<span id="cb304-3"><a href="strings-and-regular-expressions.html#cb304-3"></a>color_match</span>
-<span id="cb304-4"><a href="strings-and-regular-expressions.html#cb304-4"></a><span class="co">#&gt; [1] &quot;red|orange|yellow|green|blue|purple&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="strings-and-regular-expressions.html#cb303-1"></a>colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>)</span>
+<span id="cb303-2"><a href="strings-and-regular-expressions.html#cb303-2"></a>color_match &lt;-<span class="st"> </span><span class="kw">str_c</span>(colors, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb303-3"><a href="strings-and-regular-expressions.html#cb303-3"></a>color_match</span>
+<span id="cb303-4"><a href="strings-and-regular-expressions.html#cb303-4"></a><span class="co">#&gt; [1] &quot;red|orange|yellow|green|blue|purple&quot;</span></span></code></pre></div>
 <p>Now we can select the sentences that contain a color, and then extract the color to figure out which one it is:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="strings-and-regular-expressions.html#cb305-1"></a><span class="co"># Find sentences with colors</span></span>
-<span id="cb305-2"><a href="strings-and-regular-expressions.html#cb305-2"></a>has_color &lt;-<span class="st"> </span><span class="kw">str_subset</span>(sentences, color_match)</span>
-<span id="cb305-3"><a href="strings-and-regular-expressions.html#cb305-3"></a><span class="kw">head</span>(has_color)</span>
-<span id="cb305-4"><a href="strings-and-regular-expressions.html#cb305-4"></a><span class="co">#&gt; [1] &quot;Glue the sheet to the dark blue background.&quot;</span></span>
-<span id="cb305-5"><a href="strings-and-regular-expressions.html#cb305-5"></a><span class="co">#&gt; [2] &quot;Two blue fish swam in the tank.&quot;            </span></span>
-<span id="cb305-6"><a href="strings-and-regular-expressions.html#cb305-6"></a><span class="co">#&gt; [3] &quot;The colt reared and threw the tall rider.&quot;  </span></span>
-<span id="cb305-7"><a href="strings-and-regular-expressions.html#cb305-7"></a><span class="co">#&gt; [4] &quot;The wide road shimmered in the hot sun.&quot;    </span></span>
-<span id="cb305-8"><a href="strings-and-regular-expressions.html#cb305-8"></a><span class="co">#&gt; [5] &quot;See the cat glaring at the scared mouse.&quot;   </span></span>
-<span id="cb305-9"><a href="strings-and-regular-expressions.html#cb305-9"></a><span class="co">#&gt; [6] &quot;A wisp of cloud hung in the blue air.&quot;</span></span>
-<span id="cb305-10"><a href="strings-and-regular-expressions.html#cb305-10"></a></span>
-<span id="cb305-11"><a href="strings-and-regular-expressions.html#cb305-11"></a><span class="co"># Extract the color</span></span>
-<span id="cb305-12"><a href="strings-and-regular-expressions.html#cb305-12"></a>matches &lt;-<span class="st"> </span><span class="kw">str_extract</span>(has_color, color_match)</span>
-<span id="cb305-13"><a href="strings-and-regular-expressions.html#cb305-13"></a><span class="kw">head</span>(matches)</span>
-<span id="cb305-14"><a href="strings-and-regular-expressions.html#cb305-14"></a><span class="co">#&gt; [1] &quot;blue&quot; &quot;blue&quot; &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;blue&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="strings-and-regular-expressions.html#cb304-1"></a><span class="co"># Find sentences with colors</span></span>
+<span id="cb304-2"><a href="strings-and-regular-expressions.html#cb304-2"></a>has_color &lt;-<span class="st"> </span><span class="kw">str_subset</span>(sentences, color_match)</span>
+<span id="cb304-3"><a href="strings-and-regular-expressions.html#cb304-3"></a><span class="kw">head</span>(has_color)</span>
+<span id="cb304-4"><a href="strings-and-regular-expressions.html#cb304-4"></a><span class="co">#&gt; [1] &quot;Glue the sheet to the dark blue background.&quot;</span></span>
+<span id="cb304-5"><a href="strings-and-regular-expressions.html#cb304-5"></a><span class="co">#&gt; [2] &quot;Two blue fish swam in the tank.&quot;            </span></span>
+<span id="cb304-6"><a href="strings-and-regular-expressions.html#cb304-6"></a><span class="co">#&gt; [3] &quot;The colt reared and threw the tall rider.&quot;  </span></span>
+<span id="cb304-7"><a href="strings-and-regular-expressions.html#cb304-7"></a><span class="co">#&gt; [4] &quot;The wide road shimmered in the hot sun.&quot;    </span></span>
+<span id="cb304-8"><a href="strings-and-regular-expressions.html#cb304-8"></a><span class="co">#&gt; [5] &quot;See the cat glaring at the scared mouse.&quot;   </span></span>
+<span id="cb304-9"><a href="strings-and-regular-expressions.html#cb304-9"></a><span class="co">#&gt; [6] &quot;A wisp of cloud hung in the blue air.&quot;</span></span>
+<span id="cb304-10"><a href="strings-and-regular-expressions.html#cb304-10"></a></span>
+<span id="cb304-11"><a href="strings-and-regular-expressions.html#cb304-11"></a><span class="co"># Extract the color</span></span>
+<span id="cb304-12"><a href="strings-and-regular-expressions.html#cb304-12"></a>matches &lt;-<span class="st"> </span><span class="kw">str_extract</span>(has_color, color_match)</span>
+<span id="cb304-13"><a href="strings-and-regular-expressions.html#cb304-13"></a><span class="kw">head</span>(matches)</span>
+<span id="cb304-14"><a href="strings-and-regular-expressions.html#cb304-14"></a><span class="co">#&gt; [1] &quot;blue&quot; &quot;blue&quot; &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;blue&quot;</span></span></code></pre></div>
 <p>Note that <code>str_extract()</code> only extracts the first match. This is a common pattern for <code>stringr</code> functions, because working with a single match allows you to use much simpler data structures. To get all matches, use <code>str_extract_all()</code>. It returns a list:</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="strings-and-regular-expressions.html#cb306-1"></a>all_colors &lt;-<span class="st"> </span><span class="kw">str_extract_all</span>(has_color, color_match)</span>
-<span id="cb306-2"><a href="strings-and-regular-expressions.html#cb306-2"></a>all_colors[<span class="dv">15</span><span class="op">:</span><span class="dv">20</span>]</span>
-<span id="cb306-3"><a href="strings-and-regular-expressions.html#cb306-3"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb306-4"><a href="strings-and-regular-expressions.html#cb306-4"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
-<span id="cb306-5"><a href="strings-and-regular-expressions.html#cb306-5"></a><span class="co">#&gt; </span></span>
-<span id="cb306-6"><a href="strings-and-regular-expressions.html#cb306-6"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb306-7"><a href="strings-and-regular-expressions.html#cb306-7"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
-<span id="cb306-8"><a href="strings-and-regular-expressions.html#cb306-8"></a><span class="co">#&gt; </span></span>
-<span id="cb306-9"><a href="strings-and-regular-expressions.html#cb306-9"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb306-10"><a href="strings-and-regular-expressions.html#cb306-10"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
-<span id="cb306-11"><a href="strings-and-regular-expressions.html#cb306-11"></a><span class="co">#&gt; </span></span>
-<span id="cb306-12"><a href="strings-and-regular-expressions.html#cb306-12"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb306-13"><a href="strings-and-regular-expressions.html#cb306-13"></a><span class="co">#&gt; [1] &quot;blue&quot;</span></span>
-<span id="cb306-14"><a href="strings-and-regular-expressions.html#cb306-14"></a><span class="co">#&gt; </span></span>
-<span id="cb306-15"><a href="strings-and-regular-expressions.html#cb306-15"></a><span class="co">#&gt; [[5]]</span></span>
-<span id="cb306-16"><a href="strings-and-regular-expressions.html#cb306-16"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
-<span id="cb306-17"><a href="strings-and-regular-expressions.html#cb306-17"></a><span class="co">#&gt; </span></span>
-<span id="cb306-18"><a href="strings-and-regular-expressions.html#cb306-18"></a><span class="co">#&gt; [[6]]</span></span>
-<span id="cb306-19"><a href="strings-and-regular-expressions.html#cb306-19"></a><span class="co">#&gt; [1] &quot;blue&quot; &quot;red&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="strings-and-regular-expressions.html#cb305-1"></a>all_colors &lt;-<span class="st"> </span><span class="kw">str_extract_all</span>(has_color, color_match)</span>
+<span id="cb305-2"><a href="strings-and-regular-expressions.html#cb305-2"></a>all_colors[<span class="dv">15</span><span class="op">:</span><span class="dv">20</span>]</span>
+<span id="cb305-3"><a href="strings-and-regular-expressions.html#cb305-3"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb305-4"><a href="strings-and-regular-expressions.html#cb305-4"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
+<span id="cb305-5"><a href="strings-and-regular-expressions.html#cb305-5"></a><span class="co">#&gt; </span></span>
+<span id="cb305-6"><a href="strings-and-regular-expressions.html#cb305-6"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb305-7"><a href="strings-and-regular-expressions.html#cb305-7"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
+<span id="cb305-8"><a href="strings-and-regular-expressions.html#cb305-8"></a><span class="co">#&gt; </span></span>
+<span id="cb305-9"><a href="strings-and-regular-expressions.html#cb305-9"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb305-10"><a href="strings-and-regular-expressions.html#cb305-10"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
+<span id="cb305-11"><a href="strings-and-regular-expressions.html#cb305-11"></a><span class="co">#&gt; </span></span>
+<span id="cb305-12"><a href="strings-and-regular-expressions.html#cb305-12"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb305-13"><a href="strings-and-regular-expressions.html#cb305-13"></a><span class="co">#&gt; [1] &quot;blue&quot;</span></span>
+<span id="cb305-14"><a href="strings-and-regular-expressions.html#cb305-14"></a><span class="co">#&gt; </span></span>
+<span id="cb305-15"><a href="strings-and-regular-expressions.html#cb305-15"></a><span class="co">#&gt; [[5]]</span></span>
+<span id="cb305-16"><a href="strings-and-regular-expressions.html#cb305-16"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span>
+<span id="cb305-17"><a href="strings-and-regular-expressions.html#cb305-17"></a><span class="co">#&gt; </span></span>
+<span id="cb305-18"><a href="strings-and-regular-expressions.html#cb305-18"></a><span class="co">#&gt; [[6]]</span></span>
+<span id="cb305-19"><a href="strings-and-regular-expressions.html#cb305-19"></a><span class="co">#&gt; [1] &quot;blue&quot; &quot;red&quot;</span></span></code></pre></div>
 <p>If you use <code>simplify = TRUE</code>, <code>str_extract_all()</code> will return a matrix with short matches expanded to the same length as the longest:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="strings-and-regular-expressions.html#cb307-1"></a><span class="kw">str_extract_all</span>(has_color, color_match, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb307-2"><a href="strings-and-regular-expressions.html#cb307-2"></a><span class="co">#&gt;       [,1]     [,2] </span></span>
-<span id="cb307-3"><a href="strings-and-regular-expressions.html#cb307-3"></a><span class="co">#&gt;  [1,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-4"><a href="strings-and-regular-expressions.html#cb307-4"></a><span class="co">#&gt;  [2,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-5"><a href="strings-and-regular-expressions.html#cb307-5"></a><span class="co">#&gt;  [3,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-6"><a href="strings-and-regular-expressions.html#cb307-6"></a><span class="co">#&gt;  [4,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-7"><a href="strings-and-regular-expressions.html#cb307-7"></a><span class="co">#&gt;  [5,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-8"><a href="strings-and-regular-expressions.html#cb307-8"></a><span class="co">#&gt;  [6,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-9"><a href="strings-and-regular-expressions.html#cb307-9"></a><span class="co">#&gt;  [7,] &quot;yellow&quot; &quot;&quot;   </span></span>
-<span id="cb307-10"><a href="strings-and-regular-expressions.html#cb307-10"></a><span class="co">#&gt;  [8,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-11"><a href="strings-and-regular-expressions.html#cb307-11"></a><span class="co">#&gt;  [9,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-12"><a href="strings-and-regular-expressions.html#cb307-12"></a><span class="co">#&gt; [10,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-13"><a href="strings-and-regular-expressions.html#cb307-13"></a><span class="co">#&gt; [11,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-14"><a href="strings-and-regular-expressions.html#cb307-14"></a><span class="co">#&gt; [12,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-15"><a href="strings-and-regular-expressions.html#cb307-15"></a><span class="co">#&gt; [13,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-16"><a href="strings-and-regular-expressions.html#cb307-16"></a><span class="co">#&gt; [14,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-17"><a href="strings-and-regular-expressions.html#cb307-17"></a><span class="co">#&gt; [15,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-18"><a href="strings-and-regular-expressions.html#cb307-18"></a><span class="co">#&gt; [16,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-19"><a href="strings-and-regular-expressions.html#cb307-19"></a><span class="co">#&gt; [17,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-20"><a href="strings-and-regular-expressions.html#cb307-20"></a><span class="co">#&gt; [18,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-21"><a href="strings-and-regular-expressions.html#cb307-21"></a><span class="co">#&gt; [19,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-22"><a href="strings-and-regular-expressions.html#cb307-22"></a><span class="co">#&gt; [20,] &quot;blue&quot;   &quot;red&quot;</span></span>
-<span id="cb307-23"><a href="strings-and-regular-expressions.html#cb307-23"></a><span class="co">#&gt; [21,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-24"><a href="strings-and-regular-expressions.html#cb307-24"></a><span class="co">#&gt; [22,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-25"><a href="strings-and-regular-expressions.html#cb307-25"></a><span class="co">#&gt; [23,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-26"><a href="strings-and-regular-expressions.html#cb307-26"></a><span class="co">#&gt; [24,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-27"><a href="strings-and-regular-expressions.html#cb307-27"></a><span class="co">#&gt; [25,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-28"><a href="strings-and-regular-expressions.html#cb307-28"></a><span class="co">#&gt; [26,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-29"><a href="strings-and-regular-expressions.html#cb307-29"></a><span class="co">#&gt; [27,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-30"><a href="strings-and-regular-expressions.html#cb307-30"></a><span class="co">#&gt; [28,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-31"><a href="strings-and-regular-expressions.html#cb307-31"></a><span class="co">#&gt; [29,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-32"><a href="strings-and-regular-expressions.html#cb307-32"></a><span class="co">#&gt; [30,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-33"><a href="strings-and-regular-expressions.html#cb307-33"></a><span class="co">#&gt; [31,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-34"><a href="strings-and-regular-expressions.html#cb307-34"></a><span class="co">#&gt; [32,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-35"><a href="strings-and-regular-expressions.html#cb307-35"></a><span class="co">#&gt; [33,] &quot;purple&quot; &quot;&quot;   </span></span>
-<span id="cb307-36"><a href="strings-and-regular-expressions.html#cb307-36"></a><span class="co">#&gt; [34,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-37"><a href="strings-and-regular-expressions.html#cb307-37"></a><span class="co">#&gt; [35,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-38"><a href="strings-and-regular-expressions.html#cb307-38"></a><span class="co">#&gt; [36,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-39"><a href="strings-and-regular-expressions.html#cb307-39"></a><span class="co">#&gt; [37,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-40"><a href="strings-and-regular-expressions.html#cb307-40"></a><span class="co">#&gt; [38,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-41"><a href="strings-and-regular-expressions.html#cb307-41"></a><span class="co">#&gt; [39,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-42"><a href="strings-and-regular-expressions.html#cb307-42"></a><span class="co">#&gt; [40,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-43"><a href="strings-and-regular-expressions.html#cb307-43"></a><span class="co">#&gt; [41,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-44"><a href="strings-and-regular-expressions.html#cb307-44"></a><span class="co">#&gt; [42,] &quot;blue&quot;   &quot;&quot;   </span></span>
-<span id="cb307-45"><a href="strings-and-regular-expressions.html#cb307-45"></a><span class="co">#&gt; [43,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-46"><a href="strings-and-regular-expressions.html#cb307-46"></a><span class="co">#&gt; [44,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-47"><a href="strings-and-regular-expressions.html#cb307-47"></a><span class="co">#&gt; [45,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-48"><a href="strings-and-regular-expressions.html#cb307-48"></a><span class="co">#&gt; [46,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-49"><a href="strings-and-regular-expressions.html#cb307-49"></a><span class="co">#&gt; [47,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-50"><a href="strings-and-regular-expressions.html#cb307-50"></a><span class="co">#&gt; [48,] &quot;green&quot;  &quot;&quot;   </span></span>
-<span id="cb307-51"><a href="strings-and-regular-expressions.html#cb307-51"></a><span class="co">#&gt; [49,] &quot;green&quot;  &quot;red&quot;</span></span>
-<span id="cb307-52"><a href="strings-and-regular-expressions.html#cb307-52"></a><span class="co">#&gt; [50,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-53"><a href="strings-and-regular-expressions.html#cb307-53"></a><span class="co">#&gt; [51,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-54"><a href="strings-and-regular-expressions.html#cb307-54"></a><span class="co">#&gt; [52,] &quot;yellow&quot; &quot;&quot;   </span></span>
-<span id="cb307-55"><a href="strings-and-regular-expressions.html#cb307-55"></a><span class="co">#&gt; [53,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-56"><a href="strings-and-regular-expressions.html#cb307-56"></a><span class="co">#&gt; [54,] &quot;orange&quot; &quot;red&quot;</span></span>
-<span id="cb307-57"><a href="strings-and-regular-expressions.html#cb307-57"></a><span class="co">#&gt; [55,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-58"><a href="strings-and-regular-expressions.html#cb307-58"></a><span class="co">#&gt; [56,] &quot;red&quot;    &quot;&quot;   </span></span>
-<span id="cb307-59"><a href="strings-and-regular-expressions.html#cb307-59"></a><span class="co">#&gt; [57,] &quot;red&quot;    &quot;&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="strings-and-regular-expressions.html#cb306-1"></a><span class="kw">str_extract_all</span>(has_color, color_match, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb306-2"><a href="strings-and-regular-expressions.html#cb306-2"></a><span class="co">#&gt;       [,1]     [,2] </span></span>
+<span id="cb306-3"><a href="strings-and-regular-expressions.html#cb306-3"></a><span class="co">#&gt;  [1,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-4"><a href="strings-and-regular-expressions.html#cb306-4"></a><span class="co">#&gt;  [2,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-5"><a href="strings-and-regular-expressions.html#cb306-5"></a><span class="co">#&gt;  [3,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-6"><a href="strings-and-regular-expressions.html#cb306-6"></a><span class="co">#&gt;  [4,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-7"><a href="strings-and-regular-expressions.html#cb306-7"></a><span class="co">#&gt;  [5,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-8"><a href="strings-and-regular-expressions.html#cb306-8"></a><span class="co">#&gt;  [6,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-9"><a href="strings-and-regular-expressions.html#cb306-9"></a><span class="co">#&gt;  [7,] &quot;yellow&quot; &quot;&quot;   </span></span>
+<span id="cb306-10"><a href="strings-and-regular-expressions.html#cb306-10"></a><span class="co">#&gt;  [8,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-11"><a href="strings-and-regular-expressions.html#cb306-11"></a><span class="co">#&gt;  [9,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-12"><a href="strings-and-regular-expressions.html#cb306-12"></a><span class="co">#&gt; [10,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-13"><a href="strings-and-regular-expressions.html#cb306-13"></a><span class="co">#&gt; [11,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-14"><a href="strings-and-regular-expressions.html#cb306-14"></a><span class="co">#&gt; [12,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-15"><a href="strings-and-regular-expressions.html#cb306-15"></a><span class="co">#&gt; [13,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-16"><a href="strings-and-regular-expressions.html#cb306-16"></a><span class="co">#&gt; [14,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-17"><a href="strings-and-regular-expressions.html#cb306-17"></a><span class="co">#&gt; [15,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-18"><a href="strings-and-regular-expressions.html#cb306-18"></a><span class="co">#&gt; [16,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-19"><a href="strings-and-regular-expressions.html#cb306-19"></a><span class="co">#&gt; [17,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-20"><a href="strings-and-regular-expressions.html#cb306-20"></a><span class="co">#&gt; [18,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-21"><a href="strings-and-regular-expressions.html#cb306-21"></a><span class="co">#&gt; [19,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-22"><a href="strings-and-regular-expressions.html#cb306-22"></a><span class="co">#&gt; [20,] &quot;blue&quot;   &quot;red&quot;</span></span>
+<span id="cb306-23"><a href="strings-and-regular-expressions.html#cb306-23"></a><span class="co">#&gt; [21,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-24"><a href="strings-and-regular-expressions.html#cb306-24"></a><span class="co">#&gt; [22,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-25"><a href="strings-and-regular-expressions.html#cb306-25"></a><span class="co">#&gt; [23,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-26"><a href="strings-and-regular-expressions.html#cb306-26"></a><span class="co">#&gt; [24,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-27"><a href="strings-and-regular-expressions.html#cb306-27"></a><span class="co">#&gt; [25,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-28"><a href="strings-and-regular-expressions.html#cb306-28"></a><span class="co">#&gt; [26,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-29"><a href="strings-and-regular-expressions.html#cb306-29"></a><span class="co">#&gt; [27,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-30"><a href="strings-and-regular-expressions.html#cb306-30"></a><span class="co">#&gt; [28,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-31"><a href="strings-and-regular-expressions.html#cb306-31"></a><span class="co">#&gt; [29,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-32"><a href="strings-and-regular-expressions.html#cb306-32"></a><span class="co">#&gt; [30,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-33"><a href="strings-and-regular-expressions.html#cb306-33"></a><span class="co">#&gt; [31,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-34"><a href="strings-and-regular-expressions.html#cb306-34"></a><span class="co">#&gt; [32,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-35"><a href="strings-and-regular-expressions.html#cb306-35"></a><span class="co">#&gt; [33,] &quot;purple&quot; &quot;&quot;   </span></span>
+<span id="cb306-36"><a href="strings-and-regular-expressions.html#cb306-36"></a><span class="co">#&gt; [34,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-37"><a href="strings-and-regular-expressions.html#cb306-37"></a><span class="co">#&gt; [35,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-38"><a href="strings-and-regular-expressions.html#cb306-38"></a><span class="co">#&gt; [36,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-39"><a href="strings-and-regular-expressions.html#cb306-39"></a><span class="co">#&gt; [37,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-40"><a href="strings-and-regular-expressions.html#cb306-40"></a><span class="co">#&gt; [38,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-41"><a href="strings-and-regular-expressions.html#cb306-41"></a><span class="co">#&gt; [39,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-42"><a href="strings-and-regular-expressions.html#cb306-42"></a><span class="co">#&gt; [40,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-43"><a href="strings-and-regular-expressions.html#cb306-43"></a><span class="co">#&gt; [41,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-44"><a href="strings-and-regular-expressions.html#cb306-44"></a><span class="co">#&gt; [42,] &quot;blue&quot;   &quot;&quot;   </span></span>
+<span id="cb306-45"><a href="strings-and-regular-expressions.html#cb306-45"></a><span class="co">#&gt; [43,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-46"><a href="strings-and-regular-expressions.html#cb306-46"></a><span class="co">#&gt; [44,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-47"><a href="strings-and-regular-expressions.html#cb306-47"></a><span class="co">#&gt; [45,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-48"><a href="strings-and-regular-expressions.html#cb306-48"></a><span class="co">#&gt; [46,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-49"><a href="strings-and-regular-expressions.html#cb306-49"></a><span class="co">#&gt; [47,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-50"><a href="strings-and-regular-expressions.html#cb306-50"></a><span class="co">#&gt; [48,] &quot;green&quot;  &quot;&quot;   </span></span>
+<span id="cb306-51"><a href="strings-and-regular-expressions.html#cb306-51"></a><span class="co">#&gt; [49,] &quot;green&quot;  &quot;red&quot;</span></span>
+<span id="cb306-52"><a href="strings-and-regular-expressions.html#cb306-52"></a><span class="co">#&gt; [50,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-53"><a href="strings-and-regular-expressions.html#cb306-53"></a><span class="co">#&gt; [51,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-54"><a href="strings-and-regular-expressions.html#cb306-54"></a><span class="co">#&gt; [52,] &quot;yellow&quot; &quot;&quot;   </span></span>
+<span id="cb306-55"><a href="strings-and-regular-expressions.html#cb306-55"></a><span class="co">#&gt; [53,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-56"><a href="strings-and-regular-expressions.html#cb306-56"></a><span class="co">#&gt; [54,] &quot;orange&quot; &quot;red&quot;</span></span>
+<span id="cb306-57"><a href="strings-and-regular-expressions.html#cb306-57"></a><span class="co">#&gt; [55,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-58"><a href="strings-and-regular-expressions.html#cb306-58"></a><span class="co">#&gt; [56,] &quot;red&quot;    &quot;&quot;   </span></span>
+<span id="cb306-59"><a href="strings-and-regular-expressions.html#cb306-59"></a><span class="co">#&gt; [57,] &quot;red&quot;    &quot;&quot;</span></span></code></pre></div>
 <div id="challenge-2.-11" class="section level4 unnumbered">
 <h4>Challenge 2.</h4>
 <p>In the previous example, you might have noticed that the regular expression matched “flickered”, which is not a color. Modify the regex to fix the problem.</p>
@@ -923,70 +923,70 @@ a string. What will you do if the string has an even number of characters?</p>
 <div id="replacing-matches" class="section level3">
 <h3><span class="header-section-number">15.3.3</span> Replacing Matches</h3>
 <p><code>str_replace()</code> and <code>str_replace_all()</code> allow you to replace matches with new strings. The simplest use is to replace a pattern with a fixed string:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="strings-and-regular-expressions.html#cb308-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
-<span id="cb308-2"><a href="strings-and-regular-expressions.html#cb308-2"></a><span class="kw">str_replace</span>(x, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="co"># replace the first instance of a match</span></span>
-<span id="cb308-3"><a href="strings-and-regular-expressions.html#cb308-3"></a><span class="co">#&gt; [1] &quot;-pple&quot;  &quot;p-ar&quot;   &quot;b-nana&quot;</span></span>
-<span id="cb308-4"><a href="strings-and-regular-expressions.html#cb308-4"></a><span class="kw">str_replace_all</span>(x, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="co"># replace all instances of a match</span></span>
-<span id="cb308-5"><a href="strings-and-regular-expressions.html#cb308-5"></a><span class="co">#&gt; [1] &quot;-ppl-&quot;  &quot;p--r&quot;   &quot;b-n-n-&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="strings-and-regular-expressions.html#cb307-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
+<span id="cb307-2"><a href="strings-and-regular-expressions.html#cb307-2"></a><span class="kw">str_replace</span>(x, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="co"># replace the first instance of a match</span></span>
+<span id="cb307-3"><a href="strings-and-regular-expressions.html#cb307-3"></a><span class="co">#&gt; [1] &quot;-pple&quot;  &quot;p-ar&quot;   &quot;b-nana&quot;</span></span>
+<span id="cb307-4"><a href="strings-and-regular-expressions.html#cb307-4"></a><span class="kw">str_replace_all</span>(x, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="co"># replace all instances of a match</span></span>
+<span id="cb307-5"><a href="strings-and-regular-expressions.html#cb307-5"></a><span class="co">#&gt; [1] &quot;-ppl-&quot;  &quot;p--r&quot;   &quot;b-n-n-&quot;</span></span></code></pre></div>
 <p>With <code>str_replace_all()</code>, you can perform multiple replacements by supplying a named vector:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="strings-and-regular-expressions.html#cb309-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1 house&quot;</span>, <span class="st">&quot;2 cars&quot;</span>, <span class="st">&quot;3 people&quot;</span>)</span>
-<span id="cb309-2"><a href="strings-and-regular-expressions.html#cb309-2"></a><span class="kw">str_replace_all</span>(x, <span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;one&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;two&quot;</span>, <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;three&quot;</span>))</span>
-<span id="cb309-3"><a href="strings-and-regular-expressions.html#cb309-3"></a><span class="co">#&gt; [1] &quot;one house&quot;    &quot;two cars&quot;     &quot;three people&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="strings-and-regular-expressions.html#cb308-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1 house&quot;</span>, <span class="st">&quot;2 cars&quot;</span>, <span class="st">&quot;3 people&quot;</span>)</span>
+<span id="cb308-2"><a href="strings-and-regular-expressions.html#cb308-2"></a><span class="kw">str_replace_all</span>(x, <span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;one&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;two&quot;</span>, <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;three&quot;</span>))</span>
+<span id="cb308-3"><a href="strings-and-regular-expressions.html#cb308-3"></a><span class="co">#&gt; [1] &quot;one house&quot;    &quot;two cars&quot;     &quot;three people&quot;</span></span></code></pre></div>
 </div>
 <div id="splitting" class="section level3">
 <h3><span class="header-section-number">15.3.4</span> Splitting</h3>
 <p>Use <code>str_split()</code> to split a string up into pieces. For example, we could split sentences into words:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="strings-and-regular-expressions.html#cb309-1"></a>sentences <span class="op">%&gt;%</span></span>
+<span id="cb309-2"><a href="strings-and-regular-expressions.html#cb309-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb309-3"><a href="strings-and-regular-expressions.html#cb309-3"></a><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot; &quot;</span>)</span>
+<span id="cb309-4"><a href="strings-and-regular-expressions.html#cb309-4"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb309-5"><a href="strings-and-regular-expressions.html#cb309-5"></a><span class="co">#&gt; [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; </span></span>
+<span id="cb309-6"><a href="strings-and-regular-expressions.html#cb309-6"></a><span class="co">#&gt; [8] &quot;planks.&quot;</span></span>
+<span id="cb309-7"><a href="strings-and-regular-expressions.html#cb309-7"></a><span class="co">#&gt; </span></span>
+<span id="cb309-8"><a href="strings-and-regular-expressions.html#cb309-8"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb309-9"><a href="strings-and-regular-expressions.html#cb309-9"></a><span class="co">#&gt; [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        </span></span>
+<span id="cb309-10"><a href="strings-and-regular-expressions.html#cb309-10"></a><span class="co">#&gt; [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;</span></span>
+<span id="cb309-11"><a href="strings-and-regular-expressions.html#cb309-11"></a><span class="co">#&gt; </span></span>
+<span id="cb309-12"><a href="strings-and-regular-expressions.html#cb309-12"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb309-13"><a href="strings-and-regular-expressions.html#cb309-13"></a><span class="co">#&gt; [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;</span></span>
+<span id="cb309-14"><a href="strings-and-regular-expressions.html#cb309-14"></a><span class="co">#&gt; </span></span>
+<span id="cb309-15"><a href="strings-and-regular-expressions.html#cb309-15"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb309-16"><a href="strings-and-regular-expressions.html#cb309-16"></a><span class="co">#&gt; [1] &quot;These&quot;   &quot;days&quot;    &quot;a&quot;       &quot;chicken&quot; &quot;leg&quot;     &quot;is&quot;      &quot;a&quot;      </span></span>
+<span id="cb309-17"><a href="strings-and-regular-expressions.html#cb309-17"></a><span class="co">#&gt; [8] &quot;rare&quot;    &quot;dish.&quot;  </span></span>
+<span id="cb309-18"><a href="strings-and-regular-expressions.html#cb309-18"></a><span class="co">#&gt; </span></span>
+<span id="cb309-19"><a href="strings-and-regular-expressions.html#cb309-19"></a><span class="co">#&gt; [[5]]</span></span>
+<span id="cb309-20"><a href="strings-and-regular-expressions.html#cb309-20"></a><span class="co">#&gt; [1] &quot;Rice&quot;   &quot;is&quot;     &quot;often&quot;  &quot;served&quot; &quot;in&quot;     &quot;round&quot;  &quot;bowls.&quot;</span></span></code></pre></div>
+<p>Like the other <code>stringr</code> functions that return a list, you can use <code>simplify = TRUE</code> to return a matrix:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="strings-and-regular-expressions.html#cb310-1"></a>sentences <span class="op">%&gt;%</span></span>
 <span id="cb310-2"><a href="strings-and-regular-expressions.html#cb310-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb310-3"><a href="strings-and-regular-expressions.html#cb310-3"></a><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot; &quot;</span>)</span>
-<span id="cb310-4"><a href="strings-and-regular-expressions.html#cb310-4"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb310-5"><a href="strings-and-regular-expressions.html#cb310-5"></a><span class="co">#&gt; [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; </span></span>
-<span id="cb310-6"><a href="strings-and-regular-expressions.html#cb310-6"></a><span class="co">#&gt; [8] &quot;planks.&quot;</span></span>
-<span id="cb310-7"><a href="strings-and-regular-expressions.html#cb310-7"></a><span class="co">#&gt; </span></span>
-<span id="cb310-8"><a href="strings-and-regular-expressions.html#cb310-8"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb310-9"><a href="strings-and-regular-expressions.html#cb310-9"></a><span class="co">#&gt; [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        </span></span>
-<span id="cb310-10"><a href="strings-and-regular-expressions.html#cb310-10"></a><span class="co">#&gt; [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;</span></span>
-<span id="cb310-11"><a href="strings-and-regular-expressions.html#cb310-11"></a><span class="co">#&gt; </span></span>
-<span id="cb310-12"><a href="strings-and-regular-expressions.html#cb310-12"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb310-13"><a href="strings-and-regular-expressions.html#cb310-13"></a><span class="co">#&gt; [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;</span></span>
-<span id="cb310-14"><a href="strings-and-regular-expressions.html#cb310-14"></a><span class="co">#&gt; </span></span>
-<span id="cb310-15"><a href="strings-and-regular-expressions.html#cb310-15"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb310-16"><a href="strings-and-regular-expressions.html#cb310-16"></a><span class="co">#&gt; [1] &quot;These&quot;   &quot;days&quot;    &quot;a&quot;       &quot;chicken&quot; &quot;leg&quot;     &quot;is&quot;      &quot;a&quot;      </span></span>
-<span id="cb310-17"><a href="strings-and-regular-expressions.html#cb310-17"></a><span class="co">#&gt; [8] &quot;rare&quot;    &quot;dish.&quot;  </span></span>
-<span id="cb310-18"><a href="strings-and-regular-expressions.html#cb310-18"></a><span class="co">#&gt; </span></span>
-<span id="cb310-19"><a href="strings-and-regular-expressions.html#cb310-19"></a><span class="co">#&gt; [[5]]</span></span>
-<span id="cb310-20"><a href="strings-and-regular-expressions.html#cb310-20"></a><span class="co">#&gt; [1] &quot;Rice&quot;   &quot;is&quot;     &quot;often&quot;  &quot;served&quot; &quot;in&quot;     &quot;round&quot;  &quot;bowls.&quot;</span></span></code></pre></div>
-<p>Like the other <code>stringr</code> functions that return a list, you can use <code>simplify = TRUE</code> to return a matrix:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="strings-and-regular-expressions.html#cb311-1"></a>sentences <span class="op">%&gt;%</span></span>
-<span id="cb311-2"><a href="strings-and-regular-expressions.html#cb311-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb311-3"><a href="strings-and-regular-expressions.html#cb311-3"></a><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot; &quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb311-4"><a href="strings-and-regular-expressions.html#cb311-4"></a><span class="co">#&gt;      [,1]    [,2]    [,3]    [,4]      [,5]  [,6]    [,7]     [,8]         </span></span>
-<span id="cb311-5"><a href="strings-and-regular-expressions.html#cb311-5"></a><span class="co">#&gt; [1,] &quot;The&quot;   &quot;birch&quot; &quot;canoe&quot; &quot;slid&quot;    &quot;on&quot;  &quot;the&quot;   &quot;smooth&quot; &quot;planks.&quot;    </span></span>
-<span id="cb311-6"><a href="strings-and-regular-expressions.html#cb311-6"></a><span class="co">#&gt; [2,] &quot;Glue&quot;  &quot;the&quot;   &quot;sheet&quot; &quot;to&quot;      &quot;the&quot; &quot;dark&quot;  &quot;blue&quot;   &quot;background.&quot;</span></span>
-<span id="cb311-7"><a href="strings-and-regular-expressions.html#cb311-7"></a><span class="co">#&gt; [3,] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;    &quot;the&quot; &quot;depth&quot; &quot;of&quot;     &quot;a&quot;          </span></span>
-<span id="cb311-8"><a href="strings-and-regular-expressions.html#cb311-8"></a><span class="co">#&gt; [4,] &quot;These&quot; &quot;days&quot;  &quot;a&quot;     &quot;chicken&quot; &quot;leg&quot; &quot;is&quot;    &quot;a&quot;      &quot;rare&quot;       </span></span>
-<span id="cb311-9"><a href="strings-and-regular-expressions.html#cb311-9"></a><span class="co">#&gt; [5,] &quot;Rice&quot;  &quot;is&quot;    &quot;often&quot; &quot;served&quot;  &quot;in&quot;  &quot;round&quot; &quot;bowls.&quot; &quot;&quot;           </span></span>
-<span id="cb311-10"><a href="strings-and-regular-expressions.html#cb311-10"></a><span class="co">#&gt;      [,9]   </span></span>
-<span id="cb311-11"><a href="strings-and-regular-expressions.html#cb311-11"></a><span class="co">#&gt; [1,] &quot;&quot;     </span></span>
-<span id="cb311-12"><a href="strings-and-regular-expressions.html#cb311-12"></a><span class="co">#&gt; [2,] &quot;&quot;     </span></span>
-<span id="cb311-13"><a href="strings-and-regular-expressions.html#cb311-13"></a><span class="co">#&gt; [3,] &quot;well.&quot;</span></span>
-<span id="cb311-14"><a href="strings-and-regular-expressions.html#cb311-14"></a><span class="co">#&gt; [4,] &quot;dish.&quot;</span></span>
-<span id="cb311-15"><a href="strings-and-regular-expressions.html#cb311-15"></a><span class="co">#&gt; [5,] &quot;&quot;</span></span></code></pre></div>
+<span id="cb310-3"><a href="strings-and-regular-expressions.html#cb310-3"></a><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot; &quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb310-4"><a href="strings-and-regular-expressions.html#cb310-4"></a><span class="co">#&gt;      [,1]    [,2]    [,3]    [,4]      [,5]  [,6]    [,7]     [,8]         </span></span>
+<span id="cb310-5"><a href="strings-and-regular-expressions.html#cb310-5"></a><span class="co">#&gt; [1,] &quot;The&quot;   &quot;birch&quot; &quot;canoe&quot; &quot;slid&quot;    &quot;on&quot;  &quot;the&quot;   &quot;smooth&quot; &quot;planks.&quot;    </span></span>
+<span id="cb310-6"><a href="strings-and-regular-expressions.html#cb310-6"></a><span class="co">#&gt; [2,] &quot;Glue&quot;  &quot;the&quot;   &quot;sheet&quot; &quot;to&quot;      &quot;the&quot; &quot;dark&quot;  &quot;blue&quot;   &quot;background.&quot;</span></span>
+<span id="cb310-7"><a href="strings-and-regular-expressions.html#cb310-7"></a><span class="co">#&gt; [3,] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;    &quot;the&quot; &quot;depth&quot; &quot;of&quot;     &quot;a&quot;          </span></span>
+<span id="cb310-8"><a href="strings-and-regular-expressions.html#cb310-8"></a><span class="co">#&gt; [4,] &quot;These&quot; &quot;days&quot;  &quot;a&quot;     &quot;chicken&quot; &quot;leg&quot; &quot;is&quot;    &quot;a&quot;      &quot;rare&quot;       </span></span>
+<span id="cb310-9"><a href="strings-and-regular-expressions.html#cb310-9"></a><span class="co">#&gt; [5,] &quot;Rice&quot;  &quot;is&quot;    &quot;often&quot; &quot;served&quot;  &quot;in&quot;  &quot;round&quot; &quot;bowls.&quot; &quot;&quot;           </span></span>
+<span id="cb310-10"><a href="strings-and-regular-expressions.html#cb310-10"></a><span class="co">#&gt;      [,9]   </span></span>
+<span id="cb310-11"><a href="strings-and-regular-expressions.html#cb310-11"></a><span class="co">#&gt; [1,] &quot;&quot;     </span></span>
+<span id="cb310-12"><a href="strings-and-regular-expressions.html#cb310-12"></a><span class="co">#&gt; [2,] &quot;&quot;     </span></span>
+<span id="cb310-13"><a href="strings-and-regular-expressions.html#cb310-13"></a><span class="co">#&gt; [3,] &quot;well.&quot;</span></span>
+<span id="cb310-14"><a href="strings-and-regular-expressions.html#cb310-14"></a><span class="co">#&gt; [4,] &quot;dish.&quot;</span></span>
+<span id="cb310-15"><a href="strings-and-regular-expressions.html#cb310-15"></a><span class="co">#&gt; [5,] &quot;&quot;</span></span></code></pre></div>
 <p>You can also request a maximum number of pieces:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="strings-and-regular-expressions.html#cb312-1"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name: Hadley&quot;</span>, <span class="st">&quot;Country: NZ&quot;</span>, <span class="st">&quot;Age: 35&quot;</span>)</span>
-<span id="cb312-2"><a href="strings-and-regular-expressions.html#cb312-2"></a>fields <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_split</span>(<span class="st">&quot;: &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb312-3"><a href="strings-and-regular-expressions.html#cb312-3"></a><span class="co">#&gt;      [,1]      [,2]    </span></span>
-<span id="cb312-4"><a href="strings-and-regular-expressions.html#cb312-4"></a><span class="co">#&gt; [1,] &quot;Name&quot;    &quot;Hadley&quot;</span></span>
-<span id="cb312-5"><a href="strings-and-regular-expressions.html#cb312-5"></a><span class="co">#&gt; [2,] &quot;Country&quot; &quot;NZ&quot;    </span></span>
-<span id="cb312-6"><a href="strings-and-regular-expressions.html#cb312-6"></a><span class="co">#&gt; [3,] &quot;Age&quot;     &quot;35&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="strings-and-regular-expressions.html#cb311-1"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name: Hadley&quot;</span>, <span class="st">&quot;Country: NZ&quot;</span>, <span class="st">&quot;Age: 35&quot;</span>)</span>
+<span id="cb311-2"><a href="strings-and-regular-expressions.html#cb311-2"></a>fields <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_split</span>(<span class="st">&quot;: &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb311-3"><a href="strings-and-regular-expressions.html#cb311-3"></a><span class="co">#&gt;      [,1]      [,2]    </span></span>
+<span id="cb311-4"><a href="strings-and-regular-expressions.html#cb311-4"></a><span class="co">#&gt; [1,] &quot;Name&quot;    &quot;Hadley&quot;</span></span>
+<span id="cb311-5"><a href="strings-and-regular-expressions.html#cb311-5"></a><span class="co">#&gt; [2,] &quot;Country&quot; &quot;NZ&quot;    </span></span>
+<span id="cb311-6"><a href="strings-and-regular-expressions.html#cb311-6"></a><span class="co">#&gt; [3,] &quot;Age&quot;     &quot;35&quot;</span></span></code></pre></div>
 <p>Instead of splitting up strings by patterns, you can also split them up by character, line, sentence, or word <code>boundary()</code>s:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="strings-and-regular-expressions.html#cb313-1"></a>x &lt;-<span class="st"> &quot;This is a sentence.  This is another sentence.&quot;</span></span>
-<span id="cb313-2"><a href="strings-and-regular-expressions.html#cb313-2"></a><span class="kw">str_view_all</span>(x, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="strings-and-regular-expressions.html#cb312-1"></a>x &lt;-<span class="st"> &quot;This is a sentence.  This is another sentence.&quot;</span></span>
+<span id="cb312-2"><a href="strings-and-regular-expressions.html#cb312-2"></a><span class="kw">str_view_all</span>(x, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))</span></code></pre></div>
 <div id="htmlwidget-21c7483268bafca56cec" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-21c7483268bafca56cec">{"x":{"html":"<ul>\n  <li><span class='match'>This<\/span> <span class='match'>is<\/span> <span class='match'>a<\/span> <span class='match'>sentence<\/span>.  <span class='match'>This<\/span> <span class='match'>is<\/span> <span class='match'>another<\/span> <span class='match'>sentence<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="strings-and-regular-expressions.html#cb314-1"></a><span class="kw">str_split</span>(x, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))[[<span class="dv">1</span>]]</span>
-<span id="cb314-2"><a href="strings-and-regular-expressions.html#cb314-2"></a><span class="co">#&gt; [1] &quot;This&quot;     &quot;is&quot;       &quot;a&quot;        &quot;sentence&quot; &quot;This&quot;     &quot;is&quot;       &quot;another&quot; </span></span>
-<span id="cb314-3"><a href="strings-and-regular-expressions.html#cb314-3"></a><span class="co">#&gt; [8] &quot;sentence&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="strings-and-regular-expressions.html#cb313-1"></a><span class="kw">str_split</span>(x, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))[[<span class="dv">1</span>]]</span>
+<span id="cb313-2"><a href="strings-and-regular-expressions.html#cb313-2"></a><span class="co">#&gt; [1] &quot;This&quot;     &quot;is&quot;       &quot;a&quot;        &quot;sentence&quot; &quot;This&quot;     &quot;is&quot;       &quot;another&quot; </span></span>
+<span id="cb313-3"><a href="strings-and-regular-expressions.html#cb313-3"></a><span class="co">#&gt; [8] &quot;sentence&quot;</span></span></code></pre></div>
 <div id="challenge-3.-8" class="section level4 unnumbered">
 <h4>Challenge 3.</h4>
 <ol style="list-style-type: decimal">
@@ -1001,36 +1001,36 @@ then read the documentation.</p></li>
 <div id="other-types-of-patterns" class="section level2">
 <h2><span class="header-section-number">15.4</span> Other Types of Patterns</h2>
 <p>When you use a pattern that is a string, it is automatically wrapped into a call to <code>regex()</code>:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="strings-and-regular-expressions.html#cb315-1"></a><span class="co"># The regular call</span></span>
-<span id="cb315-2"><a href="strings-and-regular-expressions.html#cb315-2"></a><span class="kw">str_view</span>(fruit, <span class="st">&quot;nana&quot;</span>)</span>
-<span id="cb315-3"><a href="strings-and-regular-expressions.html#cb315-3"></a><span class="co"># Is shorthand for</span></span>
-<span id="cb315-4"><a href="strings-and-regular-expressions.html#cb315-4"></a><span class="kw">str_view</span>(fruit, <span class="kw">regex</span>(<span class="st">&quot;nana&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="strings-and-regular-expressions.html#cb314-1"></a><span class="co"># The regular call</span></span>
+<span id="cb314-2"><a href="strings-and-regular-expressions.html#cb314-2"></a><span class="kw">str_view</span>(fruit, <span class="st">&quot;nana&quot;</span>)</span>
+<span id="cb314-3"><a href="strings-and-regular-expressions.html#cb314-3"></a><span class="co"># Is shorthand for</span></span>
+<span id="cb314-4"><a href="strings-and-regular-expressions.html#cb314-4"></a><span class="kw">str_view</span>(fruit, <span class="kw">regex</span>(<span class="st">&quot;nana&quot;</span>))</span></code></pre></div>
 <p>You can use the other arguments of <code>regex()</code> to control details of the match:</p>
 <ul>
 <li><p><code>ignore_case = TRUE</code> allows characters to match either their uppercase or
 lowercase forms. This always uses the current locale.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="strings-and-regular-expressions.html#cb316-1"></a>bananas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;Banana&quot;</span>, <span class="st">&quot;BANANA&quot;</span>)</span>
-<span id="cb316-2"><a href="strings-and-regular-expressions.html#cb316-2"></a><span class="kw">str_view</span>(bananas, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="strings-and-regular-expressions.html#cb315-1"></a>bananas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;Banana&quot;</span>, <span class="st">&quot;BANANA&quot;</span>)</span>
+<span id="cb315-2"><a href="strings-and-regular-expressions.html#cb315-2"></a><span class="kw">str_view</span>(bananas, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-1834a22cd196f3aa03a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
     <script type="application/json" data-for="htmlwidget-1834a22cd196f3aa03a1">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li>Banana<\/li>\n  <li>BANANA<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="strings-and-regular-expressions.html#cb317-1"></a><span class="kw">str_view</span>(bananas, <span class="kw">regex</span>(<span class="st">&quot;banana&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="strings-and-regular-expressions.html#cb316-1"></a><span class="kw">str_view</span>(bananas, <span class="kw">regex</span>(<span class="st">&quot;banana&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <div id="htmlwidget-28515d92cb327f90c9eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
     <script type="application/json" data-for="htmlwidget-28515d92cb327f90c9eb">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li><span class='match'>Banana<\/span><\/li>\n  <li><span class='match'>BANANA<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script></li>
 <li><p><code>multiline = TRUE</code> allows <code>^</code> and <code>$</code> to match the start and end of each
 line rather than the start and end of the complete string.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="strings-and-regular-expressions.html#cb318-1"></a>x &lt;-<span class="st"> &quot;Line 1</span><span class="ch">\n</span><span class="st">Line 2</span><span class="ch">\n</span><span class="st">Line 3&quot;</span></span>
-<span id="cb318-2"><a href="strings-and-regular-expressions.html#cb318-2"></a><span class="kw">str_extract_all</span>(x, <span class="st">&quot;^Line&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb318-3"><a href="strings-and-regular-expressions.html#cb318-3"></a><span class="co">#&gt; [1] &quot;Line&quot;</span></span>
-<span id="cb318-4"><a href="strings-and-regular-expressions.html#cb318-4"></a><span class="kw">str_extract_all</span>(x, <span class="kw">regex</span>(<span class="st">&quot;^Line&quot;</span>, <span class="dt">multiline =</span> <span class="ot">TRUE</span>))[[<span class="dv">1</span>]]</span>
-<span id="cb318-5"><a href="strings-and-regular-expressions.html#cb318-5"></a><span class="co">#&gt; [1] &quot;Line&quot; &quot;Line&quot; &quot;Line&quot;</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="strings-and-regular-expressions.html#cb317-1"></a>x &lt;-<span class="st"> &quot;Line 1</span><span class="ch">\n</span><span class="st">Line 2</span><span class="ch">\n</span><span class="st">Line 3&quot;</span></span>
+<span id="cb317-2"><a href="strings-and-regular-expressions.html#cb317-2"></a><span class="kw">str_extract_all</span>(x, <span class="st">&quot;^Line&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb317-3"><a href="strings-and-regular-expressions.html#cb317-3"></a><span class="co">#&gt; [1] &quot;Line&quot;</span></span>
+<span id="cb317-4"><a href="strings-and-regular-expressions.html#cb317-4"></a><span class="kw">str_extract_all</span>(x, <span class="kw">regex</span>(<span class="st">&quot;^Line&quot;</span>, <span class="dt">multiline =</span> <span class="ot">TRUE</span>))[[<span class="dv">1</span>]]</span>
+<span id="cb317-5"><a href="strings-and-regular-expressions.html#cb317-5"></a><span class="co">#&gt; [1] &quot;Line&quot; &quot;Line&quot; &quot;Line&quot;</span></span></code></pre></div></li>
 </ul>
 <div id="acknowledgments-4" class="section level4 unnumbered">
 <h4>Acknowledgments</h4>
 <p>This page was adapted from the following source:</p>
 <p><a href="https://r4ds.had.co.nz">R for Data Science</a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0</a>.</p>
 
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="strings-and-regular-expressions.html#cb319-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb319-2"><a href="strings-and-regular-expressions.html#cb319-2"></a><span class="kw">library</span>(gapminder)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="strings-and-regular-expressions.html#cb318-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb318-2"><a href="strings-and-regular-expressions.html#cb318-2"></a><span class="kw">library</span>(gapminder)</span></code></pre></div>
 </div>
 </div>
 </div>
