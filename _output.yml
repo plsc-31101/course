@@ -11,9 +11,4 @@ bookdown::gitbook:
     edit: https://github.com/plsc-31101/course/edit/master/%s
     download: ['rmd']
     sharing:  no
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: xelatex
-  citation_package: natbib
-  keep_tex: yes
+

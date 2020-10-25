@@ -7209,6 +7209,168 @@ Subset \texttt{country\_vector} below to return every value EXCEPT \texttt{"Cana
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{factors}{%
+\section{Factors}\label{factors}}
+
+Factors are special vectors that represent \emph{categorical} data: Variables that have a fixed and known set of possible values. Think: Democrat, Republican, Independent; Male, Female, Other; etc.
+
+It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently.
+
+Historically, factors were much easier to work with than characters. As a result, many of the functions in base R automatically convert characters to factors. This means that factors often pop up in places where they are not actually helpful.
+
+\hypertarget{creating-factors}{%
+\subsection{Creating Factors}\label{creating-factors}}
+
+To create factors in R, you use the function \texttt{factor()}. The first thing that you have to do is create a vector that contains all the observations that belong to a limited number of categories. For example, \texttt{party\_vector} contains the partyID of 5 different individuals:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{party_vector <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Rep"}\NormalTok{, }\StringTok{"Rep"}\NormalTok{, }\StringTok{"Dem"}\NormalTok{, }\StringTok{"Rep"}\NormalTok{, }\StringTok{"Dem"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It is clear that there are two categories -- or, in R-terms, \textbf{factor levels} -- at work here: \texttt{Dem} and \texttt{Rep}.
+
+The function \texttt{factor()} will encode the vector as a factor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{party_factor <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(party_vector)}
+\NormalTok{party_vector}
+\CommentTok{#> [1] "Rep" "Rep" "Dem" "Rep" "Dem"}
+\NormalTok{party_factor}
+\CommentTok{#> [1] Rep Rep Dem Rep Dem}
+\CommentTok{#> Levels: Dem Rep}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarizing-a-factor}{%
+\subsection{Summarizing a Factor}\label{summarizing-a-factor}}
+
+One of your favorite functions in R will be \texttt{summary()}. This will give you a quick overview of the contents of a variable. Let's compare using \texttt{summary()} on both the character vector and the factor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(party_vector)}
+\CommentTok{#>    Length     Class      Mode }
+\CommentTok{#>         5 character character}
+\KeywordTok{summary}\NormalTok{(party_factor)}
+\CommentTok{#> Dem Rep }
+\CommentTok{#>   2   3}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{changing-factor-levels}{%
+\subsection{Changing Factor Levels}\label{changing-factor-levels}}
+
+When you create the factor, the factor levels are set to specific values. We can access those values with the \texttt{levels()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{levels}\NormalTok{(party_factor)}
+\CommentTok{#> [1] "Dem" "Rep"}
+\end{Highlighting}
+\end{Shaded}
+
+Any values \emph{not} in the set of levels will be silently converted to \texttt{NA}. Let's say we want to add an Independent to our sample:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{party_factor[}\DecValTok{5}\NormalTok{] <-}\StringTok{ "Ind"}
+\CommentTok{#> Warning in `[<-.factor`(`*tmp*`, 5, value = "Ind"): invalid factor level, NA}
+\CommentTok{#> generated}
+\NormalTok{party_factor}
+\CommentTok{#> [1] Rep  Rep  Dem  Rep  <NA>}
+\CommentTok{#> Levels: Dem Rep}
+\end{Highlighting}
+\end{Shaded}
+
+We first need to add ``Ind'' to our factor levels. This will allow us to add Independents to our sample:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{levels}\NormalTok{(party_factor)}
+\CommentTok{#> [1] "Dem" "Rep"}
+\KeywordTok{levels}\NormalTok{(party_factor) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Dem"}\NormalTok{, }\StringTok{"Rep"}\NormalTok{, }\StringTok{"Ind"}\NormalTok{)}
+
+\NormalTok{party_factor[}\DecValTok{5}\NormalTok{] <-}\StringTok{ "Ind"}
+\NormalTok{party_factor}
+\CommentTok{#> [1] Rep Rep Dem Rep Ind}
+\CommentTok{#> Levels: Dem Rep Ind}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{factors-are-integers}{%
+\subsection{Factors Are Integers}\label{factors-are-integers}}
+
+Factors are pretty much integers that have labels on them. Underneath, they are really numbers (1, 2, 3\ldots).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(party_factor)}
+\CommentTok{#>  Factor w/ 3 levels "Dem","Rep","Ind": 2 2 1 2 3}
+\end{Highlighting}
+\end{Shaded}
+
+They are better than using simple integer labels, because factors are self-describing. For example, \texttt{democrat} and \texttt{republican} are more descriptive than \texttt{1}s and \texttt{2}s.
+
+However, \textbf{factors are NOT characters!!}
+
+While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"a"}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(x)}
+\KeywordTok{c}\NormalTok{(x, }\StringTok{"c"}\NormalTok{)}
+\CommentTok{#> [1] "1" "2" "2" "1" "c"}
+\end{Highlighting}
+\end{Shaded}
+
+For this reason, it is usually best to explicitly \textbf{convert} factors to character vectors if you need string-like behavior.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"a"}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(x)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(x)}
+\KeywordTok{c}\NormalTok{(x, }\StringTok{"c"}\NormalTok{)}
+\CommentTok{#> [1] "a" "b" "b" "a" "c"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{challenges-12}{%
+\subsection{Challenges}\label{challenges-12}}
+
+\hypertarget{challenge-1.-9}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-9}}
+\addcontentsline{toc}{subsubsection}{Challenge 1.}
+
+What happens to a factor when you modify its levels?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f1 <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(letters)}
+\KeywordTok{levels}\NormalTok{(f1) <-}\StringTok{ }\KeywordTok{rev}\NormalTok{(}\KeywordTok{levels}\NormalTok{(f1))}
+\NormalTok{f1}
+\CommentTok{#>  [1] z y x w v u t s r q p o n m l k j i h g f e d c b a}
+\CommentTok{#> Levels: z y x w v u t s r q p o n m l k j i h g f e d c b a}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{challenge-2.-8}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-8}}
+\addcontentsline{toc}{subsubsection}{Challenge 2.}
+
+What does this code do? How do \texttt{f2} and \texttt{f3} differ from \texttt{f1}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f2 <-}\StringTok{ }\KeywordTok{rev}\NormalTok{(}\KeywordTok{factor}\NormalTok{(letters))}
+\NormalTok{f3 <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(letters, }\DataTypeTok{levels =} \KeywordTok{rev}\NormalTok{(letters))}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{lists}{%
 \section{Lists}\label{lists}}
 
@@ -7483,17 +7645,17 @@ the object in car 5; \texttt{x{[}4:6{]}} is a train of cars 4-6.''
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenges-12}{%
-\subsection{Challenges}\label{challenges-12}}
+\hypertarget{challenges-13}{%
+\subsection{Challenges}\label{challenges-13}}
 
-\hypertarget{challenge-1.-9}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-9}}
+\hypertarget{challenge-1.-10}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-10}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 What are the four basic types of atomic vectors? How does a list differ from an atomic vector?
 
-\hypertarget{challenge-2.-8}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-8}}
+\hypertarget{challenge-2.-9}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-9}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Why is \texttt{1\ ==\ "1"} true? Why is \texttt{-1\ \textless{}\ FALSE} true? Why is \texttt{"one"\ \textless{}\ 2} false?
@@ -7829,17 +7991,17 @@ We can also use subsetting in conjunction with assignment to quickly add a colum
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenges-13}{%
-\subsection{Challenges}\label{challenges-13}}
+\hypertarget{challenges-14}{%
+\subsection{Challenges}\label{challenges-14}}
 
-\hypertarget{challenge-1.-10}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-10}}
+\hypertarget{challenge-1.-11}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-11}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Create a 3x2 dataframe called \texttt{basket}. The first column should contain the names of 3 fruits. The second column should contain the price of those fruits. Now give your dataframe appropriate column and row names.
 
-\hypertarget{challenge-2.-9}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-9}}
+\hypertarget{challenge-2.-10}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-10}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Add a third column called \texttt{color} that tells what color each fruit is.
@@ -8053,17 +8215,17 @@ Another important operation that is affected by the locale is sorting. The base 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenges-14}{%
-\subsection{Challenges}\label{challenges-14}}
+\hypertarget{challenges-15}{%
+\subsection{Challenges}\label{challenges-15}}
 
-\hypertarget{challenge-1.-11}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-11}}
+\hypertarget{challenge-1.-12}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-12}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 In code that does not use \texttt{stringr}, you will often see \texttt{paste()} and \texttt{paste0()}. What is the difference between the two functions? What \texttt{stringr} function are they equivalent to? How do the functions differ in their handling of \texttt{NA}?
 
-\hypertarget{challenge-2.-10}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-10}}
+\hypertarget{challenge-2.-11}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-11}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 In your own words, describe the difference between the \texttt{sep} and \texttt{collapse} arguments to \texttt{str\_c()}.
@@ -8307,8 +8469,8 @@ For more information on regular expressions, see:
   \href{https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285}{This cheatsheet}.
 \end{enumerate}
 
-\hypertarget{challenges-15}{%
-\subsection{Challenges}\label{challenges-15}}
+\hypertarget{challenges-16}{%
+\subsection{Challenges}\label{challenges-16}}
 
 Create regular expressions to find all words that
 
@@ -8445,8 +8607,8 @@ It is natural to use \texttt{str\_count()} with \texttt{mutate()}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-1.-12}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-12}}
+\hypertarget{challenge-1.-13}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-13}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 For each of the following challenges, try solving it by using both a single regular expression and a combination of multiple \texttt{str\_detect()} calls.
@@ -8600,8 +8762,8 @@ If you use \texttt{simplify\ =\ TRUE}, \texttt{str\_extract\_all()} will return 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-2.-11}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-11}}
+\hypertarget{challenge-2.-12}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-12}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 In the previous example, you might have noticed that the regular expression matched ``flickered'', which is not a color. Modify the regex to fix the problem.
@@ -9204,11 +9366,11 @@ Because we have extracted the code into a function, we only need to make the fix
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenges-16}{%
-\subsection{Challenges}\label{challenges-16}}
+\hypertarget{challenges-17}{%
+\subsection{Challenges}\label{challenges-17}}
 
-\hypertarget{challenge-1.-13}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-13}}
+\hypertarget{challenge-1.-14}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-14}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Write a function that calculates the sum of the squared value of two numbers. For instance, it should generate the following output:
@@ -9220,8 +9382,8 @@ Write a function that calculates the sum of the squared value of two numbers. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-2.-12}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-12}}
+\hypertarget{challenge-2.-13}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-13}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Write \texttt{both\_na()}, a function that takes two vectors and returns the total number of NAs in both vectors.
@@ -9455,19 +9617,19 @@ We can also pass additional arguments. For example, the function \texttt{mean} p
 
 Check out other fun applications of \texttt{map} functions \href{https://r4ds.had.co.nz/iteration.html\#the-map-functions}{here}.
 
-\hypertarget{challenges-17}{%
-\subsection{Challenges}\label{challenges-17}}
+\hypertarget{challenges-18}{%
+\subsection{Challenges}\label{challenges-18}}
 
 Write code that uses one of the \texttt{map} functions to:
 
-\hypertarget{challenge-1.-14}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-14}}
+\hypertarget{challenge-1.-15}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-15}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Calculate the arithmetic mean for every column in \texttt{mtcars}.
 
-\hypertarget{challenge-2.-13}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-13}}
+\hypertarget{challenge-2.-14}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-14}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Calculate the number of unique values in each column of \texttt{iris}.
@@ -9935,7 +10097,7 @@ Within \texttt{response\_df\$response}, we can extract a number of interesting r
 \CommentTok{#> [1] 0}
 \CommentTok{#> }
 \CommentTok{#> $time}
-\CommentTok{#> [1] 176}
+\CommentTok{#> [1] 187}
 
 \CommentTok{# Pull out number of hits}
 \NormalTok{response_df}\OperatorTok{$}\NormalTok{response}\OperatorTok{$}\NormalTok{meta}\OperatorTok{$}\NormalTok{hits}
@@ -10029,13 +10191,9 @@ Now, we are ready to iterate over each page. First, let's review what we have do
 \CommentTok{#> [1] "Scraping page:  5"}
 \CommentTok{#> [1] "Scraping page:  6"}
 \CommentTok{#> [1] "Scraping page:  7"}
-\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  8"}
-\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  9"}
-\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  10"}
-\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  11"}
 \CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  12"}
@@ -10043,8 +10201,11 @@ Now, we are ready to iterate over each page. First, let's review what we have do
 \CommentTok{#> [1] "Scraping page:  13"}
 \CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  14"}
+\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  15"}
+\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  16"}
+\CommentTok{#> No encoding supplied: defaulting to UTF-8.}
 \CommentTok{#> [1] "Scraping page:  17"}
 
 \CommentTok{# Flatten to create one bit dataframe}
@@ -10077,7 +10238,7 @@ To figure out how John Mearsheimer's popularity is changing over time, all we ne
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-430-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-443-1} \end{center}
 
 \hypertarget{more-resources}{%
 \subsection{More Resources}\label{more-resources}}
@@ -10319,8 +10480,8 @@ You can piggyback on these to jump to the parts of the markup that contain the d
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-1.-15}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-15}}
+\hypertarget{challenge-1.-16}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-16}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Find the CSS selectors for the following elements in the HTML above:
@@ -10360,8 +10521,8 @@ Here is the basic strategy of webscraping:
   Use R and add-on modules like \texttt{RVest} to extract just that data.
 \end{enumerate}
 
-\hypertarget{challenge-2.-14}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-14}}
+\hypertarget{challenge-2.-15}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-15}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Go to \url{http://rochelleterman.github.io/}. Using Selector Gadget,
@@ -10929,7 +11090,7 @@ Let's make a plot that shows the frequency of frequencies for the terms. (For ex
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-461-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-474-1} \end{center}
 
 What does this tell us about the nature of language?
 
@@ -10979,7 +11140,7 @@ We can even make wordclouds showing the most commons terms:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-463-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-476-1} \end{center}
 
 \hypertarget{removing-sparse-terms}{%
 \subsubsection*{Removing Sparse Terms}\label{removing-sparse-terms}}
@@ -11165,11 +11326,11 @@ We can now use matrix algebra (!!) to multiply our DTM by the scoring vector. Th
 
 Which song is happiest? Go listen to the song and see if you agree.
 
-\hypertarget{challenges-18}{%
-\subsection{Challenges}\label{challenges-18}}
+\hypertarget{challenges-19}{%
+\subsection{Challenges}\label{challenges-19}}
 
-\hypertarget{challenge-1.-16}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-16}}
+\hypertarget{challenge-1.-17}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-17}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Using the code we wrote above, make a function that accepts 1) a vector of texts and 2) a sentiment dictionary (i.e., a dataframe with words and scores) and returns a vector of sentiment scores for each text.
@@ -11188,8 +11349,8 @@ Using the code we wrote above, make a function that accepts 1) a vector of texts
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-2.-15}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-15}}
+\hypertarget{challenge-2.-16}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-16}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Using the function you wrote above, find out what the most and least positive Taylor Swift album is.
@@ -11496,8 +11657,8 @@ STM has its own unique preprocessing functions and procedure, which I have coded
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-1.-17}{%
-\subsubsection*{Challenge 1.}\label{challenge-1.-17}}
+\hypertarget{challenge-1.-18}{%
+\subsubsection*{Challenge 1.}\label{challenge-1.-18}}
 \addcontentsline{toc}{subsubsection}{Challenge 1.}
 
 Read the help file for the \texttt{prepDocuments} function. Alter the code above (in 2.1) to keep only words that appear in at least 10 documents.
@@ -11662,8 +11823,8 @@ Let's see what our model came up with! The following tools can be used to evalua
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{challenge-2.-16}{%
-\subsubsection*{Challenge 2.}\label{challenge-2.-16}}
+\hypertarget{challenge-2.-17}{%
+\subsubsection*{Challenge 2.}\label{challenge-2.-17}}
 \addcontentsline{toc}{subsubsection}{Challenge 2.}
 
 Estimate other models using 5 and 40 topics, respectively. Look at the top words for each topic. How do the topics vary when you change the number of topics?
@@ -11724,6 +11885,6 @@ We are now going to see how the topics compare in terms of their prevalence acro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-493-1} \includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-493-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-506-1} \includegraphics[width=0.7\linewidth]{plsc31101_files/figure-latex/unnamed-chunk-506-2} \end{center}
 
 \end{document}
