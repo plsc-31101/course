@@ -1,0 +1,52 @@
+---
+title: "Indexing Dataframes"
+author: "PLSC 31101"
+date: "Fall 2020"
+output: html_document
+---
+
+## Indexing Dataframes
+
+> A dataframe is a list that quacks like a matrix.
+
+Remember that dataframes are really lists of vectors (one vector per column). That means that dataframes have both list- and matrix-like behavior.
+
+For example, just as `list$name` selects the `name` element from the list, `df$name` selects the `name` column (vector) from the dataframe:
+
+```{r}
+library(gapminder)
+gap <- gapminder
+
+head(gap$country)
+```
+
+Likewise, we can use square brackets to subset rows and columns:
+
+```{r}
+# Row 1, column 3
+gap[1, 3]
+
+# Fourth row
+gap[4, ]
+
+# First two rows of the columns 1 and 5
+gap[c(1,2), c(1, 5)]
+```
+
+We can also use subsetting in conjunction with assignment to quickly add a column:
+
+```{r}
+names(gap)
+gap$new_col <- NA
+head(gap)
+```
+
+### Challenges
+
+#### Challenge 1. {-}
+
+Create a 3x2 dataframe called `basket`. The first column should contain the names of 3 fruits. The second column should contain the price of those fruits. Now give your dataframe appropriate column and row names.
+
+#### Challenge 2. {-}
+
+Add a third column called `color` that tells what color each fruit is.
