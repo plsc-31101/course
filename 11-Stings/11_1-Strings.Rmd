@@ -12,7 +12,7 @@ This unit focuses on character (or "string") data. We will explore
 
 1. **String basics**, like concatinating and subsettings.
 2. **Regular expressions**, a powerful cross-language tool for working with string data.
-3. **Common tools** that take regex and apply them to real problems.
+3. **Applying regex** real problems using `stringr`.
 
 This chapter will focus on the __`stringr`__ package for string manipulation. `stringr` is not part of the core `tidyverse` because you do not always have textual data, so we need to load it explicitly.
 
@@ -68,7 +68,7 @@ Multiple strings are often stored in a character vector, which you can create wi
 c("one", "two", "three")
 ```
 
-### String Length
+### Measure string length with `str_length()`
 
 Base R contains many functions to work with strings, but we will avoid them because they can be inconsistent, which makes them hard to remember. 
 
@@ -80,7 +80,7 @@ str_length(c("a", "R for data science", NA))
 
 The common `str_` prefix is particularly useful if you use RStudio, because typing `str_` will trigger autocomplete, allowing you to see all `stringr` functions:
 
-### Combining Strings
+### Combine strings with `str_c()`
 
 To combine two or more strings, use `str_c()`:
 
@@ -110,7 +110,7 @@ str_c(x, sep = ", ") # This will not work
 str_c(x, collapse = ", ") # But this will
 ```
 
-### Subsetting Strings
+### Subset strings with `str_sub()`
 
 You can extract parts of a string using `str_sub()`. As well as the string, `str_sub()` takes `start` and `end` arguments, which give the (inclusive) position of the substring:
 
@@ -155,18 +155,14 @@ str_sort(x, locale = "haw") # Hawaiian
 
 #### Challenge 1. {-}
 
-In code that does not use `stringr`, you will often see `paste()` and `paste0()`. What is the difference between the two functions? What `stringr` function are they equivalent to? How do the functions differ in their handling of `NA`?
-    
-#### Challenge 2. {-}
-
 In your own words, describe the difference between the `sep` and `collapse` arguments to `str_c()`.
 
-#### Challenge 3. {-}
+#### Challenge 2. {-}
 
 Use `str_length()` and `str_sub()` to extract the middle character from 
     a string. What will you do if the string has an even number of characters?
 
-#### Challenge 4. {-}
+#### Challenge 3. {-}
 
 What does `str_trim()` do? What is the opposite of `str_trim()`?
 
