@@ -365,9 +365,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
 <li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
 <li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
-<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
-<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
-<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#measure-string-length-with-str_length"><i class="fa fa-check"></i><b>15.1.3</b> Measure string length with <code>str_length()</code></a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combine-strings-with-str_c"><i class="fa fa-check"></i><b>15.1.4</b> Combine strings with <code>str_c()</code></a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subset-strings-with-str_sub"><i class="fa fa-check"></i><b>15.1.5</b> Subset strings with <code>str_sub()</code></a></li>
 <li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
 <li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
 </ul></li>
@@ -380,11 +380,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
 <li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-16"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
-<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
-<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
-<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#applying-regex"><i class="fa fa-check"></i><b>15.3</b> Applying regex</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches-with-str_detect"><i class="fa fa-check"></i><b>15.3.1</b> Detect matches with <code>str_detect()</code></a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#count-the-number-of-matches-with-str_count"><i class="fa fa-check"></i><b>15.3.2</b> Count the number of matches with <code>str_count()</code></a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches-with-str_extract-and-str_extract_all"><i class="fa fa-check"></i><b>15.3.3</b> Extract matches with <code>str_extract()</code> and <code>str_extract_all()</code></a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replace-matches-with-str_replace-and-str_replace_all"><i class="fa fa-check"></i><b>15.3.4</b> Replace matches with <code>str_replace()</code> and <code>str_replace_all()</code></a></li>
+<li class="chapter" data-level="15.3.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#split-on-a-match-with-str_split"><i class="fa fa-check"></i><b>15.3.5</b> Split on a match with <code>str_split()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
 </ul></li>
@@ -489,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><strong>String basics</strong>, like concatinating and subsettings.</li>
 <li><strong>Regular expressions</strong>, a powerful cross-language tool for working with string data.</li>
-<li><strong>Common tools</strong> that take regex and apply them to real problems.</li>
+<li><strong>Applying regex</strong> real problems using <code>stringr</code>.</li>
 </ol>
 <p>This chapter will focus on the <strong><code>stringr</code></strong> package for string manipulation. <code>stringr</code> is not part of the core <code>tidyverse</code> because you do not always have textual data, so we need to load it explicitly.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="strings-and-regular-expressions.html#cb275-1"></a><span class="kw">library</span>(tidyverse)</span>
@@ -525,16 +526,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="strings-and-regular-expressions.html#cb280-1"></a><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>)</span>
 <span id="cb280-2"><a href="strings-and-regular-expressions.html#cb280-2"></a><span class="co">#&gt; [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</span></span></code></pre></div>
 </div>
-<div id="string-length" class="section level3">
-<h3><span class="header-section-number">15.1.3</span> String Length</h3>
+<div id="measure-string-length-with-str_length" class="section level3">
+<h3><span class="header-section-number">15.1.3</span> Measure string length with <code>str_length()</code></h3>
 <p>Base R contains many functions to work with strings, but we will avoid them because they can be inconsistent, which makes them hard to remember.</p>
 <p>Instead, we will use functions from <code>stringr</code>. <code>stringr</code> contains functions with more intuitive names, and all start with <code>str_</code>. For example, <code>str_length()</code> tells you the number of characters in a string:</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="strings-and-regular-expressions.html#cb281-1"></a><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;R for data science&quot;</span>, <span class="ot">NA</span>))</span>
 <span id="cb281-2"><a href="strings-and-regular-expressions.html#cb281-2"></a><span class="co">#&gt; [1]  1 18 NA</span></span></code></pre></div>
 <p>The common <code>str_</code> prefix is particularly useful if you use RStudio, because typing <code>str_</code> will trigger autocomplete, allowing you to see all <code>stringr</code> functions:</p>
 </div>
-<div id="combining-strings" class="section level3">
-<h3><span class="header-section-number">15.1.4</span> Combining Strings</h3>
+<div id="combine-strings-with-str_c" class="section level3">
+<h3><span class="header-section-number">15.1.4</span> Combine strings with <code>str_c()</code></h3>
 <p>To combine two or more strings, use <code>str_c()</code>:</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="strings-and-regular-expressions.html#cb282-1"></a><span class="kw">str_c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
 <span id="cb282-2"><a href="strings-and-regular-expressions.html#cb282-2"></a><span class="co">#&gt; [1] &quot;xy&quot;</span></span>
@@ -554,8 +555,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb285-4"><a href="strings-and-regular-expressions.html#cb285-4"></a><span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># But this will</span></span>
 <span id="cb285-5"><a href="strings-and-regular-expressions.html#cb285-5"></a><span class="co">#&gt; [1] &quot;x, y, z&quot;</span></span></code></pre></div>
 </div>
-<div id="subsetting-strings" class="section level3">
-<h3><span class="header-section-number">15.1.5</span> Subsetting Strings</h3>
+<div id="subset-strings-with-str_sub" class="section level3">
+<h3><span class="header-section-number">15.1.5</span> Subset strings with <code>str_sub()</code></h3>
 <p>You can extract parts of a string using <code>str_sub()</code>. As well as the string, <code>str_sub()</code> takes <code>start</code> and <code>end</code> arguments, which give the (inclusive) position of the substring:</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="strings-and-regular-expressions.html#cb286-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rochelle is the GOAT&quot;</span>)</span>
 <span id="cb286-2"><a href="strings-and-regular-expressions.html#cb286-2"></a><span class="kw">str_sub</span>(x, <span class="dv">1</span>, <span class="dv">8</span>)</span>
@@ -591,19 +592,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">15.1.7</span> Challenges</h3>
 <div id="challenge-1.-12" class="section level4 unnumbered">
 <h4>Challenge 1.</h4>
-<p>In code that does not use <code>stringr</code>, you will often see <code>paste()</code> and <code>paste0()</code>. What is the difference between the two functions? What <code>stringr</code> function are they equivalent to? How do the functions differ in their handling of <code>NA</code>?</p>
+<p>In your own words, describe the difference between the <code>sep</code> and <code>collapse</code> arguments to <code>str_c()</code>.</p>
 </div>
 <div id="challenge-2.-11" class="section level4 unnumbered">
 <h4>Challenge 2.</h4>
-<p>In your own words, describe the difference between the <code>sep</code> and <code>collapse</code> arguments to <code>str_c()</code>.</p>
-</div>
-<div id="challenge-3.-7" class="section level4 unnumbered">
-<h4>Challenge 3.</h4>
 <p>Use <code>str_length()</code> and <code>str_sub()</code> to extract the middle character from
 a string. What will you do if the string has an even number of characters?</p>
 </div>
-<div id="challenge-4.-3" class="section level4 unnumbered">
-<h4>Challenge 4.</h4>
+<div id="challenge-3.-7" class="section level4 unnumbered">
+<h4>Challenge 3.</h4>
 <p>What does <code>str_trim()</code> do? What is the opposite of <code>str_trim()</code>?</p>
 
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="strings-and-regular-expressions.html#cb290-1"></a><span class="kw">library</span>(tidyverse)</span>
@@ -735,18 +732,18 @@ a string. What will you do if the string has an even number of characters?</p>
 <span id="cb305-2"><a href="strings-and-regular-expressions.html#cb305-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 </div>
 </div>
-<div id="common-tools" class="section level2">
-<h2><span class="header-section-number">15.3</span> Common Tools</h2>
+<div id="applying-regex" class="section level2">
+<h2><span class="header-section-number">15.3</span> Applying regex</h2>
 <p>Now that you have learned the basics of regular expressions, it is time to learn how to apply them to real problems. In this section, you will learn a wide array of <code>stringr</code> functions that let you</p>
 <ul>
-<li>Determine which strings match a pattern.</li>
-<li>Find the positions of matches.</li>
-<li>Extract the content of matches.</li>
-<li>Replace matches with new values.</li>
-<li>Split a string based on a match.</li>
+<li>Detect matches in a string with <code>str_detect()</code>.</li>
+<li>Count the number of matches with <code>str_count()</code></li>
+<li>Extract matches with <code>str_extract()</code> and <code>str_extract_all()</code></li>
+<li>Replace matches with <code>str_replace()</code> and <code>str_replace_all()</code></li>
+<li>Split a string based on a match with <code>str_split()</code></li>
 </ul>
-<div id="detect-matches" class="section level3">
-<h3><span class="header-section-number">15.3.1</span> Detect Matches</h3>
+<div id="detect-matches-with-str_detect" class="section level3">
+<h3><span class="header-section-number">15.3.1</span> Detect matches with <code>str_detect()</code></h3>
 <p>To determine if a character vector matches a pattern, use <code>str_detect()</code>. It returns a logical vector the same length as the input:</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="strings-and-regular-expressions.html#cb306-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
 <span id="cb306-2"><a href="strings-and-regular-expressions.html#cb306-2"></a><span class="kw">str_detect</span>(x, <span class="st">&quot;e&quot;</span>)</span>
@@ -780,6 +777,9 @@ a string. What will you do if the string has an even number of characters?</p>
 <span id="cb309-9"><a href="strings-and-regular-expressions.html#cb309-9"></a><span class="co">#&gt; 2 747  sex</span></span>
 <span id="cb309-10"><a href="strings-and-regular-expressions.html#cb309-10"></a><span class="co">#&gt; 3 772  six</span></span>
 <span id="cb309-11"><a href="strings-and-regular-expressions.html#cb309-11"></a><span class="co">#&gt; 4 841  tax</span></span></code></pre></div>
+</div>
+<div id="count-the-number-of-matches-with-str_count" class="section level3">
+<h3><span class="header-section-number">15.3.2</span> Count the number of matches with <code>str_count()</code></h3>
 <p>A variation on <code>str_detect()</code> is <code>str_count()</code>. Rather than a simple yes or no, it tells you how many matches there are in a string:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="strings-and-regular-expressions.html#cb310-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
 <span id="cb310-2"><a href="strings-and-regular-expressions.html#cb310-2"></a><span class="kw">str_count</span>(x, <span class="st">&quot;a&quot;</span>)</span>
@@ -810,8 +810,8 @@ a string. What will you do if the string has an even number of characters?</p>
 2.  Find all words that start with a vowel and end with a consonant.</code></pre>
 </div>
 </div>
-<div id="extract-matches" class="section level3">
-<h3><span class="header-section-number">15.3.2</span> Extract Matches</h3>
+<div id="extract-matches-with-str_extract-and-str_extract_all" class="section level3">
+<h3><span class="header-section-number">15.3.3</span> Extract matches with <code>str_extract()</code> and <code>str_extract_all()</code></h3>
 <p>To extract the actual text of a match, use <code>str_extract()</code>. To show that off, we are going to need a more complicated example. I am going to use the <a href="https://en.wikipedia.org/wiki/Harvard_sentences">Harvard sentences</a>. These are provided in <code>stringr::sentences</code>:</p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="strings-and-regular-expressions.html#cb313-1"></a><span class="kw">length</span>(sentences)</span>
 <span id="cb313-2"><a href="strings-and-regular-expressions.html#cb313-2"></a><span class="co">#&gt; [1] 720</span></span>
@@ -842,7 +842,7 @@ a string. What will you do if the string has an even number of characters?</p>
 <span id="cb315-12"><a href="strings-and-regular-expressions.html#cb315-12"></a>matches &lt;-<span class="st"> </span><span class="kw">str_extract</span>(has_color, color_match)</span>
 <span id="cb315-13"><a href="strings-and-regular-expressions.html#cb315-13"></a><span class="kw">head</span>(matches)</span>
 <span id="cb315-14"><a href="strings-and-regular-expressions.html#cb315-14"></a><span class="co">#&gt; [1] &quot;blue&quot; &quot;blue&quot; &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;blue&quot;</span></span></code></pre></div>
-<p>Note that <code>str_extract()</code> only extracts the first match. This is a common pattern for <code>stringr</code> functions, because working with a single match allows you to use much simpler data structures. To get all matches, use <code>str_extract_all()</code>. It returns a list:</p>
+<p>Note that <code>str_extract()</code> only extracts the <strong>first match</strong>. This is a common pattern for <code>stringr</code> functions, because working with a single match allows you to use much simpler data structures. To get all matches, use <code>str_extract_all()</code>. It returns a list:</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="strings-and-regular-expressions.html#cb316-1"></a>all_colors &lt;-<span class="st"> </span><span class="kw">str_extract_all</span>(has_color, color_match)</span>
 <span id="cb316-2"><a href="strings-and-regular-expressions.html#cb316-2"></a>all_colors[<span class="dv">15</span><span class="op">:</span><span class="dv">20</span>]</span>
 <span id="cb316-3"><a href="strings-and-regular-expressions.html#cb316-3"></a><span class="co">#&gt; [[1]]</span></span>
@@ -927,8 +927,8 @@ a string. What will you do if the string has an even number of characters?</p>
 <p>In the previous example, you might have noticed that the regular expression matched “flickered”, which is not a color. Modify the regex to fix the problem.</p>
 </div>
 </div>
-<div id="replacing-matches" class="section level3">
-<h3><span class="header-section-number">15.3.3</span> Replacing Matches</h3>
+<div id="replace-matches-with-str_replace-and-str_replace_all" class="section level3">
+<h3><span class="header-section-number">15.3.4</span> Replace matches with <code>str_replace()</code> and <code>str_replace_all()</code></h3>
 <p><code>str_replace()</code> and <code>str_replace_all()</code> allow you to replace matches with new strings. The simplest use is to replace a pattern with a fixed string:</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="strings-and-regular-expressions.html#cb318-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
 <span id="cb318-2"><a href="strings-and-regular-expressions.html#cb318-2"></a><span class="kw">str_replace</span>(x, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="co"># replace the first instance of a match</span></span>
@@ -940,8 +940,8 @@ a string. What will you do if the string has an even number of characters?</p>
 <span id="cb319-2"><a href="strings-and-regular-expressions.html#cb319-2"></a><span class="kw">str_replace_all</span>(x, <span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;one&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;two&quot;</span>, <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;three&quot;</span>))</span>
 <span id="cb319-3"><a href="strings-and-regular-expressions.html#cb319-3"></a><span class="co">#&gt; [1] &quot;one house&quot;    &quot;two cars&quot;     &quot;three people&quot;</span></span></code></pre></div>
 </div>
-<div id="splitting" class="section level3">
-<h3><span class="header-section-number">15.3.4</span> Splitting</h3>
+<div id="split-on-a-match-with-str_split" class="section level3">
+<h3><span class="header-section-number">15.3.5</span> Split on a match with <code>str_split()</code></h3>
 <p>Use <code>str_split()</code> to split a string up into pieces. For example, we could split sentences into words:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="strings-and-regular-expressions.html#cb320-1"></a>sentences <span class="op">%&gt;%</span></span>
 <span id="cb320-2"><a href="strings-and-regular-expressions.html#cb320-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -980,12 +980,12 @@ a string. What will you do if the string has an even number of characters?</p>
 <span id="cb321-14"><a href="strings-and-regular-expressions.html#cb321-14"></a><span class="co">#&gt; [4,] &quot;dish.&quot;</span></span>
 <span id="cb321-15"><a href="strings-and-regular-expressions.html#cb321-15"></a><span class="co">#&gt; [5,] &quot;&quot;</span></span></code></pre></div>
 <p>You can also request a maximum number of pieces:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="strings-and-regular-expressions.html#cb322-1"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name: Hadley&quot;</span>, <span class="st">&quot;Country: NZ&quot;</span>, <span class="st">&quot;Age: 35&quot;</span>)</span>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="strings-and-regular-expressions.html#cb322-1"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name: Rochelle&quot;</span>, <span class="st">&quot;State: IL&quot;</span>, <span class="st">&quot;Age: 34&quot;</span>)</span>
 <span id="cb322-2"><a href="strings-and-regular-expressions.html#cb322-2"></a>fields <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_split</span>(<span class="st">&quot;: &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb322-3"><a href="strings-and-regular-expressions.html#cb322-3"></a><span class="co">#&gt;      [,1]      [,2]    </span></span>
-<span id="cb322-4"><a href="strings-and-regular-expressions.html#cb322-4"></a><span class="co">#&gt; [1,] &quot;Name&quot;    &quot;Hadley&quot;</span></span>
-<span id="cb322-5"><a href="strings-and-regular-expressions.html#cb322-5"></a><span class="co">#&gt; [2,] &quot;Country&quot; &quot;NZ&quot;    </span></span>
-<span id="cb322-6"><a href="strings-and-regular-expressions.html#cb322-6"></a><span class="co">#&gt; [3,] &quot;Age&quot;     &quot;35&quot;</span></span></code></pre></div>
+<span id="cb322-3"><a href="strings-and-regular-expressions.html#cb322-3"></a><span class="co">#&gt;      [,1]    [,2]      </span></span>
+<span id="cb322-4"><a href="strings-and-regular-expressions.html#cb322-4"></a><span class="co">#&gt; [1,] &quot;Name&quot;  &quot;Rochelle&quot;</span></span>
+<span id="cb322-5"><a href="strings-and-regular-expressions.html#cb322-5"></a><span class="co">#&gt; [2,] &quot;State&quot; &quot;IL&quot;      </span></span>
+<span id="cb322-6"><a href="strings-and-regular-expressions.html#cb322-6"></a><span class="co">#&gt; [3,] &quot;Age&quot;   &quot;34&quot;</span></span></code></pre></div>
 <p>Instead of splitting up strings by patterns, you can also split them up by character, line, sentence, or word <code>boundary()</code>s:</p>
 <div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="strings-and-regular-expressions.html#cb323-1"></a>x &lt;-<span class="st"> &quot;This is a sentence.  This is another sentence.&quot;</span></span>
 <span id="cb323-2"><a href="strings-and-regular-expressions.html#cb323-2"></a><span class="kw">str_view_all</span>(x, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))</span></code></pre></div>
@@ -1036,8 +1036,6 @@ line rather than the start and end of the complete string.</p>
 <p>This page was adapted from the following source:</p>
 <p><a href="https://r4ds.had.co.nz">R for Data Science</a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0</a>.</p>
 
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="strings-and-regular-expressions.html#cb329-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb329-2"><a href="strings-and-regular-expressions.html#cb329-2"></a><span class="kw">library</span>(gapminder)</span></code></pre></div>
 </div>
 </div>
 </div>

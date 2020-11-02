@@ -365,9 +365,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-basics"><i class="fa fa-check"></i><b>15.1</b> String Basics</a><ul>
 <li class="chapter" data-level="15.1.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#creating-strings"><i class="fa fa-check"></i><b>15.1.1</b> Creating Strings</a></li>
 <li class="chapter" data-level="15.1.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#escape-and-special-characters"><i class="fa fa-check"></i><b>15.1.2</b> Escape and Special Characters</a></li>
-<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#string-length"><i class="fa fa-check"></i><b>15.1.3</b> String Length</a></li>
-<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combining-strings"><i class="fa fa-check"></i><b>15.1.4</b> Combining Strings</a></li>
-<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subsetting-strings"><i class="fa fa-check"></i><b>15.1.5</b> Subsetting Strings</a></li>
+<li class="chapter" data-level="15.1.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#measure-string-length-with-str_length"><i class="fa fa-check"></i><b>15.1.3</b> Measure string length with <code>str_length()</code></a></li>
+<li class="chapter" data-level="15.1.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#combine-strings-with-str_c"><i class="fa fa-check"></i><b>15.1.4</b> Combine strings with <code>str_c()</code></a></li>
+<li class="chapter" data-level="15.1.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#subset-strings-with-str_sub"><i class="fa fa-check"></i><b>15.1.5</b> Subset strings with <code>str_sub()</code></a></li>
 <li class="chapter" data-level="15.1.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#locales"><i class="fa fa-check"></i><b>15.1.6</b> Locales</a></li>
 <li class="chapter" data-level="15.1.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-15"><i class="fa fa-check"></i><b>15.1.7</b> Challenges</a></li>
 </ul></li>
@@ -380,11 +380,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2.6" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#regex-resources"><i class="fa fa-check"></i><b>15.2.6</b> Regex Resources</a></li>
 <li class="chapter" data-level="15.2.7" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#challenges-16"><i class="fa fa-check"></i><b>15.2.7</b> Challenges</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#common-tools"><i class="fa fa-check"></i><b>15.3</b> Common Tools</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches"><i class="fa fa-check"></i><b>15.3.1</b> Detect Matches</a></li>
-<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches"><i class="fa fa-check"></i><b>15.3.2</b> Extract Matches</a></li>
-<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replacing-matches"><i class="fa fa-check"></i><b>15.3.3</b> Replacing Matches</a></li>
-<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#splitting"><i class="fa fa-check"></i><b>15.3.4</b> Splitting</a></li>
+<li class="chapter" data-level="15.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#applying-regex"><i class="fa fa-check"></i><b>15.3</b> Applying regex</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#detect-matches-with-str_detect"><i class="fa fa-check"></i><b>15.3.1</b> Detect matches with <code>str_detect()</code></a></li>
+<li class="chapter" data-level="15.3.2" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#count-the-number-of-matches-with-str_count"><i class="fa fa-check"></i><b>15.3.2</b> Count the number of matches with <code>str_count()</code></a></li>
+<li class="chapter" data-level="15.3.3" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#extract-matches-with-str_extract-and-str_extract_all"><i class="fa fa-check"></i><b>15.3.3</b> Extract matches with <code>str_extract()</code> and <code>str_extract_all()</code></a></li>
+<li class="chapter" data-level="15.3.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#replace-matches-with-str_replace-and-str_replace_all"><i class="fa fa-check"></i><b>15.3.4</b> Replace matches with <code>str_replace()</code> and <code>str_replace_all()</code></a></li>
+<li class="chapter" data-level="15.3.5" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#split-on-a-match-with-str_split"><i class="fa fa-check"></i><b>15.3.5</b> Split on a match with <code>str_split()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="15.4" data-path="strings-and-regular-expressions.html"><a href="strings-and-regular-expressions.html#other-types-of-patterns"><i class="fa fa-check"></i><b>15.4</b> Other Types of Patterns</a></li>
 </ul></li>
@@ -756,7 +757,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also index multiple values by passing a vector of integers:</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-classes-and-structures.html#cb232-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</span>
 <span id="cb232-2"><a href="data-classes-and-structures.html#cb232-2"></a>x[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)]</span>
-<span id="cb232-3"><a href="data-classes-and-structures.html#cb232-3"></a><span class="co">#&gt; [1] 3.3 2.1</span></span></code></pre></div>
+<span id="cb232-3"><a href="data-classes-and-structures.html#cb232-3"></a><span class="co">#&gt; [1] 3.3 2.1</span></span>
+<span id="cb232-4"><a href="data-classes-and-structures.html#cb232-4"></a><span class="co"># x[3, 1] # don&#39;t do this!</span></span></code></pre></div>
 <p>Note that you <em>have</em> to use <code>c</code> inside the <code>[</code> for this to work!</p>
 <p>More examples:</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="data-classes-and-structures.html#cb233-1"></a><span class="co"># `order(x)` gives the index positions of smallest to largest values</span></span>
@@ -786,17 +788,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="character-vectors-return-elements-with-matching-names.-this-only-works-if-the-vector-is-named." class="section level4 unnumbered">
 <h4>3. <strong>Character vectors</strong> return elements with matching names. This only works if the vector is named.</h4>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-classes-and-structures.html#cb236-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</span>
-<span id="cb236-2"><a href="data-classes-and-structures.html#cb236-2"></a></span>
-<span id="cb236-3"><a href="data-classes-and-structures.html#cb236-3"></a><span class="co"># Apply names</span></span>
-<span id="cb236-4"><a href="data-classes-and-structures.html#cb236-4"></a><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb236-5"><a href="data-classes-and-structures.html#cb236-5"></a></span>
-<span id="cb236-6"><a href="data-classes-and-structures.html#cb236-6"></a><span class="co"># Subset using names</span></span>
-<span id="cb236-7"><a href="data-classes-and-structures.html#cb236-7"></a>x[<span class="st">&quot;d&quot;</span>]</span>
-<span id="cb236-8"><a href="data-classes-and-structures.html#cb236-8"></a><span class="co">#&gt;   d </span></span>
-<span id="cb236-9"><a href="data-classes-and-structures.html#cb236-9"></a><span class="co">#&gt; 5.4</span></span>
-<span id="cb236-10"><a href="data-classes-and-structures.html#cb236-10"></a>x[<span class="kw">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)]</span>
-<span id="cb236-11"><a href="data-classes-and-structures.html#cb236-11"></a><span class="co">#&gt;   d   c   a </span></span>
-<span id="cb236-12"><a href="data-classes-and-structures.html#cb236-12"></a><span class="co">#&gt; 5.4 3.3 2.1</span></span></code></pre></div>
+<span id="cb236-2"><a href="data-classes-and-structures.html#cb236-2"></a><span class="kw">names</span>(x)</span>
+<span id="cb236-3"><a href="data-classes-and-structures.html#cb236-3"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb236-4"><a href="data-classes-and-structures.html#cb236-4"></a></span>
+<span id="cb236-5"><a href="data-classes-and-structures.html#cb236-5"></a><span class="co"># Apply names</span></span>
+<span id="cb236-6"><a href="data-classes-and-structures.html#cb236-6"></a><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb236-7"><a href="data-classes-and-structures.html#cb236-7"></a>x</span>
+<span id="cb236-8"><a href="data-classes-and-structures.html#cb236-8"></a><span class="co">#&gt;   a   b   c   d </span></span>
+<span id="cb236-9"><a href="data-classes-and-structures.html#cb236-9"></a><span class="co">#&gt; 2.1 4.2 3.3 5.4</span></span>
+<span id="cb236-10"><a href="data-classes-and-structures.html#cb236-10"></a></span>
+<span id="cb236-11"><a href="data-classes-and-structures.html#cb236-11"></a><span class="co"># Subset using names</span></span>
+<span id="cb236-12"><a href="data-classes-and-structures.html#cb236-12"></a>x[<span class="st">&quot;d&quot;</span>]</span>
+<span id="cb236-13"><a href="data-classes-and-structures.html#cb236-13"></a><span class="co">#&gt;   d </span></span>
+<span id="cb236-14"><a href="data-classes-and-structures.html#cb236-14"></a><span class="co">#&gt; 5.4</span></span>
+<span id="cb236-15"><a href="data-classes-and-structures.html#cb236-15"></a>x[<span class="kw">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)]</span>
+<span id="cb236-16"><a href="data-classes-and-structures.html#cb236-16"></a><span class="co">#&gt;   d   c   a </span></span>
+<span id="cb236-17"><a href="data-classes-and-structures.html#cb236-17"></a><span class="co">#&gt; 5.4 3.3 2.1</span></span></code></pre></div>
 </div>
 <div id="logical-vectors-select-elements-where-the-corresponding-logical-value-is-true." class="section level4 unnumbered">
 <h4>4. <strong>Logical vectors</strong> select elements where the corresponding logical value is <code>TRUE</code>.</h4>
@@ -810,33 +817,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This command tests if the condition stated by the comparison operator is <code>TRUE</code> or <code>FALSE</code> for every element of the vector, and it returns a logical vector!</p>
 <p>We can now pass this statement between the square brackets that follow <code>x</code> to subset only those items that match <code>TRUE</code>:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-classes-and-structures.html#cb239-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</span>
-<span id="cb239-2"><a href="data-classes-and-structures.html#cb239-2"></a>x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]</span>
-<span id="cb239-3"><a href="data-classes-and-structures.html#cb239-3"></a><span class="co">#&gt; [1] 4.2 3.3 5.4</span></span>
-<span id="cb239-4"><a href="data-classes-and-structures.html#cb239-4"></a></span>
-<span id="cb239-5"><a href="data-classes-and-structures.html#cb239-5"></a><span class="co"># With !</span></span>
-<span id="cb239-6"><a href="data-classes-and-structures.html#cb239-6"></a><span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> </span>
-<span id="cb239-7"><a href="data-classes-and-structures.html#cb239-7"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE</span></span>
-<span id="cb239-8"><a href="data-classes-and-structures.html#cb239-8"></a>x[<span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>]</span>
-<span id="cb239-9"><a href="data-classes-and-structures.html#cb239-9"></a><span class="co">#&gt; [1] 2.1 4.2 3.3</span></span>
-<span id="cb239-10"><a href="data-classes-and-structures.html#cb239-10"></a></span>
-<span id="cb239-11"><a href="data-classes-and-structures.html#cb239-11"></a><span class="co"># With %in% </span></span>
-<span id="cb239-12"><a href="data-classes-and-structures.html#cb239-12"></a>x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)</span>
-<span id="cb239-13"><a href="data-classes-and-structures.html#cb239-13"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE FALSE</span></span>
-<span id="cb239-14"><a href="data-classes-and-structures.html#cb239-14"></a>x[x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)]</span>
-<span id="cb239-15"><a href="data-classes-and-structures.html#cb239-15"></a><span class="co">#&gt; [1] 4.2 3.3</span></span></code></pre></div>
+<span id="cb239-2"><a href="data-classes-and-structures.html#cb239-2"></a>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="co"># intermediary step</span></span>
+<span id="cb239-3"><a href="data-classes-and-structures.html#cb239-3"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE</span></span>
+<span id="cb239-4"><a href="data-classes-and-structures.html#cb239-4"></a>x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>] <span class="co"># this is money</span></span>
+<span id="cb239-5"><a href="data-classes-and-structures.html#cb239-5"></a><span class="co">#&gt; [1] 4.2 3.3 5.4</span></span>
+<span id="cb239-6"><a href="data-classes-and-structures.html#cb239-6"></a></span>
+<span id="cb239-7"><a href="data-classes-and-structures.html#cb239-7"></a><span class="co"># With !</span></span>
+<span id="cb239-8"><a href="data-classes-and-structures.html#cb239-8"></a><span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> </span>
+<span id="cb239-9"><a href="data-classes-and-structures.html#cb239-9"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE</span></span>
+<span id="cb239-10"><a href="data-classes-and-structures.html#cb239-10"></a>x[<span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>]</span>
+<span id="cb239-11"><a href="data-classes-and-structures.html#cb239-11"></a><span class="co">#&gt; [1] 2.1 4.2 3.3</span></span>
+<span id="cb239-12"><a href="data-classes-and-structures.html#cb239-12"></a></span>
+<span id="cb239-13"><a href="data-classes-and-structures.html#cb239-13"></a><span class="co"># With %in% </span></span>
+<span id="cb239-14"><a href="data-classes-and-structures.html#cb239-14"></a>x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)</span>
+<span id="cb239-15"><a href="data-classes-and-structures.html#cb239-15"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE FALSE</span></span>
+<span id="cb239-16"><a href="data-classes-and-structures.html#cb239-16"></a>x[x <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">3.3</span>, <span class="fl">4.2</span>)]</span>
+<span id="cb239-17"><a href="data-classes-and-structures.html#cb239-17"></a><span class="co">#&gt; [1] 4.2 3.3</span></span></code></pre></div>
 </div>
 <div id="challenge." class="section level4 unnumbered">
 <h4>Challenge.</h4>
 <p>Subset <code>country_vector</code> below to return every value EXCEPT <code>"Canada"</code> and <code>"Brazil"</code>.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-classes-and-structures.html#cb240-1"></a>country_vector&lt;-<span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Sierra Leone&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)</span>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-classes-and-structures.html#cb240-1"></a>country_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Sierra Leone&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)</span>
 <span id="cb240-2"><a href="data-classes-and-structures.html#cb240-2"></a></span>
 <span id="cb240-3"><a href="data-classes-and-structures.html#cb240-3"></a><span class="co"># Do it using positive integers.</span></span>
-<span id="cb240-4"><a href="data-classes-and-structures.html#cb240-4"></a></span>
-<span id="cb240-5"><a href="data-classes-and-structures.html#cb240-5"></a><span class="co"># Do it using negative integers.</span></span>
+<span id="cb240-4"><a href="data-classes-and-structures.html#cb240-4"></a>country_vector[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
+<span id="cb240-5"><a href="data-classes-and-structures.html#cb240-5"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
 <span id="cb240-6"><a href="data-classes-and-structures.html#cb240-6"></a></span>
-<span id="cb240-7"><a href="data-classes-and-structures.html#cb240-7"></a><span class="co"># Do it using a logical vector.</span></span>
-<span id="cb240-8"><a href="data-classes-and-structures.html#cb240-8"></a></span>
-<span id="cb240-9"><a href="data-classes-and-structures.html#cb240-9"></a><span class="co"># Do it using a conditional statement (and an implicit logical vector).</span></span></code></pre></div>
+<span id="cb240-7"><a href="data-classes-and-structures.html#cb240-7"></a><span class="co"># Do it using negative integers.</span></span>
+<span id="cb240-8"><a href="data-classes-and-structures.html#cb240-8"></a>country_vector[<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">-6</span>)]</span>
+<span id="cb240-9"><a href="data-classes-and-structures.html#cb240-9"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-10"><a href="data-classes-and-structures.html#cb240-10"></a>country_vector[<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)]</span>
+<span id="cb240-11"><a href="data-classes-and-structures.html#cb240-11"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-12"><a href="data-classes-and-structures.html#cb240-12"></a></span>
+<span id="cb240-13"><a href="data-classes-and-structures.html#cb240-13"></a><span class="co"># Do it using a logical vector.</span></span>
+<span id="cb240-14"><a href="data-classes-and-structures.html#cb240-14"></a>logical &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, T, T, F)</span>
+<span id="cb240-15"><a href="data-classes-and-structures.html#cb240-15"></a>country_vector[logical]</span>
+<span id="cb240-16"><a href="data-classes-and-structures.html#cb240-16"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Brazil&quot;</span></span>
+<span id="cb240-17"><a href="data-classes-and-structures.html#cb240-17"></a>country_vector[<span class="kw">c</span>(T, F, T, T, F)]</span>
+<span id="cb240-18"><a href="data-classes-and-structures.html#cb240-18"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Brazil&quot;</span></span>
+<span id="cb240-19"><a href="data-classes-and-structures.html#cb240-19"></a></span>
+<span id="cb240-20"><a href="data-classes-and-structures.html#cb240-20"></a><span class="co"># Do it using a conditional statement (and an implicit logical vector).</span></span>
+<span id="cb240-21"><a href="data-classes-and-structures.html#cb240-21"></a>country_vector[country_vector<span class="op">!=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)]</span>
+<span id="cb240-22"><a href="data-classes-and-structures.html#cb240-22"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Canada&quot;       &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-23"><a href="data-classes-and-structures.html#cb240-23"></a></span>
+<span id="cb240-24"><a href="data-classes-and-structures.html#cb240-24"></a>country_vector</span>
+<span id="cb240-25"><a href="data-classes-and-structures.html#cb240-25"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Canada&quot;       &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;       </span></span>
+<span id="cb240-26"><a href="data-classes-and-structures.html#cb240-26"></a><span class="co">#&gt; [6] &quot;Brazil&quot;</span></span>
+<span id="cb240-27"><a href="data-classes-and-structures.html#cb240-27"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)</span>
+<span id="cb240-28"><a href="data-classes-and-structures.html#cb240-28"></a>country_vector<span class="op">!=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>,<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span> )</span>
+<span id="cb240-29"><a href="data-classes-and-structures.html#cb240-29"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></span>
+<span id="cb240-30"><a href="data-classes-and-structures.html#cb240-30"></a>country_vector[country_vector<span class="op">!=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)]</span>
+<span id="cb240-31"><a href="data-classes-and-structures.html#cb240-31"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Canada&quot;       &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-32"><a href="data-classes-and-structures.html#cb240-32"></a></span>
+<span id="cb240-33"><a href="data-classes-and-structures.html#cb240-33"></a>country_vector[country_vector <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Sierra Leone&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Japan&quot;</span>)]</span>
+<span id="cb240-34"><a href="data-classes-and-structures.html#cb240-34"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-35"><a href="data-classes-and-structures.html#cb240-35"></a></span>
+<span id="cb240-36"><a href="data-classes-and-structures.html#cb240-36"></a><span class="co"># PREFERRED</span></span>
+<span id="cb240-37"><a href="data-classes-and-structures.html#cb240-37"></a>country_vector[<span class="op">!</span>country_vector <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Brazil&quot;</span>)]</span>
+<span id="cb240-38"><a href="data-classes-and-structures.html#cb240-38"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;</span></span>
+<span id="cb240-39"><a href="data-classes-and-structures.html#cb240-39"></a></span>
+<span id="cb240-40"><a href="data-classes-and-structures.html#cb240-40"></a><span class="co"># TWO CONDITIONAL STATEMENTS</span></span>
+<span id="cb240-41"><a href="data-classes-and-structures.html#cb240-41"></a>country_vector[country_vector<span class="op">!=</span><span class="st">&quot;Canada&quot;</span> <span class="op">|</span><span class="st"> </span>country_vector<span class="op">!=</span><span class="st">&quot;Brazil&quot;</span>]</span>
+<span id="cb240-42"><a href="data-classes-and-structures.html#cb240-42"></a><span class="co">#&gt; [1] &quot;Afghanistan&quot;  &quot;Canada&quot;       &quot;Sierra Leone&quot; &quot;Denmark&quot;      &quot;Japan&quot;       </span></span>
+<span id="cb240-43"><a href="data-classes-and-structures.html#cb240-43"></a><span class="co">#&gt; [6] &quot;Brazil&quot;</span></span>
+<span id="cb240-44"><a href="data-classes-and-structures.html#cb240-44"></a></span>
+<span id="cb240-45"><a href="data-classes-and-structures.html#cb240-45"></a>country_vector<span class="op">!=</span><span class="st">&quot;Canada&quot;</span></span>
+<span id="cb240-46"><a href="data-classes-and-structures.html#cb240-46"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span id="cb240-47"><a href="data-classes-and-structures.html#cb240-47"></a>country_vector<span class="op">!=</span><span class="st">&quot;Brazil&quot;</span></span>
+<span id="cb240-48"><a href="data-classes-and-structures.html#cb240-48"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></span></code></pre></div>
 
 </div>
 </div>
@@ -1269,7 +1317,12 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <p>We can create a dataframe from scratch using <code>data.frame()</code>. This function takes vectors as input:</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-classes-and-structures.html#cb268-1"></a>vec_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
 <span id="cb268-2"><a href="data-classes-and-structures.html#cb268-2"></a>vec_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
-<span id="cb268-3"><a href="data-classes-and-structures.html#cb268-3"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)</span></code></pre></div>
+<span id="cb268-3"><a href="data-classes-and-structures.html#cb268-3"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vec_<span class="dv">1</span>, vec_<span class="dv">2</span>)</span>
+<span id="cb268-4"><a href="data-classes-and-structures.html#cb268-4"></a>df</span>
+<span id="cb268-5"><a href="data-classes-and-structures.html#cb268-5"></a><span class="co">#&gt;   vec_1 vec_2</span></span>
+<span id="cb268-6"><a href="data-classes-and-structures.html#cb268-6"></a><span class="co">#&gt; 1     1     a</span></span>
+<span id="cb268-7"><a href="data-classes-and-structures.html#cb268-7"></a><span class="co">#&gt; 2     2     b</span></span>
+<span id="cb268-8"><a href="data-classes-and-structures.html#cb268-8"></a><span class="co">#&gt; 3     3     c</span></span></code></pre></div>
 </div>
 <div id="the-structure-of-dataframes" class="section level3">
 <h3><span class="header-section-number">14.8.2</span> The Structure of Dataframes</h3>
@@ -1293,13 +1346,18 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <span id="cb270-8"><a href="data-classes-and-structures.html#cb270-8"></a><span class="kw">ncol</span>(df)</span>
 <span id="cb270-9"><a href="data-classes-and-structures.html#cb270-9"></a><span class="co">#&gt; [1] 2</span></span>
 <span id="cb270-10"><a href="data-classes-and-structures.html#cb270-10"></a></span>
-<span id="cb270-11"><a href="data-classes-and-structures.html#cb270-11"></a><span class="co"># Get number of rows</span></span>
-<span id="cb270-12"><a href="data-classes-and-structures.html#cb270-12"></a><span class="kw">nrow</span>(df)</span>
-<span id="cb270-13"><a href="data-classes-and-structures.html#cb270-13"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb270-14"><a href="data-classes-and-structures.html#cb270-14"></a></span>
-<span id="cb270-15"><a href="data-classes-and-structures.html#cb270-15"></a><span class="co"># Get number of both columns and rows</span></span>
-<span id="cb270-16"><a href="data-classes-and-structures.html#cb270-16"></a><span class="kw">dim</span>(df)</span>
-<span id="cb270-17"><a href="data-classes-and-structures.html#cb270-17"></a><span class="co">#&gt; [1] 3 2</span></span></code></pre></div>
+<span id="cb270-11"><a href="data-classes-and-structures.html#cb270-11"></a><span class="kw">length</span>(gap)</span>
+<span id="cb270-12"><a href="data-classes-and-structures.html#cb270-12"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb270-13"><a href="data-classes-and-structures.html#cb270-13"></a><span class="kw">ncol</span>(gap)</span>
+<span id="cb270-14"><a href="data-classes-and-structures.html#cb270-14"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb270-15"><a href="data-classes-and-structures.html#cb270-15"></a></span>
+<span id="cb270-16"><a href="data-classes-and-structures.html#cb270-16"></a><span class="co"># Get number of rows</span></span>
+<span id="cb270-17"><a href="data-classes-and-structures.html#cb270-17"></a><span class="kw">nrow</span>(df)</span>
+<span id="cb270-18"><a href="data-classes-and-structures.html#cb270-18"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb270-19"><a href="data-classes-and-structures.html#cb270-19"></a></span>
+<span id="cb270-20"><a href="data-classes-and-structures.html#cb270-20"></a><span class="co"># Get number of both columns and rows</span></span>
+<span id="cb270-21"><a href="data-classes-and-structures.html#cb270-21"></a><span class="kw">dim</span>(df)</span>
+<span id="cb270-22"><a href="data-classes-and-structures.html#cb270-22"></a><span class="co">#&gt; [1] 3 2</span></span></code></pre></div>
 </div>
 <div id="naming-dataframes" class="section level3">
 <h3><span class="header-section-number">14.8.3</span> Naming Dataframes</h3>
@@ -1315,17 +1373,22 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <span id="cb271-9"><a href="data-classes-and-structures.html#cb271-9"></a><span class="co">#&gt; [1] &quot;vec_1&quot; &quot;vec_2&quot;</span></span>
 <span id="cb271-10"><a href="data-classes-and-structures.html#cb271-10"></a></span>
 <span id="cb271-11"><a href="data-classes-and-structures.html#cb271-11"></a><span class="co"># Change the colnames</span></span>
-<span id="cb271-12"><a href="data-classes-and-structures.html#cb271-12"></a><span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Number&quot;</span>, <span class="st">&quot;Character&quot;</span>)</span>
-<span id="cb271-13"><a href="data-classes-and-structures.html#cb271-13"></a></span>
-<span id="cb271-14"><a href="data-classes-and-structures.html#cb271-14"></a><span class="co"># Change the rownames</span></span>
-<span id="cb271-15"><a href="data-classes-and-structures.html#cb271-15"></a><span class="kw">rownames</span>(df) </span>
-<span id="cb271-16"><a href="data-classes-and-structures.html#cb271-16"></a><span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</span></span>
-<span id="cb271-17"><a href="data-classes-and-structures.html#cb271-17"></a><span class="kw">rownames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;donut&quot;</span>, <span class="st">&quot;pickle&quot;</span>, <span class="st">&quot;pretzel&quot;</span>)</span>
-<span id="cb271-18"><a href="data-classes-and-structures.html#cb271-18"></a>df</span>
-<span id="cb271-19"><a href="data-classes-and-structures.html#cb271-19"></a><span class="co">#&gt;         Number Character</span></span>
-<span id="cb271-20"><a href="data-classes-and-structures.html#cb271-20"></a><span class="co">#&gt; donut        1         a</span></span>
-<span id="cb271-21"><a href="data-classes-and-structures.html#cb271-21"></a><span class="co">#&gt; pickle       2         b</span></span>
-<span id="cb271-22"><a href="data-classes-and-structures.html#cb271-22"></a><span class="co">#&gt; pretzel      3         c</span></span></code></pre></div>
+<span id="cb271-12"><a href="data-classes-and-structures.html#cb271-12"></a><span class="kw">names</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Number&quot;</span>, <span class="st">&quot;Character&quot;</span>)</span>
+<span id="cb271-13"><a href="data-classes-and-structures.html#cb271-13"></a>df</span>
+<span id="cb271-14"><a href="data-classes-and-structures.html#cb271-14"></a><span class="co">#&gt;   Number Character</span></span>
+<span id="cb271-15"><a href="data-classes-and-structures.html#cb271-15"></a><span class="co">#&gt; 1      1         a</span></span>
+<span id="cb271-16"><a href="data-classes-and-structures.html#cb271-16"></a><span class="co">#&gt; 2      2         b</span></span>
+<span id="cb271-17"><a href="data-classes-and-structures.html#cb271-17"></a><span class="co">#&gt; 3      3         c</span></span>
+<span id="cb271-18"><a href="data-classes-and-structures.html#cb271-18"></a></span>
+<span id="cb271-19"><a href="data-classes-and-structures.html#cb271-19"></a><span class="co"># Change the rownames</span></span>
+<span id="cb271-20"><a href="data-classes-and-structures.html#cb271-20"></a><span class="kw">rownames</span>(df) </span>
+<span id="cb271-21"><a href="data-classes-and-structures.html#cb271-21"></a><span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</span></span>
+<span id="cb271-22"><a href="data-classes-and-structures.html#cb271-22"></a><span class="kw">rownames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;donut&quot;</span>, <span class="st">&quot;pickle&quot;</span>, <span class="st">&quot;pretzel&quot;</span>)</span>
+<span id="cb271-23"><a href="data-classes-and-structures.html#cb271-23"></a>df</span>
+<span id="cb271-24"><a href="data-classes-and-structures.html#cb271-24"></a><span class="co">#&gt;         Number Character</span></span>
+<span id="cb271-25"><a href="data-classes-and-structures.html#cb271-25"></a><span class="co">#&gt; donut        1         a</span></span>
+<span id="cb271-26"><a href="data-classes-and-structures.html#cb271-26"></a><span class="co">#&gt; pickle       2         b</span></span>
+<span id="cb271-27"><a href="data-classes-and-structures.html#cb271-27"></a><span class="co">#&gt; pretzel      3         c</span></span></code></pre></div>
 
 </div>
 </div>
