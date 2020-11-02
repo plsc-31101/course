@@ -11,17 +11,17 @@ library(tidyverse)
 library(stringr)
 ```
 
-## Common Tools
+## Applying regex
 
 Now that you have learned the basics of regular expressions, it is time to learn how to apply them to real problems. In this section, you will learn a wide array of `stringr` functions that let you
 
-* Determine which strings match a pattern.
-* Find the positions of matches.
-* Extract the content of matches.
-* Replace matches with new values.
-* Split a string based on a match.
+* Detect matches in a string with `str_detect()`.
+* Count the number of matches with `str_count()`
+* Extract matches with `str_extract()` and `str_extract_all()`
+* Replace matches with `str_replace()` and `str_replace_all()`
+* Split a string based on a match with `str_split()`
 
-### Detect Matches
+### Detect matches with `str_detect()`
 
 To determine if a character vector matches a pattern, use `str_detect()`. It returns a logical vector the same length as the input:
 
@@ -60,6 +60,8 @@ df %>%
   filter(str_detect(word, "x$"))
 ```
 
+### Count the number of matches with `str_count()`
+
 A variation on `str_detect()` is `str_count()`. Rather than a simple yes or no, it tells you how many matches there are in a string:
 
 ```{r}
@@ -91,7 +93,7 @@ For each of the following challenges, try solving it by using both a single regu
     2.  Find all words that start with a vowel and end with a consonant.
     
 
-### Extract Matches
+### Extract matches with `str_extract()` and `str_extract_all()`
 
 To extract the actual text of a match, use `str_extract()`. To show that off, we are going to need a more complicated example. I am going to use the [Harvard sentences](https://en.wikipedia.org/wiki/Harvard_sentences). These are provided in `stringr::sentences`:
 
@@ -120,7 +122,7 @@ matches <- str_extract(has_color, color_match)
 head(matches)
 ```
 
-Note that `str_extract()` only extracts the first match. This is a common pattern for `stringr` functions, because working with a single match allows you to use much simpler data structures. To get all matches, use `str_extract_all()`. It returns a list:
+Note that `str_extract()` only extracts the **first match**. This is a common pattern for `stringr` functions, because working with a single match allows you to use much simpler data structures. To get all matches, use `str_extract_all()`. It returns a list:
 
 ```{r}
 all_colors <- str_extract_all(has_color, color_match)
@@ -137,7 +139,7 @@ str_extract_all(has_color, color_match, simplify = TRUE)
 
 In the previous example, you might have noticed that the regular expression matched "flickered", which is not a color. Modify the regex to fix the problem.
 
-### Replacing Matches
+### Replace matches with `str_replace()` and `str_replace_all()`
 
 `str_replace()` and `str_replace_all()` allow you to replace matches with new strings. The simplest use is to replace a pattern with a fixed string:
 
@@ -154,7 +156,7 @@ x <- c("1 house", "2 cars", "3 people")
 str_replace_all(x, c("1" = "one", "2" = "two", "3" = "three"))
 ```
 
-### Splitting
+### Split on a match with `str_split()`
 
 Use `str_split()` to split a string up into pieces. For example, we could split sentences into words:
 
@@ -175,7 +177,7 @@ sentences %>%
 You can also request a maximum number of pieces:
 
 ```{r}
-fields <- c("Name: Hadley", "Country: NZ", "Age: 35")
+fields <- c("Name: Rochelle", "State: IL", "Age: 34")
 fields %>% str_split(": ", n = 2, simplify = TRUE)
 ```
 
