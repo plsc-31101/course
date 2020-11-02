@@ -5,11 +5,6 @@ date: "Fall 2020"
 output: html_document
 ---
 
-```{r message = FALSE}
-library(tidyverse)
-library(gapminder)
-```
-
 # Programming in R
 
 This unit covers some more advanced programming in R - namely:
@@ -21,6 +16,11 @@ This unit covers some more advanced programming in R - namely:
 Mastering these skills will make you virtually invincible in R!
 
 Note that these concepts are __not specific to R__. While the syntax might vary, the basic idea of flow, functions, and iteration are common across all scripting languages. So if you ever think of picking up Python or something else, it is critical to familiarize yourself with these concepts.
+
+```{r message = FALSE}
+library(tidyverse)
+library(gapminder)
+```
 
 ## Conditional Flow 
 
