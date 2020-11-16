@@ -613,8 +613,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s go ahead and store these values as variables:</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="collecting-data-from-the-web.html#cb372-1"></a><span class="co">#key &lt;- &quot;YOURKEY HERE&quot;</span></span>
 <span id="cb372-2"><a href="collecting-data-from-the-web.html#cb372-2"></a>base.url &lt;-<span class="st"> &quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span></span>
-<span id="cb372-3"><a href="collecting-data-from-the-web.html#cb372-3"></a>search_term &lt;-<span class="st"> &quot;John Mearsheimer&quot;</span></span></code></pre></div>
-<p>How did I know the <code>base.url</code>? I read the <a href="https://developer.nytimes.com/docs/articlesearch-product/1/routes/articlesearch.json/get">documentation</a>. Notice that this <code>base.url</code> also includes the <em>response format</em>(<code>.jston</code>), so we do not need to configure that directly.</p>
+<span id="cb372-3"><a href="collecting-data-from-the-web.html#cb372-3"></a>search_term &lt;-<span class="st"> &quot;&#39;John Mearsheimer&#39;&quot;</span></span></code></pre></div>
+<p>How did I know the <code>base.url</code>? I read the <a href="https://developer.nytimes.com/docs/articlesearch-product/1/routes/articlesearch.json/get">documentation</a>. Notice that this <code>base.url</code> also includes the <em>response format</em>(<code>.json</code>), so we do not need to configure that directly.</p>
 <p>We are ready to make the request. We can use the <code>GET</code> function from the <code>httr</code> package (another <code>tidyverse</code> package) to make an HTTP GET Request.</p>
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="collecting-data-from-the-web.html#cb373-1"></a>r &lt;-<span class="st"> </span><span class="kw">GET</span>(base.url, <span class="dt">query =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">q</span><span class="st">`</span> =<span class="st"> </span>search_term,</span>
 <span id="cb373-2"><a href="collecting-data-from-the-web.html#cb373-2"></a>                                <span class="st">`</span><span class="dt">api-key</span><span class="st">`</span> =<span class="st"> </span>key))</span></code></pre></div>
@@ -708,80 +708,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">17.3.3</span> Iteration through Results Pager</h3>
 <p>That is great. But we only have 10 items. The original response said we had 168 hits! Which means we have to make 168/10, or 17 requests to get them all. Sounds like a job for iteration!</p>
 <p>First, let’s write a function that passes a search term and a page number, and returns a dataframe of articles:</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="collecting-data-from-the-web.html#cb379-1"></a>nytapi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">term =</span> <span class="ot">NULL</span>, n){</span>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="collecting-data-from-the-web.html#cb379-1"></a>nytapi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">term =</span> <span class="ot">NULL</span>, page){</span>
 <span id="cb379-2"><a href="collecting-data-from-the-web.html#cb379-2"></a>    base.url =<span class="st"> &quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span></span>
 <span id="cb379-3"><a href="collecting-data-from-the-web.html#cb379-3"></a>    </span>
 <span id="cb379-4"><a href="collecting-data-from-the-web.html#cb379-4"></a>    <span class="co"># Send GET request</span></span>
 <span id="cb379-5"><a href="collecting-data-from-the-web.html#cb379-5"></a>    r &lt;-<span class="st"> </span><span class="kw">GET</span>(base.url, <span class="dt">query =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">q</span><span class="st">`</span> =<span class="st"> </span>term,</span>
 <span id="cb379-6"><a href="collecting-data-from-the-web.html#cb379-6"></a>                                  <span class="st">`</span><span class="dt">api-key</span><span class="st">`</span> =<span class="st"> </span>key,</span>
-<span id="cb379-7"><a href="collecting-data-from-the-web.html#cb379-7"></a>                                  <span class="st">`</span><span class="dt">page</span><span class="st">`</span> =<span class="st"> </span>n))</span>
+<span id="cb379-7"><a href="collecting-data-from-the-web.html#cb379-7"></a>                                  <span class="st">`</span><span class="dt">page</span><span class="st">`</span> =<span class="st"> </span>page))</span>
 <span id="cb379-8"><a href="collecting-data-from-the-web.html#cb379-8"></a>    </span>
 <span id="cb379-9"><a href="collecting-data-from-the-web.html#cb379-9"></a>    <span class="co"># Parse response to JSON</span></span>
 <span id="cb379-10"><a href="collecting-data-from-the-web.html#cb379-10"></a>    response &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(r, <span class="st">&quot;text&quot;</span>)  </span>
 <span id="cb379-11"><a href="collecting-data-from-the-web.html#cb379-11"></a>    response_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(response, <span class="dt">simplifyDataFrame =</span> T, <span class="dt">flatten =</span> T)</span>
 <span id="cb379-12"><a href="collecting-data-from-the-web.html#cb379-12"></a>    </span>
-<span id="cb379-13"><a href="collecting-data-from-the-web.html#cb379-13"></a>    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Scraping page: &quot;</span>, <span class="kw">as.character</span>(n)))</span>
+<span id="cb379-13"><a href="collecting-data-from-the-web.html#cb379-13"></a>    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Scraping page: &quot;</span>, <span class="kw">as.character</span>(page)))</span>
 <span id="cb379-14"><a href="collecting-data-from-the-web.html#cb379-14"></a>    </span>
 <span id="cb379-15"><a href="collecting-data-from-the-web.html#cb379-15"></a>    <span class="kw">return</span>(response_df<span class="op">$</span>response<span class="op">$</span>docs)</span>
 <span id="cb379-16"><a href="collecting-data-from-the-web.html#cb379-16"></a>}</span>
 <span id="cb379-17"><a href="collecting-data-from-the-web.html#cb379-17"></a></span>
-<span id="cb379-18"><a href="collecting-data-from-the-web.html#cb379-18"></a>docs &lt;-<span class="st"> </span><span class="kw">nytapi</span>(<span class="st">&quot;John Mearsheimer&quot;</span>, <span class="dv">2</span>)</span>
+<span id="cb379-18"><a href="collecting-data-from-the-web.html#cb379-18"></a>docs &lt;-<span class="st"> </span><span class="kw">nytapi</span>(<span class="st">&quot;&#39;John Mearsheimer&#39;&quot;</span>, <span class="dt">page =</span> <span class="dv">2</span>)</span>
 <span id="cb379-19"><a href="collecting-data-from-the-web.html#cb379-19"></a><span class="co">#&gt; [1] &quot;Scraping page:  2&quot;</span></span></code></pre></div>
 <p>Now, we are ready to iterate over each page. First, let’s review what we have done so far:</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="collecting-data-from-the-web.html#cb380-1"></a><span class="co"># Set key and base</span></span>
 <span id="cb380-2"><a href="collecting-data-from-the-web.html#cb380-2"></a>base.url =<span class="st"> &quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span> </span>
-<span id="cb380-3"><a href="collecting-data-from-the-web.html#cb380-3"></a>search_term =<span class="st"> &quot;John Mearsheimer&quot;</span> <span class="co"># Change me</span></span>
+<span id="cb380-3"><a href="collecting-data-from-the-web.html#cb380-3"></a>search_term =<span class="st"> &quot;&#39;John Mearsheimer&#39;&quot;</span> </span>
 <span id="cb380-4"><a href="collecting-data-from-the-web.html#cb380-4"></a>  </span>
 <span id="cb380-5"><a href="collecting-data-from-the-web.html#cb380-5"></a><span class="co"># Send GET request</span></span>
-<span id="cb380-6"><a href="collecting-data-from-the-web.html#cb380-6"></a>r &lt;-<span class="st"> </span><span class="kw">GET</span>(base.url, <span class="dt">query =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">fq</span><span class="st">`</span> =<span class="st"> </span>search_term,</span>
+<span id="cb380-6"><a href="collecting-data-from-the-web.html#cb380-6"></a>r &lt;-<span class="st"> </span><span class="kw">GET</span>(base.url, <span class="dt">query =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">q</span><span class="st">`</span> =<span class="st"> </span>search_term,</span>
 <span id="cb380-7"><a href="collecting-data-from-the-web.html#cb380-7"></a>                                <span class="st">`</span><span class="dt">api-key</span><span class="st">`</span> =<span class="st"> </span>key))</span>
 <span id="cb380-8"><a href="collecting-data-from-the-web.html#cb380-8"></a>  </span>
 <span id="cb380-9"><a href="collecting-data-from-the-web.html#cb380-9"></a><span class="co"># Parse response to JSON</span></span>
 <span id="cb380-10"><a href="collecting-data-from-the-web.html#cb380-10"></a>response &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(r, <span class="st">&quot;text&quot;</span>)  </span>
 <span id="cb380-11"><a href="collecting-data-from-the-web.html#cb380-11"></a>response_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(response, <span class="dt">simplifyDataFrame =</span> T, <span class="dt">flatten =</span> T)</span>
 <span id="cb380-12"><a href="collecting-data-from-the-web.html#cb380-12"></a></span>
-<span id="cb380-13"><a href="collecting-data-from-the-web.html#cb380-13"></a><span class="co"># Extract hits -- BUGGGGG</span></span>
-<span id="cb380-14"><a href="collecting-data-from-the-web.html#cb380-14"></a><span class="co"># hits = response_df$response$meta$hits </span></span>
-<span id="cb380-15"><a href="collecting-data-from-the-web.html#cb380-15"></a>hits =<span class="st"> </span><span class="dv">168</span></span>
-<span id="cb380-16"><a href="collecting-data-from-the-web.html#cb380-16"></a></span>
-<span id="cb380-17"><a href="collecting-data-from-the-web.html#cb380-17"></a><span class="co"># Get number of pages</span></span>
-<span id="cb380-18"><a href="collecting-data-from-the-web.html#cb380-18"></a>pages =<span class="st"> </span><span class="kw">ceiling</span>(hits<span class="op">/</span><span class="dv">10</span>)</span>
-<span id="cb380-19"><a href="collecting-data-from-the-web.html#cb380-19"></a></span>
-<span id="cb380-20"><a href="collecting-data-from-the-web.html#cb380-20"></a><span class="co"># Modify function to sleep</span></span>
-<span id="cb380-21"><a href="collecting-data-from-the-web.html#cb380-21"></a>nytapi_slow &lt;-<span class="st"> </span><span class="kw">slowly</span>(nytapi, <span class="dt">rate =</span> <span class="kw">rate_delay</span>(<span class="dv">1</span>))</span>
-<span id="cb380-22"><a href="collecting-data-from-the-web.html#cb380-22"></a></span>
-<span id="cb380-23"><a href="collecting-data-from-the-web.html#cb380-23"></a><span class="co"># Iterate over pages, getting all docs</span></span>
-<span id="cb380-24"><a href="collecting-data-from-the-web.html#cb380-24"></a>docs_list &lt;-<span class="st"> </span><span class="kw">map</span>((<span class="dv">1</span><span class="op">:</span>pages), <span class="op">~</span><span class="kw">nytapi_slow</span>(<span class="dt">term =</span> search_term, <span class="dt">n =</span> .))</span>
-<span id="cb380-25"><a href="collecting-data-from-the-web.html#cb380-25"></a><span class="co">#&gt; [1] &quot;Scraping page:  1&quot;</span></span>
-<span id="cb380-26"><a href="collecting-data-from-the-web.html#cb380-26"></a><span class="co">#&gt; [1] &quot;Scraping page:  2&quot;</span></span>
-<span id="cb380-27"><a href="collecting-data-from-the-web.html#cb380-27"></a><span class="co">#&gt; [1] &quot;Scraping page:  3&quot;</span></span>
-<span id="cb380-28"><a href="collecting-data-from-the-web.html#cb380-28"></a><span class="co">#&gt; [1] &quot;Scraping page:  4&quot;</span></span>
-<span id="cb380-29"><a href="collecting-data-from-the-web.html#cb380-29"></a><span class="co">#&gt; [1] &quot;Scraping page:  5&quot;</span></span>
-<span id="cb380-30"><a href="collecting-data-from-the-web.html#cb380-30"></a><span class="co">#&gt; [1] &quot;Scraping page:  6&quot;</span></span>
-<span id="cb380-31"><a href="collecting-data-from-the-web.html#cb380-31"></a><span class="co">#&gt; [1] &quot;Scraping page:  7&quot;</span></span>
-<span id="cb380-32"><a href="collecting-data-from-the-web.html#cb380-32"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-33"><a href="collecting-data-from-the-web.html#cb380-33"></a><span class="co">#&gt; [1] &quot;Scraping page:  8&quot;</span></span>
-<span id="cb380-34"><a href="collecting-data-from-the-web.html#cb380-34"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-35"><a href="collecting-data-from-the-web.html#cb380-35"></a><span class="co">#&gt; [1] &quot;Scraping page:  9&quot;</span></span>
-<span id="cb380-36"><a href="collecting-data-from-the-web.html#cb380-36"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-37"><a href="collecting-data-from-the-web.html#cb380-37"></a><span class="co">#&gt; [1] &quot;Scraping page:  10&quot;</span></span>
-<span id="cb380-38"><a href="collecting-data-from-the-web.html#cb380-38"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-39"><a href="collecting-data-from-the-web.html#cb380-39"></a><span class="co">#&gt; [1] &quot;Scraping page:  11&quot;</span></span>
-<span id="cb380-40"><a href="collecting-data-from-the-web.html#cb380-40"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-41"><a href="collecting-data-from-the-web.html#cb380-41"></a><span class="co">#&gt; [1] &quot;Scraping page:  12&quot;</span></span>
-<span id="cb380-42"><a href="collecting-data-from-the-web.html#cb380-42"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-43"><a href="collecting-data-from-the-web.html#cb380-43"></a><span class="co">#&gt; [1] &quot;Scraping page:  13&quot;</span></span>
-<span id="cb380-44"><a href="collecting-data-from-the-web.html#cb380-44"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-45"><a href="collecting-data-from-the-web.html#cb380-45"></a><span class="co">#&gt; [1] &quot;Scraping page:  14&quot;</span></span>
-<span id="cb380-46"><a href="collecting-data-from-the-web.html#cb380-46"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-47"><a href="collecting-data-from-the-web.html#cb380-47"></a><span class="co">#&gt; [1] &quot;Scraping page:  15&quot;</span></span>
-<span id="cb380-48"><a href="collecting-data-from-the-web.html#cb380-48"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-49"><a href="collecting-data-from-the-web.html#cb380-49"></a><span class="co">#&gt; [1] &quot;Scraping page:  16&quot;</span></span>
-<span id="cb380-50"><a href="collecting-data-from-the-web.html#cb380-50"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span id="cb380-51"><a href="collecting-data-from-the-web.html#cb380-51"></a><span class="co">#&gt; [1] &quot;Scraping page:  17&quot;</span></span>
-<span id="cb380-52"><a href="collecting-data-from-the-web.html#cb380-52"></a></span>
-<span id="cb380-53"><a href="collecting-data-from-the-web.html#cb380-53"></a><span class="co"># Flatten to create one bit dataframe</span></span>
-<span id="cb380-54"><a href="collecting-data-from-the-web.html#cb380-54"></a>docs_df &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(docs_list)</span></code></pre></div>
+<span id="cb380-13"><a href="collecting-data-from-the-web.html#cb380-13"></a><span class="co"># Extract hits</span></span>
+<span id="cb380-14"><a href="collecting-data-from-the-web.html#cb380-14"></a>hits =<span class="st"> </span>response_df<span class="op">$</span>response<span class="op">$</span>meta<span class="op">$</span>hits </span>
+<span id="cb380-15"><a href="collecting-data-from-the-web.html#cb380-15"></a></span>
+<span id="cb380-16"><a href="collecting-data-from-the-web.html#cb380-16"></a><span class="co"># Get number of pages</span></span>
+<span id="cb380-17"><a href="collecting-data-from-the-web.html#cb380-17"></a>pages =<span class="st"> </span><span class="kw">ceiling</span>(hits<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb380-18"><a href="collecting-data-from-the-web.html#cb380-18"></a></span>
+<span id="cb380-19"><a href="collecting-data-from-the-web.html#cb380-19"></a><span class="co"># Modify function to sleep</span></span>
+<span id="cb380-20"><a href="collecting-data-from-the-web.html#cb380-20"></a>nytapi_slow &lt;-<span class="st"> </span><span class="kw">slowly</span>(nytapi, <span class="dt">rate =</span> <span class="kw">rate_delay</span>(<span class="dv">1</span>))</span>
+<span id="cb380-21"><a href="collecting-data-from-the-web.html#cb380-21"></a></span>
+<span id="cb380-22"><a href="collecting-data-from-the-web.html#cb380-22"></a><span class="co"># Iterate over pages, getting all docs</span></span>
+<span id="cb380-23"><a href="collecting-data-from-the-web.html#cb380-23"></a>docs_df &lt;-<span class="st"> </span><span class="kw">map_dfr</span>((<span class="dv">1</span><span class="op">:</span>pages), <span class="op">~</span><span class="kw">nytapi_slow</span>(<span class="dt">term =</span> search_term, <span class="dt">page =</span> .))</span>
+<span id="cb380-24"><a href="collecting-data-from-the-web.html#cb380-24"></a><span class="co">#&gt; [1] &quot;Scraping page:  1&quot;</span></span>
+<span id="cb380-25"><a href="collecting-data-from-the-web.html#cb380-25"></a><span class="co">#&gt; [1] &quot;Scraping page:  2&quot;</span></span>
+<span id="cb380-26"><a href="collecting-data-from-the-web.html#cb380-26"></a><span class="co">#&gt; [1] &quot;Scraping page:  3&quot;</span></span>
+<span id="cb380-27"><a href="collecting-data-from-the-web.html#cb380-27"></a><span class="co">#&gt; [1] &quot;Scraping page:  4&quot;</span></span>
+<span id="cb380-28"><a href="collecting-data-from-the-web.html#cb380-28"></a><span class="co">#&gt; [1] &quot;Scraping page:  5&quot;</span></span></code></pre></div>
 </div>
 <div id="visualizing-results" class="section level3">
 <h3><span class="header-section-number">17.3.4</span> Visualizing Results</h3>
@@ -789,18 +763,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="collecting-data-from-the-web.html#cb381-1"></a><span class="co"># Format pub_date using lubridate</span></span>
 <span id="cb381-2"><a href="collecting-data-from-the-web.html#cb381-2"></a>docs_df<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(docs_df<span class="op">$</span>pub_date)</span>
 <span id="cb381-3"><a href="collecting-data-from-the-web.html#cb381-3"></a></span>
-<span id="cb381-4"><a href="collecting-data-from-the-web.html#cb381-4"></a>by_month &lt;-<span class="st"> </span>docs_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="kw">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb381-5"><a href="collecting-data-from-the-web.html#cb381-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb381-6"><a href="collecting-data-from-the-web.html#cb381-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">month =</span> <span class="dv">1</span>)</span>
-<span id="cb381-7"><a href="collecting-data-from-the-web.html#cb381-7"></a><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></span>
-<span id="cb381-8"><a href="collecting-data-from-the-web.html#cb381-8"></a></span>
-<span id="cb381-9"><a href="collecting-data-from-the-web.html#cb381-9"></a>by_month <span class="op">%&gt;%</span></span>
-<span id="cb381-10"><a href="collecting-data-from-the-web.html#cb381-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> count)) <span class="op">+</span></span>
-<span id="cb381-11"><a href="collecting-data-from-the-web.html#cb381-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb381-12"><a href="collecting-data-from-the-web.html#cb381-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb381-13"><a href="collecting-data-from-the-web.html#cb381-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="dt">label =</span> <span class="st">&quot;Date&quot;</span>) <span class="op">+</span></span>
-<span id="cb381-14"><a href="collecting-data-from-the-web.html#cb381-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="dt">label =</span> <span class="st">&quot;Article Count&quot;</span>) <span class="op">+</span></span>
-<span id="cb381-15"><a href="collecting-data-from-the-web.html#cb381-15"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Coverage of John Mearsheimer&quot;</span>)</span></code></pre></div>
+<span id="cb381-4"><a href="collecting-data-from-the-web.html#cb381-4"></a>by_month &lt;-<span class="st"> </span>docs_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb381-5"><a href="collecting-data-from-the-web.html#cb381-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(<span class="kw">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb381-6"><a href="collecting-data-from-the-web.html#cb381-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">month =</span> <span class="dv">1</span>, <span class="dt">count =</span> n)</span>
+<span id="cb381-7"><a href="collecting-data-from-the-web.html#cb381-7"></a></span>
+<span id="cb381-8"><a href="collecting-data-from-the-web.html#cb381-8"></a>by_month <span class="op">%&gt;%</span></span>
+<span id="cb381-9"><a href="collecting-data-from-the-web.html#cb381-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> count)) <span class="op">+</span></span>
+<span id="cb381-10"><a href="collecting-data-from-the-web.html#cb381-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb381-11"><a href="collecting-data-from-the-web.html#cb381-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb381-12"><a href="collecting-data-from-the-web.html#cb381-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="dt">label =</span> <span class="st">&quot;Date&quot;</span>) <span class="op">+</span></span>
+<span id="cb381-13"><a href="collecting-data-from-the-web.html#cb381-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="dt">label =</span> <span class="st">&quot;Article Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb381-14"><a href="collecting-data-from-the-web.html#cb381-14"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Coverage of John Mearsheimer&quot;</span>)</span></code></pre></div>
 <p><img src="plsc31101_files/figure-html/unnamed-chunk-443-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="more-resources" class="section level3">
