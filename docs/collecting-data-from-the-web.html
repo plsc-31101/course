@@ -706,7 +706,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="iteration-through-results-pager" class="section level3">
 <h3><span class="header-section-number">17.3.3</span> Iteration through Results Pager</h3>
-<p>That is great. But we only have 10 items. The original response said we had 168 hits! Which means we have to make 168/10, or 17 requests to get them all. Sounds like a job for iteration!</p>
+<p>That is great. But we only have 10 items. The original response said we had 48 hits! Which means we have to make 48/10, or 5 requests to get them all. Sounds like a job for iteration!</p>
 <p>First, let’s write a function that passes a search term and a page number, and returns a dataframe of articles:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="collecting-data-from-the-web.html#cb379-1"></a>nytapi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">term =</span> <span class="ot">NULL</span>, page){</span>
 <span id="cb379-2"><a href="collecting-data-from-the-web.html#cb379-2"></a>    base.url =<span class="st"> &quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span></span>
