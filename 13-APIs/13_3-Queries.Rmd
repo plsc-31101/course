@@ -197,9 +197,9 @@ To figure out how John Mearsheimer's popularity is changing over time, all we ne
 # Format pub_date using lubridate
 docs_df$date <- ymd_hms(docs_df$pub_date)
 
-by_month <- docs_df %>% group_by(floor_date(date, "month")) %>%
-  summarise(count = n()) %>%
-  rename(month = 1)
+by_month <- docs_df %>% 
+  dplyr::count(floor_date(date, "month")) %>%
+  rename(month = 1, count = n)
 
 by_month %>%
   ggplot(aes(x = month, y = count)) +
