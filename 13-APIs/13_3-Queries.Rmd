@@ -49,10 +49,10 @@ key <- "Onz0BobMTn2IRJ7krcT5RXHknkGLqiaI"
 ```{r}
 #key <- "YOURKEY HERE"
 base.url <- "http://api.nytimes.com/svc/search/v2/articlesearch.json"
-search_term <- "John Mearsheimer"
+search_term <- "'John Mearsheimer'"
 ```
 
-How did I know the `base.url`? I read the [documentation](https://developer.nytimes.com/docs/articlesearch-product/1/routes/articlesearch.json/get). Notice that this `base.url` also includes the *response format*(`.jston`), so we do not need to configure that directly.
+How did I know the `base.url`? I read the [documentation](https://developer.nytimes.com/docs/articlesearch-product/1/routes/articlesearch.json/get). Notice that this `base.url` also includes the *response format*(`.json`), so we do not need to configure that directly.
 
 We are ready to make the request. We can use the `GET` function from the `httr` package (another `tidyverse` package) to make an HTTP GET Request.
 
@@ -141,24 +141,24 @@ That is great. But we only have 10 items. The original response said we had 168 
 First, let's write a function that passes a search term and a page number, and returns a dataframe of articles:
 
 ```{r error = F, message = F}
-nytapi <- function(term = NULL, n){
+nytapi <- function(term = NULL, page){
     base.url = "http://api.nytimes.com/svc/search/v2/articlesearch.json"
     
     # Send GET request
     r <- GET(base.url, query = list(`q` = term,
                                   `api-key` = key,
-                                  `page` = n))
+                                  `page` = page))
     
     # Parse response to JSON
     response <- httr::content(r, "text")  
     response_df <- fromJSON(response, simplifyDataFrame = T, flatten = T)
     
-    print(paste("Scraping page: ", as.character(n)))
+    print(paste("Scraping page: ", as.character(page)))
     
     return(response_df$response$docs)
 }
 
-docs <- nytapi("John Mearsheimer", 2)
+docs <- nytapi("'John Mearsheimer'", page = 2)
 ```
 
 Now, we are ready to iterate over each page. First, let's review what we have done so far:
@@ -166,19 +166,18 @@ Now, we are ready to iterate over each page. First, let's review what we have do
 ```{r}
 # Set key and base
 base.url = "http://api.nytimes.com/svc/search/v2/articlesearch.json" 
-search_term = "John Mearsheimer" # Change me
+search_term = "'John Mearsheimer'" 
   
 # Send GET request
-r <- GET(base.url, query = list(`fq` = search_term,
+r <- GET(base.url, query = list(`q` = search_term,
                                 `api-key` = key))
   
 # Parse response to JSON
 response <- httr::content(r, "text")  
 response_df <- fromJSON(response, simplifyDataFrame = T, flatten = T)
 
-# Extract hits -- BUGGGGG
-# hits = response_df$response$meta$hits 
-hits = 168
+# Extract hits
+hits = response_df$response$meta$hits 
 
 # Get number of pages
 pages = ceiling(hits/10)
@@ -187,10 +186,7 @@ pages = ceiling(hits/10)
 nytapi_slow <- slowly(nytapi, rate = rate_delay(1))
 
 # Iterate over pages, getting all docs
-docs_list <- map((1:pages), ~nytapi_slow(term = search_term, n = .))
-
-# Flatten to create one bit dataframe
-docs_df <- bind_rows(docs_list)
+docs_df <- map_dfr((1:pages), ~nytapi_slow(term = search_term, page = .))
 ```
 
 ### Visualizing Results
