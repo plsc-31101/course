@@ -136,7 +136,7 @@ docs <- response_df$response$docs
 
 ### Iteration through Results Pager
 
-That is great. But we only have 10 items. The original response said we had 168 hits! Which means we have to make 168/10, or 17 requests to get them all. Sounds like a job for iteration!
+That is great. But we only have 10 items. The original response said we had 48 hits! Which means we have to make 48/10, or 5 requests to get them all. Sounds like a job for iteration!
 
 First, let's write a function that passes a search term and a page number, and returns a dataframe of articles:
 
