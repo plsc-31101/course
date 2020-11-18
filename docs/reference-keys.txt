@@ -232,6 +232,15 @@ how-do-get-requests-work
 finding-apis
 getting-api-access
 using-apis-in-r
+collecting-twitter-data-with-rtweet
+setting-up-rtweet
+search-by-handles-get_timeline
+search-by-hashtags-and-text-strings-search_tweets
+rate-limits
+search-by-language
+get-friends-get_friends
+get-followers-get_followers
+stream-tweets-stream_tweets
 writing-api-queries
 constructing-the-api-get-request
 parsing-the-response
